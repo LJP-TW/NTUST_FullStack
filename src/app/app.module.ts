@@ -14,6 +14,10 @@ import { FreshBlogAreaComponent } from './fresh-blog-area/fresh-blog-area.compon
 import { TestimonialAreaComponent } from './testimonial-area/testimonial-area.component';
 import { BrandingAreaComponent } from './branding-area/branding-area.component';
 import { EntireFooterAreaComponent } from './entire-footer-area/entire-footer-area.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LayoutComponent } from './layout/layout.component';
+import { IndexComponent } from './index/index.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +33,14 @@ import { EntireFooterAreaComponent } from './entire-footer-area/entire-footer-ar
     FreshBlogAreaComponent,
     TestimonialAreaComponent,
     BrandingAreaComponent,
-    EntireFooterAreaComponent
+    EntireFooterAreaComponent,
+    LayoutComponent,
+    IndexComponent,
+    BlogComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

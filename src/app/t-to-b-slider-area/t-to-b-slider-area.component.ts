@@ -37,9 +37,9 @@ export class TToBSliderAreaComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const jquery = document.createElement('script');
-    jquery.type = 'text/javascript';
-    jquery.src = 'assets/js/jquery.bxslider.min.js';
-    this.elementRef.nativeElement.appendChild(jquery);
+    const jquery1 = document.createElement('script');
+    jquery1.type = 'text/javascript';
+    jquery1.src = 'assets/js/jquery.bxslider.min.js';
+    this.elementRef.nativeElement.appendChild(jquery1);
   }
 }
