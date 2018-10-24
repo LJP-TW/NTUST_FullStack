@@ -6,6 +6,11 @@ import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CategoryComponent } from './category/category.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ContactComponent } from './contact/contact.component';
+import { CategoryGeneralComponent } from './category/category-general/category-general.component';
+import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
 
 const routes: Routes = [
   {
@@ -27,6 +32,28 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent
+  },
+  {
+    path: 'product-detail',
+    component: ProductDetailComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'category',
+    component: CategoryComponent,
+    children: [
+      {
+        path: 'general',
+        component: CategoryGeneralComponent
+      },
+      {
+        path: 'filter',
+        component: CategoryFilterComponent
+      }
+    ]
   }
 ];
 

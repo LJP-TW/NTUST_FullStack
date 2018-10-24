@@ -21,6 +21,11 @@ import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CategoryGeneralComponent } from './category/category-general/category-general.component';
+import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
+import { CategoryComponent } from './category/category.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,12 @@ import { CheckoutComponent } from './checkout/checkout.component';
     BlogComponent,
     NotFoundComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ProductDetailComponent,
+    ContactComponent,
+    CategoryComponent,
+    CategoryGeneralComponent,
+    CategoryFilterComponent
   ],
   imports: [
     BrowserModule,
