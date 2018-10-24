@@ -21,12 +21,18 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/images"
+              "src/images",
+              "src/img"
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/rs-plugin/js/jquery.themepunch.plugins.min.js",
+              "src/assets/js/rs-plugin/js/jquery.themepunch.revolution.min.js",
+              "src/assets/js/rs-plugin/rs.home.js"
+            ]
           },
           "configurations": {
             "production": {
