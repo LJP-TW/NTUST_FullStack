@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { IndexComponent } from './index/index.component';
 import { BlogComponent } from './blog/blog.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BlogComponent } from './blog/blog.component';
     EntireFooterAreaComponent,
     LayoutComponent,
     IndexComponent,
-    BlogComponent
+    BlogComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
