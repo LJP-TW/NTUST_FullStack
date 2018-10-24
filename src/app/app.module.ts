@@ -19,6 +19,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { IndexComponent } from './index/index.component';
 import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LayoutComponent,
     IndexComponent,
     BlogComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
