@@ -57,13 +57,8 @@ import { SingleBlogComponent } from './single-blog/single-blog.component';
     LoginComponent,
     SingleBlogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  imports: [FormsModule, BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-// TestTEst
+export class AppModule {}
