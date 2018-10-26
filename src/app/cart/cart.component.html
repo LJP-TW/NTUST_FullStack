@@ -5,7 +5,7 @@
         <div class="bread_box">
           <ul class="breadcumb">
             <li><a href="index.html">home <span>|</span></a></li>
-            <li><a href="">Shop1 <span>|</span></a></li>
+            <li><a href="">Shop <span>|</span></a></li>
             <li class="active"><a href="">cart</a></li>
           </ul>
         </div>
@@ -33,6 +33,8 @@
               <p>total</p>
             </div>
           </div>
+
+          <!-- 代購商品 -->
           <div class="cart_item">
             <div class="cart_item_img">
               <img src="images/cart_img1.jpg" alt="" />
@@ -113,73 +115,50 @@
               <span><i class="fa fa-close"></i></span>
             </div>
           </div>
+          <!-- 代購商品 ↑-->
+
           <div class="coupon_box">
-            <input type="text" placeholder="coupon code"/>
+            <input type="text" placeholder="coupon code" />
             <input type="submit" value="apply coupon">
           </div>
         </div>
       </div>
 
-<!-- rightSide -->
+      <!-- rightSide -->
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="main_cart_right">
           <div class="product_form_total">
 
-            <div class="panel-group" id="home-accordion" role="tablist" >
+            <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
+
               <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                <p  href="#collapseOne" >
-                 CALCULATE SHIPPING
-                  <span class="floatright"><button [ngClass]="{button: true,buttonMinus: SHIPPINGCtrl === true ,buttonPlus: SHIPPINGCtrl === false }" (click)="shipClick()"></button></span>
-                </p>
-                </h4>
-              </div>
-              <div *ngIf="SHIPPINGCtrl === true" id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
-                <div class="panel-body">
-                  <select class="selectpicker">
-                    <option>Melbourne</option>
-                    <option>Dhaka</option>
-                    <option>New York</option>
-                  </select>
-                  <select class="selectpicker sel_state">
-                    <option>Sate/Country</option>
-                    <option>Bangladesh</option>
-                    <option>USA</option>
-                    <option>UK</option>
-                    <option>Canda</option>
-                    <option>Australia</option>
-                  </select>
-                  <input type="text" placeholder="Postcode/zip"/>
-                  <input type="submit" class="cartUpdate" value="Update Totals" (click)="updateTotal()">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <p class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo"
+                      aria-expanded="false" aria-controls="collapseTwo">
+                      Cart totals
+                      <span class="floatright"><button [ngClass]="{button: true,buttonMinus: CartTotalCtrl === true ,buttonPlus: CartTotalCtrl === false }"
+                          ></button></span>
+                    </p>
+                  </h4>
                 </div>
-              </div>
-              </div>
-              <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                <p class="collapsed" href="#collapseTwo" >
-                  Cart totals
-                  <span class="floatright"><button [ngClass]="{button: true,buttonMinus: CartTotalCtrl === true ,buttonPlus: CartTotalCtrl === false }" (click)="cartTotalClick()"></button></span>
-                </p>
-                </h4>
-              </div>
-              <div *ngIf="CartTotalCtrl === true" id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" >
-                <div class="panel-body cart_p_body">
-                <div class="c_single_item">
-                  <p>SubTotal</p>
-                  <span>${{subTotal}}</span>
+                <div *ngIf="CartTotalCtrl === true" id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                  aria-labelledby="headingTwo">
+                  <div class="panel-body cart_p_body">
+                    <div class="c_single_item">
+                      <p>SubTotal</p>
+                      <span>${{subTotal}}</span>
+                    </div>
+                    <div class="c_single_item cart_last_total">
+                      <p>Shipping Charge</p>
+                      <span>{{shippingCharge}}</span>
+                    </div>
+                    <div class="c_total_item sp_single_item">
+                      <p>Total</p>
+                      <span>${{total}}</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="c_single_item cart_last_total">
-                  <p>Shipping Charge</p>
-                  <span>{{shippingCharge}}</span>
-                </div>
-                <div class="c_total_item sp_single_item">
-                  <p>Total</p>
-                  <span>${{total}}</span>
-                </div>
-                </div>
-              </div>
               </div>
             </div>
             <input type="submit" class="cartUpdate" (click)="updateCart()" value="Update Cart">

@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
   constructor() {}
+
+  // 接資料庫
   // 商品數量及資訊
   productNum = 4;
   prodoct = [];
   //
-  SHIPPINGCtrl = true;
-  CartTotalCtrl = true;
   price1 = 90;
   price2 = 80;
   price3 = 110;
@@ -25,7 +25,8 @@ export class CartComponent implements OnInit {
   total2 = this.price2 * this.quantity2;
   total3 = this.price3 * this.quantity3;
   total4 = this.price4 * this.quantity4;
-
+  // 以上接資料庫
+  CartTotalCtrl = true;
   subTotal = 0;
   shippingCharge = 0;
   total = 0;
@@ -83,27 +84,17 @@ export class CartComponent implements OnInit {
     }
   }
 
+  /*
   // 隱藏、顯示左側資訊欄位
-  shipClick() {
-    //if (this.SHIPPINGCtrl === false) {
-    //  this.SHIPPINGCtrl = true;
-    //} else {
-    //  this.SHIPPINGCtrl = false;
-    //}
-  }
   cartTotalClick() {
-    // if (this.CartTotalCtrl === false) {
-    //   this.CartTotalCtrl = true;
-    // } else {
-    //   this.CartTotalCtrl = false;
-    // }
-  }
+    if (this.CartTotalCtrl === false) {
+      this.CartTotalCtrl = true;
+    } else {
+      this.CartTotalCtrl = false;
+    }
+  }*/
   //
   // 更新購物車
-  updateTotal() {
-    this.subTotal = this.total1 + this.total2 + this.total3 + this.total4;
-    this.total = this.subTotal + this.shippingCharge;
-  }
   updateCart() {
     this.subTotal = this.total1 + this.total2 + this.total3 + this.total4;
     this.total = this.subTotal + this.shippingCharge;
