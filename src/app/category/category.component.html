@@ -40,7 +40,7 @@
               </ul>
             </div>
             <div class="s_results">
-              <p><span>|</span> showing {{ indexS+1 }}-{{indexE}} of {{productMax}} results</p>
+              <p><span>|</span> showing {{ indexS + 1 }}-{{indexE}} of {{productMax}} results</p>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
         <ng-container *ngIf="filter;">
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="main_category_left">
-        
+
                   <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -187,7 +187,7 @@
               </div>
         </ng-container>
         <div [ngClass]="{'col-md-12':filter==false,
-                         'col-md-9':filter, 
+                         'col-md-9':filter,
                          'col-sm-12':filter==false,
                          'col-sm-8':filter,
                          'col-xs-12':true
@@ -211,9 +211,10 @@
                               <img [src]="item.imageLoc" alt="" />
                               <div class="tr-add-cart">
                                 <ul>
-                                  <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                  <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                                  <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                  <li><a class="fa fa-shopping-cart tr_cart" (click)="AddToCart(item.id)"></a></li>
+                                  <li><a class="tr_text">ADD TO CART</a></li>
+                                  <!-- Todo: Wish List -->
+                                  <li><a class="fa fa-heart tr_heart"></a></li>
                                   <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
                                 </ul>
                               </div>

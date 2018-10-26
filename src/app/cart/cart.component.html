@@ -4,8 +4,8 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="bread_box">
           <ul class="breadcumb">
-            <li><a href="index.html">home <span>|</span></a></li>
-            <li><a href="">Shop <span>|</span></a></li>
+            <li><a [routerLink]="['/']" routerLinkActive="router-link-active" >home <span>|</span></a></li>
+            <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >Shop <span>|</span></a></li>
             <li class="active"><a href="">cart</a></li>
           </ul>
         </div>
@@ -34,8 +34,37 @@
             </div>
           </div>
 
+
+          <!-- For 出所有商品 -->
+          <ng-container *ngFor="let order of this.Cart; let i = index">
+            <div class="cart_item">
+              <div class="cart_item_img">
+                <img src="order.product.imageLoc" alt="" />
+                <p>{{ order.product.name }}<br>
+                  <ng-container *ngFor="let character of order.product.characteristics">
+                    {{ character }}
+                  </ng-container>
+                </p>
+              </div>
+              <div class="cart_price">
+                <p>${{ order.product.price}}</p>
+              </div>
+              <div class="cart_quantity">
+                <ul>
+                  <li><button class="buttonMinus button" (click)="minusClick(i)"></button></li>
+                  <li><input type="text" class="quantity" [(ngModel)]=order.amount></li>
+                  <li><button class="buttonPlus button" (click)="plusClick(i)"></button></li>
+                </ul>
+              </div>
+              <div class="cart_total">
+                <p>${{ order.total }}</p>
+                <span><i class="fa fa-close"></i></span>
+              </div>
+            </div>
+          </ng-container>
+
           <!-- 代購商品 -->
-          <div class="cart_item">
+          <!-- <div class="cart_item">
             <div class="cart_item_img">
               <img src="images/cart_img1.jpg" alt="" />
               <p>blue denim casual <br>shirt</p>
@@ -114,7 +143,7 @@
               <p>${{total4}}</p>
               <span><i class="fa fa-close"></i></span>
             </div>
-          </div>
+          </div> -->
           <!-- 代購商品 ↑-->
 
           <div class="coupon_box">
@@ -161,8 +190,8 @@
                 </div>
               </div>
             </div>
-            <input type="submit" class="cartUpdate" (click)="updateCart()" value="Update Cart">
-            <input type="submit" value="Proceed to checkout">
+            <!-- <input type="submit" class="cartUpdate" (click)="updateCart()" value="Update Cart"> -->
+            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active"  value="Proceed to checkout">
           </div>
         </div>
       </div>

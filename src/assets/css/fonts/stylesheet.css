@@ -14,3 +14,17 @@
     font-style: normal;
 
 }
+
+@font-face {
+  font-family: 'ChauPhilomeneOne';
+  src: url('ChauPhilomeneOne-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ChauPhilomeneOne';
+  src: url('ChauPhilomeneOne-Italic.ttf');
+  font-weight: normal;
+  font-style: italic;
+}

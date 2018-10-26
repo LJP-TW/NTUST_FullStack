@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ProductDataBaseService {
 
   constructor() { }
-  Cart:number[] = [
+  Cart: number[] = [
   ];
 
   Products =[
@@ -603,7 +603,7 @@ export class ProductDataBaseService {
     //   createdAt: '2018-05-10T19:49:35.917Z',
     //   updatedAt: '2018-05-11T19:49:35.917Z',
     // },
-    
+
 
   ];
 
@@ -612,7 +612,7 @@ export class ProductDataBaseService {
       let d1 = new Date(n1.updatedAt);
       let d2 = new Date(n2.updatedAt);
       let reval = 0;
-      let rev = ASC ? 1 : -1; 
+      let rev = ASC ? 1 : -1;
       if(d1.getTime() > d2.getTime()){
           reval  = 1 ;
       }
@@ -626,7 +626,7 @@ export class ProductDataBaseService {
   public SortByPrice(ASC:boolean):any{
     return this.Products.sort((n1,n2)=>{
       let reval = 0;
-      let rev = ASC ? 1 : -1; 
+      let rev = ASC ? 1 : -1;
       if(n1.price < n2.price){
           reval  = 1 ;
       }
@@ -637,7 +637,7 @@ export class ProductDataBaseService {
     })
   }
 
-  
+
 
 
 }
