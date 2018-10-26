@@ -11,6 +11,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ContactComponent } from './contact/contact.component';
 import { CategoryGeneralComponent } from './category/category-general/category-general.component';
 import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
         component: CategoryFilterComponent
       }
     ]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

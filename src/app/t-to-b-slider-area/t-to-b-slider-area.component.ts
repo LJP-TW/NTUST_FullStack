@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import * as $ from 'jquery';
 
@@ -9,37 +9,8 @@ import * as $ from 'jquery';
 })
 export class TToBSliderAreaComponent implements OnInit {
 
-  constructor(
-    private elementRef: ElementRef
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    $(document).ready(function(){
-      $('.slider8').bxSlider({
-       mode: 'vertical',
-       slideWidth: 300,
-       minSlides: 3,
-       slideMargin: 10
-       });
-      $('.slider9').bxSlider({
-       mode: 'vertical',
-       slideWidth: 300,
-       minSlides: 3,
-       slideMargin: 10
-       });
-      $('.slider10').bxSlider({
-       mode: 'vertical',
-       slideWidth: 300,
-       minSlides: 3,
-       slideMargin: 10
-       });
-     });
-  }
-
-  ngAfterViewInit() {
-    const jquery1 = document.createElement('script');
-    jquery1.type = 'text/javascript';
-    jquery1.src = 'assets/js/jquery.bxslider.min.js';
-    this.elementRef.nativeElement.appendChild(jquery1);
   }
 }

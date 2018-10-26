@@ -211,6 +211,7 @@ text-transform: uppercase;
 }
 .header_left {
   margin: 43px 0;
+  width: 400px;
   position: relative;
 }
 .header_right {
@@ -230,22 +231,7 @@ text-transform: uppercase;
   font-size: 12px;
   padding-left: 9px;
 }
-.header_left a {
-  color: #333333;
-  font-size: 17px;
-  left: 0px;
-  position: absolute;
-  top: 4px;
-}
-.header_left input[type="text"] {
-border: medium none;
-color: #000;
-font-weight: 500;
-margin-left: 13px;
-padding-left: 10px;
-padding-top: 3px;
-text-transform: uppercase;
-}
+
 .header_right ul.checkout {
   list-style: outside none none;
   margin: 0;
@@ -271,10 +257,10 @@ text-transform: uppercase;
   margin-right: 7px;
 }
 .nav_area {
-  background: none repeat scroll 0 0 #ff6766;
+  background: none repeat scroll 0 0 #000000;
 }
 .nav_left {
-  background: none repeat scroll 0 0 #f06160;
+  background: none repeat scroll 0 0 #000000;
 padding: 22px 0;
 position: relative;
 width: 17%;
@@ -293,7 +279,7 @@ width: 17%;
   margin-left: 65px;
 }
 .nav_right {
-  background: none repeat scroll 0 0 #f06160;
+  background: none repeat scroll 0 0 #000000;
 padding: 22px 0;
 position: relative;
 width: 17%;
@@ -310,7 +296,7 @@ text-transform: uppercase;
 }
 .nav_right a:hover {
   text-decoration:none;
-  color: #000;
+
 }
 .nav_right img {
   cursor: pointer;
@@ -472,16 +458,16 @@ background:#fff;
 background:#fff;
 }
 .mainmenu ul#nav li ul#sub-menu li a:hover {
-color:#FF6766;
+color:#ffb923;
 }
 .mainmenu ul#nav li ul#sub-menu4 li a:hover {
-color:#FF6766;
+color:#ffb923;
 }
 .mainmenu ul#nav li ul#sub-menu7 li a:hover {
-color:#FF6766;
+color:#ffb923;
 }
 .mainmenu ul#nav li ul#sub-menu5 li a:hover {
-color:#FF6766;
+color:#ffb923;
 }
 .mainmenu ul#nav li a {
   border-top: 4px solid #fff;
@@ -612,7 +598,7 @@ z-index: 99;
   padding-left: 0;
 }
 .cart_items:hover .c_item_totals_detail a h5 {
-  color:#ff6766;
+  color:#ffb923;
 }
 .cart_items {
   border-bottom: 1px solid #ddd;
@@ -667,13 +653,13 @@ text-transform: uppercase;
   overflow: hidden;
 }
 .cart_view_bottom .c_totals_left {
-  background: none repeat scroll 0 0 #eb5e5d;
+  background: none repeat scroll 0 0 #ffb923;
   padding: 15px;
   text-align: center;
   width: 50%;
 }
 .cart_view_bottom .c_totals_right {
-  background: none repeat scroll 0 0 #FF6766;
+  background: none repeat scroll 0 0 #ffb923;
   padding: 15px;
   text-align: center;
   width: 50%;
@@ -766,7 +752,7 @@ font-size: 12px;
 padding: 10px 0;
 }
  ul.cat_nav li a:hover {
-  color: #FF6766;
+  color: #ffb923;
 }
 
 .slider_area > img {
@@ -1143,8 +1129,8 @@ padding: 3px 8px;
 text-transform: uppercase;
 }
 .footer_top_left > input[type="submit"]:hover {
-  background: none repeat scroll 0 0 #ff6766;
-border: 1px solid #ff6766;
+  background: none repeat scroll 0 0 #ffb923;
+border: 1px solid #ffb923;
 color: #fff;
 }
 .footer_top_right > ul#payment {
@@ -1536,8 +1522,8 @@ width: 64%;
   width: 10px;
 }
  #testi_carosel .carousel-indicators .active {
-  background-color: #FF6766;
-  border:1px solid #FF6766;
+  background-color: #ffb923;
+  border:1px solid #ffb923;
   height: 12px;
   margin: 0;
   width: 12px;
@@ -1762,7 +1748,7 @@ padding-bottom: 8px;
 }
 .product_form_total > input[type="submit"], .coupon_box > input[type=submit] {
   background: none repeat scroll 0 0 #fff;
-  border: 2px solid #ff6766;
+  border: 2px solid #ffb923;
   color: #232323;
   font-size: 13px;
   font-weight: 700;
@@ -1773,7 +1759,7 @@ padding-bottom: 8px;
   width: 100%;
 }
 .product_form_total > input[type="submit"]:hover {
-  background: none repeat scroll 0 0 #ff6766;
+  background: none repeat scroll 0 0 #ffb923;
   color: #fff;
 }
 .checkout_left > h2 {
@@ -2077,7 +2063,7 @@ text-transform: uppercase;
 }
 .blog_categories ul li a:hover{
 text-decoration:none;
-color:#ff6766;
+color:#ffb923;
 }
 .recent_post_text a h3 {
  color: #232323;
@@ -2299,7 +2285,7 @@ width: 44%;
   font-size: 13px;
 }
 .left_input input[type="text"] {
-border: 1px solid #f2f2f2;
+border: 1px solid #1d1d1d;
 height: 38px;
 margin-bottom: 20px;
 width: 100%;
@@ -2311,7 +2297,7 @@ margin-bottom: 20px;
 width: 100%;
 }
 .right_input input[type="submit"] {
-  background: none repeat scroll 0 0 #ff6766;
+  background: none repeat scroll 0 0 #ffb923;
   border: medium none;
   color: #fff;
   height: 38px;
@@ -2322,8 +2308,8 @@ width: 100%;
 }
 .right_input input[type="submit"]:hover {
   background: none repeat scroll 0 0 #fff;
-  border: 2px solid #ff6766;
-  color: #ff6766;
+  border: 2px solid #ffb923;
+  color: #ffb923;
 }
 
 
@@ -2400,7 +2386,7 @@ width: 56%;
   width: 100%;
 }
 .submit_btn input[type="submit"] {
-  background: none repeat scroll 0 0 #ff6766;
+  background: none repeat scroll 0 0 #ffb923;
 color: #fff;
 float: left;
 font-size: 13px;
@@ -2408,12 +2394,12 @@ font-weight: 700;
 padding: 8px 20px;
 text-align: left;
 text-transform: uppercase;
-border:2px solid #ff6766;
+border:2px solid #7c7c7c;
 }
 .submit_btn input[type="submit"]:hover {
   background:#fff;
-color: #ff6766;
-border:2px solid #ff6766;
+color: #ffb923;
+border:2px solid #ffb923;
 text-decoration:none;
 }
 .contact_box_right {
@@ -2689,7 +2675,7 @@ width: 31%;
  margin-top: 35px;
 }
 .cat_filter_box  input {
-  color: #ff6766;
+  color: #ffb923;
 float: left;
 font-size: 12px;
 margin-top: 5px;
@@ -2795,7 +2781,7 @@ top: -2px;
 width: 30px;
 }
 .cat-2 .pagi_line::after {
-  border-top: 2px solid #ff6766;
+  border-top: 2px solid #ffb923;
   content: "";
   left: 41%;
   position: absolute;
@@ -2803,7 +2789,7 @@ width: 30px;
   width: 30px;
 }
 .blog_page_area .pagi_line::after {
-  border-top: 2px solid #ff6766;
+  border-top: 2px solid #ffb923;
   content: "";
   left: 37%;
   position: absolute;
@@ -2937,7 +2923,7 @@ text-align: center;
 width: 23px;
 }
 .cart_quantity ul li a:hover {
-  border: 1px solid #FF6766;
+  border: 1px solid #ffb923;
   text-decoration:none;
 }
 #home-accordion .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
@@ -2968,7 +2954,7 @@ width: 100%;
 }
 #home-accordion .panel-body > input[type="submit"] {
   background: none repeat scroll 0 0 #fff;
-  border: 2px solid #ff6766;
+  border: 2px solid #ffb923;
   color: #666;
   font-size: 11px;
   margin-bottom: 12px;
@@ -2977,8 +2963,8 @@ width: 100%;
   width: 57%;
 }
 #home-accordion .panel-body > input[type="submit"]:hover {
- background: none repeat scroll 0 0 #ff6766;
-  border: 2px solid #ff6766;
+ background: none repeat scroll 0 0 #ffb923;
+  border: 2px solid #ffb923;
   color: #fff;
 }
 .c_total_item.sp_single_item {
@@ -2993,8 +2979,8 @@ width: 100%;
   border-bottom: 0 solid #ddd;
 }
 .main_cart_right .product_form_total a.cart_update {
-  background: none repeat scroll 0 0 #ff6766;
-  border: 2px solid #ff6766;
+  background: none repeat scroll 0 0 #ffb923;
+  border: 2px solid #ffb923;
   color: #fff;
   display: block;
   font-size: 12px;
@@ -3006,7 +2992,7 @@ width: 100%;
 }
 .main_cart_right .product_form_total a.cart_update:hover {
   background: none repeat scroll 0 0 #f7f8f9;
-  border: 2px solid #ff6766;
+  border: 2px solid #ffb923;
   color: #222;
   text-decoration:none;
 }
@@ -3014,8 +3000,8 @@ width: 100%;
   background: none repeat scroll 0 0 #f7f8f9;
 }
 .main_cart_area .product_form_total > input[type="submit"]:hover, .coupon_box > input[type="submit"]:hover {
-  background: none repeat scroll 0 0 #ff6766;
-  border: 2px solid #ff6766;
+  background: none repeat scroll 0 0 #ffb923;
+  border: 2px solid #ffb923;
   color: #fff;
 }
 .main_cart_area .main_cart_right {
@@ -3502,7 +3488,7 @@ text-transform: uppercase;
 }
 .review_comment_input input[type="submit"] {
 background: transparent none repeat scroll 0 0;
-border: 2px solid #ff6766;
+border: 2px solid #ffb923;
 color: #000;
 font-size: 13px;
 font-weight: 700;
@@ -3511,7 +3497,7 @@ text-transform: uppercase;
 width: 37%;
 }
 .review_comment_input input[type="submit"]:hover {
-  background: #FF6766 none repeat scroll 0 0;
+  background: #ffb923 none repeat scroll 0 0;
   color:#fff;
 }
 .single_review_text {
@@ -3537,7 +3523,7 @@ width: 37%;
 
 .size_down input[type=number]:hover {
 background: none repeat scroll 0 0 #F7F8F9;
-border: 2px solid #ff6766;
+border: 2px solid #ffb923;
 }
 input[type="number"].hotfix::-webkit-outer-spin-button,
 input[type="number"].hotfix::-webkit-inner-spin-button {

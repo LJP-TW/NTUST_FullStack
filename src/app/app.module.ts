@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -26,6 +27,7 @@ import { CategoryGeneralComponent } from './category/category-general/category-g
 import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,11 +54,13 @@ import { ContactComponent } from './contact/contact.component';
     ContactComponent,
     CategoryComponent,
     CategoryGeneralComponent,
-    CategoryFilterComponent
+    CategoryFilterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
