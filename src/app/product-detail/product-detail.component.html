@@ -4,10 +4,10 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="bread_box">
           <ul class="breadcumb">
-            <li><a href="">home <span>|</span></a></li>
-            <li><a href="cart">shop <span>|</span></a></li>
-            <li><a href="category/general">mens <span>|</span></a></li>
-            <li class="active"><a href="">t-shirt</a></li>
+            <li><a [routerLink]="['/']" routerLinkActive="router-link-active" >home <span>|</span></a></li>
+            <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active" >shop <span>|</span></a></li>
+            <li><a [routerLink]="['/category/general']" routerLinkActive="router-link-active" >mens <span>|</span></a></li>
+            <li class="active"><a [routerLink]="['/']" routerLinkActive="router-link-active" >t-shirt</a></li>
           </ul>
         </div>
       </div>
@@ -78,12 +78,14 @@
               <div class="new_price_gray"><del> $100.30 </del></div>
             </div>
             <div class="detail_heading_right">
+              <!-- Todo -->
+              <!-- Rank System -->
               <ul id="detail_star">
-                <li><a class="fa fa-star-o red" href=""></a></li>
-                <li><a class="fa fa-star-o red" href=""></a></li>
-                <li><a class="fa fa-star-o red" href=""></a></li>
-                <li><a class="fa fa-star-o" href=""></a></li>
-                <li><a class="fa fa-star-o" href=""></a></li>
+                <li><a class="fa fa-star-o red"></a></li>
+                <li><a class="fa fa-star-o red"></a></li>
+                <li><a class="fa fa-star-o red"></a></li>
+                <li><a class="fa fa-star-o"></a></li>
+                <li><a class="fa fa-star-o"></a></li>
               </ul>
               <p>(5 Review)</p>
             </div>
@@ -103,9 +105,9 @@
               <div class="panel-body product_ac_body">
              <p>Pellentesque habitant morbi tristique senectus et netus et males suada fames acila turpis egestas. Vestibulum tortor quam, feugialth vitae, ultricies eget, tempor sitare amet, ante. Donec eu libero sitkar amet quam.</p>
              <ul id="product_accord_nav">
-                <li><a href="">Tristique senectus et netus aspernatur aut.</a></li>
-                <li><a href="">Labore doloam aliquam quaerat voluptatem.</a></li>
-                <li><a href="">Nisi ut aliquid ex ea commodi consequatue.</a></li>
+                <li><a>Tristique senectus et netus aspernatur aut.</a></li>
+                <li><a>Labore doloam aliquam quaerat voluptatem.</a></li>
+                <li><a>Nisi ut aliquid ex ea commodi consequatue.</a></li>
               </ul>
               </div>
             </div>
@@ -134,6 +136,8 @@
              </a>
               </h4>
             </div>
+            <!-- Todo -->
+            <!-- Choosing Color, Size, Quantity, Add To CART, Like -->
             <div id="collapseThreeP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreeP">
               <div class="panel-body product_accordion_head">
               <div class="single_color sp_single_col">
@@ -141,10 +145,10 @@
                 <div class="color_detail">
                   <div class="panel-body colors_cat">
                     <ul id="cat_color">
-                      <li><a class="col-7" href=""></a></li>
-                      <li><a class="col-8" href=""></a></li>
-                      <li><a class="col-9" href=""></a></li>
-                      <li><a class="col-10" href=""></a></li>
+                      <li><a class="col-7"></a></li>
+                      <li><a class="col-8"></a></li>
+                      <li><a class="col-9"></a></li>
+                      <li><a class="col-10"></a></li>
                     </ul>
                     </div>
 
@@ -155,11 +159,11 @@
               <div class="color_detail">
               <div class="color_size_detail">
                 <ul id="color_size">
-                  <li><a href="">xs</a></li>
-                  <li><a href="">s</a></li>
-                  <li><a href="">m</a></li>
-                  <li><a href="">l</a></li>
-                  <li><a href="">xl</a></li>
+                  <li><a>xs</a></li>
+                  <li><a>s</a></li>
+                  <li><a>m</a></li>
+                  <li><a>l</a></li>
+                  <li><a>xl</a></li>
                 </ul>
               </div>
               </div>
@@ -171,13 +175,13 @@
                   <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity[113]" max="119" min="0" step="1">
                 </div>
                 <div class="size_cart">
-                  <a href="">Add to cart</a>
+                  <a>Add to cart</a>
                 </div>
                 <div class="size_heart">
-                  <a href=""><img src="images/Product-Details-heart.png" alt="" /></a>
+                  <a><img src="images/Product-Details-heart.png" alt="" /></a>
                 </div>
                 <div class="size_heart">
-                  <a href=""><img src="images/Product-Details-arrow.png" alt="" /></a>
+                  <a><img src="images/Product-Details-arrow.png" alt="" /></a>
                 </div>
 
               </div>

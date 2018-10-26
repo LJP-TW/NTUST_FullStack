@@ -16,8 +16,8 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="bread_box">
               <ul class="breadcumb">
-                <li><a href="index.html">home <span>|</span></a></li>
-                <li class="active"><a href="">blog</a></li>
+                <li><a [routerLink]="['/index']" routerLinkActive="router-link-active">home <span>|</span></a></li>
+                <li class="active"><a [routerLink]="['/']" routerLinkActive="router-link-active">blog</a></li>
               </ul>
             </div>
           </div>
@@ -36,13 +36,13 @@
                 <p>april 2015</p>
               </div>
               <div class="blog_text_in_page">
-                <a href="single-blog.html"><h3>this is blog design for mens wear shop</h3></a>
+                <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active"><h3>this is blog design for mens wear shop</h3></a>
                 <h4>By <span>Admin</span>,   comments  <span>23</span>,   summer special</h4>
                 <p>Nolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exeap
                 quat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepta
                 cupidar dolor sit amets non numquam thas dolorem ipsum quialas[...]</p>
                 <div class="read_more">
-                  <a class="read_more_blog" href="single-blog.html">Read more</a>
+                  <a class="read_more_blog" [routerLink]="['/single-blog']" routerLinkActive="router-link-active">Read more</a>
                 </div>
               </div>
             </div>
@@ -53,13 +53,13 @@
                 <p>april 2015</p>
               </div>
               <div class="blog_text_in_page">
-                <a href="single-blog.html"><h3>this is blog design for mens wear shop</h3></a>
+                <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active"><h3>this is blog design for mens wear shop</h3></a>
                 <h4>By <span>Admin</span>,   comments  <span>23</span>,   summer special</h4>
                 <p>Nolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exeap
                 quat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepta
                 cupidar dolor sit amets non numquam thas dolorem ipsum quialas[...]</p>
                 <div class="read_more">
-                  <a class="read_more_blog" href="single-blog.html">Read more</a>
+                  <a class="read_more_blog" [routerLink]="['/single-blog']" routerLinkActive="router-link-active" >Read more</a>
                 </div>
               </div>
             </div>
@@ -70,13 +70,13 @@
                 <p>april 2015</p>
               </div>
               <div class="blog_text_in_page">
-                <a href="single-blog.html"><h3>this is blog design for mens wear shop</h3></a>
+                <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><h3>this is blog design for mens wear shop</h3></a>
                 <h4>By <span>Admin</span>,   comments  <span>23</span>,   summer special</h4>
                 <p>Nolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exeap
                 quat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepta
                 cupidar dolor sit amets non numquam thas dolorem ipsum quialas[...]</p>
                 <div class="read_more">
-                  <a class="read_more_blog" href="single-blog.html">Read more</a>
+                  <a class="read_more_blog" [routerLink]="['/single-blog']" routerLinkActive="router-link-active" >Read more</a>
                 </div>
               </div>
             </div>
@@ -85,13 +85,13 @@
                 <div class="pagi_line"></div>
                 <div class="pagi_ul">
                   <ul id="pagination">
-                    <li><a href="">Previous</a></li>
-                    <li><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href="">5 ...</a></li>
-                    <li><a href="">Next</a></li>
+                    <li><a>Previous</a></li>
+                    <li><a>1</a></li>
+                    <li><a>2</a></li>
+                    <li><a>3</a></li>
+                    <li><a>4</a></li>
+                    <li><a>5 ...</a></li>
+                    <li><a>Next</a></li>
                   </ul>
                 </div>
               </div>
@@ -112,12 +112,12 @@
                 <h2>POST CATEGORIES</h2>
                 <div class="multi_line"></div>
                 <ul id="blog_categories">
-                  <li><a href="#">Stylish Looks</a></li>
-                  <li><a href="#">Fashion Of the week</a></li>
-                  <li><a href="#">Summer Special</a></li>
-                  <li><a href="#">Offers & Discounts</a></li>
-                  <li><a href="#">Seller of the day</a></li>
-                  <li><a href="#">Best reviews</a></li>
+                  <li><a>Stylish Looks</a></li>
+                  <li><a>Fashion Of the week</a></li>
+                  <li><a>Summer Special</a></li>
+                  <li><a>Offers & Discounts</a></li>
+                  <li><a>Seller of the day</a></li>
+                  <li><a>Best reviews</a></li>
                 </ul>
               </div>
               <div class="blog_recent_post">
@@ -129,12 +129,12 @@
                   </div>
                   <div class="recent_post_text">
 
-                    <a href="single-blog.html"><h3>Beritatis et Quasi Arcteco<br>
+                    <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><h3>Beritatis et Quasi Arcteco<br>
                       veatae Vitae</h3></a>
                     <p>April 2015</p>
                   </div>
                   <div class="recent_post_img">
-                    <a href="single-blog.html"><img src="images/recent_post1.png" alt="" /></a>
+                    <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/recent_post1.png" alt="" /></a>
                   </div>
                 </div>
                 <div class="single_recent_post">
@@ -143,12 +143,12 @@
                   </div>
                   <div class="recent_post_text">
 
-                    <a href="single-blog.html"><h3>Beritatis et Quasi Arcteco<br>
+                    <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><h3>Beritatis et Quasi Arcteco<br>
                       veatae Vitae</h3></a>
                     <p>April 2015</p>
                   </div>
                   <div class="recent_post_img">
-                    <a href="single-blog.html"><img src="images/recent_post2.png" alt="" /></a>
+                    <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/recent_post2.png" alt="" /></a>
                   </div>
                 </div>
                 <div class="single_recent_post">
@@ -157,12 +157,12 @@
                   </div>
                   <div class="recent_post_text">
 
-                    <a href="single-blog.html"><h3>Beritatis et Quasi Arcteco<br>
+                    <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><h3>Beritatis et Quasi Arcteco<br>
                       veatae Vitae</h3></a>
                     <p>April 2015</p>
                   </div>
                   <div class="recent_post_img">
-                    <a href="single-blog.html"><img src="images/recent_post3.png" alt="" /></a>
+                    <a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/recent_post3.png" alt="" /></a>
                   </div>
                 </div>
               </div>
@@ -170,12 +170,12 @@
                 <h2>Instagram</h2>
                 <div class="multi_line"></div>
                 <ul id="instrigram">
-                  <li><a href="single-blog.html"><img src="images/blog-side1.jpg" alt="" /></a></li>
-                  <li><a href="single-blog.html"><img src="images/blog-side2.jpg" alt="" /></a></li>
-                  <li><a href="single-blog.html"><img src="images/blog-side3.jpg" alt="" /></a></li>
-                  <li><a href="single-blog.html"><img src="images/blog-side4.jpg" alt="" /></a></li>
-                  <li><a href="single-blog.html"><img src="images/blog-side5.jpg" alt="" /></a></li>
-                  <li><a href="single-blog.html"><img src="images/blog-side6.jpg" alt="" /></a></li>
+                  <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/blog-side1.jpg" alt="" /></a></li>
+                  <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/blog-side2.jpg" alt="" /></a></li>
+                  <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/blog-side3.jpg" alt="" /></a></li>
+                  <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/blog-side4.jpg" alt="" /></a></li>
+                  <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/blog-side5.jpg" alt="" /></a></li>
+                  <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" ><img src="images/blog-side6.jpg" alt="" /></a></li>
                 </ul>
               </div>
             </div>

@@ -16,9 +16,9 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="bread_box">
 						<ul class="breadcumb">
-							<li><a href="">home <span>|</span></a></li>
-							<li><a href="">Pgaes <span>|</span></a></li>
-							<li class="active"><a href="">Contact</a></li>
+							<li><a [routerLink]="['/']" routerLinkActive="router-link-active" >home <span>|</span></a></li>
+							<li><a [routerLink]="['/']" routerLinkActive="router-link-active" >Pgaes <span>|</span></a></li>
+							<li class="active"><a [routerLink]="['/']" routerLinkActive="router-link-active" >Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 
 						<h5>Contact info</h5>
 						<p>Info@Example.com</p>
-						<a href="tel:01(800)433633">01 (800) 433 633</a>
+						<a>01 (800) 433 633</a>
 						<div class="dotted_line"></div>
 
 						<h5>Working hours</h5>

@@ -16,7 +16,6 @@ import { TestimonialAreaComponent } from './testimonial-area/testimonial-area.co
 import { BrandingAreaComponent } from './branding-area/branding-area.component';
 import { EntireFooterAreaComponent } from './entire-footer-area/entire-footer-area.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LayoutComponent } from './layout/layout.component';
 import { IndexComponent } from './index/index.component';
 import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -28,6 +27,7 @@ import { CategoryFilterComponent } from './category/category-filter/category-fil
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
+import { SingleBlogComponent } from './single-blog/single-blog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,6 @@ import { LoginComponent } from './login/login.component';
     TestimonialAreaComponent,
     BrandingAreaComponent,
     EntireFooterAreaComponent,
-    LayoutComponent,
     IndexComponent,
     BlogComponent,
     NotFoundComponent,
@@ -55,7 +54,8 @@ import { LoginComponent } from './login/login.component';
     CategoryComponent,
     CategoryGeneralComponent,
     CategoryFilterComponent,
-    LoginComponent
+    LoginComponent,
+    SingleBlogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,4 +66,4 @@ import { LoginComponent } from './login/login.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-// Test
+// TestTEst

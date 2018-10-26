@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CategoryGeneralComponent } from './category/category-general/category-general.component';
 import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
 import { LoginComponent } from './login/login.component';
+import { SingleBlogComponent } from './single-blog/single-blog.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'blog',
     component: BlogComponent
+  },
+  {
+    path: 'single-blog',
+    component: SingleBlogComponent
   },
   {
     path: '404',
