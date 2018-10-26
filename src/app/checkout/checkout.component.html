@@ -4,10 +4,10 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="bread_box">
               <ul class="breadcumb">
-                <li><a href="index.html">home <span>|</span></a></li>
-                <li><a href="category-1.html">Shop <span>|</span></a></li>
-                <li><a href="cart.html">Cart <span>|</span></a></li>
-                <li class="active"><a href="">checkout</a></li>
+                <li><a [routerLink]="['/index']" routerLinkActive="router-link-active" >home <span>|</span></a></li>
+                <li><a [routerLink]="['/category/general']" routerLinkActive="router-link-active" >Shop <span>|</span></a></li>
+                <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active" >Cart <span>|</span></a></li>
+                <li class="active"><a [routerLink]="['/']" routerLinkActive="router-link-active" >checkout</a></li>
               </ul>
             </div>
           </div>

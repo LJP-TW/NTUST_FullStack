@@ -40,7 +40,7 @@
               </ul>
             </div>
             <div class="s_results">
-              <p><span>|</span> showing 1-12 of 30 results</p>
+              <p><span>|</span> showing {{ indexS+1 }}-{{indexE}} of {{productMax}} results</p>
             </div>
           </div>
         </div>
@@ -101,17 +101,18 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                      <div id="slider-range"></div>
-                        <div class="cat_filter_box">
-                          <p>
-                            <label for="amount">Filter</label>
-                            <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;">
-                          </p>
-                        </div>
+                          <input type="range" name="points" min="100" max="10000" step="1" [(ngModel)]="priceMax">
+                          <div class="cat_filter_box">
+                            <p>
+                              <label for="amount">Filter</label>
+                              <!-- <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
+                              <input type="text" readonly style="border:0; color:#000; font-weight:bold;" [(ngModel)]="priceMax">
+                            </p>
+                          </div>
+                      </div>
                       </div>
                     </div>
-                    </div>
-                    <div class="panel panel-default">
+                    <!-- <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingThree">
                       <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -136,8 +137,8 @@
                       </ul>
                       </div>
                     </div>
-                    </div>
-                    <div class="panel panel-default">
+                    </div> -->
+                    <!-- <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -158,7 +159,7 @@
                       </ul>
                       </div>
                     </div>
-                    </div>
+                    </div> -->
                     <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFive">
                       <h4 class="panel-title">
@@ -178,51 +179,6 @@
                         <li><a href="">river island  (19)</a></li>
                         <li><a href="">Steve madden  (37)</a></li>
                       </ul>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingSix">
-                      <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                        Look
-                        <span class="floatright"><i class="fa fa-plus"></i></span>
-                      </a>
-                      </h4>
-                    </div>
-                    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-                      <div class="panel-body">
-        
-                      </div>
-                    </div>
-                    </div>
-                    <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingSeven">
-                      <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                       Style
-                        <span class="floatright"><i class="fa fa-plus"></i></span>
-                      </a>
-                      </h4>
-                    </div>
-                    <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-                      <div class="panel-body">
-        
-                      </div>
-                    </div>
-                    </div>
-                    <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingEight">
-                      <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                       Best Seller
-                        <span class="floatright"><i class="fa fa-plus"></i></span>
-                      </a>
-                      </h4>
-                    </div>
-                    <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
-                      <div class="panel-body">
-        
                       </div>
                     </div>
                     </div>
@@ -252,7 +208,7 @@
                         <div class="main_cat_item">
                           <div class="item">
                             <div class="item-img">
-                              <img src="images/t_item12.jpg" alt="" />
+                              <img [src]="item.imageLoc" alt="" />
                               <div class="tr-add-cart">
                                 <ul>
                                   <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
@@ -264,11 +220,17 @@
                             </div>
                             <div class="item-new">
                               <p>New</p>
-                              <span>-{{item.discount}}%</span>
+                              <ng-container *ngIf="item.discount > 0">
+                                 <span>-{{item.discount}}%</span>
+                              </ng-container>
                             </div>
                             <div class="item-sub">
-                              <a href="product-detail"><h5>{{item.name}} {{index}}</h5></a>
-                              <p>$ {{item.price}}<span><del>$ {{item.price}}</del></span></p>
+                              <a href="product-detail"><h5>{{item.name}}</h5></a>
+                              <p>$ {{item.price * (100-item.discount)/100}}
+                                <ng-container *ngIf="item.discount > 0">
+                                    <span><del>$ {{item.price}}</del></span>
+                                </ng-container>
+                              </p>
                             </div>
                           </div>
                         </div>

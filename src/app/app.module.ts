@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,7 +16,6 @@ import { TestimonialAreaComponent } from './testimonial-area/testimonial-area.co
 import { BrandingAreaComponent } from './branding-area/branding-area.component';
 import { EntireFooterAreaComponent } from './entire-footer-area/entire-footer-area.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LayoutComponent } from './layout/layout.component';
 import { IndexComponent } from './index/index.component';
 import { BlogComponent } from './blog/blog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -24,6 +24,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { SingleBlogComponent } from './single-blog/single-blog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,6 @@ import { ContactComponent } from './contact/contact.component';
     TestimonialAreaComponent,
     BrandingAreaComponent,
     EntireFooterAreaComponent,
-    LayoutComponent,
     IndexComponent,
     BlogComponent,
     NotFoundComponent,
@@ -49,12 +50,11 @@ import { ContactComponent } from './contact/contact.component';
     ProductDetailComponent,
     ContactComponent,
     CategoryComponent,
+    LoginComponent,
+    SingleBlogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [FormsModule, BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

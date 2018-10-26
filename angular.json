@@ -28,10 +28,21 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/jquery-ui.js",
+              "node_modules/jquery-ui-dist/jquery-ui.js",
+              "node_modules/jquery-ui/ui/widgets/slider.js",
+              "src/assets/js/custom2.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/lightbox.min.js",
+              "src/assets/js/jquery.elevatezoom.js",
+              "src/assets/js/jquery.bxslider.min.js",
+              "src/assets/js/bootstrap-select.min.js",
               "src/assets/js/rs-plugin/js/jquery.themepunch.plugins.min.js",
               "src/assets/js/rs-plugin/js/jquery.themepunch.revolution.min.js",
-              "src/assets/js/rs-plugin/rs.home.js"
+              "src/assets/js/rs-plugin/rs.home.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/main.js"
             ]
           },
           "configurations": {
@@ -60,6 +71,7 @@
             "browserTarget": "Project01:build"
           },
           "configurations": {
+
             "production": {
               "browserTarget": "Project01:build:production"
             }

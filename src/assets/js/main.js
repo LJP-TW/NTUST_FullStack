@@ -67,7 +67,7 @@
 			return l;
 		}
 	});
-	
+
 	jQuery(document).ready(function($){
 		$("#owl-example").owlCarousel({
 			autoPlay: true,
@@ -185,7 +185,7 @@
 			navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
 		});
 		// accordion
-		
+
 		$('.collapse').on('shown.bs.collapse', function(){
 			$(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
 			}).on('hidden.bs.collapse', function(){
@@ -197,17 +197,17 @@
 		$('#collapseFive').collapse('show')
 		$('#collapseOneP').collapse('show')
 		$('#collapseThreeP').collapse('show')
-		
+
 		//product image with tab and zoom
 		$("#zoom_01").elevateZoom({scrollZoom : true, easing:true});
 		$("#zoom_07").elevateZoom({scrollZoom : true, easing:true});
 		$("#zoom_02").elevateZoom({tint:true, tintColour:'#FF6766', tintOpacity:0.0, easing:true});
 		$("#zoom_03").elevateZoom({tint:true, tintColour:'#FF6766', tintOpacity:0.0, easing:true});
-		$("#zoom_04").elevateZoom({tint:true, tintColour:'#FF6766', tintOpacity:0.0, easing:true});	
-		
+		$("#zoom_04").elevateZoom({tint:true, tintColour:'#FF6766', tintOpacity:0.0, easing:true});
+
 	});
-	
-	 
+
+
 })(jQuery);
 
 

@@ -9,6 +9,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { SingleBlogComponent } from './single-blog/single-blog.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,10 @@ const routes: Routes = [
   {
     path: 'blog',
     component: BlogComponent
+  },
+  {
+    path: 'single-blog',
+    component: SingleBlogComponent
   },
   {
     path: '404',
@@ -42,6 +48,10 @@ const routes: Routes = [
   {
     path: 'category',
     component: CategoryComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   }
 ];
 
