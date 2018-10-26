@@ -33,89 +33,30 @@
               <p>total</p>
             </div>
           </div>
-
+          <ng-container *ngFor="let item of items let index = index">
           <!-- 代購商品 -->
           <div class="cart_item">
             <div class="cart_item_img">
-              <img src="images/cart_img1.jpg" alt="" />
-              <p>blue denim casual <br>shirt</p>
+              <img src={{item.img}} alt="" style="width: 70px"/>
+              <p>{{item.name}}</p>
             </div>
             <div class="cart_price">
-              <p>${{price1}}</p>
+              <p>${{item.price}}</p>
             </div>
             <div class="cart_quantity">
               <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(1)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity1"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(1)"></button></li>
+                <li><button class="buttonMinus button" (click)="minusClick(index)"></button></li>
+                <li><input type="text" class="quantity" [(ngModel)]="item.quantity"></li>
+                <li><button class="buttonPlus button" (click)="plusClick(index)"></button></li>
               </ul>
             </div>
             <div class="cart_total">
-              <p>${{total1}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div>
-          <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img2.jpg" alt="" />
-              <p>structured collarless <br>coat</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price2}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(2)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity2"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(2)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total2}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div>
-          <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img3.jpg" alt="" />
-              <p>houndsmooth wool <br>t-shirt</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price3}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(3)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity3"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(3)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total3}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div>
-          <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img4.jpg" alt="" />
-              <p>men’s fashion blue <br>jean coat</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price4}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(4)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity4"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(4)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total4}}</p>
+              <p>${{item.cost}}</p>
               <span><i class="fa fa-close"></i></span>
             </div>
           </div>
           <!-- 代購商品 ↑-->
+          </ng-container>
 
           <div class="coupon_box">
             <input type="text" placeholder="coupon code" />
