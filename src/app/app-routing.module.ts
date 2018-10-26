@@ -9,8 +9,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ContactComponent } from './contact/contact.component';
-import { CategoryGeneralComponent } from './category/category-general/category-general.component';
-import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
 
 const routes: Routes = [
   {
@@ -44,16 +42,6 @@ const routes: Routes = [
   {
     path: 'category',
     component: CategoryComponent,
-    children: [
-      {
-        path: 'general',
-        component: CategoryGeneralComponent
-      },
-      {
-        path: 'filter',
-        component: CategoryFilterComponent
-      }
-    ]
   }
 ];
 
