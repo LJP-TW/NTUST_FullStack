@@ -1,7 +1,7 @@
 .LRblock {
 	padding: 1em;
 	font: 400 16px monospace;
-	max-width: 500px;
+	max-width: 400px;
 	margin: 0 auto;
 }
 .LRblock > input[type=text]:focus, .LRblock > input[type=password]:focus, .LRblock > input[type=email]:focus {
@@ -39,7 +39,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	align-items: center;
+	align-items: end;
 }
 .LRblock > div > a {
 	text-decoration: none;
