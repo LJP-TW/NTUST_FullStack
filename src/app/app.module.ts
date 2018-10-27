@@ -55,7 +55,11 @@ import { RegistComponent } from './regist/regist.component';
     SingleBlogComponent,
     RegistComponent
   ],
-  imports: [FormsModule, BrowserModule, AppRoutingModule],
+  imports: [
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

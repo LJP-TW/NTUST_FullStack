@@ -1,0 +1,20 @@
+.promo_text,
+.promo_text_bottom {
+  opacity: 0.8;
+  background-color: rgb(34, 34, 34);
+  padding: 2px 15px 2px 5px;
+}
+
+.promo_text h5,
+.promo_text_bottom h5 {
+  font-family: Microsoft JhengHei;
+  opacity: 1;
+  font-weight: 70;
+  color: #cfcccc;
+}
+
+.promo_text a,
+.promo_text_bottom a {
+  opacity: 1;
+  color: #cfcccc;
+}

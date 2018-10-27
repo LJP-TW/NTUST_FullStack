@@ -686,7 +686,9 @@ opacity:0;
 transition: all 0.5s ease 0s;
 z-index: -1;
 }
-.nav_left:hover .cat_mega_menu {
+
+/* .nav_left:hover .cat_mega_menu { */
+.cat_mega_menu_hover {
 opacity: 1;
 top: 64px;
 transition: all 0.5s ease 0s;

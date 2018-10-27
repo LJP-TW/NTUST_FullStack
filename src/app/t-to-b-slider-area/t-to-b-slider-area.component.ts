@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as $ from 'jquery';
+declare var $: any;
 
 @Component({
   selector: 'app-t-to-b-slider-area',
@@ -12,5 +12,25 @@ export class TToBSliderAreaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(function(){
+     $('.slider8').bxSlider({
+      mode: 'vertical',
+      slideWidth: 300,
+      minSlides: 3,
+      slideMargin: 10
+      });
+     $('.slider9').bxSlider({
+      mode: 'vertical',
+      slideWidth: 300,
+      minSlides: 3,
+      slideMargin: 10
+      });
+     $('.slider10').bxSlider({
+      mode: 'vertical',
+      slideWidth: 300,
+      minSlides: 3,
+      slideMargin: 10
+      });
+    });
   }
 }

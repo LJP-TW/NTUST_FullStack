@@ -1,31 +1,35 @@
+<!-- 提醒: 更改這邊的內容時, 底下給 Mobile 裝置看的內容也要對應更改 -->
 <section class="nav_area">
   <div class="container">
-    <div class="nav_left floatleft">
-      <a [routerLink]="['/category']" routerLinkActive="router-link-active" >category<i class="fa fa-bars"></i></a>
-      <div class="cat_mega_menu">
+    <div class="nav_left floatleft" (mouseenter)="hover = hover + 1;" (mouseleave)="hover = hover - 1;">
+      <a [routerLink]="['/category']" routerLinkActive="router-link-active" >商品分類<i class="fa fa-bars"></i></a>
+      <div class="cat_mega_menu" [ngClass]="{'cat_mega_menu_hover': hover > 0}" (mouseenter)="hover = hover + 1;" (mouseleave)="hover = hover - 1">
           <div class="cat_left">
-            <h5>Shirts</h5>
+            <h5>神奇寶貝</h5>
             <div class="cat_menu_line"></div>
             <ul class="cat_nav">
-              <li><a>check shirts</a></li>
-              <li><a>denim shirts</a></li>
-              <li><a>long sleeve shirts</a></li>
-              <li><a>denim shirts</a></li>
-              <li><a>long sleeve shirts</a></li>
+              <li><a>水系神奇寶貝</a></li>
+              <li><a>火系神奇寶貝</a></li>
+              <li><a>電系神奇寶貝</a></li>
+              <li><a>草系神奇寶貝</a></li>
+              <li><a>冰系神奇寶貝</a></li>
+              <li><a>一般系神奇寶貝</a></li>
             </ul>
           </div>
           <div class="cat_middle">
-            <h5>T Shirts</h5>
+            <h5>道具</h5>
+            <!-- 根據 https://wiki.52poke.com/wiki/%E9%81%93%E5%85%B7 -->
             <div class="cat_menu_line"></div>
             <ul class="cat_nav">
-              <li><a>plain T-shirt</a></li>
-              <li><a>printed T-shirt</a></li>
-              <li><a>sports T-shirt</a></li>
-              <li><a>striped T-shirt</a></li>
-              <li><a>V-Neck T-Shirt</a></li>
+              <li><a></a></li>
+              <li><a>精靈球</a></li>
+              <li><a>果實</a></li>
+              <li><a>攜帶物品</a></li>
+              <li><a>狀態治療道具</a></li>
             </ul>
           </div>
-          <div class="cat_middle_right">
+          <!-- 幹 想不到還有什麼分類了 -->
+          <!-- <div class="cat_middle_right">
             <h5>trousers fit</h5>
             <div class="cat_menu_line"></div>
             <ul class="cat_nav">
@@ -35,26 +39,26 @@
               <li><a>tailored fit</a></li>
               <li><a>tight fit</a></li>
             </ul>
-          </div>
+          </div> -->
           <div class="cat_img">
-            <img src="images/menu_cat.png" alt="" />
+            <img src="assets/images/menu_cat.png" alt="" />
           </div>
       </div>
     </div>
     <div class="nav_center">
       <nav class="mainmenu">
         <ul id="nav">
-          <li class="current-page-item"><a [routerLink]="['/']" routerLinkActive="router-link-active">Home</a>
+          <li class="current-page-item"><a [routerLink]="['/']" routerLinkActive="router-link-active">首頁</a>
             <!-- <ul id="sub-menu4">
               <li><a href="index-2.html">Home Version Two</a></li>
             </ul> -->
           </li>
-          <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >shop</a>
-            <ul id="sub-menu7">
+          <li><a [routerLink]="['/category']" routerLinkActive="router-link-active">所有商品</a>
+            <!-- <ul id="sub-menu7">
               <li><a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" >Product Detail Page</a></li>
-            </ul>
+            </ul> -->
           </li>
-          <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >accessories</a>
+          <!-- <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >accessories</a>
             <ul id="sub-menu">
               <li><a>check shirts</a></li>
               <li><a>denim shirts</a></li>
@@ -64,24 +68,31 @@
               <li><a>short sleeve shirts</a></li>
               <li class="last-child"><a>shortsleeve denim shirts</a></li>
             </ul>
-          </li>
-          <li><a>pages</a>
+          </li> -->
+
+          <!-- Todo: 會員系統頁面 -->
+
+          <!-- Todo: 客服頁面 -->
+
+          <!-- 測試用, 最終版本要拔掉  -->
+          <li><a>所有頁面</a>
             <ul id="sub-menu5">
-              <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >Shop Page Without Filter</a></li>
-              <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >Shop Page With Filter</a></li>
-              <li><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >Checkout page</a></li>
-              <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active" >Cart page</a></li>
-              <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" >Blog single</a></li>
-              <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active" >Contact page</a></li>
-              <li><a [routerLink]="['/404']" routerLinkActive="router-link-active" >404 page</a></li>
+              <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >商品列表</a></li>
+              <li><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >結帳</a></li>
+              <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active" >購物車</a></li>
+              <!-- Todo: 客服 -->
+              <!-- <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active" >聯絡我們</a></li> -->
+              <li><a [routerLink]="['/404']" routerLinkActive="router-link-active" >404</a></li>
             </ul>
           </li>
-          <li><a [routerLink]="['/blog']" routerLinkActive="router-link-active" >Blog</a></li>
+
+          <!-- 停用 Blog -->
+          <!-- <li><a [routerLink]="['/blog']" routerLinkActive="router-link-active" >Blog</a></li> -->
         </ul>
       </nav>
     </div>
     <div class="nav_right floatright">
-      <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><img src="images/bag.png" alt="Bag" />cart: {{productDataBase.odCart.length}} items</a>
+      <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><img src="assets/images/bag.png" alt="Bag" />購物車: {{productDataBase.odCart.length}} 項</a>
       <div class="cart_menu">
         <ng-container *ngFor="let item of productDataBase.odCart;let index = index">
             <div class="cart_items">
@@ -94,25 +105,26 @@
                     <span>{{item.amount}} x $ {{ item.finalPrice}}</span>
                   </div>
                   <div class="close_icon_cart floatleft" (click)="productDataBase.CartRemove(index)">
-                    <img src="images/close.png" alt="" />
+                    <img src="assets/images/close.png" alt="" />
                   </div>
                 </div>
               </div>
         </ng-container>
         <div class="cart_totals">
+          <!-- Todo: 運費機制 -->
           <div class="c_totals_left floatleft">
-            <p>Free shipping</p>
+            <p>免運費</p>
           </div>
           <div class="c_totals_right floatleft">
-            <p>total   ${{CartTotalCost()}}</p>
+            <p>總額: ${{CartTotalCost()}}</p>
           </div>
         </div>
         <div class="cart_view_bottom">
           <div class="c_totals_left floatleft">
-            <a [routerLink]="['/cart']" routerLinkActive="router-link-active" >View Cart</a>
+            <a [routerLink]="['/cart']" routerLinkActive="router-link-active" >檢視購物車</a>
           </div>
           <div class="c_totals_right floatleft">
-            <a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >Check Out</a>
+            <a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >結帳</a>
           </div>
         </div>
       </div>
@@ -130,7 +142,7 @@
         <div id='cssmenu'>
           <ul>
             <li class='has-sub'>
-              <a [routerLink]="['/']" routerLinkActive="router-link-active" ><span>Home</span></a>
+              <a [routerLink]="['/']" routerLinkActive="router-link-active" ><span>首頁</span></a>
               <!-- <ul class="sub-nav">
                 <li><a href="index.html"><span>Home 1</span></a></li>
                 <li><a href="index-2.html"><span>Home 2</span></a></li>
@@ -138,29 +150,29 @@
             </li>
 
             <li class='has-sub'>
-              <a [routerLink]="['/category']" routerLinkActive="router-link-active" ><span>category</span></a>
+              <a [routerLink]="['/category']" routerLinkActive="router-link-active" ><span>商品分類</span></a>
               <ul>
                 <li class='has-sub'>
-                  <a><span>Shirts</span></a>
+                  <a><span>神奇寶貝</span></a>
                   <ul>
-                    <li><a><span>check shirts</span></a></li>
-                    <li><a><span>denim shirts</span></a></li>
-                    <li><a><span>long sleeve shirts</span></a></li>
-                    <li><a><span>denim shirts</span></a></li>
-                    <li class="last"><a><span>long sleeve shirts</span></a></li>
+                    <li><a><span>水系神奇寶貝</span></a></li>
+                    <li><a><span>火系神奇寶貝</span></a></li>
+                    <li><a><span>電系神奇寶貝</span></a></li>
+                    <li><a><span>草系神奇寶貝</span></a></li>
+                    <li><a><span>冰系神奇寶貝</span></a></li>
+                    <li class="last"><a><span>一般系神奇寶貝</span></a></li>
                   </ul>
                 </li>
                 <li class='has-sub'>
-                  <a><span>T Shirts</span></a>
+                  <a><span>道具</span></a>
                   <ul>
-                    <li><a><span>plain T-shirt</span></a></li>
-                    <li><a><span>printed T-shirt</span></a></li>
-                    <li><a><span>sports T-shirt</span></a></li>
-                    <li><a><span>striped T-shirt</span></a></li>
-                    <li class='last'><a><span>V-Neck T-Shirt</span></a></li>
+                    <li><a><span>精靈球</span></a></li>
+                    <li><a><span>果實</span></a></li>
+                    <li><a><span>攜帶物品</span></a></li>
+                    <li class='last'><a><span>狀態治療道具</span></a></li>
                   </ul>
                 </li>
-                <li class='has-sub'>
+                <!-- <li class='has-sub'>
                   <a><span>trousers fit</span></a>
                   <ul>
                     <li><a><span>flexible waist</span></a></li>
@@ -169,7 +181,7 @@
                     <li><a><span>tailored fit</span></a></li>
                     <li class='last'><a><span>tight fit</span></a></li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="img-nav">
                   <div class="container">
                     <div class="clearfix"></div>
@@ -177,7 +189,7 @@
                     <div class="clearfix"></div>
                     <div class="row in1">
                       <div class="col-md-6">
-                        <a><img src="images/menu_cat.png" class="img-responsive" alt=""/></a>
+                        <a><img src="assets/images/menu_cat.png" class="img-responsive" alt=""/></a>
                       </div>
                       <div class="col-md-6">
                       </div>
@@ -192,10 +204,14 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <a [routerLink]="['/category']" routerLinkActive="router-link-active" ><span>shop</span></a>
-            </li>
             <li class='has-sub'>
+              <a [routerLink]="['/category']" routerLinkActive="router-link-active" ><span>商品列表</span></a>
+              <ul class="sub-nav">
+                <li><a></a></li>
+                <li><a></a></li>
+              </ul>
+            </li>
+            <!-- <li class='has-sub'>
               <a [routerLink]="['/category']" routerLinkActive="router-link-active" ><span>accessories</span></a>
               <ul class="sub-nav">
                 <li><a><span>check shirts</span></a></li>
@@ -206,26 +222,25 @@
                 <li><a><span>short sleeve shirts</span></a></li>
                 <li><a><span>shortsleeve denim shirts</span></a></li>
               </ul>
-            </li>
+            </li> -->
             <li class='has-sub'>
-              <a><span>pages</span></a>
+              <a><span>所有頁面</span></a>
               <ul id="sub-nav">
-                <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >Category page without filter</a></li>
-                <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >Category page</a></li>
-                <li><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >Checkout page</a></li>
-                <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active" >Cart page</a></li>
-                <li><a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" >Product detail page</a></li>
-                <li><a [routerLink]="['/blog']" routerLinkActive="router-link-active" >Blog</a></li>
-                <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" >Blog single</a></li>
-                <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active" >Contact page</a></li>
-                <li><a [routerLink]="['/404']" routerLinkActive="router-link-active" >404 page</a></li>
+                <li><a [routerLink]="['/category']" routerLinkActive="router-link-active" >商品列表</a></li>
+                <li><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >結帳</a></li>
+                <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active" >購物車</a></li>
+                <!-- <li><a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" >Product detail page</a></li> -->
+                <!-- <li><a [routerLink]="['/blog']" routerLinkActive="router-link-active" >Blog</a></li> -->
+                <!-- <li><a [routerLink]="['/single-blog']" routerLinkActive="router-link-active" >Blog single</a></li> -->
+                <!-- <li><a [routerLink]="['/contact']" routerLinkActive="router-link-active" >Contact page</a></li> -->
+                <li><a [routerLink]="['/404']" routerLinkActive="router-link-active" >404</a></li>
               </ul>
             </li>
-            <li>
+            <!-- <li>
               <a [routerLink]="['/blog']" routerLinkActive="router-link-active" ><span>Blog</span></a>
-            </li>
+            </li> -->
             <li>
-              <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><span>cart</span></a>
+              <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><span>購物車</span></a>
             </li>
           </ul>
         </div>

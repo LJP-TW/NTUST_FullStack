@@ -7,6 +7,7 @@ import { ProductDataBaseService } from '../product-data-base.service';
   styleUrls: ['./nav-area.component.css']
 })
 export class NavAreaComponent implements OnInit {
+  hover = 0;
 
   constructor(public productDataBase: ProductDataBaseService) { }
 

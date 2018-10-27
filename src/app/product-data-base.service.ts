@@ -20,7 +20,7 @@ export class ProductDataBaseService {
       id: 1, // 根據全國圖鑑
       name: '妙蛙種子', // 根據全國圖鑑
       originPrice: 24000, // 5000 ~ 50000
-      imageLoc: 'images/pokemon/id001.png', // 請改最後一個斜線後的內容就好，到時候請一併把圖檔跟json檔案交給我,圖片大小請盡量壓在 300*350以內
+      imageLoc: 'assets/images/pokemon/id001.png', // 請改最後一個斜線後的內容就好，到時候請一併把圖檔跟json檔案交給我,圖片大小請盡量壓在 300*350以內
       seller: {
         username: '小智', // 隨意
         likes: 120, // 隨意
@@ -37,7 +37,7 @@ export class ProductDataBaseService {
       id: 143,
       name: '卡比獸',
       originPrice: 50000,
-      imageLoc: 'images/pokemon/id143.png',
+      imageLoc: 'assets/images/pokemon/id143.png',
       seller: {
         username: '小蝸',
         likes: 1110,
@@ -54,7 +54,7 @@ export class ProductDataBaseService {
       id: 252,
       name: '木守宮',
       originPrice: 5487,
-      imageLoc: 'images/pokemon/id252.png',
+      imageLoc: 'assets/images/pokemon/id252.png',
       seller: {
           username: '小剛',
           likes: 118,
@@ -71,7 +71,7 @@ export class ProductDataBaseService {
       id: 289,
       name: '請假王',
       originPrice: 6666,
-      imageLoc: 'images/pokemon/id289.png',
+      imageLoc: 'assets/images/pokemon/id289.png',
       seller: {
           username: '淡定紅',
           likes: 87,
@@ -88,7 +88,7 @@ export class ProductDataBaseService {
       id: 430,
       name: '烏鴉頭頭',
       originPrice: 9453,
-      imageLoc: 'images/pokemon/id430.png',
+      imageLoc: 'assets/images/pokemon/id430.png',
       seller: {
           username: '頭頭',
           likes: 66,
@@ -105,7 +105,7 @@ export class ProductDataBaseService {
       id: 686,
       name: '好啦魷',
       originPrice: 40000,
-      imageLoc: 'images/pokemon/id686.png',
+      imageLoc: 'assets/images/pokemon/id686.png',
       seller: {
           username: '老闆',
           likes: 6689,
@@ -122,7 +122,7 @@ export class ProductDataBaseService {
       id: 440,
       name: '小福蛋',
       originPrice: 29877,
-      imageLoc: 'images/pokemon/id440.png',
+      imageLoc: 'assets/images/pokemon/id440.png',
       seller: {
           username: '小剛',
           likes: 9713,
@@ -139,7 +139,7 @@ export class ProductDataBaseService {
       id: 25,
       name: '皮卡丘',
       originPrice: 35000,
-      imageLoc: 'images/pokemon/id025.png',
+      imageLoc: 'assets/images/pokemon/id025.png',
       seller: {
         username: '皮卡兵',
         likes: 200,
@@ -156,7 +156,7 @@ export class ProductDataBaseService {
       id: 38,
       name: '九尾',
       originPrice: 10000,
-      imageLoc: 'images/pokemon/id038.png',
+      imageLoc: 'assets/images/pokemon/id038.png',
       seller: {
         username: '鳴人',
         likes: 88,
@@ -173,7 +173,7 @@ export class ProductDataBaseService {
       id: 83,
       name: '大蔥鴨',
       originPrice: 12345,
-      imageLoc: 'images/pokemon/id083.png',
+      imageLoc: 'assets/images/pokemon/id083.png',
       seller: {
         username: '初音',
         likes: 66,
@@ -190,7 +190,7 @@ export class ProductDataBaseService {
       id: 94,
       name: '耿鬼',
       originPrice: 23456,
-      imageLoc: 'images/pokemon/id094.png',
+      imageLoc: 'assets/images/pokemon/id094.png',
       seller: {
         username: '安娜貝爾',
         likes: 38,
@@ -207,7 +207,7 @@ export class ProductDataBaseService {
       id: 722,
       name: '木木梟',
       originPrice: 46666,
-      imageLoc: 'images/pokemon/id722.png',
+      imageLoc: 'assets/images/pokemon/id722.png',
       seller: {
         username: '目暮警官',
         likes: 235,
