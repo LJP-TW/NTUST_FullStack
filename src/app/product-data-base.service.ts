@@ -6,6 +6,10 @@ import { Injectable } from '@angular/core';
 export class ProductDataBaseService {
 
   constructor() { 
+    console.log('DATABAE INIT');
+    this.Products.forEach((n)=>{
+      n.price = Math.ceil(n.originPrice * (100-n.discount) /100);
+    });
     this.Products = this.Products.sort((n1,n2)=>{
       if(n1.id>n2.id){
         return 1;
@@ -19,7 +23,7 @@ export class ProductDataBaseService {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-  
+    
     
   }
   ngAfterViewInit(): void {
@@ -29,20 +33,25 @@ export class ProductDataBaseService {
   }
   Cart: number[] = [
   ];
+
+  //product,amount,finalPrice,total
   odCart = [];
 
-
+  //id,name,price,originPrice,imageLoc,discount,description,
+  //attributes['string'],characteristics['string']
+  //seller{username,likes}
+  //createdAt,updatedAt
   Products =[
     {
       id:1, //根據全國圖鑑
       name:"妙蛙種子",//根據全國圖鑑
-      price:24000,//5000 ~ 50000
+      originPrice:24000,//5000 ~ 50000
       imageLoc:'images/pokemon/id001.png', //請改最後一個斜線後的內容就好，到時候請一併把圖檔跟json檔案交給我,圖片大小請盡量壓在 300*350以內
       seller:{
         username:'小智', //隨意
         likes:120, //隨意
       },
-      sold: 32, //隨意
+      price: 32, //隨意
       discount: 20, // 0 ~ 80 請不要填負數
       attributes:['poison','grass'], //根據全國圖鑑
       characteristics : ['茂盛'],  //根據全國圖鑑
@@ -53,13 +62,13 @@ export class ProductDataBaseService {
     {
       id:143,
       name:"卡比獸",
-      price:50000,
+      originPrice:50000,
       imageLoc:'images/pokemon/id143.png',
       seller:{
         username:'小蝸',
         likes:1110,
       },
-      sold: 87,
+      price: 87,
       discount: 0,
       attributes:['normal'],
       characteristics : ['免疫','厚脂肪'],
@@ -70,13 +79,13 @@ export class ProductDataBaseService {
     {
       id: 252,
       name: '木守宮',
-      price: 5487,
+      originPrice: 5487,
       imageLoc: 'images/pokemon/id252.png',
       seller:{
           username: '小剛',
           likes: 118,
       },
-      sold: 90,
+      price: 90,
       discount: 10,
       attributes: ['grass'],
       characteristics: ['茂盛', '輕裝'],
@@ -87,13 +96,13 @@ export class ProductDataBaseService {
     {
       id: 289,
       name: '請假王',
-      price: 6666,
+      originPrice: 6666,
       imageLoc: 'images/pokemon/id289.png',
       seller:{
           username: '淡定紅',
           likes: 87,
       },
-      sold: 5,
+      price: 5,
       discount: 1,
       attributes: ['normal'],
       characteristics: ['懶惰'],
@@ -104,13 +113,13 @@ export class ProductDataBaseService {
     {
       id: 430,
       name: '烏鴉頭頭',
-      price: 9453,
+      originPrice: 9453,
       imageLoc: 'images/pokemon/id430.png',
       seller:{
           username: '頭頭',
           likes: 66,
       },
-      sold: 77,
+      price: 77,
       discount: 30,
       attributes: ['demon', 'fly'],
       characteristics: ['不眠', '自信過度'],
@@ -121,13 +130,13 @@ export class ProductDataBaseService {
     {
       id: 686,
       name: '好啦魷',
-      price: 40000,
+      originPrice: 40000,
       imageLoc: 'images/pokemon/id686.png',
       seller:{
           username: '老闆',
           likes: 6689,
       },
-      sold: 9054,
+      price: 9054,
       discount: 80,
       attributes: ['demon', 'super'],
       characteristics: ['唱反調', '吸盤', '穿透'],
@@ -138,13 +147,13 @@ export class ProductDataBaseService {
     {
       id: 440,
       name: '小福蛋',
-      price: 29877,
+      originPrice: 29877,
       imageLoc: 'images/pokemon/id440.png',
       seller:{
           username: '小剛',
           likes: 9713,
       },
-      sold: 4657,
+      price: 4657,
       discount: 50,
       attributes: ['normal'],
       characteristics: ['自然回復', '天恩', '友情防守'],
@@ -155,13 +164,13 @@ export class ProductDataBaseService {
     {
       id:25,
       name: "皮卡丘",
-      price: 35000,
+      originPrice: 35000,
       imageLoc:'images/pokemon/id025.png',    
       seller:{
         username: '皮卡兵',
         likes: 200,
       },
-      sold: 30, 
+      price: 30, 
       discount: 30,
       attributes:['electric'],
       characteristics : ['靜電'],
@@ -172,13 +181,13 @@ export class ProductDataBaseService {
 {
       id:38,
       name: "九尾",
-      price: 10000,
+      originPrice: 10000,
       imageLoc:'images/pokemon/id038.png', 
       seller:{
         username: '鳴人',
         likes: 88,
       },
-      sold: 8,
+      price: 8,
       discount: 9,
       attributes:['fire'],
       characteristics : ['引火'],
@@ -189,13 +198,13 @@ export class ProductDataBaseService {
 {
       id: 83,
       name: "大蔥鴨",
-      price: 12345,
+      originPrice: 12345,
       imageLoc:'images/pokemon/id083.png', 
       seller:{
         username: '初音',
         likes: 66,
       },
-      sold: 45,
+      price: 45,
       discount: 68,
       attributes:['normal', 'flying'],
       characteristics : ['目光銳利', '精神力'],
@@ -206,13 +215,13 @@ export class ProductDataBaseService {
 {
       id: 94,
       name: "耿鬼",
-      price: 23456,
+      originPrice: 23456,
       imageLoc:'images/pokemon/id094.png', 
       seller:{
         username: '安娜貝爾',
         likes: 38,
       },
-      sold: 40,
+      price: 40,
       discount: 50, 
       attributes:['ghost', 'poison'],
       characteristics : [ '詛咒之軀' ],
@@ -223,13 +232,13 @@ export class ProductDataBaseService {
 {
       id: 722,
       name: "木木梟",
-      price: 46666,
+      originPrice: 46666,
       imageLoc:'images/pokemon/id722.png', 
       seller:{
         username: '目暮警官',
         likes: 235,
       },
-      sold: 68,
+      price: 68,
       discount: 32,
       attributes:['grass', 'flying'],
       characteristics : ['茂盛'],
