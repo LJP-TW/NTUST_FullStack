@@ -8,7 +8,7 @@ export class ProductDataBaseService {
   constructor() { }
   Cart: number[] = [
   ];
-
+  odCart = [];
   testCart:Object[]=[];
 
   Products =[
@@ -131,6 +131,91 @@ export class ProductDataBaseService {
       createdAt: '2018-02-14T13:26:28.648Z',
       updatedAt: '2018-02-15T20:32:24.314Z'
     },
+    {
+      id:25,
+      name: "皮卡丘",
+      price: 35000,
+      imageLoc:'images/pokemon/id025.png',    
+      seller:{
+        username: '皮卡兵',
+        likes: 200,
+      },
+      sold: 30, 
+      discount: 30,
+      attributes:['electric'],
+      characteristics : ['靜電'],
+      description:'皮卡丘，十萬伏特！',
+      createdAt: '2017-10-10T10:10:10.900Z',
+      updatedAt: '2017-10-12T10:10:10.900Z',
+},
+{
+      id:38,
+      name: "九尾",
+      price: 10000,
+      imageLoc:'images/pokemon/id038.png', 
+      seller:{
+        username: '鳴人',
+        likes: 88,
+      },
+      sold: 8,
+      discount: 9,
+      attributes:['fire'],
+      characteristics : ['引火'],
+      description:'從火影忍者穿越來神奇寶貝打道館賽的九尾',
+      createdAt: '2018-04-02T19:40:35.917Z',
+      updatedAt: '2018-04-04T07:33:42.666Z',
+},
+{
+      id: 83,
+      name: "大蔥鴨",
+      price: 12345,
+      imageLoc:'images/pokemon/id083.png', 
+      seller:{
+        username: '初音',
+        likes: 66,
+      },
+      sold: 45,
+      discount: 68,
+      attributes:['normal', 'flying'],
+      characteristics : ['目光銳利', '精神力'],
+      description: '聽說大蔥鴨的蔥是從初音那邊搶來的，稀有吧！',
+      createdAt: '2018-06-06T06:36:45.333Z',
+      updatedAt: '2018-06-08T19:03:33.456Z',
+},
+{
+      id: 94,
+      name: "耿鬼",
+      price: 23456,
+      imageLoc:'images/pokemon/id094.png', 
+      seller:{
+        username: '安娜貝爾',
+        likes: 38,
+      },
+      sold: 40,
+      discount: 50, 
+      attributes:['ghost', 'poison'],
+      characteristics : [ '詛咒之軀' ],
+      description: '萬聖節快到了，買來嚇人剛剛好',
+      createdAt: '2017-10-31T00:00:00.123Z',
+      updatedAt: '2017-11-02T11:11:11.111Z',
+},
+{
+      id: 722,
+      name: "木木梟",
+      price: 46666,
+      imageLoc:'images/pokemon/id722.png', 
+      seller:{
+        username: '目暮警官',
+        likes: 235,
+      },
+      sold: 68,
+      discount: 32,
+      attributes:['grass', 'flying'],
+      characteristics : ['茂盛'],
+      description: '目暮警官養的寵物，放生到這裡後變成神奇寶貝',
+      createdAt: '2018-07-07T19:17:07.777Z',
+      updatedAt: '2018-07-09T19:09:39.999Z',
+},
   
     // {
     //   id:1,
@@ -696,37 +781,40 @@ export class ProductDataBaseService {
 
   ];
 
-  public SortByEarly(ASC:boolean):any{
-    return this.Products.sort((n1,n2)=>{
-      let d1 = new Date(n1.updatedAt);
-      let d2 = new Date(n2.updatedAt);
-      let reval = 0;
-      let rev = ASC ? 1 : -1;
-      if(d1.getTime() > d2.getTime()){
-          reval  = 1 ;
-      }
-      else if( d1.getTime() < d2.getTime()){
-          reval = -1;
-      }
-      return reval*rev;
-    })
+  // public SortByEarly(ASC:boolean):any{
+  //   return this.Products.sort((n1,n2)=>{
+  //     let d1 = new Date(n1.updatedAt);
+  //     let d2 = new Date(n2.updatedAt);
+  //     let reval = 0;
+  //     let rev = ASC ? 1 : -1;
+  //     if(d1.getTime() > d2.getTime()){
+  //         reval  = 1 ;
+  //     }
+  //     else if( d1.getTime() < d2.getTime()){
+  //         reval = -1;
+  //     }
+  //     return reval*rev;
+  //   })
+  // }
+
+  // public SortByPrice(ASC:boolean):any{
+  //   return this.Products.sort((n1,n2)=>{
+  //     let reval = 0;
+  //     let rev = ASC ? 1 : -1;
+  //     if(n1.price < n2.price){
+  //         reval  = 1 ;
+  //     }
+  //     else if( n1.price >  n2.price){
+  //         reval = -1;
+  //     }
+  //     return reval*rev;
+  //   })
+  // }
+
+
+  CartRemove(index:number){
+    console.log(index);
+    return this.odCart.splice(index,1);
   }
-
-  public SortByPrice(ASC:boolean):any{
-    return this.Products.sort((n1,n2)=>{
-      let reval = 0;
-      let rev = ASC ? 1 : -1;
-      if(n1.price < n2.price){
-          reval  = 1 ;
-      }
-      else if( n1.price >  n2.price){
-          reval = -1;
-      }
-      return reval*rev;
-    })
-  }
-
-
-
 
 }

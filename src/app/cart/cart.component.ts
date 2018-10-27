@@ -4,6 +4,7 @@ import { ProductDataBaseService } from '../product-data-base.service';
 interface Order {
   product: any;
   amount: number;
+  finalPrice: number;
   total: number;
 }
 
@@ -43,22 +44,27 @@ export class CartComponent implements OnInit {
   shippingCharge = 0;
 
   ngOnInit() {
-    for (const id of this.productDataBase.Cart) {
-      for (const product of this.productDataBase.Products ) {
-        if (product.id === id) {
-          this.Cart.push({product: product, amount: 1, total: product.price});
-          this.total += product.price;
-          break;
-        }
-      }
-    }
+    // for (const id of this.productDataBase.Cart) {
+    //   for (const product of this.productDataBase.Products ) {
+    //     if (product.id === id) {
+    //       console.log(product);
+    //       this.Cart.push({product: product, amount: 1, total: product.price/100 * (100-product.discount)});
+    //       this.total += product.price;
+    //       break;
+    //     }
+    //   }
+    // }
+    this.Cart = this.productDataBase.odCart;
+    this.Cart.forEach(element => {
+        this.total += element.total;
+    });
   }
 
   // 加號紐被按下，增加商品數量
   plusClick(index: number) {
     ++this.Cart[index].amount;
-    this.Cart[index].total += this.Cart[index].product.price;
-    this.total += this.Cart[index].product.price;
+    this.Cart[index].total += (this.Cart[index].finalPrice);
+    this.total += this.Cart[index].finalPrice;
 
     // switch (id) {
     //   case 1:
@@ -83,8 +89,8 @@ export class CartComponent implements OnInit {
   minusClick(index: number) {
     if (this.Cart[index].amount !== 0) {
       --this.Cart[index].amount;
-      this.Cart[index].total -= this.Cart[index].product.price;
-      this.total -= this.Cart[index].product.price;
+      this.Cart[index].total -= this.Cart[index].finalPrice;
+      this.total -= this.Cart[index].finalPrice;
     }
 
     // switch (id) {

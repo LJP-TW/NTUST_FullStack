@@ -1,4 +1,4 @@
-<div class="breadcumb_area">
+<!-- <div class="breadcumb_area">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <section class="main_cart_area">
   <div class="container">
@@ -30,7 +30,7 @@
               <p>Quantity</p>
             </div>
             <div class="h_item4">
-              <p>total</p>
+              <p>Total</p>
             </div>
           </div>
 
@@ -39,15 +39,16 @@
           <ng-container *ngFor="let order of this.Cart; let i = index">
             <div class="cart_item">
               <div class="cart_item_img">
-                <img src="order.product.imageLoc" alt="" />
+                <!-- <img [src]="order.product.imageLoc" alt="" /> -->
+                <!-- <div class="floatleft" (click)="productDataBase.CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
                 <p>{{ order.product.name }}<br>
                   <ng-container *ngFor="let character of order.product.characteristics">
-                    {{ character }}
+                    [{{ character }}]
                   </ng-container>
                 </p>
               </div>
               <div class="cart_price">
-                <p>${{ order.product.price}}</p>
+                <p>${{ order.finalPrice }}</p>
               </div>
               <div class="cart_quantity">
                 <ul>
@@ -60,6 +61,7 @@
                 <p>${{ order.total }}</p>
                 <span><i class="fa fa-close"></i></span>
               </div>
+             
             </div>
           </ng-container>
 

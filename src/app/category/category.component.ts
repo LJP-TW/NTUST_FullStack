@@ -9,7 +9,7 @@ export class CategoryComponent implements OnInit {
 
   private priceMax = 5000;
   private buf:any[];
-  private productsPerPage = 10;
+  private productsPerPage = 9;
   private page = 1;
   private pageMax:number = 0;
   private productMax = 0;
@@ -28,8 +28,24 @@ export class CategoryComponent implements OnInit {
 
   // 購物車, 只新增不重複的ID到service的Cart裡面, 數量在結帳才設定
   AddToCart(id: number) {
-    if (!(this.productDataBase.Cart.includes(id))) {
-      this.productDataBase.Cart.push(id);
+    // if (!(this.productDataBase.Cart.includes(id))) {
+    //   this.productDataBase.Cart.push(id);
+    // }
+    let found = false;
+    for(let i = 0 , j = this.productDataBase.odCart.length ; i < j ;i++){
+        if(this.productDataBase.odCart[i].product.id == id){
+          found = true;
+          break;
+        }
+    }
+
+    if (!found) {
+      let product = this.productDataBase.Products.find((element)=>{
+        return element.id ==  id;
+      })
+      if(product === undefined) return;
+      let fPrice = Math.ceil(product.price/100 * (100-product.discount));
+      this.productDataBase.odCart.push({product:product, amount: 1,finalPrice: fPrice, total: fPrice });
     }
   }
 
@@ -77,6 +93,7 @@ export class CategoryComponent implements OnInit {
     this.Page(1);
   }
 
+  //Filtering
   Buf2Filter_maxPrice(value: number){
     this.buf = this.productDataBase.Products.filter((n) => {
       return n.price <= value;
