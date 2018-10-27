@@ -120,7 +120,7 @@ export class CartComponent implements OnInit {
     //     break;
     // }
   }
-  CartRemove(index:number){
+  CartRemove(index: number) {
     this.total -= this.Cart[index].total;
     this.productDataBase.CartRemove(index);
   }

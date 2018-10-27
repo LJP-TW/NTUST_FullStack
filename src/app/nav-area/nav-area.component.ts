@@ -8,17 +8,16 @@ import { ProductDataBaseService } from '../product-data-base.service';
 })
 export class NavAreaComponent implements OnInit {
 
-  constructor(private productDataBase:ProductDataBaseService) { }
+  constructor(public productDataBase: ProductDataBaseService) { }
 
   ngOnInit() {
   }
 
-  CartTotalCost(){
+  CartTotalCost() {
     let total = 0;
-    this.productDataBase.odCart.forEach((n) =>{
+    this.productDataBase.odCart.forEach((n) => {
         total += n.total;
-    }
-    )
+    });
     return total;
   }
 }
