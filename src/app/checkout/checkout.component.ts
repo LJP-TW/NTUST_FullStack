@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductDataBaseService } from '../product-data-base.service';
+
 
 interface Data {
   country: string;
@@ -27,7 +29,7 @@ export class CheckoutComponent implements OnInit {
   ck = false;
   list: Data[] = [];
 
-  constructor() { }
+  constructor(public productDataBase: ProductDataBaseService) { }
   ngOnInit() {
   }
 

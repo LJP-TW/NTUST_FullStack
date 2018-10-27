@@ -78,7 +78,7 @@
                     <div class="panel-heading" role="tab" id="headingTwo">
                       <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        PRICE FILTER
+                        FILTER PRICE FILTER
                         <span class="floatright"><i class="fa fa-plus"></i></span>
                       </a>
                       </h4>
@@ -148,7 +148,7 @@
                     <div class="panel-heading" role="tab" id="headingFive">
                       <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Brands
+                        Sortings
                         <span class="floatright"><i class="fa fa-plus"></i></span>
                       </a>
                       </h4>
@@ -156,12 +156,11 @@
                     <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                       <div class="panel-body">
                       <ul id="c_tab2">
-                        <li><a href="">Tom tailor  (72)</a></li>
-                        <li><a href="">incult  (14)</a></li>
-                        <li><a href="">jack & jones  (23)</a></li>
-                        <li><a href="">locomotive  (62)</a></li>
-                        <li><a href="">river island  (19)</a></li>
-                        <li><a href="">Steve madden  (37)</a></li>
+                        <li><a (click)="Buf2All()">All</a></li>
+                        <li><a (click)="Buf2SortNew(true)">Newest</a></li>
+                        <li><a (click)="Buf2SortNew(false)">Oldest</a></li>
+                        <li><a (click)="Buf2SortPrice(true)">Highest Origin Price</a></li>
+                        <li><a (click)="Buf2SortPrice(false)">Lowest Origin Price</a></li>
                       </ul>
                       </div>
                     </div>

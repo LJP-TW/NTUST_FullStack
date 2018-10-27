@@ -20,7 +20,6 @@
       <div class="container">
         <div class="row">
           <div class="col-md-9 col-sm-8 col-xs-12">
-
             <div class="checkout_left">
               <h2>Billing Address</h2>
               <div class="dotted_line"></div>
@@ -79,14 +78,22 @@
 
           <div class="col-md-3 col-sm-4 col-xs-12">
             <div class="checkout_right">
-              <h4>Review of Your Order</h4>
+              <h4>再次檢查您の寶貝</h4>
 
               <div class="product_form_total">
                 <div class="c_main_item">
-                  <p>Product</p>
-                  <span>Total</span>
+                  <p>寶貝</p>
+                  <span>總價</span>
                 </div>
-                <div class="c_single_item">
+                <!-- 列出寶貝, 總價 -->
+                <ng-container *ngFor="let order of productDataBase.odCart">
+                  <div class="c_single_item">
+                    <p>{{ order.product.name }} x {{ order.amount }}</p>
+                    <span>${{ order.total }}</span>
+                  </div>
+                </ng-container>
+
+                <!-- <div class="c_single_item">
                   <p>collarless coat x 1</p>
                   <span>$115.00</span>
                 </div>
@@ -105,11 +112,15 @@
                 <div class="c_single_item">
                   <p>subtotal</p>
                   <span>$854.00</span>
-                </div>
+                </div> -->
+
+                <!-- Todo 運費 -->
                 <div class="c_single_item sp_single_item">
                   <p>Shipping Charge</p>
                   <span>Free</span>
                 </div>
+
+                <!-- Total -->
                 <div class="c_total_item sp_single_item">
                   <p>Order Total</p>
                   <span>$854.00</span>
