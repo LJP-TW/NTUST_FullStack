@@ -39,9 +39,10 @@
           <ng-container *ngFor="let order of this.Cart; let i = index">
             <div class="cart_item">
               <div class="cart_item_img">
-                <!-- <img [src]="order.product.imageLoc" alt="" /> -->
-                <!-- <div class="floatleft" (click)="productDataBase.CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
+                <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px;" />
+                <div class="floatleft" (click)="productDataBase.CartRemove(i)"><img src="images/close.png" alt="" /></div>
                 <p>{{ order.product.name }}<br>
+                  特性:
                   <ng-container *ngFor="let character of order.product.characteristics">
                     [{{ character }}]
                   </ng-container>
@@ -61,7 +62,7 @@
                 <p>${{ order.total }}</p>
                 <span><i class="fa fa-close"></i></span>
               </div>
-             
+
             </div>
           </ng-container>
 
