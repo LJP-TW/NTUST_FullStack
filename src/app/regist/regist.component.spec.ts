@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategoryGeneralComponent } from './category-general.component';
+import { RegistComponent } from './regist.component';
 
-describe('CategoryGeneralComponent', () => {
-  let component: CategoryGeneralComponent;
-  let fixture: ComponentFixture<CategoryGeneralComponent>;
+describe('RegistComponent', () => {
+  let component: RegistComponent;
+  let fixture: ComponentFixture<RegistComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryGeneralComponent ]
+      declarations: [ RegistComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategoryGeneralComponent);
+    fixture = TestBed.createComponent(RegistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

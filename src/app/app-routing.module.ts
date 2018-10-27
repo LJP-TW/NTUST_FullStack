@@ -9,10 +9,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ContactComponent } from './contact/contact.component';
-import { CategoryGeneralComponent } from './category/category-general/category-general.component';
-import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
 import { LoginComponent } from './login/login.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
+import { RegistComponent } from './regist/regist.component';
 
 const routes: Routes = [
   {
@@ -40,7 +39,7 @@ const routes: Routes = [
     component: CheckoutComponent
   },
   {
-    path: 'product-detail',
+    path: 'product-detail/:id',
     component: ProductDetailComponent
   },
   {
@@ -50,20 +49,14 @@ const routes: Routes = [
   {
     path: 'category',
     component: CategoryComponent,
-    children: [
-      {
-        path: 'general',
-        component: CategoryGeneralComponent
-      },
-      {
-        path: 'filter',
-        component: CategoryFilterComponent
-      }
-    ]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegistComponent,
   }
 ];
 

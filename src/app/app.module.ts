@@ -22,12 +22,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { CategoryGeneralComponent } from './category/category-general/category-general.component';
-import { CategoryFilterComponent } from './category/category-filter/category-filter.component';
 import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
+import { RegistComponent } from './regist/regist.component';
 
 @NgModule({
   declarations: [
@@ -52,10 +51,9 @@ import { SingleBlogComponent } from './single-blog/single-blog.component';
     ProductDetailComponent,
     ContactComponent,
     CategoryComponent,
-    CategoryGeneralComponent,
-    CategoryFilterComponent,
     LoginComponent,
-    SingleBlogComponent
+    SingleBlogComponent,
+    RegistComponent
   ],
   imports: [FormsModule, BrowserModule, AppRoutingModule],
   providers: [],

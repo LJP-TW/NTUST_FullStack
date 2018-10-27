@@ -1,0 +1,15 @@
+<form class="LRblock">
+	<label for="name">Username</label>
+	<input name="name" type="text" id="name" placeholder="Enter your username" required />
+	<label for="password">Password</label>
+	<input name="password" type="password" id="password" placeholder="Enter a password" required />
+	<label for="rpwd">Repeat Password</label>
+	<input name="rpwd" type="password" id="rpwd" placeholder="Enter password again" required />
+	<label for="email">Email</label>
+	<input name="email" type="email" id="email" placeholder="Enter your email address" required />
+	<button type="submit">Create your account</button>
+	<div style="justify-content: center;">
+		Already have an account?&nbsp;
+		<a [routerLink]="['/login']">Sign in</a>
+	</div>
+</form>

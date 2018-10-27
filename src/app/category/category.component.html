@@ -9,20 +9,235 @@
     </div>
   </div>
 </section>
-<div class="breadcumb_area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="bread_box">
-          <ul class="breadcumb">
-            <li><a href="">home <span>|</span></a></li>
-            <li><a href="">Shop <span>|</span></a></li>
-            <li><a href="">Category <span>|</span></a></li>
-            <li class="active"><a href="">Men</a></li>
-          </ul>
+
+<div class="filter_area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-8 col-xs-12">
+          <div class="filter_box_left">
+            <p>FILTERING:</p>
+            <div class="filter_cont">
+              <ul>
+                <li><a (click)="FilterOn()">on</a></li>
+                <li><img [src]="FilterIco_Loc()" alt="" /></li>
+                <li><a (click)="FilterOff()">off</a></li>
+              </ul>
+            </div>
+            <div class="s_results">
+              <p><span>|</span> showing {{ indexS + 1 }}-{{indexE}} of {{productMax}} results</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-4 col-xs-12">
+          <div class="filter_box_right">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">sort by newness <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              <li><a href="#">Top Seller </a></li>
+              <li><a href="#">Most Popular</a></li>
+              <li><a href="#">Alphabetically</a></li>
+              <li><a href="#">Older First</a></li>
+              </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<router-outlet></router-outlet>
+
+<section class="main_category_area">
+    <div class="container">
+      <div class="row">
+        <ng-container *ngIf="filter;">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="main_category_left">
+
+                  <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        CATEGORIES
+                        <span class="floatright"><i class="fa fa-minus"></i></span>
+                      </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                      <ul id="c_tab1">
+                        <li><a href="">Blazers  (12)</a></li>
+                        <li><a href="">Pants & Trousers  (54)</a></li>
+                        <li><a href="">Shirts  (105)</a></li>
+                        <li><a href="">Suits & Tailors  (48)</a></li>
+                        <li><a href="">T-shirts  (120)</a></li>
+                        <li><a href="">Underwear  (12)</a></li>
+                        <li><a href="">Jackets & Coats (12)</a></li>
+                      </ul>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        FILTER PRICE FILTER
+                        <span class="floatright"><i class="fa fa-plus"></i></span>
+                      </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                          <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax">
+                          <div class="cat_filter_box">
+                            <p>
+                              <label for="amount" (click)="Buf2Filter_maxPrice(0)">Filter</label>
+                              <!-- <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
+                              <input type="text" readonly style="border:0; color:#000; font-weight:bold;" [(ngModel)]="priceMax">
+                            </p>
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+                    <!-- <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        COLOURS
+                        <span class="floatright"><i class="fa fa-plus"></i></span>
+                      </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="panel-body colors_cat">
+                      <ul id="cat_color">
+                        <li><a class="col-1" href=""></a></li>
+                        <li><a class="col-2" href=""></a></li>
+                        <li><a class="col-3" href=""></a></li>
+                        <li><a class="col-4" href=""></a></li>
+                        <li><a class="col-5" href=""></a></li>
+                        <li><a class="col-6" href=""></a></li>
+                        <li><a class="col-7" href=""></a></li>
+                        <li><a class="col-8" href=""></a></li>
+                        <li><a class="col-9" href=""></a></li>
+                        <li><a class="col-10" href=""></a></li>
+                      </ul>
+                      </div>
+                    </div>
+                    </div> -->
+                    <!-- <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        size
+                        <span class="floatright"><i class="fa fa-plus"></i></span>
+                      </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                      <div class="panel-body">
+                      <ul id="cat_size">
+                        <li><a href="">xs</a></li>
+                        <li><a href="">s</a></li>
+                        <li><a href="">m</a></li>
+                        <li><a href="">l</a></li>
+                        <li><a href="">xl</a></li>
+                        <li><a href="">xxl</a></li>
+                      </ul>
+                      </div>
+                    </div>
+                    </div> -->
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFive">
+                      <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Sortings
+                        <span class="floatright"><i class="fa fa-plus"></i></span>
+                      </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                      <div class="panel-body">
+                      <ul id="c_tab2">
+                        <li><a (click)="Buf2All()">All</a></li>
+                        <li><a (click)="Buf2SortNew(true)">Newest</a></li>
+                        <li><a (click)="Buf2SortNew(false)">Oldest</a></li>
+                        <li><a (click)="Buf2SortPrice(true)">Highest Origin Price</a></li>
+                        <li><a (click)="Buf2SortPrice(false)">Lowest Origin Price</a></li>
+                      </ul>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </ng-container>
+        <div [ngClass]="{'col-md-12':filter==false,
+                         'col-md-9':filter,
+                         'col-sm-12':filter==false,
+                         'col-sm-8':filter,
+                         'col-xs-12':true
+                        }">
+            <div [ngClass]="{'main_category_right' : true,
+                             'cat-2' : filter==false
+                            }">
+            </div>
+            <div class="row">
+                <ng-container *ngFor="let item of buf|slice : indexS :indexE ;
+                                      let index = index">
+                    <div [ngClass]="{'col-md-3':filter==false,
+                                  'col-md-4':filter,
+                                  'col-sm-4': filter==false,
+                                  'col-sm-6':filter,
+                                  'col-xs-12':true
+                                  }">
+                        <div class="main_cat_item">
+                          <div class="item">
+                            <div class="item-img">
+                              <img [src]="item.imageLoc" alt="" />
+                              <div class="tr-add-cart">
+                                <ul>
+                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(item.id)"> ADD TO CART </a></li>
+                                  <!-- Todo: Wish List -->
+                                  <li><a class="fa fa-heart tr_heart"></a></li>
+                                  <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="item-new">
+                              <p>New</p>
+                              <ng-container *ngIf="item.discount > 0">
+                                 <span>-{{item.discount}}%</span>
+                              </ng-container>
+                            </div>
+                            <div class="item-sub">
+                              <a href="product-detail"><h5>{{item.name}}</h5></a>
+                              <p>$ {{ item.price }}
+                                <ng-container *ngIf="item.discount > 0">
+                                    <span><del>$ {{ item.originPrice }}</del></span>
+                                </ng-container>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="pagi_line"></div>
+            <div class="pagi_ul">
+              <ul id="pagination">
+
+                <li><a (click)="prevPage()">Previous</a></li>
+                <ng-container *ngFor="let item of CreatePageIndex(pageMax);">
+                    <li><a (click)="Page(item)">{{item}}</a></li>
+                </ng-container>
+                <li><a (click)="nextPage()">Next</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+<!-- <router-outlet></router-outlet> -->
+
