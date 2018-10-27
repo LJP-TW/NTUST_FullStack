@@ -16,17 +16,18 @@
 </div>
 
 <section class="checkout_area">
+    <form #myForm="ngForm" class="myForm" ngNativeValidate>
       <div class="container">
         <div class="row">
           <div class="col-md-9 col-sm-8 col-xs-12">
+
             <div class="checkout_left">
               <h2>Billing Address</h2>
               <div class="dotted_line"></div>
-
               <div class="checkout_form">
                 <div class="country_select">
                   <p>Country</p>
-                  <select class="selectpicker sel_state">
+                  <select class="selectpicker sel_state" [(ngModel)]="country" name="country" required>
                     <option>Sate/Country</option>
                     <option>Bangladesh</option>
                     <option>USA</option>
@@ -35,101 +36,47 @@
                     <option>Australia</option>
                   </select>
                 </div>
+
                 <div class="c_name_box">
                   <div class="c_name_box_left">
-                    <p>First Name <span>*</span></p>
-                    <input type="text">
-                  </div>
-                  <div class="c_name_box_right">
-                    <p>Last Name <span>*</span></p>
-                    <input type="text">
+                    <p>Name <span>*</span></p>
+                    <input type="text" [(ngModel)]="name" name="name" required>
                   </div>
                 </div>
-                <div class="company_name">
-                  <p>Company Name <span>*</span></p>
-                  <input type="text">
-                </div>
+
                 <div class="c_address">
                   <p>Address <span>*</span></p>
-                  <input type="text" placeholder="Street Address">
+                  <input type="text" placeholder="Street Address" [(ngModel)]="address" name="address" required>
                 </div>
+
                 <div class="c_state_box">
-                  <div class="c_state_box_left">
-                    <p>Town/City <span>*</span></p>
-                    <input type="text">
-                  </div>
-                  <div class="c_state_box_right">
                     <p>Postcode/Zip <span>*</span></p>
-                    <input type="text">
-                  </div>
+                    <input type="text" [(ngModel)]="postcode" name="postcode" required>
                 </div>
+
                 <div class="c_mail_box">
                   <div class="c_mail_box_left">
                     <p>Email <span>*</span></p>
-                    <input type="text">
+                    <input type="text" [(ngModel)]="email" name="email" required>
                   </div>
                   <div class="c_mail_box_right">
                     <p>Phone <span>*</span></p>
-                    <input type="text">
+                    <input type="text" [(ngModel)]="phone" name="phone" required>
                   </div>
                 </div>
+
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Create An Account
+                    <input type="checkbox" required> Create An Account
                   </label><br>
                   <label>
-                    <input type="checkbox"> Shipping to a Different Address
+                    <input type="checkbox" required> Shipping to a Different Address
                   </label>
                 </div>
-
-
-              </div>
-
-              <h2>Shiiping Address</h2>
-              <div class="dotted_line"></div>
-
-              <div class="shipping_form">
-                <div class="country_select country_select2">
-                  <p>Country</p>
-                  <select class="selectpicker sel_state">
-                    <option>Sate/Country</option>
-                    <option>Bangladesh</option>
-                    <option>USA</option>
-                    <option>UK</option>
-                    <option>Canda</option>
-                    <option>Australia</option>
-                  </select>
-                </div>
-                <div class="c_name_box">
-                  <div class="c_name_box_left">
-                    <p>First Name <span>*</span></p>
-                    <input type="text">
-                  </div>
-                  <div class="c_name_box_right">
-                    <p>Last Name <span>*</span></p>
-                    <input type="text">
-                  </div>
-                </div>
-                <div class="company_name">
-                  <p>Company Name <span>*</span></p>
-                  <input type="text">
-                </div>
-                <div class="c_address">
-                  <p>Address <span>*</span></p>
-                  <input type="text" placeholder="Street Address">
-                </div>
-                <div class="s_town">
-                  <p>Town/City <span>*</span></p>
-                  <input type="text" placeholder="Town/City">
-                </div>
-                <div class="s_order">
-                  <p>Order Notes <span>*</span></p>
-                  <textarea name="" cols="30" rows="10"></textarea>
-                </div>
-
               </div>
             </div>
           </div>
+
           <div class="col-md-3 col-sm-4 col-xs-12">
             <div class="checkout_right">
               <h4>Review of Your Order</h4>
@@ -169,7 +116,7 @@
                 </div>
                 <div class="c_payment">
                   <p>Select Payment Method</p>
-                  <select class="selectpicker sel_state">
+                  <select class="selectpicker sel_state" [(ngModel)]="payment" name="payment" required>
                     <option>Direct Bank Transfer</option>
                     <option>Wire Transfer</option>
                     <option>VISA</option>
@@ -177,13 +124,14 @@
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> I have Read & Accept <span>Terms & Conditions</span>
+                    <input type="checkbox" name="ck" [(ngModel)]="ck" required > I have Read & Accept <span>Terms & Conditions</span>
                   </label>
                 </div>
-                <input type="submit" value="Place order now"/>
+                <input type="submit" value="Place order now" [disabled]="!myForm.valid" (click)="output()"/>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </form>
 </section>
