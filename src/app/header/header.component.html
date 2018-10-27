@@ -15,8 +15,9 @@
       <div class="col-md-3 col-sm-4 col-xs-12 floatright">
         <div class="header_right">
           <ul class="checkout">
-            <li><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" ><img src="../../assets/icon/heart.png" style="width: 15px"> wishlist</a></li>
-            <li class="mobi_right_li"><a href="checkout"><img src="../../assets/icon/shopping-cart.png" style="width: 15px">
+            <!-- Todo: Wish List -->
+            <li><a [routerLink]="['/']" routerLinkActive="router-link-active" ><img src="../../assets/icon/heart.png" style="width: 15px"> wishlist</a></li>
+            <li class="mobi_right_li"><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" ><img src="../../assets/icon/shopping-cart.png" style="width: 15px">
                 checklist</a></li>
           </ul>
         </div>
