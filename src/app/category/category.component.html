@@ -209,9 +209,9 @@
                             </div>
                             <div class="item-sub">
                               <a href="product-detail"><h5>{{item.name}}</h5></a>
-                              <p>$ {{finalPrice(item.price * (100-item.discount)/100)}}
+                              <p>$ {{ item.price }}
                                 <ng-container *ngIf="item.discount > 0">
-                                    <span><del>$ {{item.price}}</del></span>
+                                    <span><del>$ {{ item.originPrice }}</del></span>
                                 </ng-container>
                               </p>
                             </div>

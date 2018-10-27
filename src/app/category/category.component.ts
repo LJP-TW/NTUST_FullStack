@@ -49,7 +49,7 @@ export class CategoryComponent implements OnInit {
       })
       if(product === undefined) return;
       let fPrice = Math.ceil(product.price/100 * (100-product.discount));
-      this.productDataBase.odCart.push({product:product, amount: 1,finalPrice: fPrice, total: fPrice });
+      this.productDataBase.odCart.push({product:product, amount: 1,finalPrice: product.price, total: product.price });
     }
   }
 
