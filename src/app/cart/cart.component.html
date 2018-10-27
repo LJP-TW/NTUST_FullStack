@@ -40,7 +40,7 @@
             <div class="cart_item">
               <div class="cart_item_img">
                 <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px;" />
-                <div class="floatleft" (click)="productDataBase.CartRemove(i)"><img src="images/close.png" alt="" /></div>
+                <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div>
                 <p>{{ order.product.name }}<br>
                   特性:
                   <ng-container *ngFor="let character of order.product.characteristics">

@@ -26,6 +26,7 @@ import { CategoryComponent } from './category/category.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
+import { RegistComponent } from './regist/regist.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SingleBlogComponent } from './single-blog/single-blog.component';
     ContactComponent,
     CategoryComponent,
     LoginComponent,
-    SingleBlogComponent
+    SingleBlogComponent,
+    RegistComponent
   ],
   imports: [FormsModule, BrowserModule, AppRoutingModule],
   providers: [],

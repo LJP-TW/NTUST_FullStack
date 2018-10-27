@@ -1,0 +1,68 @@
+.LRblock {
+	/* border: 1px solid black; */
+	padding: 1em;
+	font: 400 16px monospace;
+	max-width: 500px;
+	margin: 50px auto;
+}
+.LRblock > input[type=text]:focus, .LRblock > input[type=password]:focus, .LRblock > input[type=email]:focus {
+    animation-name: inputFocus;
+    animation-duration: 0.5s;
+}
+.LRblock > input[type=text], .LRblock > input[type=password], .LRblock > input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.LRblock > label {
+    width: 100%;
+    line-height: 1.5;
+    margin: 0 8px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.LRblock > label:first-child {
+	margin-top: 8px;
+}
+.LRblock > label {
+}
+.LRblock > button {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.LRblock > button:hover {
+	background-color: #ccc;
+}
+.LRblock > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;	
+	align-items: center;
+}
+.LRblock > div > a {
+	text-decoration: none;
+	float: right;
+}
+@keyframes inputFocus {
+    from {
+		outline: 1.5px solid #96b6ee;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #a9a9a9;
+		padding: 13px 21px;
+		outline-offset: 16px;
+	}
+    to {
+		outline: 1px solid #a6c7ff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #7495cc;
+		padding: 13px 21px;
+		outline-offset: 0;	
+	}
+}

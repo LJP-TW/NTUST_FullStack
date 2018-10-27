@@ -120,7 +120,10 @@ export class CartComponent implements OnInit {
     //     break;
     // }
   }
-
+  CartRemove(index:number){
+    this.total -= this.Cart[index].total;
+    this.productDataBase.CartRemove(index);
+  }
   /*
   // 隱藏、顯示左側資訊欄位
   cartTotalClick() {

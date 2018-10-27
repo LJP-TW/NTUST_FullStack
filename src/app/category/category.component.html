@@ -85,10 +85,10 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                          <input type="range" name="points" min="100" max="10000" step="1" [(ngModel)]="priceMax">
+                          <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax">
                           <div class="cat_filter_box">
                             <p>
-                              <label for="amount">Filter</label>
+                              <label for="amount" (click)="Buf2Filter_maxPrice(0)">Filter</label>
                               <!-- <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
                               <input type="text" readonly style="border:0; color:#000; font-weight:bold;" [(ngModel)]="priceMax">
                             </p>
@@ -210,7 +210,7 @@
                             </div>
                             <div class="item-sub">
                               <a href="product-detail"><h5>{{item.name}}</h5></a>
-                              <p>$ {{item.price * (100-item.discount)/100}}
+                              <p>$ {{finalPrice(item.price * (100-item.discount)/100)}}
                                 <ng-container *ngIf="item.discount > 0">
                                     <span><del>$ {{item.price}}</del></span>
                                 </ng-container>

@@ -7,7 +7,7 @@ import { ProductDataBaseService } from '../product-data-base.service';
 })
 export class CategoryComponent implements OnInit {
 
-  private priceMax = 5000;
+  private priceMax = 0;
   private buf:any[];
   private productsPerPage = 10;
   private page = 1;
@@ -23,10 +23,16 @@ export class CategoryComponent implements OnInit {
   }
 
   ngAfterContentInit(): void {
+
     this.Buf2All();
+    this.bufChanged;
     this.Page(1);
+    this.FilterOn();
   }
 
+  finalPrice(value){
+    return Math.ceil(value);
+  }
   // 購物車, 只新增不重複的ID到service的Cart裡面, 數量在結帳才設定
   AddToCart(id: number) {
     let found = false;
@@ -93,6 +99,7 @@ export class CategoryComponent implements OnInit {
 
   //Filtering
   Buf2Filter_maxPrice(value: number){
+    value = this.priceMax;
     this.buf = this.productDataBase.Products.filter((n) => {
       return n.price <= value;
     });
