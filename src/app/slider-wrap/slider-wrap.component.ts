@@ -12,23 +12,12 @@ export class SliderWrapComponent implements OnInit {
   ngOnInit() {
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
-    // <script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    const sliderAffect1 = document.createElement('script');
-    sliderAffect1.type = 'text/javascript';
-    sliderAffect1.src = 'assets/js/rs-plugin/js/jquery.themepunch.plugins.min.js';
-    this.elementRef.nativeElement.appendChild(sliderAffect1);
-
-    // <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    const sliderAffect2 = document.createElement('script');
-    sliderAffect2.type = 'text/javascript';
-    sliderAffect2.src = 'assets/js/rs-plugin/js/jquery.themepunch.revolution.min.js';
-    this.elementRef.nativeElement.appendChild(sliderAffect2);
-
-    // <script src="js/rs-plugin/rs.home.js"></script>
-    const sliderAffect3 = document.createElement('script');
-    sliderAffect3.type = 'text/javascript';
-    sliderAffect3.src = 'assets/js/rs-plugin/rs.home.js';
-    this.elementRef.nativeElement.appendChild(sliderAffect3);
+    // <script src="assets/js/rs-plugin/rs.home.js"></script>
+    const sliderAffect = document.createElement('script');
+    sliderAffect.type = 'text/javascript';
+    sliderAffect.src = 'assets/js/rs-plugin/rs.home.js';
+    this.elementRef.nativeElement.appendChild(sliderAffect);
   }
 }

@@ -12,7 +12,7 @@ export class TToBSliderAreaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $(document).ready(function(){
+    $(document).ready(function() {
      $('.slider8').bxSlider({
       mode: 'vertical',
       slideWidth: 300,
