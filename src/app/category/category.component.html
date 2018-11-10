@@ -1,4 +1,4 @@
-<section class="breadcumb_top_area">
+<!-- <section class="breadcumb_top_area">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -8,23 +8,23 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <div class="filter_area">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-8 col-xs-12">
           <div class="filter_box_left">
-            <p>FILTERING:</p>
+            <p>過濾器</p>
             <div class="filter_cont">
               <ul>
-                <li><a (click)="FilterOn()">on</a></li>
+                <li><a (click)="FilterOn()">開啟</a></li>
                 <li><img [src]="FilterIco_Loc()" alt="" /></li>
-                <li><a (click)="FilterOff()">off</a></li>
+                <li><a (click)="FilterOff()">關閉</a></li>
               </ul>
             </div>
             <div class="s_results">
-              <p><span>|</span> showing {{ indexS + 1 }}-{{ indexE }} of {{ productMax }} results</p>
+              <p><span>|</span> 顯示商品: {{ indexS + 1 }}-{{ indexE }} / 所有商品: {{ productMax }}</p>
             </div>
           </div>
         </div>
@@ -49,51 +49,73 @@
         <ng-container *ngIf="filter;">
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="main_category_left">
-
                   <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
+
                     <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                      <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        CATEGORIES
-                        <span class="floatright"><i class="fa fa-minus"></i></span>
-                      </a>
-                      </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                      <div class="panel-body">
-                      <ul id="c_tab1">
-                        <li><a href="">Blazers  (12)</a></li>
-                        <li><a href="">Pants & Trousers  (54)</a></li>
-                        <li><a href="">Shirts  (105)</a></li>
-                        <li><a href="">Suits & Tailors  (48)</a></li>
-                        <li><a href="">T-shirts  (120)</a></li>
-                        <li><a href="">Underwear  (12)</a></li>
-                        <li><a href="">Jackets & Coats (12)</a></li>
-                      </ul>
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          神奇寶貝
+                          <span class="floatright"><i class="fa fa-minus"></i></span>
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                        <ul id="c_tab1">
+                          <li><a href="">水系  (12)</a></li>
+                          <li><a href="">火系  (54)</a></li>
+                          <li><a href="">電系  (105)</a></li>
+                          <li><a href="">草系  (48)</a></li>
+                          <li><a href="">冰系  (120)</a></li>
+                          <li><a href="">一般系 (12)</a></li>
+                          <li><a href="">資工系 (12)</a></li>
+                        </ul>
+                        </div>
                       </div>
                     </div>
-                    </div>
+
                     <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                      <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        FILTER PRICE FILTER
-                        <span class="floatright"><i class="fa fa-plus"></i></span>
-                      </a>
-                      </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                      <div class="panel-body">
-                          <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax">
-                          <div class="cat_filter_box">
-                            <p>
-                              <label for="amount" (click)="Buf2Filter_maxPrice(0)">Filter</label>
-                              <!-- <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
-                              <input type="text" readonly style="border:0; color:#000; font-weight:bold;" [(ngModel)]="priceMax">
-                            </p>
-                          </div>
+                      <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                          <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          道具
+                          <span class="floatright"><i class="fa fa-minus"></i></span>
+                        </a>
+                        </h4>
                       </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                        <ul id="c_tab1">
+                          <li><a href="">精靈球  (12)</a></li>
+                          <li><a href="">果實  (54)</a></li>
+                          <li><a href="">攜帶物品  (105)</a></li>
+                          <li><a href="">狀態治療道具  (48)</a></li>
+                        </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          FILTER PRICE FILTER
+                          <span class="floatright"><i class="fa fa-plus"></i></span>
+                        </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax">
+                            <div class="cat_filter_box">
+                              <p>
+                                <label for="amount" (click)="Buf2Filter_maxPrice(0)">Filter</label>
+                                <!-- <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
+                                <input type="text" readonly style="border:0; color:#000; font-weight:bold;" [(ngModel)]="priceMax">
+                              </p>
+                            </div>
+                        </div>
                       </div>
                     </div>
                     <!-- <div class="panel panel-default">
@@ -145,15 +167,15 @@
                     </div>
                     </div> -->
                     <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFive">
+                    <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                         Sortings
                         <span class="floatright"><i class="fa fa-plus"></i></span>
                       </a>
                       </h4>
                     </div>
-                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                       <div class="panel-body">
                       <ul id="c_tab2">
                         <li><a (click)="Buf2All()">All</a></li>
@@ -194,7 +216,7 @@
                               <img [src]="item.imageLoc" alt="" />
                               <div class="tr-add-cart">
                                 <ul>
-                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(item.id)"> ADD TO CART </a></li>
+                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(item.id)"> 加進購物車 </a></li>
                                   <!-- Todo: Wish List -->
                                   <li><a class="fa fa-heart tr_heart"></a></li>
                                   <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
@@ -228,11 +250,11 @@
             <div class="pagi_ul">
               <ul id="pagination">
 
-                <li><a (click)="prevPage()">Previous</a></li>
+                <li><a (click)="prevPage()">前一頁</a></li>
                 <ng-container *ngFor="let item of CreatePageIndex(pageMax);">
                     <li><a (click)="Page(item)">{{item}}</a></li>
                 </ng-container>
-                <li><a (click)="nextPage()">Next</a></li>
+                <li><a (click)="nextPage()">後一頁</a></li>
               </ul>
             </div>
           </div>

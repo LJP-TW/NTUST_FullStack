@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
+
+declare var $: any;
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -16,16 +19,29 @@ export class CategoryComponent implements OnInit {
   indexS = 0;
   indexE = 0;
   filter = true;
-  constructor(public productDataBase: ProductDataBaseService) { }
+  constructor(public productDataBase: ProductDataBaseService, private elementRef: ElementRef) { }
 
   ngOnInit() {
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngAfterContentInit(): void {
     this.Buf2All();
     this.bufChanged();
     this.Page(1);
     this.FilterOn();
+
+    // <script src="assets/js/bootstrap.min.js"></script>
+    const sliderAffect = document.createElement('script');
+    sliderAffect.type = 'text/javascript';
+    sliderAffect.src = 'assets/js/bootstrap.min.js';
+    this.elementRef.nativeElement.appendChild(sliderAffect);
+
+    // <script src="assets/js/main.js"></script>
+    const sliderAffect2 = document.createElement('script');
+    sliderAffect2.type = 'text/javascript';
+    sliderAffect2.src = 'assets/js/main.js';
+    this.elementRef.nativeElement.appendChild(sliderAffect2);
   }
 
   finalPrice(value) {

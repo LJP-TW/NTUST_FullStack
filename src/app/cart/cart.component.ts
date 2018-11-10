@@ -60,6 +60,18 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+
+    // <script src="assets/js/main.js"></script>
+    const sliderAffect = document.createElement('script');
+    sliderAffect.type = 'text/javascript';
+    sliderAffect.src = 'assets/js/main.js';
+    this.elementRef.nativeElement.appendChild(sliderAffect);
+  }
+
   // 加號紐被按下，增加商品數量
   plusClick(index: number) {
     ++this.Cart[index].amount;

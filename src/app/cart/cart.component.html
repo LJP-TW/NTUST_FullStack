@@ -21,16 +21,16 @@
         <div class="main_cart_left">
           <div class="cart_heading">
             <div class="h_item1">
-              <p>product</p>
+              <p>商品</p>
             </div>
             <div class="h_item2">
-              <p>Price</p>
+              <p>價格</p>
             </div>
             <div class="h_item3">
-              <p>Quantity</p>
+              <p>數量</p>
             </div>
             <div class="h_item4">
-              <p>Total</p>
+              <p>總額</p>
             </div>
           </div>
 
@@ -148,10 +148,11 @@
           </div> -->
           <!-- 代購商品 ↑-->
 
-          <div class="coupon_box">
+          <!-- Todo: 優惠碼 -->
+          <!-- <div class="coupon_box">
             <input type="text" placeholder="coupon code" />
             <input type="submit" value="apply coupon">
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -167,7 +168,7 @@
                   <h4 class="panel-title">
                     <p class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo"
                       aria-expanded="false" aria-controls="collapseTwo">
-                      Cart totals
+                      我的購物車
                       <span class="floatright"><button [ngClass]="{button: true,buttonMinus: CartTotalCtrl === true ,buttonPlus: CartTotalCtrl === false }"
                           ></button></span>
                     </p>
@@ -177,15 +178,15 @@
                   aria-labelledby="headingTwo">
                   <div class="panel-body cart_p_body">
                     <div class="c_single_item">
-                      <p>SubTotal</p>
+                      <p>小記</p>
                       <span>${{subTotal}}</span>
                     </div>
                     <div class="c_single_item cart_last_total">
-                      <p>Shipping Charge</p>
+                      <p>運費</p>
                       <span>{{shippingCharge}}</span>
                     </div>
                     <div class="c_total_item sp_single_item">
-                      <p>Total</p>
+                      <p>總共</p>
                       <span>${{total}}</span>
                     </div>
                   </div>
@@ -193,7 +194,7 @@
               </div>
             </div>
             <!-- <input type="submit" class="cartUpdate" (click)="updateCart()" value="Update Cart"> -->
-            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active"  value="Proceed to checkout">
+            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active"  value="Yeah Yeah 結帳囉">
           </div>
         </div>
       </div>
