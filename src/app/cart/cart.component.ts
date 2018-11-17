@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
 
 interface Order {
@@ -14,7 +14,7 @@ interface Order {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  constructor(public productDataBase: ProductDataBaseService) {}
+  constructor(public productDataBase: ProductDataBaseService, private elementRef: ElementRef) {}
 
   // 接 DataService
   // 購物車陣列

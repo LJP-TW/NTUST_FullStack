@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/404'
   }
 ];
 
