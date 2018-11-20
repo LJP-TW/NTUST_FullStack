@@ -14,12 +14,29 @@ export class CartService {
   /**
    * 新增商品到 this.cart
    * 只需要參數 ID
-   * 若有重複 ID、或沒有此 Product ID，就不會更改到 this.cart
+   * 若有重複 ID，增加 Count
+   * 若沒有此 Product ID，新增商品到 this.cart
    *
    * @param id: number
    */
   Add(id: number) {
+    let found = false;
+    let i;
+    for (i = 0 ; i < this.cart.length ; i++) {
+        if (this.cart[i].productID === id) {
+          found = true;
+          break;
+        }
+    }
 
+    if (!found) {
+      this.cart.push({
+        productID: id,
+        count: 1
+      });
+    } else {
+      this.cart[i].count++;
+    }
   }
 
   /**
@@ -29,6 +46,18 @@ export class CartService {
    * @param id: number
    */
   Plus(id: number) {
+    let found = false;
+    let i;
+    for (i = 0 ; i < this.cart.length ; i++) {
+        if (this.cart[i].productID === id) {
+          found = true;
+          break;
+        }
+    }
+
+    if (found) {
+      this.cart[i].count++;
+    }
   }
 
   /**
@@ -38,7 +67,18 @@ export class CartService {
    * @param id: number
    */
   Minus(id: number) {
+    let found = false;
+    let i;
+    for (i = 0 ; i < this.cart.length ; i++) {
+        if (this.cart[i].productID === id) {
+          found = true;
+          break;
+        }
+    }
 
+    if (found) {
+      this.cart[i].count--;
+    }
   }
 
   /**
@@ -48,7 +88,18 @@ export class CartService {
    * @param id: number
    */
   Remove(id: number) {
+    let found = false;
+    let i;
+    for (i = 0 ; i < this.cart.length ; i++) {
+        if (this.cart[i].productID === id) {
+          found = true;
+          break;
+        }
+    }
 
+    if (found) {
+      this.cart.splice(i, 1);
+    }
   }
 
   UpdateToDB() {
