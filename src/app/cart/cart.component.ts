@@ -14,7 +14,19 @@ interface Order {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  constructor(public productDataBase: ProductDataBaseService, private elementRef: ElementRef) {}
+
+  productsPerPage = 6;
+  page = 1;
+  pageMax = 0;
+  productMax = 0;
+  indexS = 0;
+  indexE = 0;
+  filter = true;
+
+  constructor(
+    public productDataBase: ProductDataBaseService,
+    private elementRef: ElementRef
+  ) {}
 
   // 接 DataService
   // 購物車陣列
@@ -56,14 +68,17 @@ export class CartComponent implements OnInit {
     // }
     this.Cart = this.productDataBase.odCart;
     this.Cart.forEach(element => {
-        this.total += element.total;
+      this.total += element.total;
     });
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
+    this.Cart = this.productDataBase.odCart;
+    this.cartChanged();
+    this.Page(1);
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
 
     // <script src="assets/js/main.js"></script>
     const sliderAffect = document.createElement('script');
@@ -75,27 +90,8 @@ export class CartComponent implements OnInit {
   // 加號紐被按下，增加商品數量
   plusClick(index: number) {
     ++this.Cart[index].amount;
-    this.Cart[index].total += (this.Cart[index].finalPrice);
+    this.Cart[index].total += this.Cart[index].finalPrice;
     this.total += this.Cart[index].finalPrice;
-
-    // switch (id) {
-    //   case 1:
-    //     this.quantity1++;
-    //     this.total1 = this.price1 * this.quantity1;
-    //     break;
-    //   case 2:
-    //     this.quantity2++;
-    //     this.total2 = this.price2 * this.quantity2;
-    //     break;
-    //   case 3:
-    //     this.quantity3++;
-    //     this.total3 = this.price3 * this.quantity3;
-    //     break;
-    //   case 4:
-    //     this.quantity4++;
-    //     this.total4 = this.price4 * this.quantity4;
-    //     break;
-    // }
   }
   // 減號紐被按下，減少商品數量
   minusClick(index: number) {
@@ -104,39 +100,12 @@ export class CartComponent implements OnInit {
       this.Cart[index].total -= this.Cart[index].finalPrice;
       this.total -= this.Cart[index].finalPrice;
     }
-
-    // switch (id) {
-    //   case 1:
-    //     if (this.quantity1 !== 0) {
-    //       this.quantity1--;
-    //       this.total1 = this.price1 * this.quantity1;
-    //     }
-    //     break;
-    //   case 2:
-    //     if (this.quantity2 !== 0) {
-    //       this.quantity2--;
-    //       this.total2 = this.price2 * this.quantity2;
-    //     }
-    //     break;
-    //   case 3:
-    //     if (this.quantity3 !== 0) {
-    //       this.quantity3--;
-    //       this.total3 = this.price3 * this.quantity3;
-    //     }
-    //     break;
-    //   case 4:
-    //     if (this.quantity4 !== 0) {
-    //       this.quantity4--;
-    //       this.total4 = this.price4 * this.quantity4;
-    //     }
-    //     break;
-    // }
   }
   CartRemove(index: number) {
     this.total -= this.Cart[index].total;
     this.productDataBase.CartRemove(index);
   }
-  /*
+
   // 隱藏、顯示左側資訊欄位
   cartTotalClick() {
     if (this.CartTotalCtrl === false) {
@@ -144,11 +113,46 @@ export class CartComponent implements OnInit {
     } else {
       this.CartTotalCtrl = false;
     }
-  }*/
+  }
   //
   // 更新購物車
-  updateCart() {
-    // this.subTotal = this.total1 + this.total2 + this.total3 + this.total4;
-    // this.total = this.subTotal + this.shippingCharge;
+  updateCart() {}
+
+
+  // page
+  cartChanged() {
+    this.pageMax = Math.ceil(this.Cart.length / this.productsPerPage);
+    console.log(this.pageMax);
+    this.productMax = this.Cart.length;
+  }
+
+  Page(value: number) {
+    if (value > this.pageMax) {
+      value = this.pageMax;
+    } else if (value < 1) {
+      value = 1;
+    }
+    this.page = value;
+    this.indexS = this.productsPerPage * (this.page - 1);
+    const tmpEnd = this.productsPerPage * this.page;
+    this.indexE = tmpEnd < this.Cart.length ? tmpEnd : this.Cart.length;
+  }
+
+  nextPage() {
+    if (this.page < this.pageMax) {
+      this.Page(this.page + 1);
+    }
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.Page(this.page - 1);
+    }
+  }
+
+  CreatePageIndex(value: number): Array<number> {
+    return Array.from(Array(this.pageMax).keys()).map(n => {
+      return (n = n + 1);
+    });
   }
 }
