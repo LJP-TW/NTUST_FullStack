@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistComponent implements OnInit {
 
-  constructor() { }
+  name: string;
+  pwd: string;
+  rpwd: string;
+  email: string;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
+  register() {
+    if (this.authService.Register(this.name, this.pwd, this.email)) {
+      console.log('Register success');
+    } else {
+      console.log('Register fail');
+    }
+  }
 }
