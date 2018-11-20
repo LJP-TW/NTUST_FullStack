@@ -60,12 +60,12 @@ export class MonsterService {
   constructor(private httpClient: HttpClient) { }
 
   /**
-   * 從後端資料庫取得所有 Monsters 的ID、名字、屬性、圖片、價格、折扣、Created 時間
+   * 從後端資料庫取得某範圍的 Monsters 的資料
    *
    * @returns Monsters[]
    */
-  getMonsters() {
-    // return this.httpClient.get('http://localhost:8000/api/products');
+  getMonsters(StartIndex: number, EndIndex: number) {
+    // return this.httpClient.get(`http://localhost:8000/api/GetMonsters/${StartIndex}/${EndIndex}`);
     return this.tempMonsters;
   }
 
@@ -75,8 +75,8 @@ export class MonsterService {
    * @param id: number
    * @returns Monster
    */
-  getMonster(id) {
-    // return this.httpClient.get(`http://localhost:8000/api/products/${id}`);
-    return this.tempMonsters[id];
-  }
+  // getMonster(id) {
+  //   // return this.httpClient.get(`http://localhost:8000/api/products/${id}`);
+  //   return this.tempMonsters[id];
+  // }
 }

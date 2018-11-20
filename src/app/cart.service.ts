@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
 
@@ -8,7 +9,7 @@ export class CartService {
 
   cart: CartItem[];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   /**
    * 新增商品到 this.cart
@@ -48,5 +49,18 @@ export class CartService {
    */
   Remove(id: number) {
 
+  }
+
+  UpdateToDB() {
+    // 沒有 UPDATE METHOD 可以用
+    // return this.httpClient.post('http://localhost:8000/api/UpdateCart');
+  }
+
+  GetFromDB() {
+    // return this.httpClient.get('http://localhost:8000/api/GetCart');
+  }
+
+  MakeOrder() {
+    // return this.httpClient.post('http://localhost:8000/api/MakeOrder');
   }
 }
