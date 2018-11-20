@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,14 +5,22 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor() { }
 
-  Login() {
+  Login(email: string, pwd: string) {
     // return this.httpClient.post('http://localhost:8000/api/Login');
+    console.log(email);
+    console.log(pwd);
+    return true;
   }
 
-  Register() {
+  Register(name: string, pwd: string, email: string) {
     // return this.httpClient.post('http://localhost:8000/api/Register');
+    console.log(name);
+    console.log(pwd);
+    console.log(email);
+    console.log('register');
+    return true;
   }
 
   Logout() {
