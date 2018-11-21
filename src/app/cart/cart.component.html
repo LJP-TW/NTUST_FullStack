@@ -20,16 +20,16 @@
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="main_cart_left">
           <div class="cart_heading">
-            <div class="h_item1">
+            <div class="h_item1" style="width: 43%">
               <p>商品</p>
             </div>
-            <div class="h_item2">
+            <div class="h_item2" style="width: 21%">
               <p>價格</p>
             </div>
-            <div class="h_item3">
+            <div class="h_item3" style="width: 22%">
               <p>數量</p>
             </div>
-            <div class="h_item4">
+            <div class="h_item4" style="width: 10%">
               <p>總額</p>
             </div>
           </div>
@@ -37,10 +37,13 @@
 
           <!-- For 出所有商品 -->
           <ng-container *ngFor="let order of this.Cart|slice : indexS :indexE; let i = index">
+            <div class="floatleft" style="margin-top: 73px;">
+              <button class="buttonDelete button" (click)="CartRemove(i)"></button>
+            </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px;" />
-                <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div>
+                <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px; margin-left: 20px;" />
+                <!-- <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
                 <p>{{ order.product.name }}<br>
                   特性:
                   <ng-container *ngFor="let character of order.product.characteristics">
@@ -95,8 +98,12 @@
                   aria-labelledby="headingTwo">
                   <div class="panel-body cart_p_body">
                     <div class="c_single_item">
+                      <p>商品項目</p>
+                      <span>共{{this.Cart.length}}項</span>
+                    </div>
+                    <div class="c_single_item sp_single_item">
                       <p>商品數量</p>
-                      <span>${{subTotal}}</span>
+                      <span>共{{amountTotal}}件</span>
                     </div>
                     <div class="c_single_item">
                       <p>小記</p>

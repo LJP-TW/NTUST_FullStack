@@ -15,7 +15,7 @@ interface Order {
 })
 export class CartComponent implements OnInit {
 
-  productsPerPage = 6;
+  productsPerPage = 4;
   page = 1;
   pageMax = 0;
   productMax = 0;
@@ -33,27 +33,11 @@ export class CartComponent implements OnInit {
   Cart: Order[] = [];
   total = 0;
 
-  // 接資料庫
-  // 商品數量及資訊
-  // productNum = 4;
-  // prodoct = [];
-  //
-  // price1 = 90;
-  // price2 = 80;
-  // price3 = 110;
-  // price4 = 70;
-  // quantity1 = 1;
-  // quantity2 = 1;
-  // quantity3 = 1;
-  // quantity4 = 1;
-  // total1 = this.price1 * this.quantity1;
-  // total2 = this.price2 * this.quantity2;
-  // total3 = this.price3 * this.quantity3;
-  // total4 = this.price4 * this.quantity4;
-  // 以上接資料庫
   CartTotalCtrl = true;
   subTotal = 0;
   shippingCharge = 0;
+  amountTotal = 0;
+  CartAmount = 0;
 
   ngOnInit() {
     // for (const id of this.productDataBase.Cart) {
@@ -70,6 +54,10 @@ export class CartComponent implements OnInit {
     this.Cart.forEach(element => {
       this.total += element.total;
     });
+    for (let i = 0 ; i < this.Cart.length ; i++) {
+      this.amountTotal += this.Cart[i].amount;
+    }
+    this.CartAmount = this.Cart.length;
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -89,21 +77,32 @@ export class CartComponent implements OnInit {
 
   // 加號紐被按下，增加商品數量
   plusClick(index: number) {
+    if (this.page !== 1) {
+      index += (this.page - 1) * this.productsPerPage;
+    }
     ++this.Cart[index].amount;
     this.Cart[index].total += this.Cart[index].finalPrice;
     this.total += this.Cart[index].finalPrice;
+    this.amountTotal++;
   }
   // 減號紐被按下，減少商品數量
   minusClick(index: number) {
+    if (this.page !== 1) {
+      index += (this.page - 1) * this.productsPerPage;
+    }
+
     if (this.Cart[index].amount !== 0) {
       --this.Cart[index].amount;
       this.Cart[index].total -= this.Cart[index].finalPrice;
       this.total -= this.Cart[index].finalPrice;
+      this.amountTotal--;
     }
   }
   CartRemove(index: number) {
     this.total -= this.Cart[index].total;
+    this.amountTotal -= this.Cart[index].amount;
     this.productDataBase.CartRemove(index);
+    this.cartChanged();
   }
 
   // 隱藏、顯示左側資訊欄位
