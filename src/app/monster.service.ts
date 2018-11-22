@@ -68,8 +68,8 @@ export class MonsterService {
    *
    * @returns Monsters[]
    */
-  getMonsters(StartIndex: number, EndIndex: number) {
-    // return this.httpClient.get(`http://localhost:8000/api/GetMonsters/${StartIndex}/${EndIndex}`);
+  getMonsters(StartIndex: number, EndIndex: number, Filter: string = '*') {
+    // return this.httpClient.get(`http://localhost:8000/api/GetMonsters/${Filter}/${StartIndex}/${EndIndex}`);
     return this.tempMonsters;
   }
 
