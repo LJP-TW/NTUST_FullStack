@@ -20,27 +20,30 @@
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="main_cart_left">
           <div class="cart_heading">
-            <div class="h_item1">
+            <div class="h_item1" style="width: 43%">
               <p>商品</p>
             </div>
-            <div class="h_item2">
+            <div class="h_item2" style="width: 21%">
               <p>價格</p>
             </div>
-            <div class="h_item3">
+            <div class="h_item3" style="width: 22%">
               <p>數量</p>
             </div>
-            <div class="h_item4">
+            <div class="h_item4" style="width: 10%">
               <p>總額</p>
             </div>
           </div>
 
 
           <!-- For 出所有商品 -->
-          <ng-container *ngFor="let order of this.Cart; let i = index">
+          <ng-container *ngFor="let order of this.Cart|slice : indexS :indexE; let i = index">
+            <div class="floatleft" style="margin-top: 73px;">
+              <button class="buttonDelete button" (click)="CartRemove(i)"></button>
+            </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px;" />
-                <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div>
+                <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px; margin-left: 20px;" />
+                <!-- <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
                 <p>{{ order.product.name }}<br>
                   特性:
                   <ng-container *ngFor="let character of order.product.characteristics">
@@ -64,89 +67,6 @@
               </div>
             </div>
           </ng-container>
-
-          <!-- 代購商品 -->
-          <!-- <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img1.jpg" alt="" />
-              <p>blue denim casual <br>shirt</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price1}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(1)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity1"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(1)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total1}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div>
-          <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img2.jpg" alt="" />
-              <p>structured collarless <br>coat</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price2}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(2)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity2"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(2)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total2}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div>
-          <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img3.jpg" alt="" />
-              <p>houndsmooth wool <br>t-shirt</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price3}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(3)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity3"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(3)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total3}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div>
-          <div class="cart_item">
-            <div class="cart_item_img">
-              <img src="images/cart_img4.jpg" alt="" />
-              <p>men’s fashion blue <br>jean coat</p>
-            </div>
-            <div class="cart_price">
-              <p>${{price4}}</p>
-            </div>
-            <div class="cart_quantity">
-              <ul>
-                <li><button class="buttonMinus button" (click)="minusClick(4)"></button></li>
-                <li><input type="text" class="quantity" [(ngModel)]="quantity4"></li>
-                <li><button class="buttonPlus button" (click)="plusClick(4)"></button></li>
-              </ul>
-            </div>
-            <div class="cart_total">
-              <p>${{total4}}</p>
-              <span><i class="fa fa-close"></i></span>
-            </div>
-          </div> -->
-          <!-- 代購商品 ↑-->
 
           <!-- Todo: 優惠碼 -->
           <!-- <div class="coupon_box">
@@ -178,6 +98,14 @@
                   aria-labelledby="headingTwo">
                   <div class="panel-body cart_p_body">
                     <div class="c_single_item">
+                      <p>商品項目</p>
+                      <span>共{{this.Cart.length}}項</span>
+                    </div>
+                    <div class="c_single_item sp_single_item">
+                      <p>商品數量</p>
+                      <span>共{{amountTotal}}件</span>
+                    </div>
+                    <div class="c_single_item">
                       <p>小記</p>
                       <span>${{subTotal}}</span>
                     </div>
@@ -193,8 +121,23 @@
                 </div>
               </div>
             </div>
-            <!-- <input type="submit" class="cartUpdate" (click)="updateCart()" value="Update Cart"> -->
             <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active"  value="Yeah Yeah 結帳囉">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <div class="pagi_line"></div>
+          <div class="pagi_ul">
+            <ul id="pagination">
+
+              <li><a (click)="prevPage()">前一頁</a></li>
+              <ng-container *ngFor="let item of CreatePageIndex(pageMax);">
+                <li><a (click)="Page(item)">{{item}}</a></li>
+              </ng-container>
+              <li><a (click)="nextPage()">後一頁</a></li>
+            </ul>
           </div>
         </div>
       </div>

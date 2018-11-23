@@ -1,6 +1,7 @@
 .button {
   width: 20px;
   height: 20px;
+  outline:none;
 }
 
 .quantity {
@@ -22,6 +23,15 @@
 
 .buttonMinus {
   background-image: url("../../assets/icon/minusButton.png");
+  background-size: cover;
+  background-color: inherit;
+  border: 0px;
+  width: 20px;
+  height: 20px;
+}
+
+.buttonDelete {
+  background-image: url("../../assets/icon/deleteButton.png");
   background-size: cover;
   background-color: inherit;
   border: 0px;
