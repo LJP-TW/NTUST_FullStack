@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -66,11 +67,25 @@ export class MonsterService {
   /**
    * 從後端資料庫取得某範圍的 Monsters 的資料
    *
-   * @returns Monsters[]
+   * @param StartIndex: number
+   * @param EndIndex: number
+   * @param [Filter='*']: string
+   * @returns Monster[]
    */
   getMonsters(StartIndex: number, EndIndex: number, Filter: string = '*') {
-    // return this.httpClient.get(`http://localhost:8000/api/GetMonsters/${Filter}/${StartIndex}/${EndIndex}`);
-    return this.tempMonsters;
+    return this.httpClient.get(`${environment.api}/GetMonsters/${Filter}/${StartIndex}/${EndIndex}`);
+  }
+
+  getMonsterImg(Size: number, MonsterID: number) {
+    return this.httpClient.get(`${environment.api}/Image/${Size}/${MonsterID}`);
+  }
+
+  getMonsterImgs(Size: number, MonsterID: number, ImageID: number) {
+    return this.httpClient.get(`${environment.api}/Image/${Size}/${MonsterID}/${ImageID}`);
+  }
+
+  getMonsterImgsExp(Width: number, Height: number, MonsterID: number, ImageID: number) {
+    return this.httpClient.get(`${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`);
   }
 
   /**

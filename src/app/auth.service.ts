@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -6,17 +7,17 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private route:Router) { }
+  constructor(private route: Router) { }
 
   Login(email: string, pwd: string) {
-    // return this.httpClient.post('http://localhost:8000/api/Login');
+    // return this.httpClient.post(`${environment.api}/Login`);
     console.log(email);
     console.log(pwd);
     return true;
   }
 
   Register(name: string, pwd: string, email: string) {
-    // return this.httpClient.post('http://localhost:8000/api/Register');
+    // return this.httpClient.post(`${environment.api}/Register`);
     console.log(name);
     console.log(pwd);
     console.log(email);
@@ -25,20 +26,20 @@ export class AuthService {
   }
 
   Logout() {
-    // return this.httpClient.get('http://localhost:8000/api/Logout');
+    // return this.httpClient.get(`${environment.api}/Logout`);
   }
 
   ForgetPwd(email: string) {
-    // return this.httpClient.post('http://localhost:8000/api/ForgetPwd');
+    // return this.httpClient.post(`${environment.api}/ForgetPwd`);
     return true;
   }
 
-  LoggedIn(){
-    return !(localStorage.getItem('token')===null);
+  LoggedIn() {
+    return !(localStorage.getItem('token') === null);
   }
 
-  LoggedInRedirect(){
-    if(!this.LoggedIn()){
+  LoggedInRedirect() {
+    if (!this.LoggedIn()) {
       this.route.navigate(['/login']);
       return true;
     }
