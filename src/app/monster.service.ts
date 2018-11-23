@@ -77,15 +77,15 @@ export class MonsterService {
   }
 
   getMonsterImg(Size: number, MonsterID: number) {
-    return this.httpClient.get(`${environment.api}/Image/${Size}/${MonsterID}`);
+    return `${environment.api}/Image/${Size}/${MonsterID}`;
   }
 
   getMonsterImgs(Size: number, MonsterID: number, ImageID: number) {
-    return this.httpClient.get(`${environment.api}/Image/${Size}/${MonsterID}/${ImageID}`);
+    return `${environment.api}/Image/${Size}/${MonsterID}/${ImageID}`;
   }
 
   getMonsterImgsExp(Width: number, Height: number, MonsterID: number, ImageID: number) {
-    return this.httpClient.get(`${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`);
+    return `${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`;
   }
 
   /**
