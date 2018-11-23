@@ -1,3 +1,5 @@
+import { MonsterService } from './../monster.service';
+import { NavService } from './../nav.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
 
@@ -19,7 +21,10 @@ export class CategoryComponent implements OnInit {
   indexS = 0;
   indexE = 0;
   filter = true;
-  constructor(public productDataBase: ProductDataBaseService, private elementRef: ElementRef) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(public monsterService: MonsterService, public productDataBase: ProductDataBaseService, private elementRef: ElementRef, private navService: NavService) {
+    this.navService.currentPage = 'category';
+  }
 
   ngOnInit() {
   }

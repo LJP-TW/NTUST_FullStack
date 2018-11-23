@@ -1,3 +1,4 @@
+import { NavService } from './../nav.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navService: NavService) {
+    this.navService.currentPage = 'index';
+  }
 
   ngOnInit() {
   }

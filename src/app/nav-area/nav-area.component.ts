@@ -1,3 +1,4 @@
+import { NavService } from './../nav.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
 
@@ -9,7 +10,7 @@ import { ProductDataBaseService } from '../product-data-base.service';
 export class NavAreaComponent implements OnInit {
   hover = 0;
 
-  constructor(public productDataBase: ProductDataBaseService) { }
+  constructor(public productDataBase: ProductDataBaseService, public navService: NavService) { }
 
   ngOnInit() {
   }

@@ -17,7 +17,7 @@
               <li><a>資工系神奇寶貝</a></li>
             </ul>
           </div>
-          <div class="cat_middle">
+          <!-- <div class="cat_middle"> -->
             <!-- Todo: 賣更多不同性質的東西 -->
             <!-- 根據 https://wiki.52poke.com/wiki/%E9%81%93%E5%85%B7 -->
             <!-- <h5>道具</h5>
@@ -29,7 +29,7 @@
               <li><a>攜帶物品</a></li>
               <li><a>狀態治療道具</a></li>
             </ul> -->
-          </div>
+          <!-- </div> -->
           <!-- 幹 想不到還有什麼分類了 -->
           <!-- <div class="cat_middle_right">
             <h5>trousers fit</h5>
@@ -50,12 +50,12 @@
     <div class="nav_center">
       <nav class="mainmenu">
         <ul id="nav">
-          <li class="current-page-item"><a [routerLink]="['/']" routerLinkActive="router-link-active">首頁</a>
+          <li [ngClass]="{'current-page-item': navService.currentPage === 'index'}"><a [routerLink]="['/']" routerLinkActive="router-link-active">首頁</a>
             <!-- <ul id="sub-menu4">
               <li><a href="index-2.html">Home Version Two</a></li>
             </ul> -->
           </li>
-          <li><a [routerLink]="['/category']" routerLinkActive="router-link-active">所有商品</a>
+          <li [ngClass]="{'current-page-item': navService.currentPage === 'category'}"><a [routerLink]="['/category']" routerLinkActive="router-link-active">所有商品</a>
             <!-- <ul id="sub-menu7">
               <li><a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" >Product Detail Page</a></li>
             </ul> -->
