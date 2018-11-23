@@ -1,413 +1,29 @@
 <!-- Todo: 排序商品 -->
 <section class="trending_area">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="trending_box">
-            <h2>商品快篩</h2>
-            <div class="multi_line"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="trending_box">
+          <h2>排行榜</h2>
+          <div class="multi_line"></div>
 
-            <div role="tabpanel">
+          <div role="tabpanel">
 
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab">最新商品<span> x </span></a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">最高評價<span> x </span></a></li>
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">最夯熱賣<span> x </span></a></li>
-                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">最低價格</a></li>
-              </ul>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">新寵上市<span> x </span></a></li>
+              <li role="presentation" (click)="sortByPrice()"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">低價銷售<span> x </span></a></li>
+              <li role="presentation" (click)="sortByDate()"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">最夯熱賣</a></li>
+            <!--  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">訓練師評價</a></li>-->
+            </ul>
 
-              <!-- Tab panes -->
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="home">
-                 <div id="owl-example" class="owl-carousel">
-                  <div class="item">
-                    <div class="item-img">
-                      <img src="assets/images/t_item1.jpg" alt="" />
-                      <div class="tr-add-cart">
-                        <ul>
-                          <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                          <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                          <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                          <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                        </ul>
-                      </div>
-                    </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+<!--新寵上市-->
+              <div role="tabpanel" class="tab-pane active" id="home">
+               <div id="owl-example" class="owl-carousel">
 
-                    <div class="item-new">
-                      <p>New</p>
-                    </div>
-
-                    <div class="item-sub">
-                      <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                      <p>$190.00</p>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="item-img">
-                      <img src="assets/images/t_item2.jpg" alt="" />
-                      <div class="tr-add-cart">
-                        <ul>
-                          <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                          <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                          <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                          <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="item-new">
-                      <p>New</p>
-                      <span>-10%</span>
-                    </div>
-
-                    <div class="item-sub">
-                      <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                      <p>$90.00 <span><del>$100</del></span></p>
-                    </div>
-                  </div>
-
-                  <div class="item">
-                    <div class="item-img">
-                      <img src="assets/images/t_item3.jpg" alt="" />
-                      <div class="tr-add-cart">
-                        <ul>
-                          <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                          <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                          <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                          <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div class="item-new">
-                      <p>New</p>
-                    </div>
-
-                    <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>super Clover Robe Jacket</h5></a>
-                    <p>$120.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item4.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>structured collarless coat</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item1.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$80.00 <span><del>$90</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item2.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>super Clover Robe Jacket</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item3.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$95.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item12.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>v-neck men blue t-shirt </h5></a>
-                    <p>$170.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item13.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>gray shadow jean shirt</h5></a>
-                    <p>$100.00 <span><del>$110</del></span></p>
-                  </div>
-                  </div>
-                </div>
-              </div>
-
-              <div role="tabpanel" class="tab-pane" id="profile">
-                <div id="owl-example-two" class="owl-carousel">
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item1.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>super Clover Robe Jacket</h5></a>
-                    <p>$80.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item7.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>v-neck men blue t-shirt </h5></a>
-                    <p>$130.00 <span><del>$140</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item14.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>houndsmooth wool t-shirt</h5></a>
-                    <p>$110.00 <span><del>$120</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item5.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>AROS SLIM HEAVY CHINO</h5></a>
-                    <p>$70.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item6.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>volv checked casual shirt</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item7.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>yellow Clover Robe Jacket</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item15.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>structured collarless coat</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item8.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>super Clover Robe Jacket</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item9.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>full hand animal jacket</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                </div>
-              </div>
-
-              <div role="tabpanel" class="tab-pane" id="messages">
-                <div id="owl-example-three" class="owl-carousel">
-                  <div class="item">
+                <div class="item">
                   <div class="item-img">
                     <img src="assets/images/t_item10.jpg" alt="" />
                     <div class="tr-add-cart">
@@ -415,19 +31,20 @@
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
-                    <span>-10%</span>
+                    <span *ngIf="product[0].discount !== 0">-{{product[0].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>men’s fashion blue jean coat</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
+                    <a [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"><h5>{{product[0].name}}</h5></a>
+                    <p>${{product[0].price}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].originPrice}}</del></span></p>
                   </div>
                   </div>
+
                   <div class="item">
                   <div class="item-img">
                     <img src="assets/images/t_item16.jpg" alt="" />
@@ -436,18 +53,20 @@
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
+                    <span *ngIf="product[1].discount !== 0">-{{product[1].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>AROS SLIM HEAVY CHINO</h5></a>
-                    <p>$90.00</p>
+                    <a [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"><h5>{{product[1].name}}</h5></a>
+                    <p>${{product[1].price}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].originPrice}}</del></span></p>
                   </div>
                   </div>
+
                   <div class="item">
                   <div class="item-img">
                     <img src="assets/images/t_item4.jpg" alt="" />
@@ -456,18 +75,20 @@
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
+                    <span *ngIf="product[2].discount !== 0">-{{product[2].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>black men leather coat</h5></a>
-                    <p>$90.00</p>
+                    <a [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"><h5>{{product[2].name}}</h5></a>
+                    <p>${{product[2].price}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].originPrice}}</del></span></p>
                   </div>
                   </div>
+
                   <div class="item">
                   <div class="item-img">
                     <img src="assets/images/t_item11.jpg" alt="" />
@@ -476,126 +97,20 @@
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
-                    <span>-10%</span>
+                    <span *ngIf="product[3].discount !== 0">-{{product[3].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>houndsmooth wool t-shirt</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
+                    <a [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"><h5>{{product[3].name}}</h5></a>
+                    <p>${{product[3].price}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].originPrice}}</del></span></p>
                   </div>
                   </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item1.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item12.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>structured collarless coat</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item3.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item2.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>structured collarless coat</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item3.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>men’s fashion blue jean coat</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                </div>
-              </div>
 
-              <div role="tabpanel" class="tab-pane" id="settings">
-                <div id="owl-example-four" class="owl-carousel">
                   <div class="item">
                   <div class="item-img">
                     <img src="assets/images/t_item1.jpg" alt="" />
@@ -604,141 +119,20 @@
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
+                    <span *ngIf="product[4].discount !== 0">-{{product[4].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00</p>
+                    <a [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"><h5>{{product[4].name}}</h5></a>
+                    <p>${{product[4].price}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].originPrice}}</del></span></p>
                   </div>
                   </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item2.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item7.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item4.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>v-neck men blue t-shirt </h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item1.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>v-neck men blue t-shirt </h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item2.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00</p>
-                  </div>
-                  </div>
-                  <div class="item">
-                  <div class="item-img">
-                    <img src="assets/images/t_item3.jpg" alt="" />
-                    <div class="tr-add-cart">
-                      <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="item-new">
-                    <p>New</p>
-                    <span>-10%</span>
-                  </div>
-                  <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>gray shadow jean shirt</h5></a>
-                    <p>$90.00 <span><del>$100</del></span></p>
-                  </div>
-                  </div>
+
                   <div class="item">
                   <div class="item-img">
                     <img src="assets/images/t_item12.jpg" alt="" />
@@ -747,45 +141,504 @@
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
+                    <span *ngIf="product[5].discount !== 0">-{{product[5].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>casual fashion wool coat</h5></a>
-                    <p>$90.00</p>
+                    <a [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"><h5>{{product[5].name}}</h5></a>
+                    <p>${{product[5].price}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].originPrice}}</del></span></p>
                   </div>
                   </div>
+
                   <div class="item">
                   <div class="item-img">
-                    <img src="assets/images/t_item14.jpg" alt="" />
+                    <img src="assets/images/t_item3.jpg" alt="" />
                     <div class="tr-add-cart">
                       <ul>
                         <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                         <li><a class="tr_text" href="#">ADD TO CART</a></li>
                         <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail']" routerLinkActive="router-link-active"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="item-new">
                     <p>New</p>
+                    <span *ngIf="product[6].discount !== 0">-{{product[6].discount}}%</span>
                   </div>
                   <div class="item-sub">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>houndsmooth wool t-shirt</h5></a>
-                    <p>$90.00 </p>
+                    <a [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"><h5>{{product[6].name}}</h5></a>
+                    <p>${{product[6].price}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].originPrice}}</del></span></p>
                   </div>
+                  </div>
+
+                  <div class="item">
+                  <div class="item-img">
+                    <img src="assets/images/t_item2.jpg" alt="" />
+                    <div class="tr-add-cart">
+                      <ul>
+                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="item-new">
+                    <p>New</p>
+                    <span *ngIf="product[7].discount !== 0">-{{product[7].discount}}%</span>
+                  </div>
+                  <div class="item-sub">
+                    <a [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"><h5>{{product[7].name}}</h5></a>
+                    <p>${{product[7].price}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].originPrice}}</del></span></p>
+                  </div>
+                  </div>
+
+                  <div class="item">
+                  <div class="item-img">
+                    <img src="assets/images/t_item3.jpg" alt="" />
+                    <div class="tr-add-cart">
+                      <ul>
+                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                        <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="item-new">
+                    <p>New</p>
+                    <span *ngIf="product[8].discount !== 0">-{{product[8].discount}}%</span>
+                  </div>
+                  <div class="item-sub">
+                    <a [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"><h5>{{product[8].name}}</h5></a>
+                    <p>${{product[8].price}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].originPrice}}</del></span></p>
+                  </div>
+                  </div>
+              </div>
+            </div>
+<!--低價銷售-->
+            <div role="tabpanel" class="tab-pane" id="profile">
+              <div id="owl-example-two" class="owl-carousel">
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item10.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
                   </div>
                 </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[0].discount !== 0">-{{product[0].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"><h5>{{product[0].name}}</h5></a>
+                  <p>${{product[0].price}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item16.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[1].discount !== 0">-{{product[1].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"><h5>{{product[1].name}}</h5></a>
+                  <p>${{product[1].price}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item4.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[2].discount !== 0">-{{product[2].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"><h5>{{product[2].name}}</h5></a>
+                  <p>${{product[2].price}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item11.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[3].discount !== 0">-{{product[3].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"><h5>{{product[3].name}}</h5></a>
+                  <p>${{product[3].price}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item1.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[4].discount !== 0">-{{product[4].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"><h5>{{product[4].name}}</h5></a>
+                  <p>${{product[4].price}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item12.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[5].discount !== 0">-{{product[5].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"><h5>{{product[5].name}}</h5></a>
+                  <p>${{product[5].price}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item3.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[6].discount !== 0">-{{product[6].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"><h5>{{product[6].name}}</h5></a>
+                  <p>${{product[6].price}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item2.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[7].discount !== 0">-{{product[7].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"><h5>{{product[7].name}}</h5></a>
+                  <p>${{product[7].price}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item3.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[8].discount !== 0">-{{product[8].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"><h5>{{product[8].name}}</h5></a>
+                  <p>${{product[8].price}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].originPrice}}</del></span></p>
+                </div>
+                </div>
               </div>
+            </div>
+<!--最夯熱賣-->
+            <div role="tabpanel" class="tab-pane" id="messages">
+              <div id="owl-example-three" class="owl-carousel">
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item1.jpg" alt="" /> <!--圖片連結-->
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul><!--router ../id-->
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[0].discount !== 0">-{{product[0].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"><h5>{{product[0].name}}</h5></a>
+                  <p>${{product[0].price}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item2.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[1].discount !== 0">-{{product[1].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"><h5>{{product[1].name}}</h5></a>
+                  <p>${{product[1].price}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item7.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[2].discount !== 0">-{{product[2].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"><h5>{{product[2].name}}</h5></a>
+                  <p>${{product[2].price}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item4.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[3].discount !== 0">-{{product[3].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"><h5>{{product[3].name}}</h5></a>
+                  <p>${{product[3].price}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item1.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[4].discount !== 0">-{{product[4].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"><h5>{{product[4].name}}</h5></a>
+                  <p>${{product[4].price}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item2.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[5].discount !== 0">-{{product[5].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"><h5>{{product[5].name}}</h5></a>
+                  <p>${{product[5].price}} <span *ngIf="product[5].discount !== 0"><del>${{product[5].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item3.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[6].discount !== 0">-{{product[6].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"><h5>{{product[6].name}}</h5></a>
+                  <p>${{product[6].price}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item12.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[7].discount !== 0">-{{product[7].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"><h5>{{product[7].name}}</h5></a>
+                  <p>${{product[7].price}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].originPrice}}</del></span></p>
+                </div>
+                </div>
+
+                <div class="item">
+                <div class="item-img">
+                  <img src="assets/images/t_item14.jpg" alt="" />
+                  <div class="tr-add-cart">
+                    <ul>
+                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
+                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
+                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                      <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="item-new">
+                  <p>New</p>
+                  <span *ngIf="product[8].discount !== 0">-{{product[8].discount}}%</span>
+                </div>
+                <div class="item-sub">
+                  <a [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"><h5>{{product[8].name}}</h5></a>
+                  <p>${{product[8].price}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].originPrice}}</del></span></p>
+                </div>
+                </div>
               </div>
+            </div>
+<!--訓練師評價-->
+          <!--  <div role="tabpanel" class="tab-pane" id="settings">
+              <div id="owl-example-four" class="owl-carousel">
+
+              </div>
+            </div>-->
 
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

@@ -1,4 +1,4 @@
-<!-- <div class="breadcumb_area">
+<!--<div class="breadcumb_area">
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -13,73 +13,77 @@
           </div>
         </div>
       </div>
-</div> -->
+</div>-->
+<div class="breadcumb_area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="bread_box">
+          <ul class="breadcumb">
+            <div [ngClass]="{'style': true}">
+              <li><a [routerLink]="['/cart']" routerLinkActive="router-link-active">← Back to Cart</a></li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="checkout_area">
-    <form #myForm="ngForm" class="myForm" ngNativeValidate>
+    <form #myForm="ngForm" class="myForm" name="myForm" ngNativeValidate>
       <div class="container">
         <div class="row">
           <div class="col-md-9 col-sm-8 col-xs-12">
             <div class="checkout_left">
-              <h2>Billing Address</h2>
+              <h4>info</h4>
+              <h2>資料確認</h2>
               <div class="dotted_line"></div>
+
               <div class="checkout_form">
                 <div class="country_select">
-                  <p>Country</p>
-                  <select class="selectpicker sel_state" [(ngModel)]="country" name="country" required>
-                    <option>Sate/Country</option>
-                    <option>Bangladesh</option>
+                  <p>國家 Country <span>*</span></p>
+                  <select class="selectpicker sel_state" [(ngModel)]="country" name="country">
+                    <option>Taiwan</option>
+                    <option>China</option>
                     <option>USA</option>
-                    <option>UK</option>
-                    <option>Canda</option>
-                    <option>Australia</option>
+                    <option>Japan</option>
                   </select>
                 </div>
 
                 <div class="c_name_box">
                   <div class="c_name_box_left">
-                    <p>Name <span>*</span></p>
-                    <input type="text" [(ngModel)]="name" name="name" required>
+                    <p>姓名 Name <span>*</span></p>
+                    <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required>
                   </div>
                 </div>
 
                 <div class="c_address">
-                  <p>Address <span>*</span></p>
-                  <input type="text" placeholder="Street Address" [(ngModel)]="address" name="address" required>
-                </div>
-
-                <div class="c_state_box">
-                    <p>Postcode/Zip <span>*</span></p>
-                    <input type="text" [(ngModel)]="postcode" name="postcode" required>
+                  <p>住址 Address <span>*</span></p>
+                  <input type="text" placeholder="Address" [(ngModel)]="address" name="address" required>
                 </div>
 
                 <div class="c_mail_box">
-                  <div class="c_mail_box_left">
-                    <p>Email <span>*</span></p>
-                    <input type="text" [(ngModel)]="email" name="email" required>
-                  </div>
-                  <div class="c_mail_box_right">
-                    <p>Phone <span>*</span></p>
-                    <input type="text" [(ngModel)]="phone" name="phone" required>
-                  </div>
+                    <div class="c_name_box_left">
+                      <p>電子郵件 Email <span>*</span></p>
+                      <input type="text" placeholder="Email" [(ngModel)]="email" name="email" required>
+                    </div>
                 </div>
 
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" required> Create An Account
-                  </label><br>
-                  <label>
-                    <input type="checkbox" required> Shipping to a Different Address
-                  </label>
+                <div class="c_mail_box">
+                    <div class="c_name_box_left">
+                      <p>手機號碼 Phone <span>*</span></p>
+                      <input type="text" placeholder="Phone" [(ngModel)]="phone" name="phone" required>
+                    </div>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- rightSide -->
           <div class="col-md-3 col-sm-4 col-xs-12">
             <div class="checkout_right">
               <h4>再次檢查您の寶貝</h4>
-
               <div class="product_form_total">
                 <div class="c_main_item">
                   <p>寶貝</p>
@@ -93,52 +97,31 @@
                   </div>
                 </ng-container>
 
-                <!-- <div class="c_single_item">
-                  <p>collarless coat x 1</p>
-                  <span>$115.00</span>
-                </div>
-                <div class="c_single_item">
-                  <p>wool t-shirt x 1</p>
-                  <span>$184.00</span>
-                </div>
-                <div class="c_single_item">
-                  <p>jean coat x 3 </p>
-                  <span>$205.00</span>
-                </div>
-                <div class="c_single_item sp_single_item">
-                  <p>casual shirt x 2</p>
-                  <span>$375.00</span>
-                </div>
-                <div class="c_single_item">
-                  <p>subtotal</p>
-                  <span>$854.00</span>
-                </div> -->
-
                 <!-- Todo 運費 -->
                 <div class="c_single_item sp_single_item">
-                  <p>Shipping Charge</p>
+                  <p>運費 Shipping Charge</p>
                   <span>Free</span>
                 </div>
 
                 <!-- Total -->
                 <div class="c_total_item sp_single_item">
-                  <p>Order Total</p>
-                  <span>$854.00</span>
+                  <p>總價錢 Total</p>
+                    <span>${{ total }}</span>
                 </div>
-                <div class="c_payment">
+              <!--  <div class="c_payment">
                   <p>Select Payment Method</p>
                   <select class="selectpicker sel_state" [(ngModel)]="payment" name="payment" required>
                     <option>Direct Bank Transfer</option>
                     <option>Wire Transfer</option>
                     <option>VISA</option>
                   </select>
-                </div>
+                </div>-->
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="ck" [(ngModel)]="ck" required > I have Read & Accept <span>Terms & Conditions</span>
+                    <input type="checkbox" name="ck" [(ngModel)]="ck" required> 已閱讀 <span>神奇寶貝購買手冊</span>
                   </label>
                 </div>
-                <input type="submit" value="Place order now" [disabled]="!myForm.valid" (click)="output()"/>
+                <input type="submit" value="準備好收服神奇寶貝了！ BUY" [disabled]="!myForm.valid" (click)="output()"/>
               </div>
             </div>
           </div>

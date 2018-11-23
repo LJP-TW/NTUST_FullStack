@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { ProductDataBaseService } from '../product-data-base.service';
 
 @Component({
   selector: 'app-trending-area',
@@ -7,9 +8,20 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class TrendingAreaComponent implements OnInit {
 
-  constructor(public elementRef: ElementRef) { }
+product: any[];
+
+  constructor(public productDataBase: ProductDataBaseService, public elementRef: ElementRef) { }
 
   ngOnInit() {
+    this.product = this.productDataBase.Products.sort((a, b) => {
+      const d1 = new Date(a.updatedAt);
+      const d2 = new Date(b.updatedAt);
+      if (d1 > d2) {
+        return 1;
+      } else if (d1 < d2) {
+        return -1;
+      }
+    });
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -31,5 +43,26 @@ export class TrendingAreaComponent implements OnInit {
     JQuery3.type = 'text/javascript';
     JQuery3.src = 'assets/js/main.js';
     this.elementRef.nativeElement.appendChild(JQuery3);
+  }
+
+  sortByDate() {
+    this.product = this.productDataBase.Products.sort((a, b) => {
+      const d1 = new Date(a.updatedAt);
+      const d2 = new Date(b.updatedAt);
+      if (d1 > d2) {
+        return 1;
+      } else if (d1 < d2) {
+        return -1;
+      }
+    });
+  }
+  sortByPrice() {
+    this.product = this.productDataBase.Products.sort((a, b) => {
+      if (a.price > b.price) {
+        return 1;
+      } else if (b.price > a.price) {
+        return -1;
+      }
+    });
   }
 }
