@@ -98,11 +98,18 @@ export class CartComponent implements OnInit {
       this.amountTotal--;
     }
   }
+  // 將商品移出購物車
   CartRemove(index: number) {
+    if (this.page !== 1) {
+      index += (this.page - 1) * this.productsPerPage;
+    }
     this.total -= this.Cart[index].total;
     this.amountTotal -= this.Cart[index].amount;
     this.productDataBase.CartRemove(index);
     this.cartChanged();
+    if (this.pageMax < this.page) {
+      this.Page(this.page - 1);
+    }
   }
 
   // 隱藏、顯示左側資訊欄位
