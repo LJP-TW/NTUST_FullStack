@@ -931,8 +931,8 @@ text-transform: uppercase;
 }
 .item-sub {
  background: none repeat scroll 0 0 #fff;
-padding: 25px 0;
-text-align: center;
+ padding: 25px 0;
+ text-align: center;
 }
 .item-sub a h5 {
   color: #333333;
@@ -3674,6 +3674,7 @@ input[type="number"].hotfix::-webkit-inner-spin-button {
 ===============================================*/
 .item-img img {
   width: 100%;
+  height: 220px;
 }
 .t_to_b_slider_area {
   background: none repeat scroll 0 0 #f7f8f9;

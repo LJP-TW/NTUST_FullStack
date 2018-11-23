@@ -1,16 +1,48 @@
 import { HttpClient } from '@angular/common/http';
 import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
-
+import { environment } from '../environments/environment'
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  cart: CartItem[];
+  cart: CartItem[] = [];
+  
+  constructor(private httpClient: HttpClient,
+              private authSvc:AuthService) { }
 
-  constructor(private httpClient: HttpClient) { }
+  cartUpdater;
+  cartUpdated = true;
+  Updating = false;
 
+
+  StartUpdate(){
+    console.log('Update Start');
+    if(!this.Updating){
+        this.Updating = true;
+        this.cartUpdater = setInterval(()=>{
+        if(this.cartUpdated){
+             this.StopUpdate();
+        }
+        else{
+          this.UpdateToDB();
+        }
+      },5000);
+    }
+    return this.cartUpdater;
+  }
+
+
+  StopUpdate(){
+    if(this.Updating){
+      console.log('Update Stop');
+      clearInterval(this.cartUpdater);
+      this.Updating = false;
+    }
+  }
+  
   /**
    * 新增商品到 this.cart
    * 只需要參數 ID
@@ -20,6 +52,8 @@ export class CartService {
    * @param id: number
    */
   Add(id: number) {
+    if(this.authSvc.LoggedInRedirect())return;
+    this.ModifyCart();
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -28,7 +62,6 @@ export class CartService {
           break;
         }
     }
-
     if (!found) {
       this.cart.push({
         productID: id,
@@ -46,6 +79,8 @@ export class CartService {
    * @param id: number
    */
   Plus(id: number) {
+    if(this.authSvc.LoggedInRedirect())return;
+    this.ModifyCart();
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -67,6 +102,8 @@ export class CartService {
    * @param id: number
    */
   Minus(id: number) {
+    if(this.authSvc.LoggedInRedirect())return;
+    this.ModifyCart();
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -88,6 +125,8 @@ export class CartService {
    * @param id: number
    */
   Remove(id: number) {
+    if(this.authSvc.LoggedInRedirect())return;
+    this.ModifyCart();
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -102,7 +141,19 @@ export class CartService {
     }
   }
 
+  ModifyCart(){
+    if(this.cartUpdated){
+      this.cartUpdated = false;
+      if(!this.Updating){
+        this.StartUpdate();
+      }
+    }
+  }
+
   UpdateToDB() {
+    console.log('Updating');
+    this.cartUpdated = true;
+    
     // 沒有 UPDATE METHOD 可以用
     // return this.httpClient.post('http://localhost:8000/api/UpdateCart');
   }
@@ -111,7 +162,7 @@ export class CartService {
     // return this.httpClient.get('http://localhost:8000/api/GetCart');
   }
 
-  MakeOrder() {
+  MakeOrder(Order) {
     // return this.httpClient.post('http://localhost:8000/api/MakeOrder');
   }
 }
