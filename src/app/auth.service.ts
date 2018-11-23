@@ -27,7 +27,8 @@ export class AuthService {
     // return this.httpClient.get('http://localhost:8000/api/Logout');
   }
 
-  ForgetPwd() {
+  ForgetPwd(email: string) {
     // return this.httpClient.post('http://localhost:8000/api/ForgetPwd');
+    return true;
   }
 }

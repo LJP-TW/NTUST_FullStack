@@ -27,6 +27,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
 import { RegistComponent } from './regist/regist.component';
+import { ForgetPwdComponent } from './forget-pwd/forget-pwd.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { RegistComponent } from './regist/regist.component';
     CategoryComponent,
     LoginComponent,
     SingleBlogComponent,
-    RegistComponent
+    RegistComponent,
+    ForgetPwdComponent
   ],
   imports: [
     FormsModule,
