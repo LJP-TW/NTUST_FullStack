@@ -6,10 +6,9 @@ interface Data {
   country: string;
   name: string;
   address: string;
-  postcode: string;
   email: string;
   phone: string;
-  payment: string;
+  total: number;
 }
 
 @Component({
@@ -22,20 +21,22 @@ export class CheckoutComponent implements OnInit {
   country = '';
   name = '';
   address = '';
-  postcode = '';
   email = '';
   phone = '';
-  payment = '';
+  total = 0;
   ck = false;
   list: Data[] = [];
 
   constructor(public productDataBase: ProductDataBaseService) { }
   ngOnInit() {
+    this.productDataBase.odCart.forEach(price => {
+      this.total += price.total;
+    });
   }
 
   output() {
     this.list.push({country: this.country, name: this.name, address: this.address,
-    postcode: this.postcode, email: this.email, phone: this.phone, payment: this.payment});
+    email: this.email, phone: this.phone, total: this.total});
     console.log(this.list);
   }
 }
