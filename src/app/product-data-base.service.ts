@@ -222,7 +222,7 @@ export class ProductDataBaseService {
     }];
 
   constructor() {
-    console.log('DATABAE INIT');
+    console.log('DATABASE INIT');
     this.Products.forEach((n) => {
       n.price = Math.ceil(n.originPrice * (100 - n.discount) / 100);
     });

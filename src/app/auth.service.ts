@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   Login(email: string, pwd: string) {
     // return this.httpClient.post('http://localhost:8000/api/Login');
@@ -29,5 +30,17 @@ export class AuthService {
 
   ForgetPwd() {
     // return this.httpClient.post('http://localhost:8000/api/ForgetPwd');
+  }
+
+  LoggedIn(){
+    return !(localStorage.getItem('token')===null);
+  }
+
+  LoggedInRedirect(){
+    if(!this.LoggedIn()){
+      this.route.navigate(['/login']);
+      return true;
+    }
+    return false;
   }
 }
