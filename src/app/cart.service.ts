@@ -8,16 +8,28 @@ import { AuthService } from './auth.service';
 })
 export class CartService {
 
+  // 購物車中的東西
   cart: CartItem[] = [];
+
+  // 總額
+  totalPrice: number;
 
   constructor(private httpClient: HttpClient,
               private authSvc: AuthService) { }
 
   cartUpdater;
+  // 購物車是否已經更新
   cartUpdated = true;
+  // 與資料庫同步的一個timer
+  updateTime = 5000;
+  // timer 是否開啟
   Updating = false;
 
-
+  /**
+   * 開啟與資料庫同步的一個timer
+   * 在此 timer 正在進行的期間內, 所有對購物車做的更動都不會真的打一個同步要求到資料庫
+   * 避免消耗後端運算量
+   */
   StartUpdate() {
     console.log('Update Start');
     if (!this.Updating) {
@@ -28,12 +40,14 @@ export class CartService {
         } else {
           this.UpdateToDB();
         }
-      }, 5000);
+      }, this.updateTime);
     }
     return this.cartUpdater;
   }
 
-
+  /**
+   * 當 timer 停止, 才會再跟資料庫同步一次購物車內容
+   */
   StopUpdate() {
     if (this.Updating) {
       console.log('Update Stop');
@@ -44,15 +58,19 @@ export class CartService {
 
   /**
    * 新增商品到 this.cart
-   * 只需要參數 ID
+   * 需要參數 MonsterID 以及打折過後的 price
    * 若有重複 ID，增加 Count
-   * 若沒有此 Product ID，新增商品到 this.cart
+   * 若購物車中沒有此 Product ID，就新增商品到 this.cart
    *
    * @param id: number
+   * @param price: number
    */
-  Add(id: number) {
+  Add(id: number, price: number) {
+    // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
+    // 與資料庫同步相關的部分
     this.ModifyCart();
+    // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -61,10 +79,12 @@ export class CartService {
           break;
         }
     }
+    this.totalPrice += price;
     if (!found) {
       this.cart.push({
         productID: id,
-        count: 1
+        count: 1,
+        tempPrice: price
       });
     } else {
       this.cart[i].count++;
@@ -78,8 +98,11 @@ export class CartService {
    * @param id: number
    */
   Plus(id: number) {
+    // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
+    // 與資料庫同步相關的部分
     this.ModifyCart();
+    // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -90,6 +113,7 @@ export class CartService {
     }
 
     if (found) {
+      this.totalPrice += this.cart[i].tempPrice;
       this.cart[i].count++;
     }
   }
@@ -101,8 +125,11 @@ export class CartService {
    * @param id: number
    */
   Minus(id: number) {
+    // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
+    // 與資料庫同步相關的部分
     this.ModifyCart();
+    // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -113,6 +140,7 @@ export class CartService {
     }
 
     if (found) {
+      this.totalPrice -= this.cart[i].tempPrice;
       this.cart[i].count--;
     }
   }
@@ -124,8 +152,11 @@ export class CartService {
    * @param id: number
    */
   Remove(id: number) {
+    // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
+    // 與資料庫同步相關的部分
     this.ModifyCart();
+    // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
@@ -136,10 +167,14 @@ export class CartService {
     }
 
     if (found) {
+      this.totalPrice -= this.cart[i].tempPrice * this.cart[i].count;
       this.cart.splice(i, 1);
     }
   }
 
+  /**
+   * 更改到購物車後，check 是否要與資料庫進行同步
+   */
   ModifyCart() {
     if (this.cartUpdated) {
       this.cartUpdated = false;
@@ -149,6 +184,9 @@ export class CartService {
     }
   }
 
+  /**
+   * 與資料庫進行購物車的同步
+   */
   UpdateToDB() {
     console.log('Updating');
     this.cartUpdated = true;
