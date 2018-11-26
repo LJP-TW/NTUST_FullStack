@@ -1,12 +1,12 @@
 <form class="LRblock">
 	<label for="email">信箱</label>
-	<input name="email" type="text" id="email" placeholder="請輸入您的信箱" [(ngModel)]="email" required />
+	<input name="email" type="text" id="email" placeholder="請輸入您的信箱" [(ngModel)]="user.email" required />
 	<label for="password">密碼</label>
-	<input name="password" type="password" id="password" placeholder="請輸入您的密碼" [(ngModel)]="pwd" required />
+	<input name="password" type="password" id="password" placeholder="請輸入您的密碼" [(ngModel)]="user.password" required />
 	<button type="submit" (click)="login()">登入</button>
 	<div>
     <!-- Todo: 記住我 -->
 		<!-- <label><input type="checkbox" name="remember_me">記住我</label> -->
-		<a [routerLink]="['/forgetPwd']" routerLinkActive="router-link-active" >忘記密碼?</a>
+		<a [routerLink]="['/auth/forgetPwd']" routerLinkActive="router-link-active" >忘記密碼?</a>
 	</div>
 </form>

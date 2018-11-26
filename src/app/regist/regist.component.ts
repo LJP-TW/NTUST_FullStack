@@ -1,5 +1,10 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+
+interface RegisterResponse {
+  status: boolean;
+}
 
 @Component({
   selector: 'app-regist',
@@ -8,21 +13,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistComponent implements OnInit {
 
-  name: string;
-  pwd: string;
-  rpwd: string;
-  email: string;
+  user = {
+    name: '',
+    email: '',
+    password: '',
+    confirm_password: '',
+  };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   register() {
-    if (this.authService.Register(this.name, this.pwd, this.email)) {
-      console.log('Register success');
-    } else {
-      console.log('Register fail');
-    }
+    this.authService.Register(this.user).subscribe((data: RegisterResponse) => {
+      console.log(data);
+      if (data.status) {
+        this.router.navigate(['/auth/login']);
+      } else {
+        alert('fail');
+      }
+    }, (error: RegisterResponse) => {
+      alert('fail');
+    });
   }
 }

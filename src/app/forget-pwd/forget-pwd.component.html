@@ -1,5 +1,7 @@
 <form class="LRblock">
+    <label for="email">名稱</label>
+    <input name="email" type="text" id="email" placeholder="請輸入您的名稱" [(ngModel)]="user.name" required />
     <label for="email">信箱</label>
-    <input name="email" type="text" id="email" placeholder="請輸入您的信箱" [(ngModel)]="email" required />
+    <input name="email" type="text" id="email" placeholder="請輸入您的信箱" [(ngModel)]="user.email" required />
     <button type="submit" (click)="forgetPwd()">重設密碼</button>
-  </form>
+</form>

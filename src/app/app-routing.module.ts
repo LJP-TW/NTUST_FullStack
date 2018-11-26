@@ -1,3 +1,4 @@
+import { MyAccountComponent } from './my-account/my-account.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
 import { RegistComponent } from './regist/regist.component';
 import { ForgetPwdComponent } from './forget-pwd/forget-pwd.component';
+import { AuthComponent } from './auth/auth.component';
+import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
 
 const routes: Routes = [
   {
@@ -52,16 +55,30 @@ const routes: Routes = [
     component: CategoryComponent,
   },
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'register',
-    component: RegistComponent,
-  },
-  {
-    path: 'forgetPwd',
-    component: ForgetPwdComponent,
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegistComponent,
+      },
+      {
+        path: 'forgetPwd',
+        component: ForgetPwdComponent,
+      },
+      {
+        path: 'resetPwd/:token',
+        component: ResetPwdComponent,
+      },
+      {
+        path: 'myAccount',
+        component: MyAccountComponent,
+      },
+    ]
   },
   {
     path: '**',

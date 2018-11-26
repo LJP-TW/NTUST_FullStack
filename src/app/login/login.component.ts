@@ -1,5 +1,16 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+
+interface Message {
+  error: string;
+  token: string;
+}
+
+interface LoginResponse {
+  status: boolean;
+  message: Message;
+}
 
 @Component({
   selector: 'app-login',
@@ -8,19 +19,28 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
-  pwd: string;
+  user = {
+    email: '',
+    password: ''
+  };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   login() {
-    if (this.authService.Login(this.email, this.pwd)) {
-      console.log('login success');
-    } else {
-      console.log('login fail');
-    }
+    this.authService.Login(this.user).subscribe((data: LoginResponse) => {
+      console.log(data);
+      if (data.status) {
+        localStorage.setItem('token', data.message.token);
+        this.router.navigate(['/']);
+      } else {
+        alert('Login Fail');
+      }
+    }, (error) => {
+      alert('Login Fail');
+    });
   }
 }

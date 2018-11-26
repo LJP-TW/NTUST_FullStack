@@ -29,6 +29,9 @@ import { SingleBlogComponent } from './single-blog/single-blog.component';
 import { RegistComponent } from './regist/regist.component';
 import { ForgetPwdComponent } from './forget-pwd/forget-pwd.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
+import { AuthComponent } from './auth/auth.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SingleBlogComponent,
     RegistComponent,
-    ForgetPwdComponent
+    ForgetPwdComponent,
+    ResetPwdComponent,
+    AuthComponent,
+    MyAccountComponent
   ],
   imports: [
     FormsModule,

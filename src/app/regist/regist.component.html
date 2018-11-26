@@ -1,15 +1,15 @@
 <form class="LRblock">
-	<label for="name">名稱</label>
-	<input name="name" type="text" id="name" placeholder="輸入您的名稱" [(ngModel)]="name" required />
+  <label for="email">信箱(登入時需要)</label>
+  <input name="email" type="email" id="email" placeholder="輸入您的信箱" [(ngModel)]="user.email" required />
+	<label for="name">名稱(忘記密碼時需要)</label>
+	<input name="name" type="text" id="name" placeholder="輸入您的名稱" [(ngModel)]="user.name" required />
 	<label for="password">密碼</label>
-	<input name="password" type="password" id="password" placeholder="輸入密碼" [(ngModel)]="pwd" required />
-	<label for="rpwd">再打一次您的密碼</label>
-	<input name="rpwd" type="password" id="rpwd" placeholder="再打一次您的密碼" [(ngModel)]="rpwd" required />
-	<label for="email">信箱</label>
-	<input name="email" type="email" id="email" placeholder="輸入您的信箱" [(ngModel)]="email" required />
+	<input name="password" type="password" id="password" placeholder="輸入密碼" [(ngModel)]="user.password" required />
+	<label for="confirm_password">再打一次您的密碼</label>
+	<input name="confirm_password" type="password" id="confirm_password" placeholder="再打一次您的密碼" [(ngModel)]="user.confirm_password" required />
 	<button type="submit" (click)="register()" >創帳號囉</button>
 	<div style="justify-content: center;">
 		已經有帳號了?&nbsp;
-		<a [routerLink]="['/login']">登入</a>
+		<a [routerLink]="['/auth/login']">登入</a>
 	</div>
 </form>

@@ -1,0 +1,22 @@
+.LRblock {
+	padding: 1em;
+	font: 400 16px monospace;
+	max-width: 400px;
+	margin: 0 auto;
+}
+.LRblock > a {
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.LRblock > a:hover {
+background-color: #ccc;
+}
+.LRblock > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: end;
+}
