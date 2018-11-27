@@ -14,10 +14,8 @@ export class ProductDetailComponent implements OnInit {
   private Product:any ;
   ngOnInit() {
     this.route.params.subscribe(data => {
-      this.Product = this.productDataBase.Products.filter(obj => obj.id ==  data.id );
+      // this.Product = this.productDataBase.Products.filter(obj => obj.id ==  data.id );
       console.log(this.Product);
-      // this.article = this.dataCenter.list.forEach(element => {   });
-      // (obj => obj.title ==  data.id );
     })
   }
 

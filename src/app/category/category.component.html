@@ -24,21 +24,24 @@
               </ul>
             </div>
             <div class="s_results">
-              <p><span>|</span> 顯示商品: {{ indexS + 1 }}-{{ indexE }} / 所有商品: {{ productMax }}</p>
+              <p><span>|</span> 顯示商品: {{ indexS }}-{{ indexE }} / 所有商品: {{ productMax }}</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-sm-4 col-xs-12">
+        <!-- <div class="col-md-6 col-sm-4 col-xs-12">
           <div class="filter_box_right">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">sort by newness <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">sort by newness
+               <span class="caret">
+               </span>
+            </a>
+            <ul class="dropdown-menu">
               <li><a href="#">Top Seller </a></li>
               <li><a href="#">Most Popular</a></li>
               <li><a href="#">Alphabetically</a></li>
               <li><a href="#">Older First</a></li>
-              </ul>
+            </ul>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -46,31 +49,52 @@
 <section class="main_category_area">
     <div class="container">
       <div class="row">
+<!-- FILTER -->
         <ng-container *ngIf="filter;">
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="main_category_left">
                   <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
-
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
+                        <input type="checkbox"[(ngModel)]="enableMCFilter">
                         <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           神奇寶貝
-                          <span class="floatright"><i class="fa fa-minus"></i></span>
+                          <span class="floatright">
+                            <i class="fa fa-minus">
+
+                            </i>
+                          </span>
                         </a>
                         </h4>
                       </div>
                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                         <ul id="c_tab1">
-                          <li><a href="">水系  (12)</a></li>
-                          <li><a href="">火系  (54)</a></li>
-                          <li><a href="">電系  (105)</a></li>
-                          <li><a href="">草系  (48)</a></li>
-                          <li><a href="">冰系  (120)</a></li>
-                          <li><a href="">一般系 (12)</a></li>
-                          <li><a href="">資工系 (12)</a></li>
+                            <div class="MonCatSel" (click)="ToggleMT(1)">	一般</div>
+                            <div class="MonCatSel" (click)="ToggleMT(2)">	火</div>
+                            <div class="MonCatSel" (click)="ToggleMT(3)">	水</div>
+                            <div class="MonCatSel" (click)="ToggleMT(4)">	電</div>
+                            <div class="MonCatSel" (click)="ToggleMT(5)">	草</div>
+                            <div class="MonCatSel" (click)="ToggleMT(6)">	冰</div>
+                            <div class="MonCatSel" (click)="ToggleMT(7)">	毒</div>
+                            <div class="MonCatSel" (click)="ToggleMT(8)">	鋼</div>
+                            <div class="MonCatSel" (click)="ToggleMT(9)">	超能力</div>
+                            <div class="MonCatSel" (click)="ToggleMT(10)">	岩石</div>
+                            <div class="MonCatSel" (click)="ToggleMT(11)">	幽靈</div>
+                            <div class="MonCatSel" (click)="ToggleMT(12)">	惡</div>
+                            <div class="MonCatSel" (click)="ToggleMT(13)">	妖精</div>
+                            <div class="MonCatSel" (click)="ToggleMT(14)">	蟲</div>
+                            <div class="MonCatSel" (click)="ToggleMT(15)">	飛行</div>
+                            <div class="MonCatSel" (click)="ToggleMT(16)">	地面</div>
+                            <div class="MonCatSel" (click)="ToggleMT(17)">	格鬥</div>
+                            <div class="MonCatSel" (click)="ToggleMT(18)">	龍</div>
                         </ul>
+                        <div class="cat_filter_box" style="margin-top: 15px">
+                          <div>
+                            <label (click)="FilterAttr()">搜尋</label>
+                          </div>
+                        </div>
                         </div>
                       </div>
                     </div>
@@ -99,24 +123,30 @@
 
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          FILTER PRICE FILTER
+                          <input type="checkbox"[(ngModel)]="enablePriceFilter">
+                        <h4 class="panel-title">
+                          <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          價格範圍
                           <span class="floatright"><i class="fa fa-plus"></i></span>
-                        </a>
+                          </a>
                         </h4>
                       </div>
                       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                            <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax">
+                          <div class="panel-body">
+                            <div id="slider-range"></div>
+                            <!-- <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax"> -->
                             <div class="cat_filter_box">
-                              <p>
-                                <label for="amount" (click)="Buf2Filter_maxPrice(0)">Filter</label>
-                                <!-- <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
-                                <input type="text" readonly style="border:0; color:#000; font-weight:bold;" [(ngModel)]="priceMax">
-                              </p>
+                              <div>
+                                <label (click)="FilterPrice()">搜尋</label>
+                                <!-- <div id="amount1" style="display: inline-block;">100</div>
+                                <div style="display: inline-block;"> to </div>
+                                <div id="amount2" style="display: inline-block;">100</div> -->
+
+                                <input type="text" id="amount1" readonly style="border:0; color:#000; font-weight:bold; display: inline;">
+                                <input type="text" id="amount2" readonly style="border:0; color:#000; font-weight:bold; display: inline;">
+                              </div>
                             </div>
-                        </div>
+                          </div>
                       </div>
                     </div>
                     <!-- <div class="panel panel-default">
@@ -171,7 +201,7 @@
                     <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Sortings
+                        排序方式
                         <span class="floatright"><i class="fa fa-plus"></i></span>
                       </a>
                       </h4>
@@ -179,19 +209,21 @@
                     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                       <div class="panel-body">
                       <ul id="c_tab2">
-                        <li><a (click)="Buf2All()">All</a></li>
-                        <li><a (click)="Buf2SortNew(true)">Newest</a></li>
-                        <li><a (click)="Buf2SortNew(false)">Oldest</a></li>
-                        <li><a (click)="Buf2SortPrice(true)">Highest Origin Price</a></li>
-                        <li><a (click)="Buf2SortPrice(false)">Lowest Origin Price</a></li>
+                        <li><a (click)="SortNone()">一般</a></li>
+                        <li><a (click)="SortNewest()">最新</a></li>
+                        <!-- <li><a (click)="Buf2SortNew()">Oldest</a></li> -->
+                        <!-- <li><a (click)="Buf2SortPrice()">Highest Origin Price</a></li> -->
+                        <li><a (click)="SortHottest()">最夯</a></li>
+                        <li><a (click)="SortCheapest()">最便宜</a></li>
                       </ul>
                       </div>
                     </div>
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
         </ng-container>
+<!-- PRODUCT PAGE -->
         <div [ngClass]="{'col-md-12':filter==false,
                          'col-md-9':filter,
                          'col-sm-12':filter==false,
@@ -203,7 +235,8 @@
                             }">
             </div>
             <div class="row">
-                <ng-container *ngFor="let item of buf|slice : indexS :indexE ;
+              <ng-container *ngIf="this.monsterService.monCache.length > 0">
+                <ng-container *ngFor="let item of PageBuf();
                                       let index = index">
                     <div [ngClass]="{'col-md-3':filter==false,
                                   'col-md-4':filter,
@@ -214,10 +247,10 @@
                         <div class="main_cat_item">
                           <div class="item">
                             <div class="item-img">
-                              <img [src]="item.imageLoc" alt="" />
+                              <img [src]="getIcon(item.id)" alt="" />
                               <div class="tr-add-cart">
                                 <ul>
-                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(item.id)"> 加進購物車 </a></li>
+                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="this.cartService.Add(item.id,1)"> 加進購物車 </a></li>
                                   <!-- Todo: Wish List -->
                                   <!-- <li><a class="fa fa-heart tr_heart"></a></li> -->
                                   <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
@@ -231,10 +264,10 @@
                               </ng-container>
                             </div>
                             <div class="item-sub">
-                              <a href="product-detail"><h5>{{item.name}}</h5></a>
-                              <p>$ {{ item.price }}
+                              <a href="product-detail"><h5>{{item.NAME}}</h5></a>
+                              <p>$ {{ MathRound(item.price/100*item.discount) }}
                                 <ng-container *ngIf="item.discount > 0">
-                                    <span><del>$ {{ item.originPrice }}</del></span>
+                                    <span><del>$ {{ item.price }}</del></span>
                                 </ng-container>
                               </p>
                             </div>
@@ -242,9 +275,11 @@
                         </div>
                     </div>
                 </ng-container>
+              </ng-container> 
             </div>
         </div>
       </div>
+<!-- PAGE SELECTOR -->
       <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="pagi_line"></div>
@@ -252,15 +287,14 @@
               <ul id="pagination">
 
                 <li><a (click)="prevPage()">前一頁</a></li>
-                <ng-container *ngFor="let item of CreatePageIndex(pageMax);">
-                    <li><a (click)="Page(item)">{{item}}</a></li>
+                <ng-container *ngFor="let item of CreatePageIndex();let index of index">
+                    <li><a (click)="Page(item)" [ngClass]="{'SELPAGE': item==this.page }">{{item}}</a></li>
                 </ng-container>
                 <li><a (click)="nextPage()">後一頁</a></li>
               </ul>
             </div>
           </div>
-        </div>
+      </div>
     </div>
 </section>
 <!-- <router-outlet></router-outlet> -->
-

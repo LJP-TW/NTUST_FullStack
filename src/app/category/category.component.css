@@ -1,0 +1,27 @@
+/* @keyframes colorChangeAni{
+    0%   {}
+    100% {background-color: rgb(190, 224, 247)}
+} */
+.MonCatSel {
+    display: inline-block;
+    position: relative;
+    margin: 6px 3px 0 0;
+    /* padding: 0px 0px 0px 5px; */
+    font-size: 16px;
+    border: 2px;
+    border-color: black;
+    border-radius: 7px;
+    border-style: groove;
+    text-align: center;
+    width: 30%;
+    background-color:rgb(233, 231, 231);
+}
+/* .MonCatSel:active{
+    animation-name: colorChangeAni;
+    animation-duration: 2s;
+} */
+
+
+.SELPAGE {
+    background-color: rgb(255, 103, 102);
+}

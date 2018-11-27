@@ -8,6 +8,7 @@ import { Monster } from './monster';
 })
 export class MonsterService {
 
+  perCache = 108;
   // 假資料
   tempMonsters = [
     {

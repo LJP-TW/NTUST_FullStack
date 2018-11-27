@@ -585,7 +585,7 @@ z-index: -1;
 .nav_right:hover .cart_menu{
 top: 64px;
 opacity:1;
-transition: all 0.5s ease 0s;
+transition: all 0.5s ease 0.2s;
 z-index: 99;
 }
 .cart_menu .cart_items .c_item_img a {
@@ -683,7 +683,7 @@ position: absolute;
 top: 100px;
 width: 1139px;
 opacity:0;
-transition: all 0.5s ease 0s;
+transition: all 0.3s ease 0s;
 z-index: -1;
 }
 
@@ -691,7 +691,7 @@ z-index: -1;
 .cat_mega_menu_hover {
 opacity: 1;
 top: 64px;
-transition: all 0.5s ease 0s;
+transition: all 0.3s ease 0.2s;
 z-index: 99;
 }
 .cat_left {
@@ -2587,7 +2587,7 @@ padding: 2px 5px 1px;
 }
 .panel-body > ul#c_tab1, .panel-body > ul#c_tab2 {
   list-style: outside none none;
-margin: -28px 0 0 26px;
+margin: -20px 5px 0 10px;
 padding: 0;
 }
 .panel-body > ul#c_tab1 li, .panel-body > ul#c_tab2 li {
@@ -2662,16 +2662,17 @@ width: 36px;
 .panel-body.colors_cat ul#cat_color li a.col-10 {
   background: none repeat scroll 0 0 #A2B646;
 }
-.cat_filter_box p label {
+.cat_filter_box div label {
   background: none repeat scroll 0 0 #ff6766;
 color: #fff;
-float: left;
+float: right;
 font-size: 12px;
 font-weight: 700;
 margin-right: 5%;
 padding: 4px 18px;
 text-transform: uppercase;
 width: 31%;
+text-align: center;
 }
 .cat_filter_box {
  margin-top: 35px;
@@ -2681,8 +2682,8 @@ width: 31%;
 float: left;
 font-size: 12px;
 margin-top: 5px;
-text-align: right;
-width: 64%;
+text-align: left;
+width: 25%;
 }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 background: none repeat scroll 0 0 #fff;
@@ -2820,7 +2821,8 @@ width: 30px;
   color: #333333;
 display: inline-block;
 font-size: 13px;
-padding: 0 18px;
+width: 47px;
+/* padding: 0 18px; */
 text-transform: uppercase;
 }
 
@@ -3674,7 +3676,7 @@ input[type="number"].hotfix::-webkit-inner-spin-button {
 ===============================================*/
 .item-img img {
   width: 100%;
-  height: 220px;
+  /* height: 220px; */
 }
 .t_to_b_slider_area {
   background: none repeat scroll 0 0 #f7f8f9;
