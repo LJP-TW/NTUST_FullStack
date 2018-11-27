@@ -1,6 +1,7 @@
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Monster } from './monster';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,9 @@ export class MonsterService {
     }
   ];
 
+  // Monsters Cache
+  monCache: Monster[];
+
   constructor(private httpClient: HttpClient) { }
 
   /**
@@ -74,6 +78,14 @@ export class MonsterService {
    */
   getMonsters(StartIndex: number, EndIndex: number, Filter: string = '*') {
     return this.httpClient.get(`${environment.api}/GetMonsters/${Filter}/${StartIndex}/${EndIndex}`);
+  }
+
+  getMonstersByID(MonsterID: number) {
+    return this.httpClient.get(`${environment.api}/GetMonsters/${MonsterID}`);
+  }
+
+  getMonstersAmount(Filter: string = '*') {
+    return this.httpClient.get(`${environment.api}/GetMonstersAmount/${Filter}`);
   }
 
   getMonsterImg(Size: number, MonsterID: number) {
