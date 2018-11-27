@@ -1,12 +1,16 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
+import { CartService } from '../cart.service';
+import { CartItem } from '../cart-item';
+import { MonsterService } from '../monster.service';
 
-interface Order {
-  product: any;
-  amount: number;
-  finalPrice: number;
-  total: number;
-}
+
+// interface Order {
+//   product: any;
+//   amount: number;
+//   finalPrice: number;
+//   total: number;
+// }
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +18,6 @@ interface Order {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
   productsPerPage = 4;
   page = 1;
   pageMax = 0;
@@ -24,13 +27,14 @@ export class CartComponent implements OnInit {
   filter = true;
 
   constructor(
-    public productDataBase: ProductDataBaseService,
+    public cartService: CartService,
+    public monster: MonsterService,
     private elementRef: ElementRef
   ) {}
 
   // 接 DataService
   // 購物車陣列
-  Cart: Order[] = [];
+  Cart: CartItem[] = [];
   total = 0;
 
   CartTotalCtrl = true;
@@ -50,19 +54,20 @@ export class CartComponent implements OnInit {
     //     }
     //   }
     // }
-    this.Cart = this.productDataBase.odCart;
-    this.Cart.forEach(element => {
-      this.total += element.total;
-    });
-    for (let i = 0 ; i < this.Cart.length ; i++) {
-      this.amountTotal += this.Cart[i].amount;
+    this.Cart = this.cartService.cart;
+    // this.Cart.forEach(element => {
+    //   this.total += element.total;
+    // });
+    this.total = this.cartService.totalPrice;
+    for (let i = 0; i < this.Cart.length; i++) {
+      this.amountTotal += this.Cart[i].count;
     }
     this.CartAmount = this.Cart.length;
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
-    this.Cart = this.productDataBase.odCart;
+    this.Cart = this.cartService.cart;
     this.cartChanged();
     this.Page(1);
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -80,9 +85,11 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    ++this.Cart[index].amount;
-    this.Cart[index].total += this.Cart[index].finalPrice;
-    this.total += this.Cart[index].finalPrice;
+    this.cartService.Plus(this.Cart[index].productID);
+
+    // ++this.Cart[index].count;
+    // this.Cart[index].total += this.Cart[index].finalPrice;
+    // this.total += this.Cart[index].finalPrice;
     this.amountTotal++;
   }
   // 減號紐被按下，減少商品數量
@@ -91,10 +98,11 @@ export class CartComponent implements OnInit {
       index += (this.page - 1) * this.productsPerPage;
     }
 
-    if (this.Cart[index].amount !== 0) {
-      --this.Cart[index].amount;
-      this.Cart[index].total -= this.Cart[index].finalPrice;
-      this.total -= this.Cart[index].finalPrice;
+    if (this.Cart[index].count !== 0) {
+      this.cartService.Minus(this.Cart[index].productID);
+      // --this.Cart[index].count;
+      // this.Cart[index].total -= this.Cart[index].finalPrice;
+      // this.total -= this.Cart[index].finalPrice;
       this.amountTotal--;
     }
   }
@@ -103,9 +111,9 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.total -= this.Cart[index].total;
-    this.amountTotal -= this.Cart[index].amount;
-    this.productDataBase.CartRemove(index);
+    // this.total -= this.Cart[index].total;
+    // this.amountTotal -= this.Cart[index].amount;
+    this.cartService.Remove(this.Cart[index].productID);
     this.cartChanged();
     if (this.pageMax < this.page) {
       this.Page(this.page - 1);
@@ -123,7 +131,6 @@ export class CartComponent implements OnInit {
   //
   // 更新購物車
   updateCart() {}
-
 
   // page
   cartChanged() {
