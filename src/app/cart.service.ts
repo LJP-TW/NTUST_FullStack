@@ -3,12 +3,28 @@ import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { AuthService } from './auth.service';
+
+interface Message {
+  [key: string]: any;
+}
+
+interface Cart {
+  ProductId: number;
+  Count: number;
+}
+
+interface GetFromDBResPonse {
+  status: boolean;
+  message: Message;
+  cart: Cart[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  // 購物車中的東西
+  // 購物車中的東西 (只有 ID, Count)
   cart: CartItem[] = [];
 
   // 總額
@@ -21,7 +37,7 @@ export class CartService {
   // 購物車是否已經更新
   cartUpdated = true;
   // 與資料庫同步的一個timer
-  updateTime = 5000;
+  updateTime = 180000;
   // timer 是否開啟
   Updating = false;
 
@@ -66,7 +82,6 @@ export class CartService {
    * @param price: number
    */
   Add(id: number, price: number) {
-    console.log("adsf");
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
     // 與資料庫同步相關的部分
@@ -195,7 +210,18 @@ export class CartService {
   }
 
   GetFromDB() {
-    return this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`);
+    this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`).subscribe((data: GetFromDBResPonse) => {
+      if (data.status) {
+        this.cart = [];
+        for (const product of data.cart) {
+          this.cart.push({
+            productID: product.ProductId,
+            count: product.Count,
+            tempPrice: 0
+          });
+        }
+      }
+    });
   }
 
   MakeOrder(Order) {
