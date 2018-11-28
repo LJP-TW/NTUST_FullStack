@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
 import { AuthComponent } from './auth/auth.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { ConfirmPwdValidatorDirective } from './confirm-pwd.directive';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
     ForgetPwdComponent,
     ResetPwdComponent,
     AuthComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ConfirmPwdValidatorDirective
   ],
   imports: [
     FormsModule,

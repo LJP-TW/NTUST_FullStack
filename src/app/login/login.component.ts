@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
+  invalid = false;
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
@@ -32,15 +34,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.Login(this.user).subscribe((data: LoginResponse) => {
-      console.log(data);
       if (data.status) {
         localStorage.setItem('token', data.message.token);
         this.router.navigate(['/']);
       } else {
-        alert('Login Fail');
+        alert('Fail');
       }
     }, (error) => {
-      alert('Login Fail');
+      this.invalid = true;
+      this.user.password = '';
     });
   }
 }
