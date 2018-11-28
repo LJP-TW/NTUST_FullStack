@@ -1,0 +1,59 @@
+/* @keyframes colorChangeAni{
+    0%   {}
+    100% {background-color: rgb(190, 224, 247)}
+} */
+
+.MonCatSel {
+    display: inline-block;
+    position: relative;
+    margin: 6px 3px 0 0;
+    font-size: 16px;
+    border: 2px;
+    border-color: #eee;
+    border-radius: 7px;
+    border-style: solid;
+    text-align: center;
+    width: 30%;
+    background-color: #eee;
+    transition: background-color 1.0s ease 0s,border-color 1.3s ease 0s;
+}
+
+/* .MonCatSel {
+    display: inline-block;
+    position: relative;
+    margin: 6px 3px 0 0;
+    font-size: 16px;
+    border: 2px;
+    border-color: black;
+    border-radius: 7px;
+    border-style: groove;
+    text-align: center;
+    width: 30%;
+    background-color:rgb(233, 231, 231);
+    transition: background-color 1.0s ease 0s; 
+} */
+
+.MonCatSel_A{
+    background-color: rgb(255, 90, 95);
+    border-color:  rgb(255, 90, 95);
+    transition: all 0.5s ease 0s;
+    color: white;
+}
+/* .MonCatSel_A{
+    background-color:rgb(166, 255, 77);
+    transition: all 0.3s ease 0s;
+} */
+
+
+/* .MonCatSel:active{
+    animation-name: colorChangeAni;
+    animation-duration: 2s;
+} */
+
+
+.SELPAGE {
+    background-color: rgb(255, 103, 102);
+    border: 1px;
+    border-radius: 50%;
+    transition: all 0.5s ease 0s;
+}

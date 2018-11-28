@@ -66,6 +66,7 @@ export class CartService {
    * @param price: number
    */
   Add(id: number, price: number) {
+    console.log("adsf");
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
     // 與資料庫同步相關的部分

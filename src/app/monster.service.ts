@@ -63,9 +63,6 @@ export class MonsterService {
     }
   ];
 
-  // Monsters Cache
-  monCache: Monster[];
-
   constructor(private httpClient: HttpClient) { }
 
   /**

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit,ElementRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDataBaseService } from '../product-data-base.service';
+import { Monster } from '../monster';
+import { MonsterService } from '../monster.service';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -9,15 +12,37 @@ import { ProductDataBaseService } from '../product-data-base.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private productDataBase:ProductDataBaseService) { }
+  constructor(private route: ActivatedRoute,
+    private router:Router,
+    private monsterService:MonsterService,
+    private elementRef: ElementRef,
+    private cartService:CategoryService,
+    ) { }
 
-  private Product:any ;
+  public Product:Monster;
   ngOnInit() {
-    this.route.params.subscribe(data => {
-      this.Product = this.productDataBase.Products.filter(obj => obj.id ==  data.id );
-      console.log(this.Product);
-      // this.article = this.dataCenter.list.forEach(element => {   });
-      // (obj => obj.title ==  data.id );
+    // <script src="assets/js/bootstrap.min.js"></script>
+    const sliderAffect = document.createElement('script');
+    sliderAffect.type = 'text/javascript';
+    sliderAffect.src = 'assets/js/bootstrap.min.js';
+    this.elementRef.nativeElement.appendChild(sliderAffect);
+
+    // <script src="assets/js/main.js"></script>
+    const sliderAffect2 = document.createElement('script');
+    sliderAffect2.type = 'text/javascript';
+    sliderAffect2.src = 'assets/js/main.js';
+    this.elementRef.nativeElement.appendChild(sliderAffect2);
+
+    //要更新
+    this.route.params.subscribe( (data:any) => {
+      if(this.cartService.monCache.length){
+        this.Product = this.cartService.monCache.filter((cacheData:Monster)=>{
+          return cacheData.id == data.id;
+        })[0];
+      }
+      else{
+        this.router.navigate(['**']);
+      }
     })
   }
 
