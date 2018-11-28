@@ -19,12 +19,12 @@
             <div class="filter_cont">
               <ul>
                 <li><a (click)="FilterOn()">開啟</a></li>
-                <li><img [src]="FilterIco_Loc()" alt="" /></li>
+                <li><img [src]="this.categoryService.FilterIco_Loc()" alt="" /></li>
                 <li><a (click)="FilterOff()">關閉</a></li>
               </ul>
             </div>
             <div class="s_results">
-              <p><span>|</span> 顯示商品: {{ indexS }}-{{ indexE }} / 所有商品: {{ productMax }}</p>
+              <p><span>|</span> 顯示商品: {{ this.categoryService.indexS }}-{{ this.categoryService.indexE }} / 所有商品: {{ this.categoryService.productMax }}</p>
             </div>
           </div>
         </div>
@@ -50,13 +50,13 @@
     <div class="container">
       <div class="row">
 <!-- FILTER -->
-        <ng-container *ngIf="filter;">
+        <ng-container *ngIf="this.categoryService.filter;">
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="main_category_left">
                   <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
-                        <input type="checkbox"[(ngModel)]="enableMCFilter">
+                        <input type="checkbox"[(ngModel)]="this.categoryService.enableMCFilter">
                         <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           神奇寶貝
@@ -71,28 +71,15 @@
                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                         <ul id="c_tab1">
-                            <div class="MonCatSel" (click)="ToggleMT(1)">	一般</div>
-                            <div class="MonCatSel" (click)="ToggleMT(2)">	火</div>
-                            <div class="MonCatSel" (click)="ToggleMT(3)">	水</div>
-                            <div class="MonCatSel" (click)="ToggleMT(4)">	電</div>
-                            <div class="MonCatSel" (click)="ToggleMT(5)">	草</div>
-                            <div class="MonCatSel" (click)="ToggleMT(6)">	冰</div>
-                            <div class="MonCatSel" (click)="ToggleMT(7)">	毒</div>
-                            <div class="MonCatSel" (click)="ToggleMT(8)">	鋼</div>
-                            <div class="MonCatSel" (click)="ToggleMT(9)">	超能力</div>
-                            <div class="MonCatSel" (click)="ToggleMT(10)">	岩石</div>
-                            <div class="MonCatSel" (click)="ToggleMT(11)">	幽靈</div>
-                            <div class="MonCatSel" (click)="ToggleMT(12)">	惡</div>
-                            <div class="MonCatSel" (click)="ToggleMT(13)">	妖精</div>
-                            <div class="MonCatSel" (click)="ToggleMT(14)">	蟲</div>
-                            <div class="MonCatSel" (click)="ToggleMT(15)">	飛行</div>
-                            <div class="MonCatSel" (click)="ToggleMT(16)">	地面</div>
-                            <div class="MonCatSel" (click)="ToggleMT(17)">	格鬥</div>
-                            <div class="MonCatSel" (click)="ToggleMT(18)">	龍</div>
+                          <ng-container *ngFor="let item of this.categoryService.MonsterAttrs;let index = index">
+                              <div [ngClass]="{'MonCatSel': true,
+                                               'MonCatSel_A':this.categoryService.FilterMonsterAttr[index]}" 
+                                   (click)="this.categoryService.ToggleMT(index)"> {{item}}</div>
+                          </ng-container>
                         </ul>
                         <div class="cat_filter_box" style="margin-top: 15px">
                           <div>
-                            <label (click)="FilterAttr()">搜尋</label>
+                            <label (click)="this.categoryService.FilterAttr()">搜尋</label>
                           </div>
                         </div>
                         </div>
@@ -123,7 +110,7 @@
 
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingThree">
-                          <input type="checkbox"[(ngModel)]="enablePriceFilter">
+                          <input type="checkbox"[(ngModel)]="this.categoryService.enablePriceFilter">
                         <h4 class="panel-title">
                           <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                           價格範圍
@@ -137,13 +124,13 @@
                             <!-- <input type="range" name="points" min="100" max="100000" step="1" [(ngModel)]="priceMax"> -->
                             <div class="cat_filter_box">
                               <div>
-                                <label (click)="FilterPrice()">搜尋</label>
+                                <label (click)="this.categoryService.FilterPrice()">搜尋</label>
                                 <!-- <div id="amount1" style="display: inline-block;">100</div>
                                 <div style="display: inline-block;"> to </div>
                                 <div id="amount2" style="display: inline-block;">100</div> -->
 
-                                <input type="text" id="amount1" readonly style="border:0; color:#000; font-weight:bold; display: inline;">
-                                <input type="text" id="amount2" readonly style="border:0; color:#000; font-weight:bold; display: inline;">
+                                <input type="text" id="amount1" readonly style="border:0; color:#000; font-weight:bold; display: inline;" [(ngModel)]="this.categoryService.priceMin">
+                                <input type="text" id="amount2" readonly style="border:0; color:#000; font-weight:bold; display: inline;" [(ngModel)]="this.categoryService.priceMax">
                               </div>
                             </div>
                           </div>
@@ -209,12 +196,12 @@
                     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                       <div class="panel-body">
                       <ul id="c_tab2">
-                        <li><a (click)="SortNone()">一般</a></li>
-                        <li><a (click)="SortNewest()">最新</a></li>
+                        <li><a (click)="this.categoryService.SortNone()">一般</a></li>
+                        <li><a (click)="this.categoryService.SortNewest()">最新</a></li>
                         <!-- <li><a (click)="Buf2SortNew()">Oldest</a></li> -->
                         <!-- <li><a (click)="Buf2SortPrice()">Highest Origin Price</a></li> -->
-                        <li><a (click)="SortHottest()">最夯</a></li>
-                        <li><a (click)="SortCheapest()">最便宜</a></li>
+                        <li><a (click)="this.categoryService.SortHottest()">最夯</a></li>
+                        <li><a (click)="this.categoryService.SortCheapest()">最便宜</a></li>
                       </ul>
                       </div>
                     </div>
@@ -224,43 +211,44 @@
             </div>
         </ng-container>
 <!-- PRODUCT PAGE -->
-        <div [ngClass]="{'col-md-12':filter==false,
-                         'col-md-9':filter,
-                         'col-sm-12':filter==false,
-                         'col-sm-8':filter,
+        <div [ngClass]="{'col-md-12':this.categoryService.filter==false,
+                         'col-md-9':this.categoryService.filter,
+                         'col-sm-12':this.categoryService.filter==false,
+                         'col-sm-8':this.categoryService.filter,
                          'col-xs-12':true
                         }">
             <div [ngClass]="{'main_category_right' : true,
-                             'cat-2' : filter==false
+                             'cat-2' : this.categoryService.filter==false
                             }">
             </div>
             <div class="row">
-              <ng-container *ngIf="this.monsterService.monCache.length > 0">
-                <ng-container *ngFor="let item of PageBuf();
+              <ng-container *ngIf="this.categoryService.monCache.length > 0">
+                <ng-container *ngFor="let item of this.categoryService.PageBuf();
                                       let index = index">
-                    <div [ngClass]="{'col-md-3':filter==false,
-                                  'col-md-4':filter,
-                                  'col-sm-4': filter==false,
-                                  'col-sm-6':filter,
+                    <div [ngClass]="{'col-md-3':this.categoryService.filter==false,
+                                  'col-md-4':this.categoryService.filter,
+                                  'col-sm-4': this.categoryService.filter==false,
+                                  'col-sm-6':this.categoryService.filter,
                                   'col-xs-12':true
                                   }">
                         <div class="main_cat_item">
                           <div class="item">
                             <div class="item-img">
-                              <img [src]="getIcon(item.id)" alt="" />
+                              <img [src]="this.categoryService.getIcon(item.id)" alt="" />
                               <div class="tr-add-cart">
                                 <ul>
-                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="this.cartService.Add(item.id,1)"> 加進購物車 </a></li>
+                                  <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="this.cartService.Add(item.id,item.price)"> 加進購物車 </a></li>
                                   <!-- Todo: Wish List -->
                                   <!-- <li><a class="fa fa-heart tr_heart"></a></li> -->
-                                  <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
+
+                                  <li><a class="fa fa-search tr_search" [routerLink]="[ '/product-detail',item.id]" routerLinkActive="active"></a></li>
                                 </ul>
                               </div>
                             </div>
                             <div class="item-new">
                               <p>New</p>
                               <ng-container *ngIf="item.discount > 0">
-                                 <span>-{{item.discount}}%</span>
+                                 <span>{{item.discount}}%</span>
                               </ng-container>
                             </div>
                             <div class="item-sub">
@@ -286,11 +274,11 @@
             <div class="pagi_ul">
               <ul id="pagination">
 
-                <li><a (click)="prevPage()">前一頁</a></li>
-                <ng-container *ngFor="let item of CreatePageIndex();let index of index">
-                    <li><a (click)="Page(item)" [ngClass]="{'SELPAGE': item==this.page }">{{item}}</a></li>
+                <li><a (click)="this.categoryService.prevPage()">前一頁</a></li>
+                <ng-container *ngFor="let item of this.categoryService.CreatePageIndex();let index = index">
+                    <li><a (click)="this.categoryService.Page(item)" [ngClass]="{'SELPAGE': item==this.categoryService.page }">{{item}}</a></li>
                 </ng-container>
-                <li><a (click)="nextPage()">後一頁</a></li>
+                <li><a (click)="this.categoryService.nextPage()">後一頁</a></li>
               </ul>
             </div>
           </div>

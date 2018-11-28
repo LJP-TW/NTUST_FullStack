@@ -8,7 +8,6 @@ import { Monster } from './monster';
 })
 export class MonsterService {
 
-  perCache = 108;
   // 假資料
   tempMonsters = [
     {
@@ -63,9 +62,6 @@ export class MonsterService {
       createdAt: '2018-03-12T15:30:22.123Z'
     }
   ];
-
-  // Monsters Cache
-  monCache: Monster[];
 
   constructor(private httpClient: HttpClient) { }
 

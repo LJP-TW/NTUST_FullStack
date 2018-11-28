@@ -40,7 +40,7 @@ export class AuthService {
 
   LoggedInRedirect() {
     if (!this.LoggedIn()) {
-      this.route.navigate(['/login']);
+      this.route.navigate(['/auth/login']);
       return true;
     }
     return false;
