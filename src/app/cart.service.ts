@@ -188,11 +188,9 @@ export class CartService {
    * 與資料庫進行購物車的同步
    */
   UpdateToDB() {
-    console.log('Updating');
-    this.cartUpdated = true;
-
-    // 沒有 UPDATE METHOD 可以用
-    // return this.httpClient.post('${environment.api}/UpdateCart');
+    const postData = this.cart;
+    postData['token'] = localStorage.getItem('token');
+    return this.httpClient.post(`${environment.api}/UpdateCart`, postData);
   }
 
   GetFromDB() {
@@ -200,6 +198,8 @@ export class CartService {
   }
 
   MakeOrder(Order) {
-    // return this.httpClient.post('${environment.api}/MakeOrder');
+    const Result = Order;
+    Result.token = localStorage.getItem('token');
+    return this.httpClient.post(`${environment.api}/MakeOrder`, Result);
   }
 }
