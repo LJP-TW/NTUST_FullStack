@@ -24,12 +24,15 @@ export class ForgetPwdComponent implements OnInit {
     email: '',
   };
 
+  invalid = false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   forgetPwd() {
+    this.invalid = false;
     this.authService.ForgetPwd(this.user).subscribe((data: ForgetPwdResponse) => {
       if (data.status) {
         alert(data.message.URL);
@@ -37,7 +40,8 @@ export class ForgetPwdComponent implements OnInit {
         alert('Fail');
       }
     }, (error) => {
-      alert('Fail');
+      this.invalid = true;
+      this.user.name = '';
     });
   }
 

@@ -1,9 +1,30 @@
 <form class="LRblock">
     <label for="email">信箱</label>
-    <input name="email" type="text" id="email" placeholder="請輸入您的信箱" [(ngModel)]="user.email" required />
+    <input name="email" type="text" id="email" placeholder="請輸入您的信箱" [(ngModel)]="user.email" #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="255"/>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+      <span *ngIf="email.hasError('required')">● 信箱為必填選項</span>
+      <span *ngIf="email.hasError('pattern')">● 信箱格式錯ㄌ</span>
+      <span *ngIf="email.hasError('maxlength')">● 信箱長度最長 255 個字</span>
+    </div>
+
     <label for="password">新密碼</label>
-    <input name="password" type="password" id="password" placeholder="請輸入新密碼" [(ngModel)]="user.password" required />
-    <label for="password">確認新密碼</label>
-    <input name="password" type="password" id="password" placeholder="請再次輸入新密碼" [(ngModel)]="user.confirm_password" required />
-    <button type="submit" (click)="resetPwd()">改密碼です</button>
+    <input name="password" type="password" id="password" placeholder="請輸入新密碼" [(ngModel)]="user.password" #pwd="ngModel" required minlength="6"/>
+    <div *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)" class="alert alert-danger">
+      <span *ngIf="pwd.hasError('required')">● 密碼為必填選項</span>
+      <span *ngIf="pwd.hasError('minlength')">● 密碼至少要 6 個字歐</span>
+    </div>
+
+    <label for="confirm_password">確認新密碼</label>
+    <input name="confirm_password" type="password" id="confirm_password" placeholder="請再次輸入新密碼" [(ngModel)]="user.confirm_password" #c_pwd="ngModel" required />
+    <div *ngIf="c_pwd.invalid && (c_pwd.dirty || c_pwd.touched)" class="alert alert-danger">
+      <span *ngIf="c_pwd.hasError('required')">● 密碼為必填選項</span>
+      <span *ngIf="c_pwd.hasError('notEqual')">● 跟密碼不一樣</span>
+    </div>
+
+    <button type="submit" [disabled]="email.invalid || pwd.invalid || c_pwd.invalid" (click)="resetPwd()">改密碼です</button>
+
+    <div *ngIf="invalid" class="alert alert-danger">
+      <span *ngIf="token_invalid">● 網址連結錯誤</span>
+      <span *ngIf="email_invalid">● 信箱輸入錯誤</span>
+    </div>
   </form>
