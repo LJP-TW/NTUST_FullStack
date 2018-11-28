@@ -196,7 +196,7 @@ export class CartService {
   }
 
   GetFromDB() {
-    // return this.httpClient.get('${environment.api}/GetCart');
+    return this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`);
   }
 
   MakeOrder(Order) {
