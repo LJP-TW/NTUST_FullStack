@@ -8,12 +8,21 @@
         </div>
       </div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="header_top_right floatright">
-          <p *ngIf="!authService.LoggedIn(); else loggedOut"><a [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >登入</a> / <a [routerLink]="['/auth/register']" routerLinkActive="router-link-active" >註冊</a></p>
+        <div class="header_top_right floatright" (mouseenter)="hover = hover + 1;" (mouseleave)="hover = hover;">
+          <p *ngIf="!authService.LoggedIn(); else loggedOut">
+            <a [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >登入</a> /
+            <a [routerLink]="['/auth/register']" routerLinkActive="router-link-active" >註冊</a>
+          </p>
           <ng-template #loggedOut>
-              <p><a [routerLink]="['/auth/myAccount']" routerLinkActive="router-link-active" >私の帳號</a></p>
+              <p>
+                <a [routerLink]="['/auth/myAccount']" routerLinkActive="router-link-active" >私の帳號{{ hover }}</a>
+              </p>
           </ng-template>
         </div>
+
+        <!-- <div class="member_menu" [ngClass]="{'member_menu_hover': hover > 0}" (mouseenter)="test()" (mouseleave)="hover = hover - 1">
+            <a>登出</a>
+        </div> -->
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-.LRblock {
+/* .LRblock {
 	padding: 1em;
 	font: 400 16px monospace;
 	max-width: 400px;
@@ -19,4 +19,48 @@ background-color: #ccc;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: end;
+} */
+.UserInfoBlock {
+  display: block;
+  padding: 1em;
+  font: 400 16px monospace;
+  max-width: 800px;
+  margin: 10px auto;
+  border-top-color: #aaa;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-bottom-color: #aaa;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+.UserInfoBlock > div {
+  display: flex;
+  padding: 0.25em;
+  margin: 0.125em;
+  border-bottom-color: #f5f6f7;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+.UserInfoBlock > div:hover {
+  background-color: #f5f6f7;
+}
+.UserInfoBlock > div > h1 {
+  color: #24292e;
+  font-size: 16px;
+  font-weight: 800;
+  width: 20%;
+  float: left;
+}
+.UserInfoBlock > div > label {
+  color: #90949c;
+  font-size: 16px;
+  font-weight: 400;
+  width: 60%;
+  float: left;
+}
+.UserInfoBlock > div > a {
+  color: #365899;
+  float: right;
+  width: 20%;
+  text-align: right;
 }

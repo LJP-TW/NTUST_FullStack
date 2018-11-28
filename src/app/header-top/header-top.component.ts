@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-top.component.css']
 })
 export class HeaderTopComponent implements OnInit {
+  hover = 0;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
 
+  test() {
+    console.log('Test');
+  }
 }

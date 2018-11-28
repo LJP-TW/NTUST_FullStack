@@ -1,0 +1,17 @@
+.member_menu {
+  background: none repeat scroll 0 0 #fff;
+  box-shadow: 0 10px 15px #ddd;
+  overflow: hidden;
+  padding: 0 30px;
+  position: absolute;
+  margin-top: auto;
+  top: 26.8px;
+  right: 0px;
+  width: 200px;
+  opacity: 0;
+  transition: all 0.5s ease 0s;
+  z-index: -1;
+}
+.member_menu_hover {
+  opacity: 1;
+}

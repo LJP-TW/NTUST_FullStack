@@ -102,13 +102,15 @@ a:hover { color: #000 }
 
 .header_top {
   background: none repeat scroll 0 0 #212121;
-padding: 12px 0;
+  padding: 12px 0 0 0;
 }
 .header_top_left {
-  margin-bottom: -8px;
+  /* margin-bottom: -8px; */
 }
 .header_top_right {
-  margin-bottom: -8px;
+  /* margin-bottom: -8px; */
+  width: 15%;
+  position: relative;
 }
 .header_top_left > img {
   float: left;
@@ -127,11 +129,13 @@ padding: 12px 0;
 }
 .header_top_right p {
   color: #e8e8e8;
-font-size: 12px;
-font-weight: 500;
-text-transform: uppercase;
-float: left;
- margin-right: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  float: left;
+  /* margin-right: 15px; */
+  width: 100%;
+  text-align: center;
 }
 .header_top_right p a {
   color: #e8e8e8;

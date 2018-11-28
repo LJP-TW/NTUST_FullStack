@@ -1,5 +1,23 @@
-<div class="LRblock">
-  <a [routerLink]="['/auth/resetPwd']" routerLinkActive="router-link-active" >爆改密碼</a>
-  <a (click)="logout()" >登出</a>
+<div class="UserInfoBlock">
+  <div>
+      <h1>名字</h1>
+      <label>{{ userInfo.name }}</label>
+      <a>修改</a>
+  </div>
+  <div>
+      <h1>信箱</h1>
+      <label>{{ userInfo.email }}</label>
+      <a>修改</a>
+  </div>
+  <div>
+      <h1>密碼</h1>
+      <label></label>
+      <a [routerLink]="['/auth/resetPwd']" routerLinkActive="router-link-active">爆改</a>
+  </div>
+  <div>
+      <h1>登出</h1>
+      <label></label>
+      <a (click)="logout()">登出囉</a>
+  </div>
 </div>
 
