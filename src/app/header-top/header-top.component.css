@@ -2,7 +2,7 @@
   background: none repeat scroll 0 0 #fff;
   box-shadow: 0 10px 15px #ddd;
   overflow: hidden;
-  padding: 0 30px;
+  padding: 5px 0;
   position: absolute;
   margin-top: auto;
   top: 26.8px;
@@ -14,4 +14,20 @@
 }
 .member_menu_hover {
   opacity: 1;
+  overflow: visible;
+  /* 若 z-index 太小, 可能會被其他元件壓在上方, 導致無法使用事件 mouseenter mouseleave */
+  z-index: 5;
+}
+.member_menu > div {
+  padding: 2px 30px;
+}
+.member_menu > div:hover {
+  background-color: #f5f6f7;
+}
+.member_menu > div > a {
+  color: #90949c;
+  cursor: pointer;
+}
+.member_menu > div > a:hover {
+  text-decoration: none;
 }
