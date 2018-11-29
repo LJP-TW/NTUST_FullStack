@@ -29,9 +29,8 @@ export class MyAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.authService.LoggedIn()) {
-      this.router.navigate(['/']);
-    }
+    this.authService.LoggedInRedirect();
+
     this.authService.getUserInfo().subscribe((data: UserInfo) => {
       this.userInfo.id = data.id;
       this.userInfo.name = data.name;
@@ -42,7 +41,6 @@ export class MyAccountComponent implements OnInit {
   }
 
   logout() {
-    console.log('test');
     this.authService.Logout().subscribe((data) => {
       localStorage.removeItem('token');
       this.router.navigate(['/']);

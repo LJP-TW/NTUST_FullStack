@@ -63,4 +63,10 @@ background-color: #ccc;
   float: right;
   width: 20%;
   text-align: right;
+  cursor: pointer;
+  transition: all 1s linear;
+}
+.UserInfoBlock > div > a:hover {
+  text-decoration: none;
+  color: rgb(42, 189, 42);
 }

@@ -1,5 +1,6 @@
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-top',
@@ -9,12 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderTopComponent implements OnInit {
   hover = 0;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  test() {
-    console.log('Test');
+  logout() {
+    this.authService.Logout().subscribe((data) => {
+      localStorage.removeItem('token');
+      this.router.navigate(['/']);
+    });
   }
 }

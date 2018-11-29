@@ -35,6 +35,7 @@ export class RegistComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.authService.LoggedInRedirect();
   }
 
   register() {
