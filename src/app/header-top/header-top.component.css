@@ -27,7 +27,5 @@
 .member_menu > div > a {
   color: #90949c;
   cursor: pointer;
-}
-.member_menu > div > a:hover {
   text-decoration: none;
 }

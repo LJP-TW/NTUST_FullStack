@@ -1,25 +1,3 @@
-/* .LRblock {
-	padding: 1em;
-	font: 400 16px monospace;
-	max-width: 400px;
-	margin: 0 auto;
-}
-.LRblock > a {
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-.LRblock > a:hover {
-background-color: #ccc;
-}
-.LRblock > div {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: end;
-} */
 .UserInfoBlock {
   display: block;
   padding: 1em;
@@ -34,39 +12,90 @@ background-color: #ccc;
   border-bottom-width: 2px;
 }
 .UserInfoBlock > div {
-  display: flex;
+  display: inline-block;
+  width: 100%;
   padding: 0.25em;
   margin: 0.125em;
+  min-height: 45px;
   border-bottom-color: #f5f6f7;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  -webkit-user-select: none;
 }
 .UserInfoBlock > div:hover {
   background-color: #f5f6f7;
 }
-.UserInfoBlock > div > h1 {
+.UserInfoBlock > div.alert {
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.UserInfoBlock > div.alert:hover {
+  background-color: #f2dede;
+}
+.UserInfoBlock > div > h1,
+.UserInfoBlock > div > form > h1 {
+  display: inline-block;
   color: #24292e;
   font-size: 16px;
   font-weight: 800;
   width: 20%;
-  float: left;
+  height: auto;
+  min-height: 25px;
+  margin: auto 0;
 }
-.UserInfoBlock > div > label {
+.UserInfoBlock > div > label,
+.UserInfoBlock > div > form > label {
+  display: inline-block;
   color: #90949c;
   font-size: 16px;
   font-weight: 400;
   width: 60%;
-  float: left;
+  height: auto;
+  min-height: 25px;
+  margin: auto 0;
 }
-.UserInfoBlock > div > a {
+.UserInfoBlock > div > input,
+.UserInfoBlock > div > form > input {
+  display: inline-block;
+  color: #90949c;
+  font-size: 16px;
+  font-weight: 400;
+  min-height: 25px;
+  width: 60%;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+}
+.UserInfoBlock > div > input:focus,
+.UserInfoBlock > div > form > input:focus {
+  outline: none;
+}
+.UserInfoBlock > div > button,
+.UserInfoBlock > div > form > button {
   color: #365899;
+  background-color: transparent;
   float: right;
   width: 20%;
+  height: auto;
+  min-height: 25px;
+  margin: auto 0;
   text-align: right;
   cursor: pointer;
-  transition: all 1s linear;
+  transition: all 0.5s linear;
+  border: none;
 }
-.UserInfoBlock > div > a:hover {
+.UserInfoBlock > div > button:hover,
+.UserInfoBlock > div > form > button:hover {
   text-decoration: none;
   color: rgb(42, 189, 42);
+}
+.UserInfoBlock > div > button:focus,
+.UserInfoBlock > div > form > button:focus {
+  outline: none;
+}
+.hidden {
+  display: none;
 }

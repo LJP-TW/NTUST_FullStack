@@ -1,23 +1,71 @@
 <div class="UserInfoBlock">
   <div>
-      <h1>名字</h1>
-      <label>{{ userInfo.name }}</label>
-      <a>修改</a>
+    <h1>名字</h1>
+    <label [ngClass]="{hidden: isConfig.name}">{{ authService.userInfo.name }}</label>
+    <input name="name" type="text" id="name" [ngClass]="{hidden: !isConfig.name}" [(ngModel)]="user.name" #name="ngModel" required maxlength="255"/>
+    <button [ngClass]="{hidden: isConfig.name}" (click)="inConfigName()">修改</button>
+    <button [ngClass]="{hidden: !isConfig.name}" [disabled]="name.invalid" (click)="outConfigName()">完成</button>
   </div>
+  <div *ngIf="isConfig.name && name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    <span *ngIf="name.hasError('required')">● 名稱為必填選項</span>
+    <span *ngIf="name.hasError('maxlength')">● 名稱長度最長 255 個字</span>
+  </div>
+  <div *ngIf="error.name" class="alert alert-danger">
+    ● 名稱不能改餒，請聯繫我們看看
+  </div>
+
   <div>
-      <h1>信箱</h1>
-      <label>{{ userInfo.email }}</label>
-      <a>修改</a>
+    <h1>信箱</h1>
+    <label [ngClass]="{hidden: isConfig.email}">{{ authService.userInfo.email }}</label>
+    <input name="email" type="text" id="email" [ngClass]="{hidden: !isConfig.email}" [(ngModel)]="user.email" #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="255"/>
+    <button [ngClass]="{hidden: isConfig.email}" (click)="inConfigEmail()">修改</button>
+    <button [ngClass]="{hidden: !isConfig.email}" [disabled]="email.invalid" (click)="outConfigEmail()">完成</button>
   </div>
+  <div *ngIf="error.email || (isConfig.email && email.invalid && (email.dirty || email.touched))" class="alert alert-danger">
+    <span *ngIf="email.hasError('required')">● 信箱為必填選項</span>
+    <span *ngIf="email.hasError('pattern')">● 信箱格式錯ㄌ</span>
+    <span *ngIf="email.hasError('maxlength')">● 信箱長度最長 255 個字</span>
+    <span *ngIf="error.email">● 這個信箱有人用過囉</span>
+  </div>
+
   <div>
-      <h1>密碼</h1>
-      <label></label>
-      <a [routerLink]="['/auth/resetPwd']" routerLinkActive="router-link-active">爆改</a>
+    <form>
+      <h1 [ngClass]="{'hidden': isConfig.password}">密碼</h1>
+      <h1 [ngClass]="{'hidden': !isConfig.password}">舊密碼</h1>
+      <label [ngClass]="{'hidden': isConfig.password}"></label>
+      <input name="password" type="password" id="password" [ngClass]="{'hidden': !isConfig.password}" [(ngModel)]="user.password" #password="ngModel" required minlength="6">
+      <button [ngClass]="{'hidden': isConfig.password}" (click)="inConfigPassword()">爆改</button>
+      <button [ngClass]="{'hidden': !isConfig.password}"></button>
+
+      <h1 [ngClass]="{'hidden': !isConfig.password}">新密碼</h1>
+      <input name="newPwd" type="password" id="newPwd" [ngClass]="{'hidden': !isConfig.password}" [(ngModel)]="user.new_password" #newPwd="ngModel" required minlength="6">
+      <button [ngClass]="{'hidden': !isConfig.password}"></button>
+
+      <h1 [ngClass]="{'hidden': !isConfig.password}">再次輸入新密碼</h1>
+      <input name="rPwd" type="password" id="rPwd" [ngClass]="{'hidden': !isConfig.password}" [(ngModel)]="user.confirm_password" #rPwd="ngModel" required appConfirmPwd="newPwd">
+      <button [ngClass]="{'hidden': !isConfig.password || (password.invalid || newPwd.invalid || rPwd.invalid)}" (click)="outConfigPassword()">完成</button>
+      <button [ngClass]="{'hidden': !isConfig.password || !(password.invalid || newPwd.invalid || rPwd.invalid)}" (click)="isConfig.password = false">取消</button>
+    </form>
   </div>
+  <div *ngIf="isConfig.password && ((password.invalid && (password.dirty || password.touched))
+  || (newPwd.invalid && (newPwd.dirty || newPwd.touched))
+  || (rPwd.invalid && (rPwd.dirty || rPwd.touched)))" class="alert alert-danger">
+    <span *ngIf="password.hasError('required')">● 舊密碼為必填選項</span>
+    <span *ngIf="password.hasError('minlength')">● 舊密碼最短要 6 個字噢</span>
+    <span *ngIf="newPwd.hasError('required')">● 新密碼為必填選項</span>
+    <span *ngIf="newPwd.hasError('minlength')">● 新密碼最短要 6 個字噢</span>
+    <span *ngIf="rPwd.hasError('required')">● 請再次輸入新密碼</span>
+    <span *ngIf="rPwd.hasError('notEqual')">● 再次輸入的密碼與新密碼不一樣</span>
+  </div>
+  <div *ngIf="error.password" class="alert alert-danger">
+    <span>● 新密碼設定失敗，舊密碼輸入錯了吧</span>
+  </div>
+
   <div>
-      <h1>登出</h1>
-      <label></label>
-      <a (click)="logout()">登出囉</a>
+    <h1>登出</h1>
+    <label></label>
+    <button (click)="logout()">登出囉</button>
   </div>
+
 </div>
 
