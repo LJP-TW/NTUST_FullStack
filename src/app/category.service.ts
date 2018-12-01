@@ -40,7 +40,10 @@ export class CategoryService {
   '格鬥',
   '龍',
  ]
+ 
  public FilterMonsterAttr =[];
+
+
  //PriceFilter
  priceMax = 40000;
  priceMin = 1000;
@@ -59,7 +62,7 @@ export class CategoryService {
 
   //Bufffer
   public monCache:Monster[]=[];
-  public perCache = 108;
+  public perCache = 36;
 
 
  //Query String
@@ -104,8 +107,11 @@ export class CategoryService {
   return Math.floor(value)
 }
 
-getIcon(id){
-  return "assets/images/blog1.jpg";
+getIcon(index){
+
+  return this.monCache[index].Icon;
+  // return this.monsterService.getMonsterImg(300,id);
+  // return "assets/images/blog1.jpg";
 }
 
  // Sorting
@@ -161,13 +167,26 @@ getIcon(id){
 
  PageBuf()
  {
+   if(this.monCache.length==0)return;
    let shift = this.perCache*this.CacheIndex;
    return this.monCache.slice(this.indexS-shift-1,this.indexE - shift);
  }
 
 
  Page(value: number = 1) {
-   if (value > this.pageMax) {value = this.pageMax; } else if (value < 1) {value = 1; }
+   if(this.pageMax == 0){
+     this.page = 0;
+     this.indexS = 0;
+     this.indexE =0;
+     this.CacheIndex = 0;
+     return;
+   }
+   else if (value > this.pageMax) {
+     value = this.pageMax; 
+   }
+   else if (value < 1) {
+     value = 1;
+   }
    this.page = value;
 
    this.indexS = this.productsPerPage * (this.page - 1)+1;
@@ -192,13 +211,27 @@ getIcon(id){
    }
  }
 
+ nextTenPage() {
+  if (this.page < this.pageMax) {
+    this.Page(this.page + 10);
+  }
+  }
+
  prevPage() {
    if (this.page > 1) {
      this.Page(this.page - 1);
    }
  }
 
+ prevTenPage() {
+  if (this.page > 1) {
+    this.Page(this.page - 10);
+  }
+}
+
  CreatePageIndex(): Array<number> {
+   if(this.monCache.length==0)return [0];
+
    let PageIndex:number[] = [];
 
    if(this.pageMax < this.PageIndexNum){
@@ -275,22 +308,21 @@ getIcon(id){
      queryString = queryString.slice(0,-1);
    }
 
-   console.log(queryString);
-
-
+   console.log('QS',queryString);
 
    //Api
-   let start = 0 + this.CacheIndex * this.perCache;
+   let start = this.CacheIndex * this.perCache;
    let end = start + this.perCache-1;
    this.monCache  = [];
    this.monsterService.getMonsters(start,end,queryString).subscribe((data:Monster[])=>{
      this.monCache  = data;
+     this.monsterService.getMonstersAmount(queryString).subscribe((data:number)=>{
+      this.productMax = data;
+      this.AdjustPaging();
+      this.Page(Page);
+    })
    })
-   this.monsterService.getMonstersAmount(queryString).subscribe((data:number)=>{
-     this.productMax = data;
-     this.AdjustPaging();
-     this.Page(Page);
-   })
+   
  }
 
 }

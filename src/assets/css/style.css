@@ -41,6 +41,18 @@ This Template Is Fully Coded By Shakhawat H. from codingcouples.com
 1. Base CSS
 ===============================================*/
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+
 .floatleft { float: left }
 .floatright { float: right }
 .alignleft {
@@ -916,6 +928,19 @@ padding-left: 18px;
   position: relative;
   width: 100%;
 }
+.item-discount {
+  display: inline;
+  border: 1px solid #ff6766;
+  /* left: 15px; */
+  position: relative;
+  display: inline;
+  /* top: 15px; */
+  font-size: 11px;
+  padding: 1px 8px;
+}
+/* .item-discount > p{
+  
+} */
 .item-new {
   border: 1px solid #ff6766;
 left: 15px;
@@ -2824,12 +2849,15 @@ width: 30px;
 }
 .pagi_ul > ul li a {
   color: #333333;
-display: inline-block;
-font-size: 13px;
-width: 40px;
-margin: 0px 10px;
-/* padding: 0 18px; */
-text-transform: uppercase;
+  font-size: 13px;
+  width: 2em;
+  height: 2em;
+  /* text-overflow: ellipsis; */
+  display: inline-block;
+  margin: 10px;
+  text-transform: uppercase;
+  white-space: pre;
+  line-height: 2;
 }
 
 .pagi_ul > ul li a:hover {
@@ -3085,24 +3113,24 @@ position: relative;
   font-weight: 500;
   margin-bottom: 5px;
 }
-.old_price_gray p {
+.new_price_gray p {
   color: #ff6766;
   font-size: 18px;
   font-weight: 700;
 }
-.old_price_gray {
+.new_price_gray {
   float: left;
   margin-right: 17px;
   overflow: hidden;
-  width: 60px;
+  width: auto;
 }
-.new_price_gray {
+.old_price_gray {
 float: left;
 overflow: hidden;
-width: 70px;
+width: auto;
 margin-top: 3px;
 }
-.new_price_gray del {
+.old_price_gray del {
   color: #aaaaaa;
   font-size: 15px;
 }
