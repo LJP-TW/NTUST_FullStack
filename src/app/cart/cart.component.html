@@ -36,7 +36,7 @@
 
 
           <!-- For 出所有商品 -->
-          <ng-container *ngFor="let order of this.Cart|slice : indexS :indexE; let i = index">
+          <ng-container *ngFor="let order of cartService.cart|slice : indexS :indexE; let i = index">
             <div class="floatleft" style="margin-top: 73px;">
               <button class="buttonDelete button" (click)="CartRemove(i)"></button>
             </div>
@@ -99,7 +99,7 @@
                   <div class="panel-body cart_p_body">
                     <div class="c_single_item">
                       <p>商品項目</p>
-                      <span>共{{this.Cart.length}}項</span>
+                      <span>共{{cartService.cart.length}}項</span>
                     </div>
                     <div class="c_single_item sp_single_item">
                       <p>商品數量</p>
