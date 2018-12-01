@@ -1,3 +1,6 @@
+import { AuthService } from './../auth.service';
+import { MonsterService } from './../monster.service';
+import { CartService } from './../cart.service';
 import { NavService } from './../nav.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
@@ -10,9 +13,20 @@ import { ProductDataBaseService } from '../product-data-base.service';
 export class NavAreaComponent implements OnInit {
   hover = 0;
 
-  constructor(public productDataBase: ProductDataBaseService, public navService: NavService) { }
+  constructor(public productDataBase: ProductDataBaseService,
+    public navService: NavService,
+    public cartService: CartService,
+    public monsterService: MonsterService,
+    public authService: AuthService) { }
 
   ngOnInit() {
+    if (this.authService.LoggedIn()) {
+      this.cartService.GetFromDB();
+    }
+  }
+
+  test() {
+    console.log(this.cartService.cart);
   }
 
   CartTotalCost() {

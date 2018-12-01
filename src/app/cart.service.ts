@@ -155,7 +155,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice -= this.cart[i].tempPrice;
+      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].tempPrice * 1000) / 1000;
       this.cart[i].count--;
     }
   }
@@ -182,7 +182,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice -= this.cart[i].tempPrice * this.cart[i].count;
+      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].tempPrice * this.cart[i].count * 1000) / 1000;
       this.cart.splice(i, 1);
     }
   }
