@@ -1,3 +1,4 @@
+import { Attribute } from './attribute';
 export interface Monster {
   ATTACK: number;
   DEFENSE: number;
@@ -17,10 +18,4 @@ export interface Monster {
   sold: number;
   attributes: Attribute[];
   Icon?: string;
-}
-
-interface Attribute {
-  NAME: string;
-  NAME_JP: string;
-  NAME_EN: string;
 }
