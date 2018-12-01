@@ -53,18 +53,20 @@ export class CartComponent implements OnInit {
   CartAmount = 0;
 
   ngOnInit() {
-    console.log(this.cartTotal);
+    // console.log(this.cartTotal);
     this.Cart = this.cartService.cart;
     this.initCartData();
     this.cartTotal = this.cartService.totalPrice;
     this.CartAmount = this.Cart.length;
-
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
+    this.amountTotal = 0;
     this.Cart = this.cartService.cart;
-    // this.updateCartData();
+    for (let i = 0 ; i < this.Cart.length; i++) {
+      this.amountTotal += this.Cart[i].Count;
+    }
     this.cartChanged();
     this.Page(1);
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -113,6 +115,7 @@ export class CartComponent implements OnInit {
     this.cartTotal = (this.cartTotal * 1000 - this.Cart[index].Count * this.Cart[index].Price * 1000) / 1000;
     this.amountTotal -= this.Cart[index].Count;
     this.cartService.Remove(this.Cart[index].ProductId);
+
     // this.CartData.splice(index, 1);
     // this.updateCartData();
     this.cartChanged();
@@ -155,28 +158,16 @@ export class CartComponent implements OnInit {
       this.amountTotal += this.Cart[i].Count;
     }
   }
-  // 更新購物車，從資料庫抓資料
-  // updateCartData() {
-  //   this.Cart = this.cartService.cart;
-  //   console.log('update');
-  //   // console.log(this.Cart.length);
-  //   for (let i = 0; i < this.Cart.length; i++) {
-  //     this.monster
-  //       .getMonstersByID(this.Cart[i].ProductId)
-  //       .subscribe((data: Monster) => {
-  //         console.log(data);
-  //         this.CartData[i].amount = this.Cart[i].Count;
-  //         this.CartData[i].total =
-  //           this.CartData[i].price * this.CartData[i].amount;
-  //       });
-  //   }
-  // }
+  // 更新購物車
+  updateCartData() {
+    this.ngAfterViewInit();
+  }
 
   // page
   cartChanged() {
-    this.pageMax = Math.ceil(this.Cart.length / this.productsPerPage);
     // console.log(this.pageMax);
     this.productMax = this.Cart.length;
+    this.pageMax = Math.ceil(this.productMax / this.productsPerPage);
   }
 
   Page(value: number) {
@@ -204,6 +195,7 @@ export class CartComponent implements OnInit {
   }
 
   CreatePageIndex(value: number): Array<number> {
+    console.log(this.pageMax);
     return Array.from(Array(this.pageMax).keys()).map(n => {
       return (n = n + 1);
     });

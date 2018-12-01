@@ -121,7 +121,8 @@
                 </div>
               </div>
             </div>
-            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active"  value="Yeah Yeah 結帳囉">
+            <input type="submit" value="刷新購物車" (click)="updateCartData()">
+            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active" value="Yeah Yeah 結帳囉">
           </div>
         </div>
       </div>
@@ -135,7 +136,7 @@
 
               <li><a (click)="prevPage()">前一頁</a></li>
               <ng-container *ngFor="let item of CreatePageIndex(pageMax);">
-                <li><a (click)="Page(item)">{{item}}</a></li>
+                <li><a (click)="Page(item)" [ngClass]="{'SELPAGE': item==page }">{{item}}</a></li>
               </ng-container>
               <li><a (click)="nextPage()">後一頁</a></li>
             </ul>
