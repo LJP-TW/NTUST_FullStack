@@ -43,7 +43,7 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 }
 .LRblock > div > a {
 	text-decoration: none;

@@ -7,23 +7,69 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResetPwdPost } from './reset-pwd-post';
 
+interface Message {
+  error: string;
+  token: string;
+  expires_in: number;
+}
+
+interface Response {
+  status: boolean;
+  message: Message;
+}
+
+interface UserInfo {
+  id: number;
+  name: string;
+  email: string;
+  email_verified_at: string;
+  created_at: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private route: Router, private httpClient: HttpClient) { }
+  // token 更新 timer
+  tokenUpdater;
+  updateTime = 10000000;
+  enabled = false;
+
+  // User 資料
+  userInfo = {
+    id: null,
+    name: null,
+    email: null,
+    email_verified_at: null,
+    created_at: null
+  };
+
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   Register(data: RegisterPost) {
     return this.httpClient.post('http://127.0.0.1:8000/api/register', data);
   }
 
   Login(data: LoginPost) {
+    this.enabled = false;
+
     return this.httpClient.post(`${environment.api}/login`, data);
   }
 
   Logout() {
-    return this.httpClient.get(`${environment.api}/logout?token=${localStorage.getItem('token')}`);
+    this.enabled = false;
+    this.userInfo.id = null;
+    this.userInfo.name = null;
+    this.userInfo.email = null;
+    this.userInfo.email_verified_at = null;
+    this.userInfo.created_at = null;
+
+    this.httpClient.get(`${environment.api}/logout?token=${localStorage.getItem('token')}`).subscribe((data) => {
+    });
+
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
 
   ForgetPwd(data: ForgetPwdPost) {
@@ -40,13 +86,60 @@ export class AuthService {
 
   LoggedInRedirect() {
     if (!this.LoggedIn()) {
-      this.route.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login']);
       return true;
     }
     return false;
   }
 
-  getUserInfo() {
-    return this.httpClient.get(`${environment.api}/user?token=${localStorage.getItem('token')}`);
+  GetUserInfo() {
+    this.httpClient.get(`${environment.api}/user?token=${localStorage.getItem('token')}`).subscribe((data: UserInfo) => {
+      this.userInfo.id = data.id;
+      this.userInfo.name = data.name;
+      this.userInfo.email = data.email;
+      this.userInfo.email_verified_at = data.email_verified_at;
+      this.userInfo.created_at = data.created_at;
+    });
+  }
+
+  TokenFresh() {
+    this.httpClient.get(`${environment.api}/refresh?token=${localStorage.getItem('token')}`).subscribe((resp: Response) => {
+      if (resp.status) {
+        localStorage.setItem('token', resp.message.token);
+      }
+    });
+  }
+
+  ConfigName(name) {
+    const post = {
+      token: localStorage.getItem('token'),
+      name: name,
+      email: this.userInfo.email
+    };
+
+    return this.httpClient.post(`${environment.api}/config`, post);
+  }
+
+  ConfigEmail(email) {
+    const post = {
+      token: localStorage.getItem('token'),
+      name: this.userInfo.name,
+      email: email
+    };
+
+    return this.httpClient.post(`${environment.api}/config`, post);
+  }
+
+  ConfigPwd(password, new_password, confirm_password): Response|any {
+    const post = {
+      token: localStorage.getItem('token'),
+      name: this.userInfo.name,
+      email: this.userInfo.email,
+      password: password,
+      new_password: new_password,
+      confirm_password: confirm_password
+    };
+
+    return this.httpClient.post(`${environment.api}/config`, post);
   }
 }

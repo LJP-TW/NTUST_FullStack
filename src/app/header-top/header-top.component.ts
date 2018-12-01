@@ -8,17 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-top.component.css']
 })
 export class HeaderTopComponent implements OnInit {
-  hover = 0;
+  hover: number;
 
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.hover = 0;
   }
 
   logout() {
-    this.authService.Logout().subscribe((data) => {
-      localStorage.removeItem('token');
-      this.router.navigate(['/']);
-    });
+    this.authService.Logout();
   }
 }

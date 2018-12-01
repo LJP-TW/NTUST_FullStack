@@ -57,9 +57,7 @@ export class ResetPwdComponent implements OnInit, OnDestroy {
 
     this.authService.ResetPwd(this.user).subscribe((data: ResetPwdResponse) => {
       if (data.status) {
-        this.authService.Logout().subscribe((logoutData) => {
-        });
-        this.router.navigate(['/auth/login']);
+        this.authService.Logout();
       } else {
         alert('fail');
       }
