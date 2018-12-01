@@ -96,7 +96,7 @@ export class CartComponent implements OnInit {
       index += (this.page - 1) * this.productsPerPage;
     }
 
-    if (this.CartData[index].amount !== 0) {
+    if (this.Cart[index].Count !== 0) {
       this.cartService.Minus(this.Cart[index].ProductId);
       // this.CartData[index].amount--;
       // this.CartData[index].total -= this.CartData[index].price;
@@ -110,9 +110,9 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.cartService.Remove(this.Cart[index].ProductId);
+    this.cartTotal = (this.cartTotal * 1000 - this.Cart[index].Count * this.Cart[index].Price * 1000) / 1000;
     this.amountTotal -= this.Cart[index].Count;
-    this.cartTotal = this.cartService.totalPrice;
+    this.cartService.Remove(this.Cart[index].ProductId);
     // this.CartData.splice(index, 1);
     // this.updateCartData();
     this.cartChanged();
@@ -140,6 +140,7 @@ export class CartComponent implements OnInit {
         .subscribe((data: Monster) => {
           this.Cart[i].icon = data[0].Icon;
           this.Cart[i].attributes = data[0].attributes;
+          this.Cart[i].name = data[0].NAME;
           // this.CartData.push({
           //   productID: this.Cart[i].ProductId,
           //   name: data[0].NAME,

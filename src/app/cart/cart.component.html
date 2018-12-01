@@ -36,7 +36,7 @@
 
 
           <!-- For 出所有商品 -->
-          <ng-container *ngFor="let order of this.CartData|slice : indexS :indexE; let i = index">
+          <ng-container *ngFor="let order of this.Cart|slice : indexS :indexE; let i = index">
             <div class="floatleft" style="margin-top: 73px;">
               <button class="buttonDelete button" (click)="CartRemove(i)"></button>
             </div>
@@ -52,17 +52,17 @@
                 </p>
               </div>
               <div class="cart_price">
-                <p>${{ order.price }}</p>
+                <p>${{ order.Price }}</p>
               </div>
               <div class="cart_quantity">
                 <ul>
                   <li><button class="buttonMinus button" (click)="minusClick(i)"></button></li>
-                  <li><input type="text" class="quantity" [(ngModel)]="order.amount"></li>
+                  <li><input type="text" class="quantity" [(ngModel)]="order.Count"></li>
                   <li><button class="buttonPlus button" (click)="plusClick(i)"></button></li>
                 </ul>
               </div>
               <div class="cart_total">
-                <p>${{ order.total }}</p>
+                <p>${{ order.Price*order.Count }}</p>
                 <span><i class="fa fa-close"></i></span>
               </div>
             </div>
@@ -126,6 +126,7 @@
         </div>
       </div>
 
+      <!-- page -->
       <div class="row">
         <div class="col-md-9 col-sm-9 col-xs-12">
           <div class="pagi_line"></div>
