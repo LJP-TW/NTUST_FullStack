@@ -64,6 +64,7 @@ export class CartComponent implements OnInit {
   ngAfterViewInit(): void {
     this.amountTotal = 0;
     this.Cart = this.cartService.cart;
+    this.cartTotal = this.cartService.totalPrice;
     for (let i = 0 ; i < this.Cart.length; i++) {
       this.amountTotal += this.Cart[i].Count;
     }
