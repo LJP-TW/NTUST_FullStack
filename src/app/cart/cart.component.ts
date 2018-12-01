@@ -16,6 +16,7 @@ interface Order {
   // 總價
   total: number;
   attributes: Attribute[];
+  icon: string;
 }
 
 @Component({
@@ -94,7 +95,7 @@ export class CartComponent implements OnInit {
       index += (this.page - 1) * this.productsPerPage;
     }
 
-    if (this.Cart[index].count !== 0) {
+    if (this.CartData[index].amount !== 0) {
       this.cartService.Minus(this.CartData[index].productID);
       this.CartData[index].amount--;
       this.CartData[index].total -= this.CartData[index].price;
@@ -133,21 +134,22 @@ export class CartComponent implements OnInit {
     this.amountTotal = 0;
     for (let i = 0; i < this.Cart.length; i++) {
       this.monster
-        .getMonstersByID(this.Cart[i].productID)
+        .getMonstersByID(this.Cart[i].ProductId)
         .subscribe((data: Monster) => {
           // console.log(data);
           this.CartData.push({
          // monster: data[0],
-            productID: this.Cart[i].productID,
+            productID: this.Cart[i].ProductId,
             name: data[0].NAME,
-            amount: this.Cart[i].count,
+            amount: this.Cart[i].Count,
             price: data[0].price,
-            total: data[0].price * this.Cart[i].count,
-            attributes: data[0].attributes
+            total: data[0].price * this.Cart[i].Count,
+            attributes: data[0].attributes,
+            icon: data[0].Icon,
           });
         });
 
-      this.amountTotal += this.Cart[i].count;
+      this.amountTotal += this.Cart[i].Count;
     }
   }
   // 更新購物車，從資料庫抓資料
@@ -160,7 +162,7 @@ export class CartComponent implements OnInit {
         .getMonstersByID(this.CartData[i].productID)
         .subscribe((data: Monster) => {
           console.log(data);
-          this.CartData[i].amount = this.Cart[i].count;
+          this.CartData[i].amount = this.Cart[i].Count;
           this.CartData[i].total = this.CartData[i].price * this.CartData[i].amount;
         });
       }
