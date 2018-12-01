@@ -1,3 +1,4 @@
+import { CartService } from './../cart.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   invalid = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private cartService: CartService) {
   }
 
   ngOnInit() {
@@ -48,7 +49,11 @@ export class LoginComponent implements OnInit {
           }
         }, this.authService.updateTime);
 
+        // 抓一次使用者資訊
         this.authService.GetUserInfo();
+
+        // 抓一次使用者購物車
+        this.cartService.GetFromDB();
         this.router.navigate(['/']);
       } else {
         alert('Fail');

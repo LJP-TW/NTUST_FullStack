@@ -1,6 +1,6 @@
 export interface CartItem {
-  productID: number;
-  count: number;
-  tempPrice: number;
-  [key: string]: any;
+  ProductId: number;
+  Count: number;
+  Price: number;
+  // [key: string]: any;
 }
