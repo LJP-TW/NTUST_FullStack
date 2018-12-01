@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
     this.Cart = this.cartService.cart;
-    this.updateCartData();
+    // this.updateCartData();
     this.cartChanged();
     this.Page(1);
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -82,10 +82,11 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.CartData[index].amount++;
-    this.CartData[index].total += this.CartData[index].price;
-    this.cartTotal += this.CartData[index].price;
-    this.cartService.Plus(this.CartData[index].productID);
+    // this.CartData[index].amount++;
+    // this.CartData[index].total += this.CartData[index].price;
+    // this.cartTotal += this.CartData[index].price;
+    this.cartService.Plus(this.Cart[index].ProductId);
+    this.cartTotal = this.cartService.totalPrice;
     this.amountTotal++;
 
   }
@@ -96,10 +97,11 @@ export class CartComponent implements OnInit {
     }
 
     if (this.CartData[index].amount !== 0) {
-      this.cartService.Minus(this.CartData[index].productID);
-      this.CartData[index].amount--;
-      this.CartData[index].total -= this.CartData[index].price;
-      this.cartTotal -= this.CartData[index].price;
+      this.cartService.Minus(this.Cart[index].ProductId);
+      // this.CartData[index].amount--;
+      // this.CartData[index].total -= this.CartData[index].price;
+      // this.cartTotal -= this.CartData[index].price;
+      this.cartTotal = this.cartService.totalPrice;
       this.amountTotal--;
     }
   }
@@ -108,11 +110,11 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.cartService.Remove(this.CartData[index].productID);
-    this.amountTotal -= this.CartData[index].amount;
+    this.cartService.Remove(this.Cart[index].ProductId);
+    this.amountTotal -= this.Cart[index].Count;
     this.cartTotal = this.cartService.totalPrice;
-    this.CartData.splice(index, 1);
-    this.updateCartData();
+    // this.CartData.splice(index, 1);
+    // this.updateCartData();
     this.cartChanged();
     if (this.pageMax < this.page) {
       this.Page(this.page - 1);
@@ -136,37 +138,38 @@ export class CartComponent implements OnInit {
       this.monster
         .getMonstersByID(this.Cart[i].ProductId)
         .subscribe((data: Monster) => {
-          // console.log(data);
-          this.CartData.push({
-         // monster: data[0],
-            productID: this.Cart[i].ProductId,
-            name: data[0].NAME,
-            amount: this.Cart[i].Count,
-            price: data[0].price,
-            total: data[0].price * this.Cart[i].Count,
-            attributes: data[0].attributes,
-            icon: data[0].Icon,
-          });
+          this.Cart[i].icon = data[0].Icon;
+          this.Cart[i].attributes = data[0].attributes;
+          // this.CartData.push({
+          //   productID: this.Cart[i].ProductId,
+          //   name: data[0].NAME,
+          //   amount: this.Cart[i].Count,
+          //   price: data[0].price,
+          //   total: data[0].price * this.Cart[i].Count,
+          //   attributes: data[0].attributes,
+          //   icon: data[0].Icon,
+          // });
         });
 
       this.amountTotal += this.Cart[i].Count;
     }
   }
   // 更新購物車，從資料庫抓資料
-  updateCartData() {
-    this.Cart = this.cartService.cart;
-    console.log('update');
-    // console.log(this.Cart.length);
-    for (let i = 0; i < this.CartData.length; i++) {
-      this.monster
-        .getMonstersByID(this.CartData[i].productID)
-        .subscribe((data: Monster) => {
-          console.log(data);
-          this.CartData[i].amount = this.Cart[i].Count;
-          this.CartData[i].total = this.CartData[i].price * this.CartData[i].amount;
-        });
-      }
-  }
+  // updateCartData() {
+  //   this.Cart = this.cartService.cart;
+  //   console.log('update');
+  //   // console.log(this.Cart.length);
+  //   for (let i = 0; i < this.Cart.length; i++) {
+  //     this.monster
+  //       .getMonstersByID(this.Cart[i].ProductId)
+  //       .subscribe((data: Monster) => {
+  //         console.log(data);
+  //         this.CartData[i].amount = this.Cart[i].Count;
+  //         this.CartData[i].total =
+  //           this.CartData[i].price * this.CartData[i].amount;
+  //       });
+  //   }
+  // }
 
   // page
   cartChanged() {
