@@ -9,8 +9,9 @@ interface Message {
 }
 
 interface Cart {
-  ProductId: number;
+  ProductID: number;
   Count: number;
+  Price: number;
 }
 
 interface GetFromDBResPonse {
@@ -24,14 +25,11 @@ interface GetFromDBResPonse {
 })
 export class CartService {
 
-  // 購物車中的東西 (只有 ID, Count)
+  // 購物車中的東西
   cart: CartItem[] = [];
 
   // 總額
   totalPrice: number;
-
-  constructor(private httpClient: HttpClient,
-              private authSvc: AuthService) { }
 
   cartUpdater;
   // 購物車是否已經更新
@@ -40,6 +38,9 @@ export class CartService {
   updateTime = 180000;
   // timer 是否開啟
   Updating = false;
+
+  constructor(private httpClient: HttpClient,
+              private authSvc: AuthService) { }
 
   /**
    * 開啟與資料庫同步的一個timer
@@ -102,8 +103,6 @@ export class CartService {
         count: 1,
         tempPrice: price
       });
-    } else {
-      this.cart[i].count++;
     }
   }
 
@@ -211,14 +210,17 @@ export class CartService {
 
   GetFromDB() {
     this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`).subscribe((data: GetFromDBResPonse) => {
+      console.log(data);
       if (data.status) {
         this.cart = [];
+        this.totalPrice = 0;
         for (const product of data.cart) {
           this.cart.push({
-            productID: product.ProductId,
+            productID: product.ProductID,
             count: product.Count,
-            tempPrice: 0
+            tempPrice: product.Price,
           });
+          this.totalPrice += product.Count * product.Price;
         }
       }
     });
