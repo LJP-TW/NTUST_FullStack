@@ -104,7 +104,9 @@ export class CartService {
       this.cart.push({
         ProductId: id,
         Count: 1,
-        Price: price
+        Price: price,
+        attributes: [],
+        icon: '',
       });
       this.totalPrice += price;
 
@@ -235,6 +237,8 @@ export class CartService {
             ProductId: product.ProductId,
             Count: product.Count,
             Price: (product.Price * 1000) / 1000,
+            attributes: [],
+            icon: '',
           });
           this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
