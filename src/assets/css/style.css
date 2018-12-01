@@ -109,6 +109,7 @@ a:hover { color: #000 }
 }
 .header_top_right {
   /* margin-bottom: -8px; */
+  -webkit-user-select: none;
   width: 15%;
   position: relative;
 }
