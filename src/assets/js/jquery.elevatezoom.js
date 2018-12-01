@@ -1708,7 +1708,7 @@ if ( typeof Object.create !== 'function' ) {
 
 
 
-
+	
 	$.fn.elevateZoom = function( options ) {
 		return this.each(function() {
 			var elevate = Object.create( ElevateZoom );
@@ -1716,17 +1716,17 @@ if ( typeof Object.create !== 'function' ) {
 			elevate.init( options, this );
 
 			$.data( this, 'elevateZoom', elevate );
-
+			console.log('Created Elevate Zoom');
 		});
 	};
 
 	$.fn.elevateZoom.options = {
 			zoomActivation: "hover", // Can also be click (PLACEHOLDER FOR NEXT VERSION)
-      zoomEnabled: true, //false disables zoomwindow from showing
-			preloading: 1, //by default, load all the images, if 0, then only load images after activated (PLACEHOLDER FOR NEXT VERSION)
-			zoomLevel: 1, //default zoom level of image
+      		zoomEnabled: true, //false disables zoomwindow from showing
+			preloading: 0, //by default, load all the images, if 0, then only load images after activated (PLACEHOLDER FOR NEXT VERSION)
+			zoomLevel: 0.7, //default zoom level of image
 			scrollZoom: false, //allow zoom on mousewheel, true to activate
-			scrollZoomIncrement: 0.1,  //steps of the scrollzoom
+			scrollZoomIncrement: 0.03,  //steps of the scrollzoom
 			minZoomLevel: false,
 			maxZoomLevel: false,
 			easing: false,

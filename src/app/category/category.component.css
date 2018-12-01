@@ -3,7 +3,12 @@
     100% {background-color: rgb(190, 224, 247)}
 } */
 
+.MonCatSel::before{
+    content: attr(data-text);
+}
+
 .MonCatSel {
+    
     display: inline-block;
     position: relative;
     margin: 6px 3px 0 0;
@@ -14,8 +19,10 @@
     border-style: solid;
     text-align: center;
     width: 30%;
+    /* height: 2em; */
     background-color: #eee;
     transition: background-color 1.0s ease 0s,border-color 1.3s ease 0s;
+    cursor: pointer;
 }
 
 /* .MonCatSel {
