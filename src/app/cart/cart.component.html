@@ -42,9 +42,9 @@
             </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <a href="product-detail" style="float: left;"><img [src]="order.icon" alt="" style="height: auto; width: 100px"/></a>
+                <a href="product-detail" style="float: left;"><img [src]="order.Icon" alt="" style="height: auto; width: 100px"/></a>
                 <!-- <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
-                <p>{{ order.name }}<br>
+                <p>{{ order.NAME }}<br>
                   特性:
                   <ng-container *ngFor="let attributes of order.attributes">
                     [{{ attributes.NAME }}]

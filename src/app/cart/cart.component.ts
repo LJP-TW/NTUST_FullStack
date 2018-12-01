@@ -141,9 +141,9 @@ export class CartComponent implements OnInit {
       this.monster
         .getMonstersByID(this.Cart[i].ProductId)
         .subscribe((data: Monster) => {
-          this.Cart[i].icon = data[0].Icon;
+          this.Cart[i].Icon = data[0].Icon;
           this.Cart[i].attributes = data[0].attributes;
-          this.Cart[i].name = data[0].NAME;
+          this.Cart[i].NAME = data[0].NAME;
           // this.CartData.push({
           //   productID: this.Cart[i].ProductId,
           //   name: data[0].NAME,
