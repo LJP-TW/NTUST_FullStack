@@ -36,28 +36,28 @@
 
 
           <!-- For 出所有商品 -->
-          <ng-container *ngFor="let order of this.Cart|slice : indexS :indexE; let i = index">
+          <ng-container *ngFor="let order of this.CartData|slice : indexS :indexE; let i = index">
             <div class="floatleft" style="margin-top: 73px;">
               <button class="buttonDelete button" (click)="CartRemove(i)"></button>
             </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <img [src]="order.product.imageLoc" alt="" style="height: auto; width: 100px; margin-left: 20px;" />
+                <img [src]="order.icon" alt="" style="height: auto; width: 100px; margin-left: 20px;" />
                 <!-- <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
-                <p>{{ order.product.name }}<br>
+                <p>{{ order.name }}<br>
                   特性:
-                  <ng-container *ngFor="let character of order.product.characteristics">
-                    [{{ character }}]
+                  <ng-container *ngFor="let attributes of order.attributes">
+                    [{{ attributes.NAME }}]
                   </ng-container>
                 </p>
               </div>
               <div class="cart_price">
-                <p>${{ order.finalPrice }}</p>
+                <p>${{ order.price }}</p>
               </div>
               <div class="cart_quantity">
                 <ul>
                   <li><button class="buttonMinus button" (click)="minusClick(i)"></button></li>
-                  <li><input type="text" class="quantity" [(ngModel)]=order.amount></li>
+                  <li><input type="text" class="quantity" [(ngModel)]="order.amount"></li>
                   <li><button class="buttonPlus button" (click)="plusClick(i)"></button></li>
                 </ul>
               </div>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="c_total_item sp_single_item">
                       <p>總共</p>
-                      <span>${{total}}</span>
+                      <span>${{cartTotal}}</span>
                     </div>
                   </div>
                 </div>
