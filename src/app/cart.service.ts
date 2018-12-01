@@ -192,7 +192,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].Price * this.cart[i].Count * 1000) / 1000;
+      this.totalPrice = (this.totalPrice * 1000 -  this.cart[i].Count * (this.cart[i].Price * 1000)) / 1000;
       this.cart.splice(i, 1);
 
       // 與資料庫同步相關的部分
@@ -236,7 +236,7 @@ export class CartService {
             Count: product.Count,
             Price: (product.Price * 1000) / 1000,
           });
-          this.totalPrice += product.Count * product.Price;
+          this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
       }
     });
