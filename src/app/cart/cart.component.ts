@@ -3,19 +3,24 @@ import { ProductDataBaseService } from '../product-data-base.service';
 import { CartService } from '../cart.service';
 import { CartItem } from '../cart-item';
 import { MonsterService } from '../monster.service';
+import { Monster } from '../monster';
+import { Attribute } from '@angular/compiler';
 
 
-// interface Order {
-//   product: any;
-//   amount: number;
-//   finalPrice: number;
-//   total: number;
-// }
+interface Order {
+  monster: Monster;
+  productID: number;
+  name: string;
+  amount: number;
+  // 總價
+  total: number;
+ // attributes: Attribute[];
+}
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.css"]
 })
 export class CartComponent implements OnInit {
   productsPerPage = 4;
@@ -35,6 +40,8 @@ export class CartComponent implements OnInit {
   // 接 DataService
   // 購物車陣列
   Cart: CartItem[] = [];
+  // 購物車詳細資料
+  CartData: Order[] = [];
   total = 0;
 
   CartTotalCtrl = true;
@@ -55,28 +62,28 @@ export class CartComponent implements OnInit {
     //   }
     // }
     this.Cart = this.cartService.cart;
+    this.initCartData();
+
     // this.Cart.forEach(element => {
     //   this.total += element.total;
     // });
     this.total = this.cartService.totalPrice;
-    for (let i = 0; i < this.Cart.length; i++) {
-      this.amountTotal += this.Cart[i].count;
-    }
     this.CartAmount = this.Cart.length;
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
     this.Cart = this.cartService.cart;
+    this.updateCartData();
     this.cartChanged();
     this.Page(1);
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     // Add 'implements AfterViewInit' to the class.
 
     // <script src="assets/js/main.js"></script>
-    const sliderAffect = document.createElement('script');
-    sliderAffect.type = 'text/javascript';
-    sliderAffect.src = 'assets/js/main.js';
+    const sliderAffect = document.createElement("script");
+    sliderAffect.type = "text/javascript";
+    sliderAffect.src = "assets/js/main.js";
     this.elementRef.nativeElement.appendChild(sliderAffect);
   }
 
@@ -86,10 +93,6 @@ export class CartComponent implements OnInit {
       index += (this.page - 1) * this.productsPerPage;
     }
     this.cartService.Plus(this.Cart[index].productID);
-
-    // ++this.Cart[index].count;
-    // this.Cart[index].total += this.Cart[index].finalPrice;
-    // this.total += this.Cart[index].finalPrice;
     this.amountTotal++;
   }
   // 減號紐被按下，減少商品數量
@@ -100,9 +103,6 @@ export class CartComponent implements OnInit {
 
     if (this.Cart[index].count !== 0) {
       this.cartService.Minus(this.Cart[index].productID);
-      // --this.Cart[index].count;
-      // this.Cart[index].total -= this.Cart[index].finalPrice;
-      // this.total -= this.Cart[index].finalPrice;
       this.amountTotal--;
     }
   }
@@ -111,8 +111,6 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    // this.total -= this.Cart[index].total;
-    // this.amountTotal -= this.Cart[index].amount;
     this.cartService.Remove(this.Cart[index].productID);
     this.cartChanged();
     if (this.pageMax < this.page) {
@@ -129,9 +127,29 @@ export class CartComponent implements OnInit {
     }
   }
   //
-  // 更新購物車
-  updateCart() {}
+  // 初始化購物車，從資料庫抓資料
+  initCartData() {
+    // todo 利用Cart裡的Cart資訊，從資料庫裡撈資料丟進CartData裡
+    this.amountTotal = 0;
+    for (let i = 0; i < this.Cart.length; i++) {
+      this.monster
+        .getMonstersByID(this.Cart[i].productID)
+        .subscribe((data: Monster) => {
+          console.log(data);
+          this.CartData.push({
+            monster: data[0],
+            productID: this.Cart[i].productID,
+            name: data[0].NAME,
+            amount: this.Cart[i].count,
+            total: data.price * this.Cart[i].count
+          });
+        });
 
+      this.amountTotal += this.Cart[i].count;
+    }
+  }
+  // 更新購物車，從資料庫抓資料
+  updateCartData() {}
   // page
   cartChanged() {
     this.pageMax = Math.ceil(this.Cart.length / this.productsPerPage);
