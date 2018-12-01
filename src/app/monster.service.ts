@@ -101,6 +101,14 @@ export class MonsterService {
     return `${environment.api}/Image/Base64/${MonsterID}`;
   }
 
+  getAttributes() {
+    return `${environment.api}/GetAttributes`;
+  }
+
+  search(name: string) {
+    return `${environment.api}/Search/${name}`;
+  }
+
   /**
    * 從後端資料庫取得特定 ID 之 Monster 的ID、名字、屬性、更多圖片、價格、折扣、描述
    *
