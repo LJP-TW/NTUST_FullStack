@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
+import { Router } from '@angular/router';
+import { Monster } from '../monster';
+import { CartService } from '../cart.service';
+import { AuthService } from '../auth.service';
+import { CartItem } from '../cart-item';
 
-
-interface Data {
-  country: string;
-  name: string;
-  address: string;
-  email: string;
-  phone: string;
-  total: number;
+interface Message {
+  order: string;
+}
+interface OrderResponse {
+  status: boolean;
+  message: Message;
 }
 
 @Component({
@@ -18,25 +21,41 @@ interface Data {
 })
 export class CheckoutComponent implements OnInit {
 
-  country = '';
-  name = '';
-  address = '';
-  email = '';
-  phone = '';
-  total = 0;
+  Data = {
+    country: '',
+    name: '',
+    Address: '',
+    email: '',
+    phone: '',
+    total: 0,
+  };
+  order: CartItem[];
   ck = false;
-  list: Data[] = [];
 
-  constructor(public productDataBase: ProductDataBaseService) { }
+  constructor(public cartService: CartService,
+              private authService: AuthService,
+              private router: Router,
+              public productDataBase: ProductDataBaseService) { }
   ngOnInit() {
-    this.productDataBase.odCart.forEach(price => {
-      this.total += price.total;
-    });
+    this.authService.LoggedInRedirect();
+    this.cartService.UpdateFunc();
+    this.cartService.GetFromDB();
+    this.Data.total = this.cartService.totalPrice,
+    this.order = this.cartService.cart;
+    console.log(this.order);
+    /*this.productDataBase.odCart.forEach(price => {
+      this.Data.total += price.total;
+    });*/
   }
-
   output() {
-    this.list.push({country: this.country, name: this.name, address: this.address,
-    email: this.email, phone: this.phone, total: this.total});
-    console.log(this.list);
+    this.cartService.MakeOrder(this.Data).subscribe((data: OrderResponse) => {
+      if (data.status) {
+        alert('下單成功!');
+        this.router.navigate(['/']);
+      } else {
+        alert('fail, check again!');
+      }
+    });
+    console.log(this.Data);
   }
 }
