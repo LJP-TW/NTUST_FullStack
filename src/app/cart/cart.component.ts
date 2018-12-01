@@ -8,19 +8,20 @@ import { Attribute } from '@angular/compiler';
 
 
 interface Order {
-  monster: Monster;
+ // monster: Monster;
   productID: number;
   name: string;
   amount: number;
+  price: number;
   // 總價
   total: number;
- // attributes: Attribute[];
+  attributes: Attribute[];
 }
 
 @Component({
-  selector: "app-cart",
-  templateUrl: "./cart.component.html",
-  styleUrls: ["./cart.component.css"]
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   productsPerPage = 4;
@@ -42,7 +43,7 @@ export class CartComponent implements OnInit {
   Cart: CartItem[] = [];
   // 購物車詳細資料
   CartData: Order[] = [];
-  total = 0;
+  cartTotal = 0;
 
   CartTotalCtrl = true;
   subTotal = 0;
@@ -51,24 +52,12 @@ export class CartComponent implements OnInit {
   CartAmount = 0;
 
   ngOnInit() {
-    // for (const id of this.productDataBase.Cart) {
-    //   for (const product of this.productDataBase.Products ) {
-    //     if (product.id === id) {
-    //       console.log(product);
-    //       this.Cart.push({product: product, amount: 1, total: product.price/100 * (100-product.discount)});
-    //       this.total += product.price;
-    //       break;
-    //     }
-    //   }
-    // }
+    console.log(this.cartTotal);
     this.Cart = this.cartService.cart;
     this.initCartData();
-
-    // this.Cart.forEach(element => {
-    //   this.total += element.total;
-    // });
-    this.total = this.cartService.totalPrice;
+    this.cartTotal = this.cartService.totalPrice;
     this.CartAmount = this.Cart.length;
+
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -81,9 +70,9 @@ export class CartComponent implements OnInit {
     // Add 'implements AfterViewInit' to the class.
 
     // <script src="assets/js/main.js"></script>
-    const sliderAffect = document.createElement("script");
-    sliderAffect.type = "text/javascript";
-    sliderAffect.src = "assets/js/main.js";
+    const sliderAffect = document.createElement('script');
+    sliderAffect.type = 'text/javascript';
+    sliderAffect.src = 'assets/js/main.js';
     this.elementRef.nativeElement.appendChild(sliderAffect);
   }
 
@@ -92,8 +81,12 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.cartService.Plus(this.Cart[index].productID);
+    this.CartData[index].amount++;
+    this.CartData[index].total += this.CartData[index].price;
+    this.cartTotal += this.CartData[index].price;
+    this.cartService.Plus(this.CartData[index].productID);
     this.amountTotal++;
+
   }
   // 減號紐被按下，減少商品數量
   minusClick(index: number) {
@@ -102,7 +95,10 @@ export class CartComponent implements OnInit {
     }
 
     if (this.Cart[index].count !== 0) {
-      this.cartService.Minus(this.Cart[index].productID);
+      this.cartService.Minus(this.CartData[index].productID);
+      this.CartData[index].amount--;
+      this.CartData[index].total -= this.CartData[index].price;
+      this.cartTotal -= this.CartData[index].price;
       this.amountTotal--;
     }
   }
@@ -111,7 +107,11 @@ export class CartComponent implements OnInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.cartService.Remove(this.Cart[index].productID);
+    this.cartService.Remove(this.CartData[index].productID);
+    this.amountTotal -= this.CartData[index].amount;
+    this.cartTotal = this.cartService.totalPrice;
+    this.CartData.splice(index, 1);
+    this.updateCartData();
     this.cartChanged();
     if (this.pageMax < this.page) {
       this.Page(this.page - 1);
@@ -135,13 +135,15 @@ export class CartComponent implements OnInit {
       this.monster
         .getMonstersByID(this.Cart[i].productID)
         .subscribe((data: Monster) => {
-          console.log(data);
+          // console.log(data);
           this.CartData.push({
-            monster: data[0],
+         // monster: data[0],
             productID: this.Cart[i].productID,
             name: data[0].NAME,
             amount: this.Cart[i].count,
-            total: data.price * this.Cart[i].count
+            price: data[0].price,
+            total: data[0].price * this.Cart[i].count,
+            attributes: data[0].attributes
           });
         });
 
@@ -149,11 +151,25 @@ export class CartComponent implements OnInit {
     }
   }
   // 更新購物車，從資料庫抓資料
-  updateCartData() {}
+  updateCartData() {
+    this.Cart = this.cartService.cart;
+    console.log('update');
+    // console.log(this.Cart.length);
+    for (let i = 0; i < this.CartData.length; i++) {
+      this.monster
+        .getMonstersByID(this.CartData[i].productID)
+        .subscribe((data: Monster) => {
+          console.log(data);
+          this.CartData[i].amount = this.Cart[i].count;
+          this.CartData[i].total = this.CartData[i].price * this.CartData[i].amount;
+        });
+      }
+  }
+
   // page
   cartChanged() {
     this.pageMax = Math.ceil(this.Cart.length / this.productsPerPage);
-    console.log(this.pageMax);
+    // console.log(this.pageMax);
     this.productMax = this.Cart.length;
   }
 

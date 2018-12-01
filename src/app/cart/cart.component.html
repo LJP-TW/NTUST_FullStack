@@ -44,20 +44,20 @@
               <div class="cart_item_img">
                 <img [src]="order.imageLoc" alt="" style="height: auto; width: 100px; margin-left: 20px;" />
                 <!-- <div class="floatleft" (click)="CartRemove(i)"><img src="images/close.png" alt="" /></div> -->
-                <p>{{ order.monster.NAME }}<br>
+                <p>{{ order.name }}<br>
                   特性:
-                  <!-- <ng-container *ngFor="let character of order.product.characteristics">
-                    [{{ character }}]
-                  </ng-container> -->
+                  <ng-container *ngFor="let attributes of order.attributes">
+                    [{{ attributes.NAME }}]
+                  </ng-container>
                 </p>
               </div>
               <div class="cart_price">
-                <p>${{ order.monster.price }}</p>
+                <p>${{ order.price }}</p>
               </div>
               <div class="cart_quantity">
                 <ul>
                   <li><button class="buttonMinus button" (click)="minusClick(i)"></button></li>
-                  <li><input type="text" class="quantity" [(ngModel)]=order.amount></li>
+                  <li><input type="text" class="quantity" [(ngModel)]="order.amount"></li>
                   <li><button class="buttonPlus button" (click)="plusClick(i)"></button></li>
                 </ul>
               </div>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="c_total_item sp_single_item">
                       <p>總共</p>
-                      <span>${{total}}</span>
+                      <span>${{cartTotal}}</span>
                     </div>
                   </div>
                 </div>
