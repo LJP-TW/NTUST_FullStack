@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ProductDataBaseService } from '../product-data-base.service';
+import { MonsterService} from '../monster.service';
+import { Monster } from '../monster';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-trending-area',
@@ -8,19 +10,23 @@ import { ProductDataBaseService } from '../product-data-base.service';
 })
 export class TrendingAreaComponent implements OnInit {
 
-product: any[];
+  product: any[] = [];
+  productNew: any[];
+  productCheap: any[];
+  productSold: any[];
 
-  constructor(public productDataBase: ProductDataBaseService, public elementRef: ElementRef) { }
+  constructor(public monsterSvc: MonsterService, public cartService: CartService, public elementRef: ElementRef) { }
 
   ngOnInit() {
-    this.product = this.productDataBase.Products.sort((a, b) => {
-      const d1 = new Date(a.updatedAt);
-      const d2 = new Date(b.updatedAt);
-      if (d1 > d2) {
-        return 1;
-      } else if (d1 < d2) {
-        return -1;
-      }
+    this.monsterSvc.getMonsters(0, 8, 'newest').subscribe((data: Monster[]) => {
+      this.productNew = data;
+      this.product = this.productNew;
+    });
+    this.monsterSvc.getMonsters(0, 8, 'cheapest').subscribe((data: Monster[]) => {
+      this.productCheap = data;
+    });
+    this.monsterSvc.getMonsters(0, 8, 'hottest').subscribe((data: Monster[]) => {
+      this.productSold = data;
     });
   }
 
@@ -46,23 +52,25 @@ product: any[];
   }
 
   sortByDate() {
-    this.product = this.productDataBase.Products.sort((a, b) => {
-      const d1 = new Date(a.updatedAt);
-      const d2 = new Date(b.updatedAt);
-      if (d1 > d2) {
-        return 1;
-      } else if (d1 < d2) {
-        return -1;
-      }
-    });
+    this.product = this.productNew;
   }
   sortByPrice() {
-    this.product = this.productDataBase.Products.sort((a, b) => {
-      if (a.price > b.price) {
-        return 1;
-      } else if (b.price > a.price) {
-        return -1;
-      }
-    });
+    this.product = this.productCheap;
+  }
+  sortBySold() {
+    this.product = this.productSold;
+  }
+  getPrice(price, discount) {
+    if (discount === 0) {
+      return price;
+    } else {
+      return Math.round(price * discount / 100);
+    }
+  }
+  AddToCart(id, originPrice, discount) {
+    this.cartService.Add(id, this.getPrice(originPrice, discount));
+  }
+  trackByItem(index, item) {
+    return item.id;
   }
 }

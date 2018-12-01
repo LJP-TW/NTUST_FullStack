@@ -31,7 +31,7 @@
 </div>
 
 <section class="checkout_area">
-    <form #myForm="ngForm" class="myForm" name="myForm" ngNativeValidate>
+    <form #myForm="ngForm" class="myForm" ngNativeValidate>
       <div class="container">
         <div class="row">
           <div class="col-md-9 col-sm-8 col-xs-12">
@@ -43,7 +43,7 @@
               <div class="checkout_form">
                 <div class="country_select">
                   <p>國家 Country <span>*</span></p>
-                  <select class="selectpicker sel_state" [(ngModel)]="country" name="country">
+                  <select class="selectpicker sel_state" [(ngModel)]="Data.country" name="country">
                     <option>Taiwan</option>
                     <option>China</option>
                     <option>USA</option>
@@ -54,26 +54,34 @@
                 <div class="c_name_box">
                   <div class="c_name_box_left">
                     <p>姓名 Name <span>*</span></p>
-                    <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required>
+                    <input type="text" placeholder="Name" [(ngModel)]="Data.name" name="name" required>
+                    <div *ngIf="myForm.controls['name'].hasError('required') && myForm.controls['name'].touched">
+                        <span style="color:red">Name is required.</span></div>
                   </div>
                 </div>
 
                 <div class="c_address">
                   <p>住址 Address <span>*</span></p>
-                  <input type="text" placeholder="Address" [(ngModel)]="address" name="address" required>
+                  <input type="text" placeholder="Address" [(ngModel)]="Data.Address" name="address" required>
+                  <div *ngIf="myForm.controls['address'].hasError('required') && myForm.controls['address'].touched">
+                    <span style="color:red">Address is required.</span></div>
                 </div>
 
                 <div class="c_mail_box">
                     <div class="c_name_box_left">
                       <p>電子郵件 Email <span>*</span></p>
-                      <input type="text" placeholder="Email" [(ngModel)]="email" name="email" required>
+                      <input type="text" placeholder="Email" [(ngModel)]="Data.email" name="email" required>
+                      <div *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched">
+                        <span style="color:red">Email is required.</span></div>
                     </div>
                 </div>
 
                 <div class="c_mail_box">
                     <div class="c_name_box_left">
                       <p>手機號碼 Phone <span>*</span></p>
-                      <input type="text" placeholder="Phone" [(ngModel)]="phone" name="phone" required>
+                      <input type="text" placeholder="Phone" [(ngModel)]="Data.phone" name="phone" required>
+                      <div *ngIf="myForm.controls['phone'].hasError('required') && myForm.controls['phone'].touched">
+                        <span style="color:red">Phone number is required.</span></div>
                     </div>
                 </div>
               </div>
@@ -90,10 +98,10 @@
                   <span>總價</span>
                 </div>
                 <!-- 列出寶貝, 總價 -->
-                <ng-container *ngFor="let order of productDataBase.odCart">
+                <ng-container *ngFor="let item of order">
                   <div class="c_single_item">
-                    <p>{{ order.product.name }} x {{ order.amount }}</p>
-                    <span>${{ order.total }}</span>
+                    <p>{{ item.ProductId }} x {{ item.Count }}</p>
+                    <span>${{ item.Price }}</span>
                   </div>
                 </ng-container>
 
@@ -106,7 +114,7 @@
                 <!-- Total -->
                 <div class="c_total_item sp_single_item">
                   <p>總價錢 Total</p>
-                    <span>${{ total }}</span>
+                    <span>${{ Data.total }}</span>
                 </div>
               <!--  <div class="c_payment">
                   <p>Select Payment Method</p>
