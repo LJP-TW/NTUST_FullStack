@@ -159,6 +159,29 @@ export class CartService {
     }
   }
 
+  CustomPlus(id: number, count: number) {
+    // 有登入才能使用購物車
+    if (this.authSvc.LoggedInRedirect()) {return; }
+
+    // 執行真正要做的事
+    let found = false;
+    let i;
+    for (i = 0 ; i < this.cart.length ; i++) {
+        if (this.cart[i].ProductId === id) {
+          found = true;
+          break;
+        }
+    }
+
+    if (found) {
+      this.totalPrice = (this.totalPrice * 1000 + (this.cart[i].Price * 1000) * count) / 1000;
+      this.cart[i].Count += count;
+
+      // 與資料庫同步相關的部分
+      this.ModifyCart();
+    }
+  }
+
   /**
    * 將在 this.cart 中特定 ID 的商品數量減1
    * 若 this.cart 中沒有此 ID，就不會更改到 this.cart
@@ -237,7 +260,7 @@ export class CartService {
       cart: JSON.parse(JSON.stringify(this.cart, ['ProductId', 'Count'])),
       token: localStorage.getItem('token'),
     };
-
+    console.log(postData);
     return this.httpClient.post(`${environment.api}/UpdateCart`, postData);
   }
 
