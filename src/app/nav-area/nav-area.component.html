@@ -94,23 +94,25 @@
       </nav>
     </div>
     <div class="nav_right floatright">
-      <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><img src="assets/images/bag.png" alt="Bag" />購物車: {{productDataBase.odCart.length}} 項</a>
+      <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><img src="assets/images/bag.png" alt="Bag" (click)="test()" />購物車: {{cartService.cart.length}} 項</a>
       <div class="cart_menu">
-        <ng-container *ngFor="let item of productDataBase.odCart;let index = index">
+        <ng-container *ngFor="let item of cartService.cart; let index = index">
+          <ng-container *ngIf="index < 4">
             <div class="cart_items">
-                <div class="c_item_img floatleft">
-                  <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" ><img [src]="item.product.imageLoc" alt="" /></a>
+              <div class="c_item_img floatleft">
+                <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" ><img [src]="monsterService.getMonsterImg(200, item.ProductId)" alt="" /></a>
+              </div>
+              <div class="c_item_totals floatleft">
+                <div class="c_item_totals_detail floatleft">
+                  <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" ><h5>{{ item.ProductId }}</h5></a>
+                  <span>{{item.Count}} x $ {{ item.Price}}</span>
                 </div>
-                <div class="c_item_totals floatleft">
-                  <div class="c_item_totals_detail floatleft">
-                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" ><h5>{{ item.product.name }}</h5></a>
-                    <span>{{item.amount}} x $ {{ item.finalPrice}}</span>
-                  </div>
-                  <div class="close_icon_cart floatleft" (click)="productDataBase.CartRemove(index)">
-                    <img src="assets/images/close.png" alt="" />
-                  </div>
+                <div class="close_icon_cart floatleft" (click)="cartService.Remove(item.ProductId)">
+                  <img src="assets/images/close.png" alt="" />
                 </div>
               </div>
+            </div>
+          </ng-container>
         </ng-container>
         <div class="cart_totals">
           <!-- Todo: 運費機制 -->
@@ -118,7 +120,7 @@
             <p>免運費</p>
           </div>
           <div class="c_totals_right floatleft">
-            <p>總額: ${{CartTotalCost()}}</p>
+            <p>總額: ${{cartService.totalPrice}}</p>
           </div>
         </div>
         <div class="cart_view_bottom">
