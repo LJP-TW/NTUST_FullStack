@@ -53,20 +53,6 @@ export class CartService {
     }
   }
 
-  UpdateFunc() {
-    if (this.cartUpdated) {
-      console.log('StopUpdating');
-      this.StopUpdate();
-    } else {
-      console.log('UpdateToDB');
-      this.UpdateToDB().subscribe((resp) => {
-        console.log(resp);
-      }, (error) => {
-        console.log(error);
-      });
-    }
-  }
-
   /**
    * 當 timer 停止, 才會再跟資料庫同步一次購物車內容
    */
@@ -76,6 +62,26 @@ export class CartService {
       clearInterval(this.cartUpdater);
       this.Updating = false;
     }
+  }
+
+  UpdateFunc() {
+    if (this.cartUpdated) {
+      console.log('StopUpdating');
+      this.StopUpdate();
+    } else {
+      console.log('UpdateToDB');
+      this.UpdateToDB().subscribe((resp) => {
+        console.log(resp);
+        this.cartUpdated = true;
+      }, (error) => {
+        console.log(error);
+      });
+    }
+  }
+
+  ForceUpdate() {
+    this.cartUpdated = false;
+    this.UpdateFunc();
   }
 
   /**
@@ -107,6 +113,7 @@ export class CartService {
         Price: price,
         attributes: [],
         icon: '',
+        name: '',
       });
       this.totalPrice += price;
 
@@ -239,6 +246,7 @@ export class CartService {
             Price: (product.Price * 1000) / 1000,
             attributes: [],
             icon: '',
+            name: '',
           });
           this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
