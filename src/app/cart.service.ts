@@ -8,16 +8,10 @@ interface Message {
   [key: string]: any;
 }
 
-interface Cart {
-  ProductID: number;
-  Count: number;
-  Price: number;
-}
-
 interface GetFromDBResPonse {
   status: boolean;
   message: Message;
-  cart: Cart[];
+  cart: CartItem[];
 }
 
 @Injectable({
@@ -29,7 +23,7 @@ export class CartService {
   cart: CartItem[] = [];
 
   // 總額
-  totalPrice: number;
+  totalPrice = 0;
 
   cartUpdater;
   // 購物車是否已經更新
@@ -50,16 +44,27 @@ export class CartService {
   StartUpdate() {
     console.log('Update Start');
     if (!this.Updating) {
-        this.Updating = true;
-        this.cartUpdater = setInterval(() => {
-        if (this.cartUpdated) {
-             this.StopUpdate();
-        } else {
-          this.UpdateToDB();
-        }
+      console.log('Updating');
+      this.Updating = true;
+      this.UpdateFunc();
+      this.cartUpdater = setInterval(() => {
+        this.UpdateFunc();
       }, this.updateTime);
     }
-    return this.cartUpdater;
+  }
+
+  UpdateFunc() {
+    if (this.cartUpdated) {
+      console.log('StopUpdating');
+      this.StopUpdate();
+    } else {
+      console.log('UpdateToDB');
+      this.UpdateToDB().subscribe((resp) => {
+        console.log(resp);
+      }, (error) => {
+        console.log(error);
+      });
+    }
   }
 
   /**
@@ -85,24 +90,26 @@ export class CartService {
   Add(id: number, price: number) {
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
-    // 與資料庫同步相關的部分
-    this.ModifyCart();
+
     // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
-        if (this.cart[i].productID === id) {
+        if (this.cart[i].ProductId === id) {
           found = true;
           break;
         }
     }
-    this.totalPrice += price;
     if (!found) {
       this.cart.push({
-        productID: id,
-        count: 1,
-        tempPrice: price
+        ProductId: id,
+        Count: 1,
+        Price: price
       });
+      this.totalPrice += price;
+
+      // 與資料庫同步相關的部分
+      this.ModifyCart();
     }
   }
 
@@ -115,21 +122,23 @@ export class CartService {
   Plus(id: number) {
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
-    // 與資料庫同步相關的部分
-    this.ModifyCart();
+
     // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
-        if (this.cart[i].productID === id) {
+        if (this.cart[i].ProductId === id) {
           found = true;
           break;
         }
     }
 
     if (found) {
-      this.totalPrice += this.cart[i].tempPrice;
-      this.cart[i].count++;
+      this.totalPrice = (this.totalPrice * 1000 + this.cart[i].Price * 1000) / 1000;
+      this.cart[i].Count++;
+
+      // 與資料庫同步相關的部分
+      this.ModifyCart();
     }
   }
 
@@ -142,21 +151,23 @@ export class CartService {
   Minus(id: number) {
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
-    // 與資料庫同步相關的部分
-    this.ModifyCart();
+
     // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
-        if (this.cart[i].productID === id) {
+        if (this.cart[i].ProductId === id) {
           found = true;
           break;
         }
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].tempPrice * 1000) / 1000;
-      this.cart[i].count--;
+      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].Price * 1000) / 1000;
+      this.cart[i].Count--;
+
+      // 與資料庫同步相關的部分
+      this.ModifyCart();
     }
   }
 
@@ -169,21 +180,23 @@ export class CartService {
   Remove(id: number) {
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
-    // 與資料庫同步相關的部分
-    this.ModifyCart();
+
     // 執行真正要做的事
     let found = false;
     let i;
     for (i = 0 ; i < this.cart.length ; i++) {
-        if (this.cart[i].productID === id) {
+        if (this.cart[i].ProductId === id) {
           found = true;
           break;
         }
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].tempPrice * this.cart[i].count * 1000) / 1000;
+      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].Price * this.cart[i].Count * 1000) / 1000;
       this.cart.splice(i, 1);
+
+      // 與資料庫同步相關的部分
+      this.ModifyCart();
     }
   }
 
@@ -203,8 +216,11 @@ export class CartService {
    * 與資料庫進行購物車的同步
    */
   UpdateToDB() {
-    const postData = this.cart;
-    postData['token'] = localStorage.getItem('token');
+    const postData: any = {
+      cart: JSON.parse(JSON.stringify(this.cart, ['ProductId', 'Count'])),
+      token: localStorage.getItem('token'),
+    };
+
     return this.httpClient.post(`${environment.api}/UpdateCart`, postData);
   }
 
@@ -216,9 +232,9 @@ export class CartService {
         this.totalPrice = 0;
         for (const product of data.cart) {
           this.cart.push({
-            productID: product.ProductID,
-            count: product.Count,
-            tempPrice: product.Price,
+            ProductId: product.ProductId,
+            Count: product.Count,
+            Price: (product.Price * 1000) / 1000,
           });
           this.totalPrice += product.Count * product.Price;
         }
