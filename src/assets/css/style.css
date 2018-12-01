@@ -642,6 +642,7 @@ text-transform: uppercase;
   margin-top: 0;
 }
 .c_item_totals_detail > span {
+  display: block;
   color: #ff6766;
   font-size: 12px;
 }
@@ -939,7 +940,7 @@ padding-left: 18px;
   padding: 1px 8px;
 }
 /* .item-discount > p{
-  
+
 } */
 .item-new {
   border: 1px solid #ff6766;

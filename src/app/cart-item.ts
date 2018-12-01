@@ -3,8 +3,10 @@ export interface CartItem {
   ProductId: number;
   Count: number;
   Price: number;
+  NAME?: string;
+  NAME_EN?: string;
+  NAME_JP?: string;
   attributes?: Attribute[];
-  icon?: string;
-  name?: string;
+  Icon?: string;
   // [key: string]: any;
 }
