@@ -8,18 +8,19 @@ import { Monster } from './monster';
 })
 export class MonsterService {
 
-  ExampleMonster:Monster = {
+  // 快取容器, 請自取
+  ExampleMonster: Monster = {
     ATTACK: 0,
     DEFENSE: 0,
     HP: 0,
-    NAME: "EXAMPLE",
-    NAME_EN: "EXAMPLE",
-    NAME_JP: "EXAMPLE",
+    NAME: 'EXAMPLE',
+    NAME_EN: 'EXAMPLE',
+    NAME_JP: 'EXAMPLE',
     SPEED: 0,
     SP_ATTACK: 0,
     SP_DEFENSE: 0,
-    createdAt: "EXAMPLE",
-    description: "EXAMPLE",
+    createdAt: 'EXAMPLE',
+    description: 'EXAMPLE',
     discount: 0,
     id: 0,
     imgNum: 0,
@@ -27,12 +28,12 @@ export class MonsterService {
     sold: 0,
     attributes: [
       {
-        NAME: "EXAMPLE",
-        NAME_JP: "EXAMPLE",
-        NAME_EN: "EXAMPLE",
+        NAME: 'EXAMPLE',
+        NAME_JP: 'EXAMPLE',
+        NAME_EN: 'EXAMPLE',
       }
     ]
-  }
+  };
 
   // 假資料
   tempMonsters = [

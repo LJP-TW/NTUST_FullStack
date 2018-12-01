@@ -1,4 +1,4 @@
-import { Component, OnInit,ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDataBaseService } from '../product-data-base.service';
 import { Monster } from '../monster';
@@ -13,13 +13,13 @@ import { CategoryService } from '../category.service';
 export class ProductDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private router:Router,
-    private monsterService:MonsterService,
+    private router: Router,
+    private monsterService: MonsterService,
     private elementRef: ElementRef,
-    private cartService:CategoryService,
+    private cartService: CategoryService,
     ) { }
 
-  public Product:Monster;
+  public Product: Monster;
   ngOnInit() {
     // <script src="assets/js/bootstrap.min.js"></script>
     const sliderAffect = document.createElement('script');
@@ -33,17 +33,16 @@ export class ProductDetailComponent implements OnInit {
     sliderAffect2.src = 'assets/js/main.js';
     this.elementRef.nativeElement.appendChild(sliderAffect2);
 
-    //要更新
-    this.route.params.subscribe( (data:any) => {
-      if(this.cartService.monCache.length){
-        this.Product = this.cartService.monCache.filter((cacheData:Monster)=>{
-          return cacheData.id == data.id;
+    // 要更新
+    this.route.params.subscribe( (data: any) => {
+      if (this.cartService.monCache.length) {
+        this.Product = this.cartService.monCache.filter((cacheData: Monster) => {
+          return cacheData.id === data.id;
         })[0];
-      }
-      else{
+      } else {
         this.router.navigate(['**']);
       }
-    })
+    });
   }
 
 }
