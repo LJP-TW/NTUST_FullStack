@@ -97,17 +97,19 @@
       <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><img src="assets/images/bag.png" alt="Bag" (click)="test()" />購物車: {{cartService.cart.length}} 項</a>
       <div class="cart_menu">
         <ng-container *ngFor="let item of cartService.cart; let index = index">
-          <ng-container *ngIf="index < 4">
+          <ng-container *ngIf="index < maxShowNum">
             <div class="cart_items">
               <div class="c_item_img floatleft">
-                <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" ><img [src]="monsterService.getMonsterImg(200, item.ProductId)" alt="" /></a>
+                <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon" alt="" /></a>
               </div>
               <div class="c_item_totals floatleft">
                 <div class="c_item_totals_detail floatleft">
-                  <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active" ><h5>{{ item.ProductId }}</h5></a>
-                  <span>{{item.Count}} x $ {{ item.Price}}</span>
+                  <a [routerLink]="['/product-detail/', item.ProductId]" routerLinkActive="router-link-active" ><h5>{{ item.NAME }}</h5></a>
+                  <span>數量: {{ item.Count }}</span>
+                  <span>單價: {{ item.Price }}$</span>
+                  <span>總額: {{ item.Count * item.Price }}$</span>
                 </div>
-                <div class="close_icon_cart floatleft" (click)="cartService.Remove(item.ProductId)">
+                <div class="close_icon_cart floatleft" (click)="Remove(item.ProductId, index)">
                   <img src="assets/images/close.png" alt="" />
                 </div>
               </div>
@@ -125,9 +127,12 @@
         </div>
         <div class="cart_view_bottom">
           <div class="c_totals_left floatleft">
-            <a [routerLink]="['/cart']" routerLinkActive="router-link-active" >檢視購物車</a>
+            <a [routerLink]="['/cart']" routerLinkActive="router-link-active" >檢視</a>
           </div>
-          <div class="c_totals_right floatleft">
+          <div class="c_totals_left floatleft">
+            <a (click)="cartService.ForceUpdate()" style="cursor: pointer;" >儲存</a>
+          </div>
+          <div class="c_totals_right floatleft" style="width: 100%">
             <a [routerLink]="['/checkout']" routerLinkActive="router-link-active" >結帳</a>
           </div>
         </div>

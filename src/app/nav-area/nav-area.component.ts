@@ -5,6 +5,10 @@ import { NavService } from './../nav.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
 
+interface MonsterCache {
+  name: string;
+}
+
 @Component({
   selector: 'app-nav-area',
   templateUrl: './nav-area.component.html',
@@ -13,8 +17,13 @@ import { ProductDataBaseService } from '../product-data-base.service';
 export class NavAreaComponent implements OnInit {
   hover = 0;
 
-  constructor(public productDataBase: ProductDataBaseService,
-    public navService: NavService,
+  // 最大秀出的 CartItem 數量
+  maxShowNum = 4;
+
+  // 暫存
+  monstersCache: MonsterCache[] = [];
+
+  constructor(public navService: NavService,
     public cartService: CartService,
     public monsterService: MonsterService,
     public authService: AuthService) { }
@@ -22,6 +31,21 @@ export class NavAreaComponent implements OnInit {
   ngOnInit() {
     if (this.authService.LoggedIn()) {
       this.cartService.GetFromDB();
+
+      for (let i = 0; i < this.maxShowNum; ++i) {
+        if (this.cartService.cart.length <= i) {
+          break;
+        }
+
+        this.monstersCache.push({
+          name: '',
+        });
+
+        this.monsterService.getMonstersByID(this.cartService.cart[i].ProductId).subscribe((data) => {
+          console.log(data);
+          // this.monstersCache[i].name = data;
+        });
+      }
     }
   }
 
@@ -29,11 +53,7 @@ export class NavAreaComponent implements OnInit {
     console.log(this.cartService.cart);
   }
 
-  CartTotalCost() {
-    let total = 0;
-    this.productDataBase.odCart.forEach((n) => {
-        total += n.total;
-    });
-    return total;
+  Remove(id: number, index: number) {
+    this.cartService.Remove(id);
   }
 }

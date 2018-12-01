@@ -1,3 +1,5 @@
+import { MonsterService } from './monster.service';
+import { Monster } from './monster';
 import { HttpClient } from '@angular/common/http';
 import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
@@ -34,7 +36,8 @@ export class CartService {
   Updating = false;
 
   constructor(private httpClient: HttpClient,
-              private authSvc: AuthService) { }
+              private authSvc: AuthService,
+              private monsterService: MonsterService) { }
 
   /**
    * 開啟與資料庫同步的一個timer
@@ -93,7 +96,7 @@ export class CartService {
    * @param id: number
    * @param price: number
    */
-  Add(id: number, price: number) {
+  Add(id: number) {
     // 有登入才能使用購物車
     if (this.authSvc.LoggedInRedirect()) {return; }
 
@@ -107,18 +110,23 @@ export class CartService {
         }
     }
     if (!found) {
-      this.cart.push({
-        ProductId: id,
-        Count: 1,
-        Price: price,
-        attributes: [],
-        icon: '',
-        name: '',
-      });
-      this.totalPrice += price;
+      // 從 server 抓一次此 monster
+      this.monsterService.getMonstersByID(id).subscribe((resp: Monster[]) => {
+        this.cart.push({
+          ProductId: id,
+          Count: 1,
+          Price: resp[0].price,
+          NAME: resp[0].NAME,
+          NAME_EN: resp[0].NAME_EN,
+          NAME_JP: resp[0].NAME_JP,
+          attributes: resp[0].attributes,
+          Icon: resp[0].Icon,
+        });
+        this.totalPrice += resp[0].price;
 
-      // 與資料庫同步相關的部分
-      this.ModifyCart();
+        // 與資料庫同步相關的部分
+        this.ModifyCart();
+      });
     }
   }
 
@@ -235,7 +243,6 @@ export class CartService {
 
   GetFromDB() {
     this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`).subscribe((data: GetFromDBResPonse) => {
-      console.log(data);
       if (data.status) {
         this.cart = [];
         this.totalPrice = 0;
@@ -244,9 +251,11 @@ export class CartService {
             ProductId: product.ProductId,
             Count: product.Count,
             Price: (product.Price * 1000) / 1000,
-            attributes: [],
-            icon: '',
-            name: '',
+            NAME: product.NAME,
+            NAME_EN: product.NAME_EN,
+            NAME_JP: product.NAME_JP,
+            attributes: product.attributes,
+            Icon: product.Icon,
           });
           this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
