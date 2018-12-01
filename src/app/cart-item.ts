@@ -1,8 +1,10 @@
+import { Attribute } from './attribute';
 export interface CartItem {
   ProductId: number;
   Count: number;
   Price: number;
-  attributes?: string[];
+  attributes?: Attribute[];
   icon?: string;
+  name?: string;
   // [key: string]: any;
 }
