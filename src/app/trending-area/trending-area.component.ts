@@ -14,7 +14,6 @@ export class TrendingAreaComponent implements OnInit {
   productNew: any[];
   productCheap: any[];
   productSold: any[];
-
   constructor(public monsterSvc: MonsterService, public cartService: CartService, public elementRef: ElementRef) { }
 
   ngOnInit() {
@@ -68,7 +67,7 @@ export class TrendingAreaComponent implements OnInit {
     }
   }
   AddToCart(id, originPrice, discount) {
-    this.cartService.Add(id, this.getPrice(originPrice, discount));
+    // this.cartService.Add(id, this.getPrice(originPrice, discount));
   }
   trackByItem(index, item) {
     return item.id;

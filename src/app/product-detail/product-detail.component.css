@@ -1,0 +1,66 @@
+.monster_table{
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    display: table-row-group;
+    /* width: 500px; */
+    margin: 10px; 
+}
+
+.monster_table td{
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #f0f0f0;
+    font-weight: 400;
+    color : black;
+}
+
+.monster_detail{
+    display: table-row;
+}
+
+.monster_detail_name{
+    display: table-cell;
+    padding: 4px 0px 4px 20px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.monster_detail_bar{
+    display: table-cell;
+    width:100%;
+    min-width: 150px;
+    padding: 4px 10px;
+}
+
+.monster_detail_bar  div{ 
+    display: block;
+    height: .75rem;
+    border-radius: 4px;
+    background-color: #a3a3a3;
+    border: 1px solid #737373;
+    border-color: rgba(0,0,0,0.15);
+}
+
+.monster_detail_value{
+    display: table-cell;
+    padding: 4px 20px 4px 0px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.attr_icon{
+    
+    color: black;
+    display: inline-block;
+    width: 50px;
+    padding: 1px 0px;
+    /* height: 17px; */
+    text-align: center;
+    font-size: 15px;
+    background-color: transparent;
+    border: 2px;
+    border-style: solid;
+    border-radius: 8px;
+    margin: 0px 1px;
+}

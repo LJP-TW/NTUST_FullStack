@@ -9,6 +9,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { TurnComponent } from './product-detail/turn/turn.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SingleBlogComponent } from './single-blog/single-blog.component';
@@ -44,6 +45,10 @@ const routes: Routes = [
   },
   {
     path: 'product-detail/:id',
+    component: TurnComponent,
+  },
+  {
+    path: 'product-detail-content/:id',
     component: ProductDetailComponent
   },
   {

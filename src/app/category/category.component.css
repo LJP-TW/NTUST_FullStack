@@ -64,3 +64,52 @@
     border-radius: 50%;
     transition: all 0.5s ease 0s;
 }
+
+
+.searchDisable{
+    background-color: gray;
+}
+
+.Animate1{
+    transition: all 0.5s ease 0s;
+}
+
+/* Button CSS */
+  input.checkbox{
+    display:none;  
+  }
+  label.checkbox{
+    background-color: rgba(255, 0, 0, 0.9);
+    width: 35px;
+    height: 15px;
+    box-sizing: border-box;
+    border: 2px solid;
+    float: left;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: .3s ease;
+    padding: 0px;
+    margin: 0px 4px;
+  }
+  input[type=checkbox]:checked + label.checkbox{
+    background:#55e868;
+  }
+  input[type=checkbox]:checked + label.checkbox:before{
+    left:20px;
+  }
+  label.checkbox:before{
+    transition: .3s ease;
+    content: '';
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    background: white;
+    left: 1px;
+    top: 1px;
+    box-sizing: border-box;
+    border: 2px solid;
+    color: black;
+    border-radius: 100px;
+  }
+/* END OF BUTTON CSS */

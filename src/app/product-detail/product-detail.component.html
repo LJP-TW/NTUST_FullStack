@@ -14,8 +14,7 @@
     </div>
   </div>
 </div> -->
-
-<section class="gray_tshirt_area">
+  <section class="gray_tshirt_area">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -27,59 +26,54 @@
 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs product_detail_zoom_tab" role="tablist">
-              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                <div class="small_img">
-                  <img src="assets//images/small_img1.jpg" alt="" />
-                </div>
-              </a></li>
-              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
-                <div class="small_img">
-                  <img src="assets//images/p_thumb.png" alt="" />
-                </div>
-              </a></li>
-              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-                <div class="small_img">
-                  <img src="assets//images/p_thumb2.png" alt="" />
-                </div>
-              </a></li>
+              <ng-container *ngFor="let  item of ImageIndex() ">
+                  <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                      <div class="small_img">
+                        <img (click)="ImageSwap(item)" [src]="imageSrc[item]" alt="" />
+                      </div>
+                    </a>
+                  </li>
+              </ng-container>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="home">
-                <div class="single_p_image">
-                  <a href="assets//images/single-large.jpg" data-lightbox="image-1" data-title="My caption"><img src="assets//images/product-plus.png" alt="" /></a>
-                  <img id="zoom_02" src="assets//images/Product-Details-04.jpg" data-zoom-image="assets//images/single-large.jpg" alt=""/>
+                <div role="tabpanel" class="tab-pane active" id="home">
+                  <div class="single_p_image">
+                    <img id="zoom_01" [src]="imageSrc[ImageID]" [attr.data-zoom-image]="imageSrc[ImageID]" alt=""/>
+                  </div>
                 </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="profile">
-                <div class="single_p_image">
-                  <a href="assets//images/single-large1.png" data-lightbox="image-1" data-title="My caption"><img src="assets//images/product-plus.png" alt="" /></a>
-                  <img id="zoom_03" src="assets//images/product_detail_05.png" data-zoom-image="assets//images/single-large1.png" alt=""/>
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="messages">
-                <div class="single_p_image">
-                  <a href="assets//images/single-large2.png" data-lightbox="image-1" data-title="My caption"><img src="assets//images/product-plus.png" alt="" /></a>
-                  <img id="zoom_04" src="assets//images/product_detail_06.png" data-zoom-image="assets//images/single-large2.png" alt=""/>
-                </div>
-              </div>
               </div>
 
             </div>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
-
+          <ng-container *ngIf="Product.id != 0">
           <div class="product_detail_heading">
             <div class="detail_heading_left">
-              <h3>{{ Product.NAME }} </h3>
-              <div class="old_price_gray"><p> $90.30 </p></div>
-              <div class="new_price_gray"><del> $100.30 </del></div>
+              <h3>
+                {{ Product.NAME }}
+                <ng-container *ngFor="let attr of Product.attributes">
+                  <p class="attr_icon" [ngStyle]="CategoryIconStyle(attr.NAME)">
+                    {{attr.NAME}}
+                  </p>
+                </ng-container>
+              </h3>
+              <div class="new_price_gray">
+                <p> 
+                  {{ this.categoryService.MathRound(Product.price / 100 * Product.discount) }} 
+                  <ng-container *ngIf="Product.discount > 0">
+                      <span class="item-discount">{{Product.discount}}%</span>
+                  </ng-container>
+                </p>
+              </div>
+              <ng-container *ngIf="Product.discount > 0">
+                <div class="old_price_gray"><del>{{ Product.price }} </del></div>
+              </ng-container>
             </div>
-            <div class="detail_heading_right">
-              <!-- Todo -->
-              <!-- Rank System -->
+            <!-- <div class="detail_heading_right">
               <ul id="detail_star">
                 <li><a class="fa fa-star-o red"></a></li>
                 <li><a class="fa fa-star-o red"></a></li>
@@ -88,22 +82,23 @@
                 <li><a class="fa fa-star-o"></a></li>
               </ul>
               <p>(5 Review)</p>
-            </div>
+            </div> -->
           </div>
-
+          </ng-container>
           <div class="panel-group product_accordion" id="home-accordion-single" role="tablist" aria-multiselectable="true">
-           <div class="panel panel-default product_default">
+<!-- 怪物描述 -->
+            <div class="panel panel-default product_default">
             <div class="panel-heading product_accordion_heading" role="tab" id="headingOneP">
               <h4 class="panel-title product_accordion_head">
                <a data-toggle="collapse" data-parent="#home-accordion-single" href="#collapseOneP" aria-expanded="true" aria-controls="collapseOneP">
-                 Description
+                  描述
                  <span class="floatright"><i class="fa fa-minus"></i></span>
                </a>
               </h4>
             </div>
             <div id="collapseOneP" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOneP">
               <div class="panel-body product_ac_body">
-             <p>Pellentesque habitant morbi tristique senectus et netus et males suada fames acila turpis egestas. Vestibulum tortor quam, feugialth vitae, ultricies eget, tempor sitare amet, ante. Donec eu libero sitkar amet quam.</p>
+             <p>{{Product.description}}</p>
              <ul id="product_accord_nav">
                 <li><a>Tristique senectus et netus aspernatur aut.</a></li>
                 <li><a>Labore doloam aliquam quaerat voluptatem.</a></li>
@@ -112,84 +107,122 @@
               </div>
             </div>
            </div>
+<!-- 怪物資料 -->
            <div class="panel panel-default product_default">
             <div class="panel-heading product_accordion_heading" role="tab" id="headingTwoP">
               <h4 class="panel-title product_accordion_head">
-             <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion-single" href="#collapseTwoP" aria-expanded="false" aria-controls="collapseTwoP">
-               size & fit
+                <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion-single" href="#collapseTwoP" aria-expanded="false" aria-controls="collapseTwoP">
+                  產品數值
                <span class="floatright"><i class="fa fa-plus"></i></span>
-             </a>
+                </a>
               </h4>
             </div>
             <div id="collapseTwoP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoP">
               <div class="panel-body fit">
-             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
+                <tbody class='monster_table'>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          生命值
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div [ngStyle]=" SingleAttrStyle(Product.HP) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{Product.HP}}
+                        </td>
+                    </tr>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          攻擊
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div [ngStyle]=" SingleAttrStyle(Product.ATTACK) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{Product.ATTACK}}
+                        </td>
+                    </tr>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          防守
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div [ngStyle]=" SingleAttrStyle(Product.DEFENSE) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{Product.DEFENSE}}
+                        </td>
+                    </tr>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          特殊攻擊 
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div [ngStyle]="SingleAttrStyle(Product.SP_ATTACK) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{Product.SP_ATTACK}}
+                        </td>
+                    </tr>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          特殊防守
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div [ngStyle]="SingleAttrStyle(Product.SP_DEFENSE) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{Product.SP_DEFENSE}}
+                        </td>
+                    </tr>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          速度
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div   [ngStyle]=" SingleAttrStyle(Product.SPEED) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{Product.SPEED}}
+                        </td>
+                    </tr>
+                    <tr class='monster_detail'>
+                        <td class='monster_detail_name'>
+                          綜合分數
+                        </td>
+                        <td class='monster_detail_bar'>
+                            <div [ngStyle]=" CombAttrStyle(CombScore()) "></div>
+                        </td>
+                        <td class='monster_detail_value'>
+                          {{ CombScore() }}
+                        </td>
+                    </tr>
+                </tbody>
               </div>
             </div>
            </div>
+<!-- 購物車  -->
            <div class="panel panel-default product_default">
             <div class="panel-heading product_accordion_heading" role="tab" id="headingThreeP">
               <h4 class="panel-title product_accordion_head">
              <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion-single" href="#collapseThreeP" aria-expanded="false" aria-controls="collapseThreeP">
-               delivery & returns
+                加入購物車
                <span class="floatright"><i class="fa fa-plus"></i></span>
              </a>
               </h4>
             </div>
-            <!-- Todo -->
-            <!-- Choosing Color, Size, Quantity, Add To CART, Like -->
             <div id="collapseThreeP" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreeP">
               <div class="panel-body product_accordion_head">
-
-                <!-- <div class="single_color sp_single_col">
-                  <div class="color_heading">
-                    <h5>Colors</h5>
-                  </div>
-                  <div class="color_detail">
-                    <div class="panel-body colors_cat">
-                      <ul id="cat_color">
-                        <li><a class="col-7"></a></li>
-                        <li><a class="col-8"></a></li>
-                        <li><a class="col-9"></a></li>
-                        <li><a class="col-10"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> -->
-
-                <!-- <div class="single_color">
-                  <div class="color_heading">
-                    <h5>Select size</h5>
-                  </div>
-                  <div class="color_detail">
-                    <div class="color_size_detail">
-                      <ul id="color_size">
-                        <li><a>xs</a></li>
-                        <li><a>s</a></li>
-                        <li><a>m</a></li>
-                        <li><a>l</a></li>
-                        <li><a>xl</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> -->
-
                 <div class="single_color">
-                  <div class="color_heading">
-                    <h5>Quantity</h5>
+                  <div class="color_heading" style="width: 80px">
+                    <h5 style="line-height: 30px;padding-left:  20px" >數量</h5>
                   </div>
                   <div class="color_detail">
                     <div class="size_down">
-                      <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity[113]" max="119" min="0" step="1">
+                      <input type="number" size="4" class="input-text qty text" title="Qty"  [(ngModel)]="addProductNum" name="quantity[113]" max="119" min="0" step="1">
                     </div>
-                    <div class="size_cart">
+                    <div class="size_cart" (click)="AddToCart()">
                       <a>Add to cart</a>
-                    </div>
-                    <div class="size_heart">
-                     <a><img src="assets/images/Product-Details-heart.png" alt="" /></a>
-                    </div>
-                    <div class="size_heart">
-                      <a><img src="assets/images/Product-Details-arrow.png" alt="" /></a>
                     </div>
                   </div>
                 </div>
@@ -204,9 +237,8 @@
       </div>
     </div>
   </div>
-</section>
-
-<section class="product_page_tab_area">
+  </section>
+  <!-- <section class="product_page_tab_area">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -214,8 +246,8 @@
           <div role="tabpanel">
             <ul class="nav nav-tabs tab-product" role="tablist">
             <li role="presentation" class="active"><a href="#home2" aria-controls="home2" role="tab" data-toggle="tab">Description</a></li>
-            <!-- <li role="presentation"><a href="#profile2" aria-controls="profile2" role="tab" data-toggle="tab">ADDITIONAL INFORMATION</a></li>
-            <li role="presentation"><a href="#messages2" aria-controls="messages2" role="tab" data-toggle="tab">Review (2)</a></li> -->
+            <li role="presentation"><a href="#profile2" aria-controls="profile2" role="tab" data-toggle="tab">ADDITIONAL INFORMATION</a></li>
+            <li role="presentation"><a href="#messages2" aria-controls="messages2" role="tab" data-toggle="tab">Review (2)</a></li>
             </ul>
 
             <div class="tab-content tab-p-details">
@@ -224,7 +256,7 @@
               <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsal ipsam salamthi voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptateras sequi nesciunt resmla Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquae eius modi tempora inciduntia ut labore et dolore magnam aliquam quaerat voluptatem.
               </p>
             </div>
-            <!-- <div role="tabpanel" class="tab-pane" id="profile2"><h2>Additional Information</h2>
+            <div role="tabpanel" class="tab-pane" id="profile2"><h2>Additional Information</h2>
               <div class="multi_line"></div>
               <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsal ipsam salamthi voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptateras sequi nesciunt resmla Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquae eius modi tempora inciduntia ut labore et dolore magnam aliquam quaerat voluptatem.
               </p>
@@ -297,211 +329,54 @@
                   <input type="submit" value="Submit Review"/>
                 </div>
               </div>
-            </div> -->
+            </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
-</section>
+  </section> -->
 
-<section class="main_category_area product_page_caro">
+  <section class="main_category_area product_page_caro">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="main_category_right product-box">
-        <h3 class="product">related products</h3>
+        <h3 class="product">相關產品</h3>
         <div class="multi_line"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div id="owl-example-single" class="owl-carousel">
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item16.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>AROS SLIM HEAVY CHINO</h5></a>
-                  <p>$ 181.00 <span><del>$ 212.00</del></span></p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item13.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                  <span>-10%</span>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>men’s fashion blue jean coat</h5></a>
-                  <p>$ 130.00 <span><del>$ 150</del></span></p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item11.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>houndsmooth wool t-shirt</h5></a>
-                  <p>$ 168<span><del>$ 212</del></span></p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item12.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                  <span>-10%</span>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>structured collarless coat</h5></a>
-                  <p>$ 133.20<span><del>$ 140.00</del></span></p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item1.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                  <span>-10%</span>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>houndsmooth wool t-shirt</h5></a>
-                  <p>$90.00 <span><del>$100</del></span></p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item2.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                  <span>-10%</span>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>AROS SLIM HEAVY CHINO</h5></a>
-                  <p>$90.00 <span><del>$100</del></span></p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item3.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>AROS SLIM HEAVY CHINO</h5></a>
-                  <p>$90.00</p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item2.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>houndsmooth wool t-shirt</h5></a>
-                  <p>$90.00</p>
-                </div>
-                </div>
-                <div class="item">
-                <div class="item-img">
-                  <img src="assets/images/t_item3.jpg" alt="" />
-                  <div class="tr-add-cart">
-                    <ul>
-                      <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                      <li><a class="tr_text" href="#">ADD TO CART</a></li>
-                      <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                      <li><a class="fa fa-search tr_search" href="product-detail"></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="item-new">
-                  <p>New</p>
-                  <span>-10%</span>
-                </div>
-                <div class="item-sub">
-                  <a href="product-detail"><h5>AROS SLIM HEAVY CHINO</h5></a>
-                  <p>$110.00 <span><del>$120</del></span></p>
-                </div>
-                </div>
+                <ng-container *ngFor="let prod of relativeMonsters">
+                    <div class="item">
+                        <div class="item-img">
+                          <img [src]="prod.Icon.src" alt="" />
+                          <div class="tr-add-cart">
+                            <ul>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="this.cartService.Add(prod.id)"> 加進購物車 </a></li>
+                                <li><a class="fa fa-search tr_search" (click)="NavToProducDetail(prod.id)"></a></li>
+                                <!-- <li><a class="fa fa-search tr_search" [routerLink]="[ '/product-detail',prod.id]" routerLinkActive="active"></a></li> -->
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="item-new">
+                            <p>New</p>
+                            <ng-container *ngIf="prod.discount > 0">
+                               <span>{{prod.discount}}%</span>
+                            </ng-container>
+                        </div>
+                        <div class="item-sub">
+                            <a (click)="NavToProducDetail(prod.id)"><h5>{{prod.NAME}} </h5></a>
+                          <!-- <a [routerLink]="[ '/product-detail',prod.id]" routerLinkActive="active"><h5>{{prod.NAME}} </h5></a> -->
+                          <p>$ {{ this.categoryService.MathRound(prod.price/100*prod.discount) }}
+                              <ng-container *ngIf="prod.discount > 0">
+                                  <span><del>$ {{ prod.price }}</del></span>
+                              </ng-container>
+                          </p>
+                        </div>
+                    </div>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -509,4 +384,4 @@
       </div>
     </div>
   </div>
-</section>
+  </section>

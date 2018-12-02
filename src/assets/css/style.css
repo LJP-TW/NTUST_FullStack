@@ -3081,9 +3081,7 @@ padding-bottom: 60px;}
 overflow: hidden;
 position: relative;
 }
-.single_product_image_tab .nav.nav-tabs.product_detail_zoom_tab {
-  border-bottom: 0 solid #ddd;
-}
+
 .product_detail_zoom_tab > li {
   float: none;
   margin-bottom: -5px;
@@ -3091,6 +3089,7 @@ position: relative;
 .single_product_image_tab {
   background: #f3f4f5 none repeat scroll 0 0;
   position: relative;
+  min-height: 400px;
 }
 .single_product_image_tab .nav.nav-tabs.product_detail_zoom_tab {
   border-bottom: 0 solid #ddd;
@@ -3098,6 +3097,7 @@ position: relative;
   position: absolute;
   top: 19px;
   z-index: 2;
+  width: 100px;
 }
 .single_p_image > a {
   position: absolute;

@@ -21,24 +21,24 @@ export class CategoryService {
 
  //MonsterAttr Selector
  public MonsterAttrs = [
-  '一般',
-  '火',
-  '水',
-  '電',
-  '草',
-  '冰',
-  '毒',
-  '鋼',
-  '超能力',
-  '岩石',
-  '幽靈',
-  '惡',
-  '妖精',
-  '蟲',
-  '飛行',
-  '地面',
-  '格鬥',
-  '龍',
+  { name: '一般', color : '#aa9' },
+  { name: '火', color : '#f42' },
+  { name: '水', color : '#39f' },
+  { name: '電', color : '#fc3' },
+  { name: '草', color : '#7c5' },
+  { name: '冰', color : '#6cf' },
+  { name: '毒', color : '#a59' },
+  { name: '鋼', color : '#aab' },
+  { name: '超能力', color :'#f59' },
+  { name: '岩石', color : '#ba6' },
+  { name: '幽靈', color :'#66b' },
+  { name: '惡', color :'#754' },
+  { name: '妖精', color : '#e9e'},
+  { name: '蟲', color : '#ab2' },
+  { name: '飛行', color :'#89f' },
+  { name: '地面', color : '#db5' },
+  { name: '格鬥', color : '#b54' },
+  { name: '龍', color : '#76e'},
  ]
  
  public FilterMonsterAttr =[];
@@ -81,9 +81,6 @@ export class CategoryService {
       this.FilterMonsterAttr[i]=false;
    }
 
-
-
-
    this.SortNone();
    this.FilterOn();
  }
@@ -94,6 +91,7 @@ export class CategoryService {
 
  // tslint:disable-next-line:use-life-cycle-interface
  ngAfterContentInit(): void {
+
  }
 
 
@@ -218,7 +216,7 @@ getIcon(index){
   }
 
  prevPage() {
-   if (this.page > 1) {
+  if (this.page > 1) {
      this.Page(this.page - 1);
    }
  }

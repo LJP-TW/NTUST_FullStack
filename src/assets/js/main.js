@@ -165,14 +165,7 @@
 			navigation:true,
 			navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
 		});
-		$("#owl-example-single").owlCarousel({
-			autoPlay: true,
-			center: true,
-			items:4,
-			pagination:false,
-			navigation:true,
-			navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
-		});
+		
 		$("#branding_caro").owlCarousel({
 			autoPlay: true,
 			items : 6, //10 items above 1000px browser width

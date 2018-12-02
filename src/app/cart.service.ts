@@ -111,8 +111,20 @@ export class CartService {
     }
     if (!found) {
       // 從 server 抓一次此 monster
+
+      //先將必要資訊推到cart當中，防止api在取資料的期間，cart尚未加入Product的情況。
+      //(快速連續執行Add()可能會成功觸發多次，造成「商品的重複檢測」失效)。
+      this.cart.push(
+        {
+          ProductId: id,
+          Count: 1,
+          Price: 0
+        }
+      )
+      let index = this.cart.length-1;
+      //事後補齊資訊
       this.monsterService.getMonstersByID(id).subscribe((resp: Monster[]) => {
-        this.cart.push({
+        this.cart[index] = {
           ProductId: id,
           Count: 1,
           Price: resp[0].price,
@@ -120,8 +132,8 @@ export class CartService {
           NAME_EN: resp[0].NAME_EN,
           NAME_JP: resp[0].NAME_JP,
           attributes: resp[0].attributes,
-          Icon: resp[0].Icon,
-        });
+          Icon: resp[0].Icon.original.src,
+        };
         this.totalPrice += resp[0].price;
 
         // 與資料庫同步相關的部分
@@ -149,7 +161,7 @@ export class CartService {
           break;
         }
     }
-
+    
     if (found) {
       this.totalPrice = (this.totalPrice * 1000 + this.cart[i].Price * 1000) / 1000;
       this.cart[i].Count++;
@@ -172,7 +184,6 @@ export class CartService {
           break;
         }
     }
-
     if (found) {
       this.totalPrice = (this.totalPrice * 1000 + (this.cart[i].Price * 1000) * count) / 1000;
       this.cart[i].Count += count;
@@ -239,7 +250,15 @@ export class CartService {
       this.ModifyCart();
     }
   }
+  Exist(id: number){
+    for (let i = 0 ; i < this.cart.length ; i++) {
+      if (this.cart[i].ProductId === id) {
+         return true;
 
+      }
+    }
+    return false;
+  }
   /**
    * 更改到購物車後，check 是否要與資料庫進行同步
    */
