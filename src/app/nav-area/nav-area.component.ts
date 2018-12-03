@@ -40,11 +40,6 @@ export class NavAreaComponent implements OnInit {
         this.monstersCache.push({
           name: '',
         });
-
-        this.monsterService.getMonstersByID(this.cartService.cart[i].ProductId).subscribe((data) => {
-          console.log(data);
-          // this.monstersCache[i].name = data;
-        });
       }
     }
   }

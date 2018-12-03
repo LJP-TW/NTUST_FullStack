@@ -1,9 +1,9 @@
 import { MonsterService } from './monster.service';
 import { Monster } from './monster';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
 interface Message {
@@ -31,7 +31,7 @@ export class CartService {
   // 購物車是否已經更新
   cartUpdated = true;
   // 與資料庫同步的一個timer
-  updateTime = 180000;
+  updateTime = 30000;
   // timer 是否開啟
   Updating = false;
 
@@ -115,7 +115,7 @@ export class CartService {
         this.cart.push({
           ProductId: id,
           Count: 1,
-          Price: resp[0].price,
+          Price: resp[0].price * resp[0].discount / 100,
           NAME: resp[0].NAME,
           NAME_EN: resp[0].NAME_EN,
           NAME_JP: resp[0].NAME_JP,
@@ -269,6 +269,7 @@ export class CartService {
       if (data.status) {
         this.cart = [];
         this.totalPrice = 0;
+        console.log(data);
         for (const product of data.cart) {
           this.cart.push({
             ProductId: product.ProductId,
@@ -282,6 +283,10 @@ export class CartService {
           });
           this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
+      }
+    }, (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        this.authSvc.TokenFresh();
       }
     });
   }
