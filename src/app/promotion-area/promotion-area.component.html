@@ -8,7 +8,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="promotion_left">
-                <div class="promotion_top">
+                <div class="promotion_top" [routerLink]="['/category']" routerLinkActive="router-link-active">
                   <div class="images_box">
                     <img src="assets/images/promo_all.jpg" alt="" />
                   </div>
@@ -21,7 +21,7 @@
                     <img src="assets/images/promo_all.jpg" alt="" />
                   </div>
                 </div>
-                <div class="promotion_bottom">
+                <div class="promotion_bottom" (click)="categoryService.Display(['資工'])">
                   <div class="images_box">
                     <img src="assets/images/promo_ball.jpg" alt="" />
                   </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="promotion_right">
-                <div class="promotion_bottom promotion_bottom_t">
+                <div class="promotion_bottom promotion_bottom_t" (click)="categoryService.Display(['水'])">
                   <div class="images_box">
                     <img src="assets/images/promo_water.jpg" alt="" />
                   </div>
@@ -52,7 +52,7 @@
                     <img src="assets/images/promo_water.jpg" alt="" />
                   </div>
                 </div>
-                <div class="promotion_top promotion_bottom_b">
+                <div class="promotion_top promotion_bottom_b" (click)="categoryService.Display(['火'])">
                   <div class="images_box">
                     <img src="assets/images/promo_fire.jpg" alt="" />
                   </div>

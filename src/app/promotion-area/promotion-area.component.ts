@@ -1,3 +1,4 @@
+import { CategoryService } from './../category.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromotionAreaComponent implements OnInit {
 
-  constructor() { }
+  constructor(public categoryService: CategoryService) { }
 
   ngOnInit() {
   }
