@@ -1,3 +1,4 @@
+import { CategoryService } from './../category.service';
 import { AuthService } from './../auth.service';
 import { MonsterService } from './../monster.service';
 import { CartService } from './../cart.service';
@@ -26,7 +27,8 @@ export class NavAreaComponent implements OnInit {
   constructor(public navService: NavService,
     public cartService: CartService,
     public monsterService: MonsterService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    public categoryService: CategoryService) { }
 
   ngOnInit() {
     if (this.authService.LoggedIn()) {
