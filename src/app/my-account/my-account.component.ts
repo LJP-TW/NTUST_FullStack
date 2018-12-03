@@ -51,6 +51,7 @@ export class MyAccountComponent implements OnInit {
 
   logout() {
     this.authService.Logout();
+    this.router.navigate(['/auth/login']);
   }
 
   inConfigName() {

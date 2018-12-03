@@ -41,13 +41,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', resp.message.token);
 
         // 提早十分鐘 重新要一次 Token
-        this.authService.updateTime = (resp.message.expires_in - 600) * 1000;
-        this.authService.enabled = true;
-        this.authService.tokenUpdater = setInterval(() => {
-          if (this.authService.enabled) {
-            this.authService.TokenFresh();
-          }
-        }, this.authService.updateTime);
+        this.authService.tokenUpdateTime = (resp.message.expires_in - 600) * 1000;
+        this.authService.setTokenUpdater();
 
         // 抓一次使用者資訊
         this.authService.GetUserInfo();
