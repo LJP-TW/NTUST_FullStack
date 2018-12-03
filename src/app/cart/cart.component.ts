@@ -46,7 +46,6 @@ export class CartComponent implements OnInit, AfterViewInit {
   Cart: CartItem[] = [];
   // 購物車詳細資料
   CartData: Order[] = [];
-  cartTotal = 0;
 
   CartTotalCtrl = true;
   subTotal = 0;
@@ -55,50 +54,29 @@ export class CartComponent implements OnInit, AfterViewInit {
   CartAmount = 0;
 
   ngOnInit() {
-    // console.log(this.cartTotal);
-    // this.amountTotal = 0;
-    // this.Cart = this.cartService.cart;
-    // this.cartChanged();
-    // this.Page(1);
-
-    // this.cartTotal = this.cartService.totalPrice;
-    // this.CartAmount = this.Cart.length;
 
     this.authService.LoggedInRedirect();
     this.cartService.GetFromDB();
     this.initCartData();
-    // this.amountTotal = 0;
 
-    // this.Cart = this.cartService.cart;
-    // if (this.cartService.cart.length === 0) {
-    //   alert('gg');
-    // }
+
     setTimeout(() => {
       this.cartChanged();
       this.Page(1);
-      for (let i = 0; i < this.cartService.cart.length; i++) {
-        this.amountTotal += this.cartService.cart[i].Count;
-      }
-      this.cartTotal = this.cartService.totalPrice;
-      console.log(this.cartService.cart.length);
+      this.updateCartAmount();
+      this.updateCartTotal();
     }, 500);
 
   }
 
   ngAfterViewInit(): void {
-    this.amountTotal = 0;
+
     this.Cart = this.cartService.cart;
-    this.cartTotal = this.cartService.totalPrice;
-    for (let i = 0; i < this.cartService.cart.length; i++) {
-      this.amountTotal += this.cartService.cart[i].Count;
-    }
+    this.updateCartTotal();
+    this.updateCartAmount();
     this.cartChanged();
     this.Page(1);
-    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    // Add 'implements AfterViewInit' to the class.
-    console.log(this.cartService.cart.length);
 
-    // <script src="assets/js/main.js"></script>
     const sliderAffect = document.createElement('script');
     sliderAffect.type = 'text/javascript';
     sliderAffect.src = 'assets/js/main.js';
@@ -110,12 +88,9 @@ export class CartComponent implements OnInit, AfterViewInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    // this.CartData[index].amount++;
-    // this.CartData[index].total += this.CartData[index].price;
-    // this.cartTotal += this.CartData[index].price;
     this.cartService.Plus(this.cartService.cart[index].ProductId);
-    this.cartTotal = this.cartService.totalPrice;
-    this.amountTotal++;
+    this.updateCartTotal();
+    this.updateCartAmount();
   }
   // 減號紐被按下，減少商品數量
   minusClick(index: number) {
@@ -125,11 +100,8 @@ export class CartComponent implements OnInit, AfterViewInit {
 
     if (this.cartService.cart[index].Count !== 0) {
       this.cartService.Minus(this.cartService.cart[index].ProductId);
-      // this.CartData[index].amount--;
-      // this.CartData[index].total -= this.CartData[index].price;
-      // this.cartTotal -= this.CartData[index].price;
-      this.cartTotal = this.cartService.totalPrice;
-      this.amountTotal--;
+      this.updateCartTotal();
+      this.updateCartAmount();
     }
   }
   // 將商品移出購物車
@@ -137,15 +109,10 @@ export class CartComponent implements OnInit, AfterViewInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.cartTotal =
-      (this.cartTotal * 1000 -
-      this.cartService.cart[index].Count * this.cartService.cart[index].Price * 1000) /
-      1000;
-    this.amountTotal -= this.cartService.cart[index].Count;
+    this.updateCartTotal();
+    this.updateCartAmount();
     this.cartService.Remove(this.cartService.cart[index].ProductId);
 
-    // this.CartData.splice(index, 1);
-    // this.updateCartData();
     this.cartChanged();
     if (this.pageMax < this.page) {
       this.Page(this.page - 1);
@@ -160,10 +127,9 @@ export class CartComponent implements OnInit, AfterViewInit {
       this.CartTotalCtrl = false;
     }
   }
-  //
+
   // 初始化購物車，從資料庫抓資料
   initCartData() {
-    // todo 利用Cart裡的Cart資訊，從資料庫裡撈資料丟進CartData裡
     this.amountTotal = 0;
     for (let i = 0; i < this.Cart.length; i++) {
       this.monster
@@ -182,11 +148,22 @@ export class CartComponent implements OnInit, AfterViewInit {
     this.ngAfterViewInit();
   }
 
+  updateCartTotal() {
+    return this.cartService.totalPrice;
+  }
+
+  updateCartAmount() {
+    this.amountTotal = 0;
+    for (let i = 0; i < this.cartService.cart.length; i++) {
+      this.amountTotal += this.cartService.cart[i].Count;
+    }
+    return this.amountTotal;
+  }
+
   // page
   cartChanged() {
     this.productMax = this.cartService.cart.length;
     this.pageMax = Math.ceil(this.productMax / this.productsPerPage);
-    console.log(this.pageMax);
   }
 
   Page(value: number) {
@@ -214,7 +191,6 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
   CreatePageIndex(value: number): Array<number> {
-    // console.log(this.pageMax);
     return Array.from(Array(this.pageMax).keys()).map(n => {
       return (n = n + 1);
     });
