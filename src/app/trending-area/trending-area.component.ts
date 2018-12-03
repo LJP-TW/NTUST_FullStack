@@ -1,3 +1,4 @@
+import { CartItem } from './../cart-item';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { MonsterService} from '../monster.service';
 import { Monster } from '../monster';
@@ -10,14 +11,91 @@ import { CartService } from '../cart.service';
 })
 export class TrendingAreaComponent implements OnInit {
 
-  product: any[] = [];
-  productNew: any[];
-  productCheap: any[];
-  productSold: any[];
+  // 預設先塞空殼, 讓 html 能 binding 到, ngOnInit 時再更新
+  product: Monster[] = [
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,  
+      price: 0,
+      sold: 0,
+    }, 
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+    }
+  ];
+  productNew: Monster[];
+  productCheap: Monster[];
+  productSold: Monster[];
+
   constructor(public monsterSvc: MonsterService, public cartService: CartService, public elementRef: ElementRef) { }
 
   ngOnInit() {
     this.monsterSvc.getMonsters(0, 8, 'newest').subscribe((data: Monster[]) => {
+      console.log('trending-area');
+      console.log(data);
       this.productNew = data;
       this.product = this.productNew;
     });
@@ -66,8 +144,9 @@ export class TrendingAreaComponent implements OnInit {
       return Math.round(price * discount / 100);
     }
   }
+  
   AddToCart(id, originPrice, discount) {
-    // this.cartService.Add(id, this.getPrice(originPrice, discount));
+    this.cartService.Add(id);
   }
   trackByItem(index, item) {
     return item.id;

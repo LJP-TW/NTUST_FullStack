@@ -132,7 +132,7 @@ export class CartService {
           NAME_EN: resp[0].NAME_EN,
           NAME_JP: resp[0].NAME_JP,
           attributes: resp[0].attributes,
-          Icon: resp[0].Icon.original.src,
+          Icon: resp[0].Icon.src,
         };
         this.totalPrice += resp[0].price;
 
