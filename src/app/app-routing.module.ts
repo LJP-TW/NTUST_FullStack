@@ -1,3 +1,4 @@
+import { MyOrderComponent } from './my-order/my-order.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -20,6 +21,10 @@ import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
 const routes: Routes = [
   {
     path: '',
+    component: IndexComponent
+  },
+  {
+    path: 'index',
     component: IndexComponent
   },
   {
@@ -78,6 +83,10 @@ const routes: Routes = [
         path: 'myAccount',
         component: MyAccountComponent,
       },
+      {
+        path: 'myOrder',
+        component: MyOrderComponent
+      }
     ]
   },
   {
