@@ -35,6 +35,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { ConfirmPwdValidatorDirective } from './confirm-pwd.directive';
 import { TurnComponent } from './product-detail/turn/turn.component';
 import { CostumerHelpComponent } from './costumer-help/costumer-help.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CostumerHelpComponent } from './costumer-help/costumer-help.component';
     ConfirmPwdValidatorDirective,
     TurnComponent,
     CostumerHelpComponent,
+    MyOrderComponent
   ],
   imports: [
     FormsModule,

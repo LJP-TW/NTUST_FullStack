@@ -1,0 +1,63 @@
+.OrderBlock {
+  display: block;
+  padding: 1em;
+  font: 400 16px monospace;
+  max-width: 800px;
+  margin: 10px auto;
+  border-top-color: #aaa;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-bottom-color: #aaa;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+.info {
+  display: inline-block;
+  width: 100%;
+  padding: 0.25em;
+  margin: 0.125em;
+  min-height: 45px;
+  border-bottom-color: #f5f6f7;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  -webkit-user-select: none;
+}
+.info:hover {
+  background-color: #f5f6f7;
+}
+.info > div {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 0;
+}
+.info > div > div {
+  padding: 3px 0;
+}
+.leftBlock {
+  display: inline-block;
+  width: 70%;
+}
+.rightBlock {
+  display: inline-block;
+  width: 30%;
+}
+.left {
+  display: inline-block;
+  width: 30%;
+}
+.right {
+  display: inline-block;
+  width: 70%;
+}
+.detail {
+  display: block;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 1.5s ease;
+}
+.detail:hover {
+  background-color: #f5f6f7;
+}
+.detailActived {
+  max-height: 800px;
+}

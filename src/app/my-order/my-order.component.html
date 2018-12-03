@@ -1,0 +1,49 @@
+<div class="OrderBlock">
+  <ng-container *ngFor="let order of orderService.order; let orderIndex = index">
+    <div class="info">
+      <div>
+        <div class="leftBlock">
+          <p class="left">訂單</p>
+          <p class="right">{{ orderIndex + 1 }}</p>
+        </div>
+
+        <div class="rightBlock">
+          <p class="left">狀態</p>
+          <ng-container *ngIf="!order.Shipment">
+            <p class="right">未配送</p>
+          </ng-container>
+          <ng-container *ngIf="order.Shipment">
+            <p class="right">已配送</p>
+          </ng-container>
+        </div>
+      </div>
+
+      <div>
+        <p class="left">地址</p>
+        <p class="right">{{ order.Address }}</p>
+      </div>
+
+      <div>
+        <div class="leftBlock">
+          <p class="left">成立時間</p>
+          <p class="right">{{ order.created_at }}</p>
+        </div>
+
+        <div class="rightBlock">
+          <p (click)="orderDetail = orderIndex">查看詳細</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail" [ngClass]="{'detailActived': orderDetail === orderIndex}">
+      <ng-container *ngFor="let item of order.items; let itemIndex = index">
+        <div>
+          <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon.src" alt="" /></a>
+          <p>名稱: {{ item.NAME }}</p>
+          <p>價格: {{ item.Price }}</p>
+          <p>數量: {{ item.Count }}</p>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

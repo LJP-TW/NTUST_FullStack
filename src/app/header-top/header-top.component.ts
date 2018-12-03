@@ -18,5 +18,6 @@ export class HeaderTopComponent implements OnInit {
 
   logout() {
     this.authService.Logout();
+    this.router.navigate(['/auth/login']);
   }
 }

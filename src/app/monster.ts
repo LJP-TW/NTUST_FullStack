@@ -1,3 +1,4 @@
+import { Icon } from './icon';
 import { Attribute } from './attribute';
 export interface Monster {
   ATTACK?: number;
@@ -17,7 +18,5 @@ export interface Monster {
   price: number;
   sold: number;
   attributes?: Attribute[];
-  Icon?: {
-      src: string;
-  };
+  Icon?: Icon;
 }

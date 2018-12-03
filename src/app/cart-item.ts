@@ -1,3 +1,4 @@
+import { Icon } from './icon';
 import { Attribute } from './attribute';
 export interface CartItem {
   ProductId: number;
@@ -7,6 +8,6 @@ export interface CartItem {
   NAME_EN?: string;
   NAME_JP?: string;
   attributes?: Attribute[];
-  Icon?: string;
+  Icon?: Icon;
   // [key: string]: any;
 }

@@ -1,7 +1,7 @@
 import { ForgetPwdPost } from './forget-pwd-post';
 import { LoginPost } from './login-post';
 import { RegisterPost } from './register-post';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -33,8 +33,8 @@ export class AuthService {
 
   // token 更新 timer
   tokenUpdater;
-  updateTime = 10000000;
-  enabled = false;
+  tokenUpdateTime = 1; // 單位毫秒
+  tokenRefreshEnabled = false;
 
   // User 資料
   userInfo = {
@@ -45,20 +45,26 @@ export class AuthService {
     created_at: null
   };
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient) {
+    if (this.LoggedIn()) {
+      console.log('重新整理');
+      this.setTokenUpdater();
+    }
+  }
 
   Register(data: RegisterPost) {
     return this.httpClient.post('http://127.0.0.1:8000/api/register', data);
   }
 
   Login(data: LoginPost) {
-    this.enabled = false;
+    // Initial
+    this.tokenRefreshEnabled = false;
 
     return this.httpClient.post(`${environment.api}/login`, data);
   }
 
   Logout() {
-    this.enabled = false;
+    this.tokenRefreshEnabled = false;
     this.userInfo.id = null;
     this.userInfo.name = null;
     this.userInfo.email = null;
@@ -69,7 +75,6 @@ export class AuthService {
     });
 
     localStorage.removeItem('token');
-    this.router.navigate(['/auth/login']);
   }
 
   ForgetPwd(data: ForgetPwdPost) {
@@ -105,9 +110,29 @@ export class AuthService {
   TokenFresh() {
     this.httpClient.get(`${environment.api}/refresh?token=${localStorage.getItem('token')}`).subscribe((resp: Response) => {
       if (resp.status) {
+        console.log('Token Fresh Success');
         localStorage.setItem('token', resp.message.token);
+
+        // 提早十分鐘 重新要一次 Token
+        this.tokenUpdateTime = (resp.message.expires_in - 600) * 1000;
+        this.setTokenUpdater();
       }
+    }, (error: HttpErrorResponse) => {
+      console.log('Token Fresh Fail');
+      console.log(error);
+      this.Logout();
     });
+  }
+
+  setTokenUpdater() {
+    console.log('設定 Updater');
+    this.tokenRefreshEnabled = true;
+    this.tokenUpdater = setTimeout(() => {
+      if (this.tokenRefreshEnabled) {
+        console.log('執行 TokenFresh');
+        this.TokenFresh();
+      }
+    }, this.tokenUpdateTime);
   }
 
   ConfigName(name) {
