@@ -77,15 +77,19 @@ export class CartService {
       this.UpdateToDB().subscribe((resp) => {
         console.log(resp);
         this.cartUpdated = true;
-      }, (error) => {
-        console.log(error);
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.authSvc.Logout();
+        }
       });
     }
   }
 
   ForceUpdate() {
-    this.cartUpdated = false;
-    this.UpdateFunc();
+    if (this.authSvc.LoggedIn()) {
+      this.cartUpdated = false;
+      this.UpdateFunc();
+    }
   }
 
   /**
@@ -164,7 +168,7 @@ export class CartService {
           break;
         }
     }
-    
+
     if (found) {
       this.totalPrice = (this.totalPrice * 1000 + this.cart[i].Price * 1000) / 1000;
       this.cart[i].Count++;
@@ -291,7 +295,6 @@ export class CartService {
       if (data.status) {
         this.cart = [];
         this.totalPrice = 0;
-        console.log(data);
         for (const product of data.cart) {
           this.cart.push({
             ProductId: product.ProductId,

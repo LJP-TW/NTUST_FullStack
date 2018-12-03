@@ -16,7 +16,9 @@ export class MyOrderComponent implements OnInit {
   constructor(private authService: AuthService, public orderService: OrderService) { }
 
   ngOnInit() {
-    this.authService.LoggedInRedirect();
+    if (this.authService.LoggedInRedirect()) {
+      return;
+    }
 
     this.orderService.getFromDB();
   }

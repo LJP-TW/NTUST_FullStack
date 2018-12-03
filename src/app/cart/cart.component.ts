@@ -55,7 +55,10 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.authService.LoggedInRedirect();
+    if (this.authService.LoggedInRedirect()) {
+      return;
+    }
+
     this.cartService.GetFromDB();
     this.initCartData();
 

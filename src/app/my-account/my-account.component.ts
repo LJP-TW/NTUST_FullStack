@@ -42,7 +42,9 @@ export class MyAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.LoggedInRedirect();
+    if (this.authService.LoggedInRedirect()) {
+      return;
+    }
 
     if (this.authService.userInfo.name === null) {
       this.authService.GetUserInfo();
