@@ -60,17 +60,9 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
       this.elementRef.nativeElement.appendChild(sliderAffect);
 
       // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      const sliderAffect2 = document.createElement('script');
-      sliderAffect2.type = 'text/javascript';
-      sliderAffect2.src = 'assets/js/main.js';
-      this.elementRef.nativeElement.appendChild(sliderAffect2);
-
-
-      
       this.monsterService.getMonstersByID(data.id).subscribe((httpData:Monster[])=>{
         //拿到產品
         this.Product = httpData[0];
-
         //抓圖片
         for(let i = 0 ; i < this.Product.imgNum ; i++){
             this.http.get(this.monsterService.getMonsterBase64(this.Product.id,i)).subscribe((base64_json:any)=>{
@@ -89,26 +81,13 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
         }
         QS_Relative += 'newest,';
         QS_Relative = QS_Relative.slice(0,-1);
-        console.log(QS_Relative);
         this.monsterService.getMonsters(0,19,QS_Relative).subscribe((data:Monster[])=>{
           this.relativeMonsters = data;
-          setTimeout(()=>{
-
-            $("#owl-example-single").owlCarousel({
-              autoPlay: true,
-              center: true,
-              items:4,
-              pagination:false,
-              navigation:true,
-              navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
-            });
-          },500);
-          console.log(data);
+          this.JqueryOWL();
         })
     //特效
-        // setTimeout(()=>{ 
-        //  $('#zoom_01').elevateZoom({scrollZoom :true, easing:true,tint:true, tintColour:'#FF6766',tintOpacity:0.2})
-        // },500);
+        this.JqueryCollapse();
+        window.scrollTo(0,0);
       },
       (error)=>{
         this.router.navigate(['**']);
@@ -120,19 +99,10 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
   ngOnChanges(changes:SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    console.log('Changes');
-    for (let propName in changes) {
-    let chng = changes[propName];
-    let cur  = JSON.stringify(chng.currentValue);
-    let prev = JSON.stringify(chng.previousValue);
-    console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
-    }
-    
   }
   ngAfterContentInit(): void {
     //Called after ngOnInit when the component's or directive's content has been initialized.
     //Add 'implements AfterContentInit' to the class.
-    console.log('test');
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
@@ -140,7 +110,6 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
     // if($('.zoomContainer').length){
     //   $('.zoomContainer').remove();
     // }
-    console.log('onDestroy');
     $('#owl-example-single').remove();
   }
 
@@ -192,7 +161,6 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
     else if(!this.cartService.Exist(this.Product.id)){
       cpProductNum -=1;
       this.cartService.Add(this.Product.id);      
-      
     }
     setTimeout(() => {
     this.cartService.CustomPlus(this.Product.id,cpProductNum);
@@ -207,6 +175,37 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
     return { 'background-color' : bg_color};
   }
 
+  JqueryOWL(){
+    setTimeout(()=>{
+
+      $("#owl-example-single").owlCarousel({
+        autoPlay: true,
+        center: true,
+        items:4,
+        pagination:false,
+        navigation:true,
+        navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]
+      });
+    },10);
+  }
+
+  JqueryCollapse(){
+    setTimeout(() => {
+      $('.collapse').on('shown.bs.collapse',
+      function(){
+        $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
+        }).on('hidden.bs.collapse', function(){
+        $(this).parent().find(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
+      });
+    }, 100);
+   
+  }
+
+  JqueryZoom(){
+    setTimeout(()=>{ 
+      $('#zoom_01').elevateZoom({scrollZoom :true, easing:true,tint:true, tintColour:'#FF6766',tintOpacity:0.2})
+      },10);
+  }
   NavToProducDetail(id:number){
     // $('#owl-example-single').remove();
     this.router.navigate(['/product-detail',id]);

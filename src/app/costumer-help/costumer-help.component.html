@@ -1,0 +1,15 @@
+<label class="icon" for="customer-help-check"><img src="../../assets/icon/contact-us.png" (click)=" page = 1; "></label>
+
+<div [ngClass]="{'customer-help': true,
+                 'active': page != 0}" >
+  <label class="exit" (click)=" page = 0; ">X</label>
+  <ng-container *ngIf="page==1">
+    <p class="logo">客服中心</p>
+    <p class="slogan">我們將盡快給你回覆</p>
+    <textarea class="report-text" name="report-text" placeholder="請輸入遇到的問題..." [(ngModel)]="report_text" ></textarea>
+    <div class="centerButton"  (click)="Send()" >送出</div>
+  </ng-container>
+  <ng-container *ngIf="page==2">
+      DONE
+  </ng-container>
+</div>

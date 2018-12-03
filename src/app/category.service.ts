@@ -7,41 +7,40 @@ import { ThrowStmt } from '@angular/compiler';
 import * as $ from 'jquery'
 import { CartService } from './cart.service';
 import { QueryReadType } from '@angular/core/src/render3/interfaces/query';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-
  //Filter Switch
- filter = true;
+ filter = false;
  enableMCFilter = false;
  enablePriceFilter = false;
 
  //MonsterAttr Selector
  public MonsterAttrs = [
-  { name: '一般', color : '#aa9' },
-  { name: '火', color : '#f42' },
-  { name: '水', color : '#39f' },
-  { name: '電', color : '#fc3' },
-  { name: '草', color : '#7c5' },
-  { name: '冰', color : '#6cf' },
-  { name: '毒', color : '#a59' },
-  { name: '鋼', color : '#aab' },
-  { name: '超能力', color :'#f59' },
-  { name: '岩石', color : '#ba6' },
-  { name: '幽靈', color :'#66b' },
-  { name: '惡', color :'#754' },
-  { name: '妖精', color : '#e9e'},
-  { name: '蟲', color : '#ab2' },
-  { name: '飛行', color :'#89f' },
-  { name: '地面', color : '#db5' },
-  { name: '格鬥', color : '#b54' },
-  { name: '龍', color : '#76e'},
+  { name: '一般', color : '#aa9',active: false },
+  { name: '火', color : '#f42',active: false },
+  { name: '水', color : '#39f',active: false },
+  { name: '電', color : '#fc3',active: false },
+  { name: '草', color : '#7c5',active: false },
+  { name: '冰', color : '#6cf',active: false },
+  { name: '毒', color : '#a59',active: false },
+  { name: '鋼', color : '#aab',active: false },
+  { name: '超能力', color :'#f59',active: false },
+  { name: '岩石', color : '#ba6',active: false },
+  { name: '幽靈', color :'#66b',active: false },
+  { name: '惡', color :'#754',active: false },
+  { name: '妖精', color : '#e9e',active: false},
+  { name: '蟲', color : '#ab2',active: false },
+  { name: '飛行', color :'#89f',active: false },
+  { name: '地面', color : '#db5',active: false },
+  { name: '格鬥', color : '#b54',active: false },
+  { name: '龍', color : '#76e',active: false },
  ]
  
- public FilterMonsterAttr =[];
 
 
  //PriceFilter
@@ -73,21 +72,15 @@ export class CategoryService {
  // tslint:disable-next-line:max-line-length
  constructor(public monsterService: MonsterService, 
              public cartService: CartService,
-             private navService: NavService) {
+             private navService: NavService,
+             private router:Router) {
    this.navService.currentPage = 'category';
 
   //  Initialization
-   for(let i = 0 ; i < this.MonsterAttrs.length;i++){
-      this.FilterMonsterAttr[i]=false;
-   }
-
    this.SortNone();
-   this.FilterOn();
+   this.FilterOff();
  }
 
- ngOnInit() {
-
- }
 
  // tslint:disable-next-line:use-life-cycle-interface
  ngAfterContentInit(): void {
@@ -145,8 +138,8 @@ getIcon(index){
  FilterAttr() {
    if(!this.enableMCFilter)return;
    let queryString = "";
-   for(let i = 0 ; i <this.FilterMonsterAttr.length;i++){
-     if(this.FilterMonsterAttr[i]){
+   for(let i = 0 ; i <this.MonsterAttrs.length;i++){
+     if(this.MonsterAttrs[i].active){
        queryString += (i+1).toString()+",";
      }
    }
@@ -155,13 +148,37 @@ getIcon(index){
  }
 
  ToggleMT(type){
-   this.FilterMonsterAttr[type] = !this.FilterMonsterAttr[type];
+  this.MonsterAttrs[type].active = !this.MonsterAttrs[type].active;
+  }
+ // Displaying
+ Display(category?:string[],price?:string,sort?:string){
+   this.enableMCFilter=false;
+   this.enablePriceFilter=false;
+   this.QS_Sort="*";
+   if(category!=undefined){
+     this.enableMCFilter = true;
+    let fbuf: any[] =  this.MonsterAttrs.filter((data)=>{
+      return category.findIndex((ele,ind)=>{return data.name==ele}) != -1;
+    });
+    this.MonsterAttrs.forEach((data)=>{data.active=false;});
+    fbuf.forEach((data)=>{data.active=true;});
+  }
+  if(price!=undefined){
+
+  }
+  if(sort!=undefined){
+
+  }
+  this.QueryMonster();
+  this.router.navigate(['/category']);
  }
+ 
 
  // Paging
  AdjustPaging(){
    this.pageMax = Math.ceil(this.productMax / this.productsPerPage);
  }
+ 
 
  PageBuf()
  {
@@ -200,7 +217,7 @@ getIcon(index){
        this.QueryMonster(this.page);
        console.log('CacheIndex Changed',this.CacheIndex,'Range:',this.perCache*this.CacheIndex+1,this.perCache*(this.CacheIndex+1));
    }
-   
+   window.scrollTo(0,0);
  }
 
  nextPage() {

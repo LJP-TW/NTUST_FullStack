@@ -14,7 +14,11 @@
     </div>
   </div>
 </div> -->
+
   <section class="gray_tshirt_area">
+  <p class="category_button" [routerLink]="[ '/category' ]">
+  <img src="assets/icon/previous.png" >商品分類
+  </p>    
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -219,7 +223,7 @@
                   </div>
                   <div class="color_detail">
                     <div class="size_down">
-                      <input type="number" size="4" class="input-text qty text" title="Qty"  [(ngModel)]="addProductNum" name="quantity[113]" max="119" min="0" step="1">
+                      <input type="number" size="4" class="input-text qty text" title="Qty"  name="quantity[113]" max="119" min="0" step="1">
                     </div>
                     <div class="size_cart" (click)="AddToCart()">
                       <a>Add to cart</a>

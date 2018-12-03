@@ -1,3 +1,28 @@
+.category_button{
+    font-size: 18px;
+    display: inline-block;
+    font-weight: 500;
+    position: relative;
+    top: -40px;
+    right: -20px;
+    padding-left: 20px;
+}
+
+.category_button:hover{
+    /* font-size: 20px */
+    padding-left:  10px;
+    transition: all 0.5s linear 0s;
+}
+
+.category_button:active{
+    border: 0px;
+}
+
+.category_button img{
+    width: 35px;
+    margin-right: 5px;
+}
+
 .monster_table{
     border: 2px;
     border-style: solid;

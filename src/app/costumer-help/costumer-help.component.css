@@ -1,0 +1,101 @@
+label.icon{
+    /* writing-mode: horizontal-tb;
+    text-orientation: upright; */
+    position: fixed;
+    background-color: rgba(255,255,255,0.9);
+    margin: 0px;
+    width: 80px;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 50px
+}
+
+label.icon:hover{
+    background-color: rgba(255, 90, 95, 0.9);
+    transition: background-color 0.5s ease 0s;
+}
+
+
+
+div.customer-help.active{
+    visibility: visible;
+    opacity: 1.0;
+    transition: opacity 0.5s linear 0s;
+}
+
+div.customer-help{
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    bottom: 10px;
+    right: 3px;
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255,255,255,0.9);
+    border: 3px solid rgba(0,0,0,0.6);
+    border-radius: 10px;
+}
+
+
+
+div.customer-help .exit{
+    border: 2px solid transparent;
+    border-radius: 100%;
+    background-color : rgba(0,0,0,0.3);
+    position: relative;
+    top: 5px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    text-align: center;
+    transition: background-color 0.5s ease 0s;
+}
+
+div.customer-help .exit:hover{
+    color: white;
+    background-color: black;
+    border-color: black;
+    transition: all 0.5s ease 0s;
+}
+
+div.customer-help  .report-text{
+    display: block;
+    width: 90%;
+    height: 200px;
+    margin: 10px auto;
+    resize: none;
+    border-radius: 2px;
+}
+
+div.customer-help  .logo{
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+
+div.customer-help  .slogan{
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 0px;
+}
+
+div.customer-help .centerButton{
+    margin: 8px auto;
+    width: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+    padding: 10px 0px;
+    border-radius: 10px;
+    text-align: center;
+    transition: background-color 0.5s ease 0s,color 0.5s ease 0s;
+}
+div.customer-help .centerButton:hover{
+    background-color: #00ed54;
+    color: #333;
+    transition: all 0.5s ease 0s;
+};

@@ -179,17 +179,7 @@
 		});
 		// accordion
 
-		$('.collapse').on('shown.bs.collapse', function(){
-			$(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
-			}).on('hidden.bs.collapse', function(){
-			$(this).parent().find(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
-		});
-		$('#collapseTwo').collapse('show')
-		$('#collapseThree').collapse('show')
-		$('#collapseFour').collapse('show')
-		$('#collapseFive').collapse('show')
-		$('#collapseOneP').collapse('show')
-		$('#collapseThreeP').collapse('show')
+		
 
 		//product image with tab and zoom
 		
