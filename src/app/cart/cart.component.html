@@ -26,7 +26,7 @@
             </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <a href="product-detail" style="float: left;"><img [src]="order.Icon" alt="" style="height: auto; width: 100px"/></a>
+                <a href="product-detail" style="float: left;"><img [src]="order.Icon.src" alt="" style="height: auto; width: 100px"/></a>
                 <p>{{ order.NAME }}<br>
                   特性:
                   <ng-container *ngFor="let attributes of order.attributes">
@@ -40,7 +40,7 @@
               <div class="cart_quantity">
                 <ul>
                   <li><button class="buttonMinus button" (click)="minusClick(i)"></button></li>
-                  <li><input type="text" class="quantity" [(ngModel)]="order.Count" (keyup)="updateCartData()"></li>
+                  <li><input type="text" class="quantity" [(ngModel)]="order.Count" (keyup)="updateCartData(i)"></li>
                   <li><button class="buttonPlus button" (click)="plusClick(i)"></button></li>
                 </ul>
               </div>

@@ -117,17 +117,24 @@ export class CartService {
     if (!found) {
       // 從 server 抓一次此 monster
 
-      //先將必要資訊推到cart當中，防止api在取資料的期間，cart尚未加入Product的情況。
-      //(快速連續執行Add()可能會成功觸發多次，造成「商品的重複檢測」失效)。
+      // 先將必要資訊推到cart當中，防止api在取資料的期間，cart尚未加入Product的情況。
+      // (快速連續執行Add()可能會成功觸發多次，造成「商品的重複檢測」失效)。
       this.cart.push(
         {
           ProductId: id,
           Count: 1,
-          Price: 0
+          Price: 0,
+          NAME: '',
+          NAME_EN: '',
+          NAME_JP: '',
+          attributes: [],
+          Icon: {
+            src: ''
+          }
         }
-      )
-      let index = this.cart.length-1;
-      //事後補齊資訊
+      );
+      const index = this.cart.length - 1;
+      // 事後補齊資訊
       this.monsterService.getMonstersByID(id).subscribe((resp: Monster[]) => {
         this.cart[index] = {
           ProductId: id,

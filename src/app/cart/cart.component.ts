@@ -147,7 +147,13 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
   }
   // 更新購物車
-  updateCartData() {
+  updateCartData(index) {
+    console.log(Number(this.cartService.cart[index].Count));
+    if (isNaN(Number(this.cartService.cart[index].Count))) {
+      this.cartService.cart[index].Count = 1;
+    } else if (Number(this.cartService.cart[index].Count) <= 0) {
+      this.cartService.cart[index].Count = -this.cartService.cart[index].Count;
+    }
     this.ngAfterViewInit();
   }
 
@@ -158,7 +164,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   updateCartAmount() {
     this.amountTotal = 0;
     for (let i = 0; i < this.cartService.cart.length; i++) {
-      this.amountTotal += this.cartService.cart[i].Count;
+      this.amountTotal += Number(this.cartService.cart[i].Count);
     }
     return this.amountTotal;
   }
