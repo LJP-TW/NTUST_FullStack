@@ -11,6 +11,7 @@ interface OrderItem {
 export interface Order {
   Address: string;
   Shipment: number;
+  Total: number;
   created_at: string;
   items: OrderItem[];
 }
