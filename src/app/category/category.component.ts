@@ -1,6 +1,6 @@
 import { MonsterService } from './../monster.service';
 import { NavService } from './../nav.service';
-import { Component, OnInit, ElementRef, PACKAGE_ROOT_URL, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ElementRef, PACKAGE_ROOT_URL, AfterViewInit, AfterContentInit,SimpleChanges,OnChanges } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
 import { Monster } from '../monster'
 import { ThrowStmt } from '@angular/compiler';
@@ -15,7 +15,7 @@ declare var $: any;
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,AfterContentInit {
+export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,AfterContentInit,OnChanges {
 
   // tslint:disable-next-line:max-line-length
   constructor(public monsterService: MonsterService, 
@@ -33,12 +33,23 @@ export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterContentInit(): void {
-    
+    console.log('ci');
   }
 
   ngAfterViewInit(): void {
+    console.log('vi');
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
+  }
+  ngAfterViewChecked(): void {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class
+    console.log('test');
   }
   
   // Helper Function
@@ -51,7 +62,6 @@ export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,
   }
 
   FilterOn() {
-    this.FilterOnJS();
     this.categoryService.FilterOn();
   }
 
@@ -90,6 +100,12 @@ export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,
     $( "#amount1" ).val( $( "#slider-range" ).slider( "values", 0 ));
     $( "#amount2" ).val( $( "#slider-range" ).slider( "values", 1 ));
     }
-    ,10);
+    ,100);
+  }
+
+  ToggleFilter(){
+    if(!this.categoryService.filter){
+      this.FilterOnJS();
+    }
   }
 }

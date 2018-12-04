@@ -112,4 +112,93 @@
     color: black;
     border-radius: 100px;
   }
+
+
+  label.checkbox.filterbar{
+    width: 45px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 2px solid;
+    float: left;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: .3s ease;
+    padding: 0px;
+    margin: 0px 4px;
+  }
+  label.checkbox.filterbar:before{
+    transition: .3s ease;
+    content: '';
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    background: white;
+    left: 2px;
+    top: 1px;
+    box-sizing: border-box;
+    border: 2px solid;
+    color: black;
+    border-radius: 100px;
+  }
+  input[type=checkbox]:checked + label.checkbox.filterbar{
+    background:#55e868;
+  }
+  input[type=checkbox]:checked + label.checkbox.filterbar:before{
+    left:25px;
+  }
+  
+
+
 /* END OF BUTTON CSS */
+
+
+
+
+.panel-title a{
+    float: left;
+}
+
+
+/* SEARCH BUTTON */
+.searchBtn {
+    width:50px;
+    height:30px;
+    border: 0px;
+    margin-top: 25px;
+    background-image: url("../../assets/icon/pokemonSearch.png");
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(148, 148, 148) ;
+    border-radius: .2rem;
+    float: left;
+    max-width: 30%;
+    outline: 0;
+  }
+  
+  .search  {
+    width: 120px;
+    height: 30px;
+    margin-top: 25px;
+    background: rgb(211, 211, 211);
+    border-radius: .2rem;
+    border-style: outset;
+    border: 0px;
+    float: left;
+    max-width: 70%;
+  }
+  
+  
+  .search:focus{
+    width: 100%;
+    transition: width 0.5s ease 0s;
+  }
+  
+  .header {
+    height: 150px;
+  }
+  
+  .search_container{
+    width: 100%;
+  }

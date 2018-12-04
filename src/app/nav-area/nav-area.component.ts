@@ -4,6 +4,7 @@ import { CartService } from './../cart.service';
 import { NavService } from './../nav.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
+import { CategoryService } from '../category.service';
 
 interface MonsterCache {
   name: string;
@@ -26,7 +27,8 @@ export class NavAreaComponent implements OnInit {
   constructor(public navService: NavService,
     public cartService: CartService,
     public monsterService: MonsterService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    public categoryService: CategoryService) { }
 
   ngOnInit() {
     if (this.authService.LoggedIn()) {

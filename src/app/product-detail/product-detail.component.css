@@ -15,6 +15,7 @@
 }
 
 .category_button:active{
+    outline: 0;
     border: 0px;
 }
 
