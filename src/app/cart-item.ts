@@ -9,5 +9,4 @@ export interface CartItem {
   NAME_JP?: string;
   attributes?: Attribute[];
   Icon?: Icon;
-  // [key: string]: any;
 }
