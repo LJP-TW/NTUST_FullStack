@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { ProductDataBaseService } from '../product-data-base.service';
 import { CartService } from '../cart.service';
 import { CartItem } from '../cart-item';
 import { MonsterService } from '../monster.service';
@@ -56,36 +55,39 @@ export class CartComponent implements OnInit, AfterViewInit {
   CartAmount = 0;
 
   ngOnInit() {
-
     if (this.authService.LoggedInRedirect()) {
       return;
     }
 
-    this.cartService.GetFromDB();
-    this.initCartData();
-
-
-    setTimeout(() => {
-      this.cartChanged();
-      this.Page(1);
-      this.updateCartAmount();
-      this.updateCartTotal();
-    }, 500);
-
+    this.WaitForService();
   }
 
   ngAfterViewInit(): void {
-
-    this.Cart = this.cartService.cart;
-    this.updateCartTotal();
-    this.updateCartAmount();
-    this.cartChanged();
-    this.Page(1);
-
     const sliderAffect = document.createElement('script');
     sliderAffect.type = 'text/javascript';
     sliderAffect.src = 'assets/js/main.js';
     this.elementRef.nativeElement.appendChild(sliderAffect);
+  }
+
+  WaitForService() {
+    const clock = 200;
+    let count = 0;
+    const init = setInterval(() => {
+      if (this.cartService.Gotten) {
+        this.cartChanged();
+        this.Page(1);
+        this.updateCartAmount();
+        clearInterval(init);
+        return;
+      } else {
+        ++count;
+        if (count === 50) {
+          alert('購物車加載失敗');
+          clearInterval(init);
+          return;
+        }
+      }
+    }, clock);
   }
 
   // 加號紐被按下，增加商品數量
@@ -94,7 +96,6 @@ export class CartComponent implements OnInit, AfterViewInit {
       index += (this.page - 1) * this.productsPerPage;
     }
     this.cartService.Plus(this.cartService.cart[index].ProductId);
-    this.updateCartTotal();
     this.updateCartAmount();
   }
   // 減號紐被按下，減少商品數量
@@ -103,9 +104,8 @@ export class CartComponent implements OnInit, AfterViewInit {
       index += (this.page - 1) * this.productsPerPage;
     }
 
-    if (this.cartService.cart[index].Count !== 0) {
+    if (this.cartService.cart[index].Count !== 1) {
       this.cartService.Minus(this.cartService.cart[index].ProductId);
-      this.updateCartTotal();
       this.updateCartAmount();
     }
   }
@@ -114,7 +114,6 @@ export class CartComponent implements OnInit, AfterViewInit {
     if (this.page !== 1) {
       index += (this.page - 1) * this.productsPerPage;
     }
-    this.updateCartTotal();
     this.updateCartAmount();
     this.cartService.Remove(this.cartService.cart[index].ProductId);
 
@@ -133,23 +132,12 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // 初始化購物車，從資料庫抓資料
-  initCartData() {
-    this.amountTotal = 0;
-    for (let i = 0; i < this.Cart.length; i++) {
-      this.monster
-        .getMonstersByID(this.Cart[i].ProductId)
-        .subscribe((data: Monster) => {
-          this.cartService.cart[i].Icon = data[0].Icon;
-          this.cartService.cart[i].attributes = data[0].attributes;
-          this.cartService.cart[i].NAME = data[0].NAME;
-        });
-
-      this.amountTotal += this.Cart[i].Count;
-    }
-  }
   // 更新購物車
   updateCartData(index) {
+    if (this.page !== 1) {
+      index += (this.page - 1) * this.productsPerPage;
+    }
+
     if (isNaN(Number(this.cartService.cart[index].Count))) {
       this.cartService.cart[index].Count = 1;
     } else if (Number(this.cartService.cart[index].Count) <= 0) {
@@ -158,10 +146,6 @@ export class CartComponent implements OnInit, AfterViewInit {
       this.cartService.cart[index].Count = Number(this.cartService.cart[index].Count);
     }
     this.ngAfterViewInit();
-  }
-
-  updateCartTotal() {
-    return this.cartService.totalPrice;
   }
 
   updateCartAmount() {

@@ -45,10 +45,6 @@ export class MyAccountComponent implements OnInit {
     if (this.authService.LoggedInRedirect()) {
       return;
     }
-
-    if (this.authService.userInfo.name === null) {
-      this.authService.GetUserInfo();
-    }
   }
 
   logout() {

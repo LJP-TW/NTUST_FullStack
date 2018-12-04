@@ -36,9 +36,16 @@ export class CartService {
   // timer 是否開啟
   Updating = false;
 
+  // 是否有 GetFromDB 過
+  Gotten = false;
+
   constructor(private httpClient: HttpClient,
               private authSvc: AuthService,
-              private monsterService: MonsterService) { }
+              private monsterService: MonsterService) {
+    if (this.authSvc.LoggedIn()) {
+      this.GetFromDB();
+    }
+  }
 
   /**
    * 開啟與資料庫同步的一個timer
@@ -298,6 +305,7 @@ export class CartService {
   }
 
   GetFromDB() {
+    console.log('Oh');
     this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`).subscribe((data: GetFromDBResPonse) => {
       if (data.status) {
         this.cart = [];
@@ -315,10 +323,12 @@ export class CartService {
           });
           this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
+        this.Gotten = true;
       }
     }, (error: HttpErrorResponse) => {
       if (error.status === 401) {
         this.authSvc.TokenFresh();
+        this.Gotten = true;
       }
     });
   }
