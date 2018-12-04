@@ -221,7 +221,7 @@
                                     <div class="search_container">
                                       <!-- Todo: Search Product -->
                                       <button class="searchBtn" (click)="this.categoryService.SearchMonster()" ></button>
-                                      <input type="text" class="search" placeholder="search" [(ngModel)]="this.categoryService.SearchString" />
+                                      <input type="text" class="search" placeholder="search" [(ngModel)]="this.categoryService.SearchString" (keydown.enter)="this.categoryService.SearchMonster()" />
                                     </div>
                                 </ul>
                             </div>

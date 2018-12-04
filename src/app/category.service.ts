@@ -188,14 +188,16 @@ getIcon(index){
 
  //Searching
  SearchMonster(){
-  this.monCache  = [];
-  this.monsterService.searchMonsters(this.SearchString).subscribe((data:Monster[])=>{
-    this.monCache  = data;
-    this.productMax = this.monCache.length;
-    this.AdjustPaging();
-    this.Page(1);
-    this.router.navigate(['/category']);
-  })
+   if(this.SearchString.length){
+    this.monCache  = [];
+    this.monsterService.searchMonsters(this.SearchString).subscribe((data:Monster[])=>{
+      this.monCache  = data;
+      this.productMax = this.monCache.length;
+      this.AdjustPaging();
+      this.Page(1);
+      this.router.navigate(['/category']);
+    })
+   }
  }
 
  // Paging

@@ -179,8 +179,6 @@
 		});
 		// accordion
 
-		
-
 		//product image with tab and zoom
 		
 		// $("#zoom_01").elevateZoom({cursor:"corsshair",zoomType:"inner",easing:true});

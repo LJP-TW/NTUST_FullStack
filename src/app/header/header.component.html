@@ -10,7 +10,7 @@
         <div class="search_container">
           <!-- Todo: Search Product -->
           <button class="searchBtn" (click)="this.categoryService.SearchMonster()" ></button>
-          <input type="text" class="search" placeholder="search" [(ngModel)]="this.categoryService.SearchString" />
+          <input type="text" class="search" placeholder="search" [(ngModel)]="this.categoryService.SearchString" (keydown.enter)="this.categoryService.SearchMonster()" />
         </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-12 floatright">

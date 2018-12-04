@@ -48,18 +48,7 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
     }
   
   ngOnInit() {
-  
-
-
-    //要更新
     this.route.params.subscribe( (data:any) => {
-      // <script src="assets/js/main.js"></script>
-      const sliderAffect = document.createElement('script');
-      sliderAffect.type = 'text/javascript';
-      sliderAffect.src = 'assets/js/main.js';
-      this.elementRef.nativeElement.appendChild(sliderAffect);
-
-      // <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
       this.monsterService.getMonstersByID(data.id).subscribe((httpData:Monster[])=>{
         //拿到產品
         this.Product = httpData[0];
@@ -85,7 +74,7 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
           this.relativeMonsters = data;
           this.JqueryOWL();
         })
-    //特效
+        //特效
         this.JqueryCollapse();
         window.scrollTo(0,0);
       },
@@ -107,17 +96,12 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    // if($('.zoomContainer').length){
-    //   $('.zoomContainer').remove();
-    // }
+
     $('#owl-example-single').remove();
   }
 
   ImageSwap(value){
-    // $('.zoomContainer').remove();
-    // $('#zoom_01').remove('elevateZoom');
     this.ImageID = value;
-    // $('#zoom_01').elevateZoom({scrollZoom :true, easing:true,tint:true, tintColour:'#FF6766',tintOpacity:0.2})
   }
 
   ImageIndex(){
@@ -177,7 +161,6 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
 
   JqueryOWL(){
     setTimeout(()=>{
-
       $("#owl-example-single").owlCarousel({
         autoPlay: true,
         center: true,
@@ -206,6 +189,7 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
       $('#zoom_01').elevateZoom({scrollZoom :true, easing:true,tint:true, tintColour:'#FF6766',tintOpacity:0.2})
       },10);
   }
+
   NavToProducDetail(id:number){
     // $('#owl-example-single').remove();
     this.router.navigate(['/product-detail',id]);

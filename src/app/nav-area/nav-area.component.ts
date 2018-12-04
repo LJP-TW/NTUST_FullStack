@@ -5,7 +5,6 @@ import { CartService } from './../cart.service';
 import { NavService } from './../nav.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
-import { CategoryService } from '../category.service';
 
 interface MonsterCache {
   name: string;
