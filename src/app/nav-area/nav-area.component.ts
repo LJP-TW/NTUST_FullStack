@@ -1,3 +1,4 @@
+import { CategoryService } from './../category.service';
 import { AuthService } from './../auth.service';
 import { MonsterService } from './../monster.service';
 import { CartService } from './../cart.service';

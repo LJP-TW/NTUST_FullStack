@@ -41,6 +41,11 @@ export class ResetPwdComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (this.authService.LoggedIn()) {
+      this.router.navigate(['/']);
+      return;
+    }
+
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.user.token = params['token'];
     });

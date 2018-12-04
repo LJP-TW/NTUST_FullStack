@@ -1,5 +1,6 @@
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Message {
   URL: string;
@@ -26,9 +27,13 @@ export class ForgetPwdComponent implements OnInit {
 
   invalid = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    if (this.authService.LoggedIn()) {
+      this.router.navigate(['/']);
+      return;
+    }
   }
 
   forgetPwd() {

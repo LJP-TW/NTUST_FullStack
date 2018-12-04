@@ -36,8 +36,12 @@ export class CheckoutComponent implements OnInit {
               private authService: AuthService,
               private router: Router,
               public productDataBase: ProductDataBaseService) { }
+
   ngOnInit() {
-    this.authService.LoggedInRedirect();
+    if (this.authService.LoggedInRedirect()) {
+      return;
+    }
+
     this.cartService.UpdateFunc();
     this.cartService.GetFromDB();
     this.Data.total = this.cartService.totalPrice,

@@ -35,6 +35,10 @@ export class RegistComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    if (this.authService.LoggedIn()) {
+      this.router.navigate(['/']);
+      return;
+    }
   }
 
   register() {
