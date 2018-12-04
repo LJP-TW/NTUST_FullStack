@@ -105,7 +105,7 @@
               </div>
             </div>
             <input type="submit" value="儲存購物車" (click)="cartService.ForceUpdate()">
-            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active" value="Yeah Yeah 結帳囉">
+            <input type="submit" (click)="checkout()" value="Yeah Yeah 結帳囉">
           </div>
         </div>
       </div>

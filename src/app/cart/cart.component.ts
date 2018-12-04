@@ -6,6 +6,7 @@ import { MonsterService } from '../monster.service';
 import { Monster } from '../monster';
 import { Attribute } from '@angular/compiler';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 
 interface Order {
@@ -38,7 +39,8 @@ export class CartComponent implements OnInit, AfterViewInit {
     public cartService: CartService,
     public monster: MonsterService,
     private elementRef: ElementRef,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {}
 
   // 接 DataService
@@ -148,11 +150,12 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
   // 更新購物車
   updateCartData(index) {
-    console.log(Number(this.cartService.cart[index].Count));
     if (isNaN(Number(this.cartService.cart[index].Count))) {
       this.cartService.cart[index].Count = 1;
     } else if (Number(this.cartService.cart[index].Count) <= 0) {
       this.cartService.cart[index].Count = -this.cartService.cart[index].Count;
+    } else {
+      this.cartService.cart[index].Count = Number(this.cartService.cart[index].Count);
     }
     this.ngAfterViewInit();
   }
@@ -203,5 +206,26 @@ export class CartComponent implements OnInit, AfterViewInit {
     return Array.from(Array(this.pageMax).keys()).map(n => {
       return (n = n + 1);
     });
+  }
+
+  checkout() {
+    this.cartService.ForceUpdate();
+    const clock = 200;
+    let count = 0;
+    const timer = setInterval(() => {
+      if (this.cartService.cartUpdated) {
+        this.router.navigate(['/checkout']);
+        clearInterval(timer);
+        return;
+      } else {
+        ++count;
+        // 等了 50 個 clock, 也就是 10 秒
+        if (count === 50) {
+          alert('購物車無法更新');
+          clearInterval(timer);
+          return;
+        }
+      }
+    }, clock);
   }
 }
