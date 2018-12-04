@@ -100,8 +100,8 @@
                 <!-- 列出寶貝, 總價 -->
                 <ng-container *ngFor="let item of order">
                   <div class="c_single_item">
-                    <p>{{ item.ProductId }} x {{ item.Count }}</p>
-                    <span>${{ item.Price }}</span>
+                    <p>{{ item.NAME }} : <br>{{ item.Price }} x {{ item.Count }}</p>
+                    <span>${{ item.Price * item.Count }}</span>
                   </div>
                 </ng-container>
 
