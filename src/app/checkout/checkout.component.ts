@@ -424,6 +424,11 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
+    if (this.cartService.cart.length === 0) {
+      this.router.navigate(['/category']);
+      return;
+    }
+
     this.cartService.UpdateFunc();
     this.cartService.GetFromDB();
     this.Data.total = this.cartService.totalPrice,
