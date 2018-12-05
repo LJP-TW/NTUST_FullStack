@@ -36,9 +36,16 @@ export class CartService {
   // timer 是否開啟
   Updating = false;
 
+  // 是否有 GetFromDB 過
+  Gotten = false;
+
   constructor(private httpClient: HttpClient,
               private authSvc: AuthService,
-              private monsterService: MonsterService) { }
+              private monsterService: MonsterService) {
+    if (this.authSvc.LoggedIn()) {
+      this.GetFromDB();
+    }
+  }
 
   /**
    * 開啟與資料庫同步的一個timer
@@ -117,17 +124,24 @@ export class CartService {
     if (!found) {
       // 從 server 抓一次此 monster
 
-      //先將必要資訊推到cart當中，防止api在取資料的期間，cart尚未加入Product的情況。
-      //(快速連續執行Add()可能會成功觸發多次，造成「商品的重複檢測」失效)。
+      // 先將必要資訊推到cart當中，防止api在取資料的期間，cart尚未加入Product的情況。
+      // (快速連續執行Add()可能會成功觸發多次，造成「商品的重複檢測」失效)。
       this.cart.push(
         {
           ProductId: id,
           Count: 1,
-          Price: 0
+          Price: 0,
+          NAME: '',
+          NAME_EN: '',
+          NAME_JP: '',
+          attributes: [],
+          Icon: {
+            src: ''
+          }
         }
-      )
-      let index = this.cart.length-1;
-      //事後補齊資訊
+      );
+      const index = this.cart.length - 1;
+      // 事後補齊資訊
       this.monsterService.getMonstersByID(id).subscribe((resp: Monster[]) => {
         this.cart[index] = {
           ProductId: id,
@@ -291,6 +305,7 @@ export class CartService {
   }
 
   GetFromDB() {
+    console.log('Oh');
     this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`).subscribe((data: GetFromDBResPonse) => {
       if (data.status) {
         this.cart = [];
@@ -308,10 +323,12 @@ export class CartService {
           });
           this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
         }
+        this.Gotten = true;
       }
     }, (error: HttpErrorResponse) => {
       if (error.status === 401) {
         this.authSvc.TokenFresh();
+        this.Gotten = true;
       }
     });
   }

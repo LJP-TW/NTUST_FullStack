@@ -33,31 +33,31 @@
 .info > div > div {
   padding: 3px 0;
 }
-.leftBlock {
-  display: inline-block;
-  width: 70%;
-}
-.rightBlock {
+.w30 {
   display: inline-block;
   width: 30%;
 }
-.left {
+.w50 {
   display: inline-block;
-  width: 30%;
+  width: 50%;
 }
-.right {
+.w70 {
   display: inline-block;
   width: 70%;
 }
 .detail {
   display: block;
   max-height: 0px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   transition: max-height 1.5s ease;
 }
 .detail:hover {
   background-color: #f5f6f7;
 }
 .detailActived {
-  max-height: 800px;
+  max-height: 820px;
+}
+.detail > div:hover {
+  background-color: #f2f3f4;
 }

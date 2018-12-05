@@ -49,6 +49,7 @@ export class AuthService {
     if (this.LoggedIn()) {
       console.log('重新整理');
       this.setTokenUpdater();
+      this.GetUserInfo();
     }
   }
 

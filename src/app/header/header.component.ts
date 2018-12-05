@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../category.service';
 
@@ -8,7 +9,11 @@ import { CategoryService } from '../category.service';
 })
 export class HeaderComponent implements OnInit {
 
+<<<<<<< HEAD
   constructor(public categoryService:CategoryService) { }
+=======
+  constructor(public authService: AuthService) { }
+>>>>>>> master
 
   ngOnInit() {
   }

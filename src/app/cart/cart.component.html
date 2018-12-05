@@ -19,6 +19,8 @@
           </div>
 
 
+          <ng-container *ngIf="cartService.cart.length > 0">
+
           <!-- For 出所有商品 -->
           <ng-container *ngFor="let order of cartService.cart|slice : indexS :indexE; let i = index">
             <div class="floatleft" style="margin-top: 73px;">
@@ -26,7 +28,7 @@
             </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <a href="product-detail" style="float: left;"><img [src]="order.Icon" alt="" style="height: auto; width: 100px"/></a>
+                <a href="product-detail" style="float: left;"><img [src]="order.Icon.src" alt="" style="height: auto; width: 100px"/></a>
                 <p>{{ order.NAME }}<br>
                   特性:
                   <ng-container *ngFor="let attributes of order.attributes">
@@ -40,7 +42,7 @@
               <div class="cart_quantity">
                 <ul>
                   <li><button class="buttonMinus button" (click)="minusClick(i)"></button></li>
-                  <li><input type="text" class="quantity" [(ngModel)]="order.Count" (keyup)="updateCartData()"></li>
+                  <li><input type="text" class="quantity" [(ngModel)]="order.Count" (keyup)="updateCartData(i)"></li>
                   <li><button class="buttonPlus button" (click)="plusClick(i)"></button></li>
                 </ul>
               </div>
@@ -51,6 +53,7 @@
             </div>
           </ng-container>
 
+          </ng-container>
           <!-- Todo: 優惠碼 -->
           <!-- <div class="coupon_box">
             <input type="text" placeholder="coupon code" />
@@ -98,14 +101,14 @@
                     </div>
                     <div class="c_total_item sp_single_item">
                       <p>總共</p>
-                      <span>${{updateCartTotal()}}</span>
+                      <span>${{cartService.totalPrice}}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <input type="submit" value="儲存購物車" (click)="cartService.ForceUpdate()">
-            <input type="submit" [routerLink]="['/checkout']" routerLinkActive="router-link-active" value="Yeah Yeah 結帳囉">
+            <input type="submit" (click)="checkout()" value="Yeah Yeah 結帳囉">
           </div>
         </div>
       </div>

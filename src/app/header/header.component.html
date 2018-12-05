@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-3 col-sm-4 col-xs-12 floatright">
         <div class="header_right">
-          <ul class="checkout">
+          <ul class="checkout" *ngIf="authService.LoggedIn()">
             <!-- Todo: Wish List -->
             <!-- <li><a [routerLink]="['/']" routerLinkActive="router-link-active" ><img src="assets/icon/heart.png" style="width: 15px"> wishlist</a></li> -->
             <li class="mobi_right_li"><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" ><img src="assets/icon/shopping-cart.png" style="width: 15px"> 結帳去</a></li>

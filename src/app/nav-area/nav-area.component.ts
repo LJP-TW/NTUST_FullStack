@@ -21,9 +21,6 @@ export class NavAreaComponent implements OnInit {
   // 最大秀出的 CartItem 數量
   maxShowNum = 4;
 
-  // 暫存
-  monstersCache: MonsterCache[] = [];
-
   constructor(public navService: NavService,
     public cartService: CartService,
     public monsterService: MonsterService,
@@ -31,19 +28,6 @@ export class NavAreaComponent implements OnInit {
     public categoryService: CategoryService) { }
 
   ngOnInit() {
-    if (this.authService.LoggedIn()) {
-      this.cartService.GetFromDB();
-
-      for (let i = 0; i < this.maxShowNum; ++i) {
-        if (this.cartService.cart.length <= i) {
-          break;
-        }
-
-        this.monstersCache.push({
-          name: '',
-        });
-      }
-    }
   }
 
   test() {

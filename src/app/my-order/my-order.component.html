@@ -2,34 +2,39 @@
   <ng-container *ngFor="let order of orderService.order; let orderIndex = index">
     <div class="info">
       <div>
-        <div class="leftBlock">
-          <p class="left">訂單</p>
-          <p class="right">{{ orderIndex + 1 }}</p>
+        <div class="w70">
+          <p class="w30">訂單編號</p>
+          <p class="w70">{{ orderIndex + 1 }}</p>
         </div>
 
-        <div class="rightBlock">
-          <p class="left">狀態</p>
+        <div class="w30">
+          <p class="w30">狀態</p>
           <ng-container *ngIf="!order.Shipment">
-            <p class="right">未配送</p>
+            <p class="w70">未配送</p>
           </ng-container>
           <ng-container *ngIf="order.Shipment">
-            <p class="right">已配送</p>
+            <p class="w70">已配送</p>
           </ng-container>
         </div>
       </div>
 
       <div>
-        <p class="left">地址</p>
-        <p class="right">{{ order.Address }}</p>
+        <p class="w30">地址</p>
+        <p class="w70">{{ order.Address }}</p>
       </div>
 
       <div>
-        <div class="leftBlock">
-          <p class="left">成立時間</p>
-          <p class="right">{{ order.created_at }}</p>
+        <p class="w30">成立時間</p>
+        <p class="w70">{{ order.created_at }}</p>
+      </div>
+
+      <div>
+        <div class="w70">
+          <p class="w30">總額</p>
+          <p class="w70">{{ order.Total }}$</p>
         </div>
 
-        <div class="rightBlock">
+        <div class="w30">
           <p (click)="orderDetail = orderIndex">查看詳細</p>
         </div>
       </div>
@@ -38,10 +43,20 @@
     <div class="detail" [ngClass]="{'detailActived': orderDetail === orderIndex}">
       <ng-container *ngFor="let item of order.items; let itemIndex = index">
         <div>
-          <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon.src" alt="" /></a>
-          <p>名稱: {{ item.NAME }}</p>
-          <p>價格: {{ item.Price }}</p>
-          <p>數量: {{ item.Count }}</p>
+          <div class="w30">
+              <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon.src" alt="" /></a>
+          </div>
+          <div class="w70">
+            <div class="w50">
+              <p>名稱: {{ item.NAME }}</p>
+              <p>價格: {{ item.Price }}$</p>
+              <p>數量: {{ item.Count }}</p>
+            </div>
+            <div class="w50">
+              <p>小計: {{ item.Price * item.Count }}$</p>
+              <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active">商品頁面</a>
+            </div>
+          </div>
         </div>
       </ng-container>
     </div>
