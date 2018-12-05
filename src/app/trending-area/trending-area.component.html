@@ -23,6 +23,12 @@
               <div role="tabpanel" class="tab-pane active" id="home">
                <div id="owl-example" class="owl-carousel">
 
+                <div class="item">
+                  <div class="item-sub">
+                    <a [routerLink]="['/product-detail']" routerLinkActive="router-link-active"><h5>.</h5></a>
+                  </div>
+                </div>
+
                   <div class="item">
                       <div class="item-img">
                         <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[0].id, 1)" alt="" />
@@ -31,7 +37,7 @@
                             <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
                             <li><a class="tr_text" (click)="AddToCart(product[0].id, product[0].price, product[0].discount)" href="##">ADD TO CART</a></li>
                             <li><a class="fa fa-heart tr_heart" href="#"></a></li>
-                            <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"></a></li>
+                            <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail', product[0].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
                       </div>
