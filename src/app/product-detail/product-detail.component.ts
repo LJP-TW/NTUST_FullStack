@@ -194,4 +194,8 @@ export class ProductDetailComponent implements OnInit,OnChanges,AfterContentInit
     // $('#owl-example-single').remove();
     this.router.navigate(['/product-detail',id]);
   }
+
+  test(){
+    alert('123');
+  }
 }

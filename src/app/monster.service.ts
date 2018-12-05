@@ -126,7 +126,7 @@ export class MonsterService {
   }
 
   getMonsterImgsExp(Width: number, Height: number, MonsterID: number, ImageID: number) {
-    console.log('calledAPI Exp');
+    // console.log('calledAPI Exp');
     return `${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`;
   }  
 
