@@ -5,7 +5,6 @@ import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
-import { Icon } from './icon'
 
 interface Message {
   [key: string]: any;
@@ -278,7 +277,7 @@ export class CartService {
       this.ModifyCart();
     }
   }
-  Exist(id: number){
+  Exist(id: number) {
     for (let i = 0 ; i < this.cart.length ; i++) {
       if (this.cart[i].ProductId === id) {
          return true;

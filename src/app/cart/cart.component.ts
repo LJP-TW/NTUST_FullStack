@@ -75,7 +75,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     const init = setInterval(() => {
       if (this.cartService.Gotten) {
         if (this.cartService.cart.length === 0) {
-          // 趕走
+          this.router.navigate(['/category']);
         }
         this.cartChanged();
         this.Page(1);
