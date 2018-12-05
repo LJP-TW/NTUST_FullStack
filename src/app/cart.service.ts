@@ -5,7 +5,6 @@ import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
-import { Icon } from './icon'
 
 interface Message {
   [key: string]: any;
@@ -44,6 +43,13 @@ export class CartService {
               private monsterService: MonsterService) {
     if (this.authSvc.LoggedIn()) {
       this.GetFromDB();
+    }
+  }
+
+  refreshTotalPrice() {
+    this.totalPrice = 0;
+    for (let i = 0; i < this.cart.length; ++i) {
+      this.totalPrice += this.cart[i].Price * this.cart[i].Count;
     }
   }
 
@@ -155,7 +161,7 @@ export class CartService {
             src: resp[0].Icon.src
           },
         };
-        this.totalPrice += resp[0].price;
+        this.totalPrice += resp[0].price * resp[0].discount / 100;
 
         // 與資料庫同步相關的部分
         this.ModifyCart();
@@ -271,7 +277,7 @@ export class CartService {
       this.ModifyCart();
     }
   }
-  Exist(id: number){
+  Exist(id: number) {
     for (let i = 0 ; i < this.cart.length ; i++) {
       if (this.cart[i].ProductId === id) {
          return true;
