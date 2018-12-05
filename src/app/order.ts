@@ -12,6 +12,7 @@ export interface Order {
   Address: string;
   Shipment: number;
   Total: number;
+  Phone: string;
   createdAt: string;
   items: OrderItem[];
 }
