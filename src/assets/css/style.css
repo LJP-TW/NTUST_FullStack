@@ -2525,14 +2525,13 @@ margin-bottom: 0;
 text-transform: uppercase;
 }
 .filter_box_left > p {
-color: #777777;
-float: left;
-font-size: 12px;
-font-weight: 600;
-margin-bottom: 0;
-margin-right: 21px;
-text-transform: uppercase;
-width: 75px;
+  color: #777777;
+  float: left;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-right: 5px;
+  text-transform: uppercase;
 }
 .filter_cont > ul {
   list-style: outside none none;
@@ -2554,8 +2553,8 @@ text-decoration:none;
 }
 .filter_cont {
   float: left;
-  margin-right: 23px;
-  width: 126px;
+  margin-right: 10px;
+  width: auto;
 }
 .s_results span {
   color: #ddd;

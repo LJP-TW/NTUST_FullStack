@@ -17,9 +17,8 @@
             <p>過濾器</p>
             <div class="filter_cont">
               <ul>
-                <li><a (click)="FilterOn()">開啟</a></li>
-                <li><img [src]="this.categoryService.FilterIco_Loc()" alt="" /></li>
-                <li><a (click)="FilterOff()">關閉</a></li>
+                <input  type="checkbox" [(ngModel)]="this.categoryService.filter"  class="checkbox filterbar" id="enablefilter0" >
+                <label class='checkbox filterbar' for="enablefilter0" (click)="ToggleFilter()"></label>
               </ul>
             </div>
             <div class="s_results">
@@ -55,16 +54,13 @@
                   <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
-                          <input  type="checkbox" [(ngModel)]="this.categoryService.enableMCFilter"  class="checkbox" id="enablefilter1" ><label class='checkbox' for="enablefilter1"></label>
+                          
                         <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           神奇寶貝
-                          <span class="floatright">
-                            <i class="fa fa-minus">
-
-                            </i>
-                          </span>
                         </a>
+                        <input  type="checkbox" [(ngModel)]="this.categoryService.enableMCFilter"  class="checkbox" id="enablefilter1" ><label class='checkbox' for="enablefilter1"></label>
+                        <span class="floatright" data-toggle="collapse" data-parent="#home-accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-minus"></i></span>
                         </h4>
                       </div>
                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -109,13 +105,15 @@
 
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingThree">
-                          <input type="checkbox"[(ngModel)]="this.categoryService.enablePriceFilter"  class="checkbox" id="enablefilter2" ><label class='checkbox' for="enablefilter2"></label>
+                          
                         <h4 class="panel-title">
-                          <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          <a  class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                           價格範圍
-                          <span class="floatright"><i class="fa fa-plus"></i></span>
                           </a>
+                          <input type="checkbox"[(ngModel)]="this.categoryService.enablePriceFilter"  class="checkbox" id="enablefilter2" ><label class='checkbox' for="enablefilter2"></label>
+                          <span class="floatright" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-plus"></i></span>
                         </h4>
+                       
                       </div>
                       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                           <div class="panel-body">
@@ -186,10 +184,10 @@
                     <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
-                      <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        排序方式
-                        <span class="floatright"><i class="fa fa-plus"></i></span>
-                      </a>
+                        <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                          排序方式 
+                        </a>
+                        <span class="floatright" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><i class="fa fa-plus"></i></span>
                       </h4>
                     </div>
                     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
@@ -205,6 +203,30 @@
                       </div>
                     </div>
                     </div>
+                    
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFive">
+                          <h4 class="panel-title">
+                            <a  class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            商品搜尋
+                            </a>
+                            <span class="floatright" data-toggle="collapse" data-parent="#home-accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive"><i class="fa fa-plus"></i></span>
+                          </h4>
+                         
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                            <div class="panel-body">
+                                <ul id="c_tab2">
+                                    <div class="search_container">
+                                      <!-- Todo: Search Product -->
+                                      <button class="searchBtn" (click)="this.categoryService.SearchMonster()" ></button>
+                                      <input type="text" class="search" placeholder="search" [(ngModel)]="this.categoryService.SearchString" (keydown.enter)="this.categoryService.SearchMonster()" />
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
             </div>

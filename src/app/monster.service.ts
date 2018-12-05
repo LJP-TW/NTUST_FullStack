@@ -126,7 +126,7 @@ export class MonsterService {
   }
 
   getMonsterImgsExp(Width: number, Height: number, MonsterID: number, ImageID: number) {
-    console.log('calledAPI Exp');
+    // console.log('calledAPI Exp');
     return `${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`;
   }  
 
@@ -139,8 +139,8 @@ export class MonsterService {
     return `${environment.api}/GetAttributes`;
   }
 
-  search(name: string) {
-    return `${environment.api}/Search/${name}`;
+  searchMonsters(name: string) {
+    return this.httpClient.get(`${environment.api}/Search/${name}`);
   }
 
   /**

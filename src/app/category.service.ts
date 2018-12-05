@@ -59,15 +59,18 @@ export class CategoryService {
  indexE = 0;
  PageIndexNum = 5;
 
-  //Bufffer
-  public monCache:Monster[]=[];
-  public perCache = 36;
+//Buffer
+public monCache:Monster[]=[];
+public perCache = 36;
 
 
  //Query String
  QS_MonsterCat="";
  QS_PriceFilter="";
  QS_Sort="";
+
+ //Search String
+  SearchString = "";
 
  // tslint:disable-next-line:max-line-length
  constructor(public monsterService: MonsterService, 
@@ -150,11 +153,13 @@ getIcon(index){
  ToggleMT(type){
   this.MonsterAttrs[type].active = !this.MonsterAttrs[type].active;
   }
+
+
  // Displaying
  Display(category?:string[],price?:string,sort?:string){
    this.enableMCFilter=false;
    this.enablePriceFilter=false;
-   this.QS_Sort="*";
+   this.QS_Sort="";
    if(category!=undefined){
      this.enableMCFilter = true;
     let fbuf: any[] =  this.MonsterAttrs.filter((data)=>{
@@ -162,6 +167,13 @@ getIcon(index){
     });
     this.MonsterAttrs.forEach((data)=>{data.active=false;});
     fbuf.forEach((data)=>{data.active=true;});
+    let queryString = "";
+    for(let i = 0 ; i <this.MonsterAttrs.length;i++){
+    if(this.MonsterAttrs[i].active){
+      queryString += (i+1).toString()+",";
+    }
+    }
+    this.QS_MonsterCat = queryString.slice(0,-1);
   }
   if(price!=undefined){
 
@@ -173,6 +185,20 @@ getIcon(index){
   this.router.navigate(['/category']);
  }
  
+
+ //Searching
+ SearchMonster(){
+   if(this.SearchString.length){
+    this.monCache  = [];
+    this.monsterService.searchMonsters(this.SearchString).subscribe((data:Monster[])=>{
+      this.monCache  = data;
+      this.productMax = this.monCache.length;
+      this.AdjustPaging();
+      this.Page(1);
+      this.router.navigate(['/category']);
+    })
+   }
+ }
 
  // Paging
  AdjustPaging(){
@@ -339,5 +365,6 @@ getIcon(index){
    })
    
  }
+
 
 }

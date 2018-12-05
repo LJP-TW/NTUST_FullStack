@@ -11,10 +11,11 @@
 .category_button:hover{
     /* font-size: 20px */
     padding-left:  10px;
-    transition: all 0.5s linear 0s;
+    transition: all 0.1s linear 0s;
 }
 
 .category_button:active{
+    outline: 0;
     border: 0px;
 }
 
