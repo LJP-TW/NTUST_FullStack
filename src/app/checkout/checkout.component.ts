@@ -456,6 +456,7 @@ export class CheckoutComponent implements OnInit {
     if (this.zoneNumberValid) {
       const order = {
         Address: this.Data.City + this.Data.Zone + this.Data.Address,
+        Phone: this.Data.phone,
       };
       this.cartService.MakeOrder(order).subscribe((data: OrderResponse) => {
         if (data.status) {
