@@ -9,11 +9,7 @@ import { CategoryService } from '../category.service';
 })
 export class HeaderComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor(public categoryService:CategoryService) { }
-=======
-  constructor(public authService: AuthService) { }
->>>>>>> master
+  constructor(public categoryService:CategoryService,public authService: AuthService ) { }
 
   ngOnInit() {
   }
