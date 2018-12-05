@@ -47,6 +47,13 @@ export class CartService {
     }
   }
 
+  refreshTotalPrice() {
+    this.totalPrice = 0;
+    for (let i = 0; i < this.cart.length; ++i) {
+      this.totalPrice += this.cart[i].Price * this.cart[i].Count;
+    }
+  }
+
   /**
    * 開啟與資料庫同步的一個timer
    * 在此 timer 正在進行的期間內, 所有對購物車做的更動都不會真的打一個同步要求到資料庫
@@ -155,7 +162,7 @@ export class CartService {
             src: resp[0].Icon.src
           },
         };
-        this.totalPrice += resp[0].price;
+        this.totalPrice += resp[0].price * resp[0].discount / 100;
 
         // 與資料庫同步相關的部分
         this.ModifyCart();

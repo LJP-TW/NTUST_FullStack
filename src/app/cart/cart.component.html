@@ -18,9 +18,6 @@
             </div>
           </div>
 
-
-          <ng-container *ngIf="cartService.cart.length > 0">
-
           <!-- For 出所有商品 -->
           <ng-container *ngFor="let order of cartService.cart|slice : indexS :indexE; let i = index">
             <div class="floatleft" style="margin-top: 73px;">
@@ -53,7 +50,6 @@
             </div>
           </ng-container>
 
-          </ng-container>
           <!-- Todo: 優惠碼 -->
           <!-- <div class="coupon_box">
             <input type="text" placeholder="coupon code" />

@@ -74,6 +74,9 @@ export class CartComponent implements OnInit, AfterViewInit {
     let count = 0;
     const init = setInterval(() => {
       if (this.cartService.Gotten) {
+        if (this.cartService.cart.length === 0) {
+          // 趕走
+        }
         this.cartChanged();
         this.Page(1);
         this.updateCartAmount();
@@ -145,6 +148,9 @@ export class CartComponent implements OnInit, AfterViewInit {
     } else {
       this.cartService.cart[index].Count = Number(this.cartService.cart[index].Count);
     }
+
+    this.cartService.refreshTotalPrice();
+
     this.ngAfterViewInit();
   }
 
