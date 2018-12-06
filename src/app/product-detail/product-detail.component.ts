@@ -73,7 +73,7 @@ export class ProductDetailComponent implements OnInit, OnChanges, AfterContentIn
         // 抓種類
         for (let i = 0 ; i < this.Product.attributes.length ; i++) {
           for (let j = 0 ; j < this.categoryService.MonsterAttrs.length ; j++) {
-            if (this.Product.attributes[i].NAME === this.categoryService.MonsterAttrs[j].name) {
+            if (this.Product.attributes[i].NAME === this.categoryService.MonsterAttrs[j].NAME) {
               QS_Relative += (j + 1).toString() + ',';
               break;
             }
@@ -166,9 +166,9 @@ export class ProductDetailComponent implements OnInit, OnChanges, AfterContentIn
 
   CategoryIconStyle(cate: string) {
     let bg_color: any = this.categoryService.MonsterAttrs.filter((data) => {
-      return data.name === cate;
+      return data.NAME === cate;
     })[0];
-    bg_color = bg_color === undefined ? '#fff' : bg_color.color;
+    bg_color = bg_color === undefined ? '#fff' : bg_color.Color;
     return { 'background-color' : bg_color};
   }
 
