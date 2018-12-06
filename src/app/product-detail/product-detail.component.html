@@ -17,7 +17,7 @@
   <section class="gray_tshirt_area">
   <p class="category_button" [routerLink]="[ '/category' ]">
   <img src="assets/icon/previous.png" >商品分類
-  </p>    
+  </p>
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -65,8 +65,8 @@
                 </ng-container>
               </h3>
               <div class="new_price_gray">
-                <p> 
-                  {{ this.categoryService.MathRound(Product.price / 100 * Product.discount) }} 
+                <p>
+                  {{ this.categoryService.MathRound(Product.price / 100 * Product.discount) }}
                   <ng-container *ngIf="Product.discount > 0">
                       <span class="item-discount">{{Product.discount}}%</span>
                   </ng-container>
@@ -101,12 +101,12 @@
             </div>
             <div id="collapseOneP" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOneP">
               <div class="panel-body product_ac_body">
-             <p>{{Product.description}}</p>
-             <ul id="product_accord_nav">
-                <li><a>Tristique senectus et netus aspernatur aut.</a></li>
-                <li><a>Labore doloam aliquam quaerat voluptatem.</a></li>
-                <li><a>Nisi ut aliquid ex ea commodi consequatue.</a></li>
-              </ul>
+                <p>{{Product.description}}</p>
+                <!-- <ul id="product_accord_nav">
+                  <li><a>Tristique senectus et netus aspernatur aut.</a></li>
+                  <li><a>Labore doloam aliquam quaerat voluptatem.</a></li>
+                  <li><a>Nisi ut aliquid ex ea commodi consequatue.</a></li>
+                </ul> -->
               </div>
             </div>
            </div>
@@ -158,7 +158,7 @@
                     </tr>
                     <tr class='monster_detail'>
                         <td class='monster_detail_name'>
-                          特殊攻擊 
+                          特殊攻擊
                         </td>
                         <td class='monster_detail_bar'>
                             <div [ngStyle]="SingleAttrStyle(Product.SP_ATTACK) "></div>
@@ -241,104 +241,107 @@
     </div>
   </div>
   </section>
-  <!-- <section class="product_page_tab_area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="product_page_tab">
-          <div role="tabpanel">
-            <ul class="nav nav-tabs tab-product" role="tablist">
-            <li role="presentation" class="active"><a href="#home2" aria-controls="home2" role="tab" data-toggle="tab">Description</a></li>
-            <li role="presentation"><a href="#profile2" aria-controls="profile2" role="tab" data-toggle="tab">ADDITIONAL INFORMATION</a></li>
-            <li role="presentation"><a href="#messages2" aria-controls="messages2" role="tab" data-toggle="tab">Review (2)</a></li>
-            </ul>
 
-            <div class="tab-content tab-p-details">
-            <div role="tabpanel" class="tab-pane active" id="home2"><h2>Description</h2>
+  <!-- <section class="product_page_tab_area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="product_page_tab">
+            <div role="tabpanel">
+              <ul class="nav nav-tabs tab-product" role="tablist">
+                <li role="presentation" class="active"><a href="#home2" aria-controls="home2" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#profile2" aria-controls="profile2" role="tab" data-toggle="tab">ADDITIONAL INFORMATION</a></li>
+                <li role="presentation"><a href="#messages2" aria-controls="messages2" role="tab" data-toggle="tab">Review (2)</a></li>
+              </ul>
+
+              <div class="tab-content tab-p-details">
+                <div role="tabpanel" class="tab-pane active" id="home2"><h2>Description</h2>
               <div class="multi_line"></div>
               <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsal ipsam salamthi voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptateras sequi nesciunt resmla Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquae eius modi tempora inciduntia ut labore et dolore magnam aliquam quaerat voluptatem.
               </p>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="profile2"><h2>Additional Information</h2>
-              <div class="multi_line"></div>
-              <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsal ipsam salamthi voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptateras sequi nesciunt resmla Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquae eius modi tempora inciduntia ut labore et dolore magnam aliquam quaerat voluptatem.
-              </p>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="messages2">
-              <div class="review_comments">
-                <div class="review_heading">
-                  <div class="review_heading_left">
-                    <h2><span>2 Review for </span> "Gray Structured T-Shirt"</h2>
-                    <div class="multi_line"></div>
-                  </div>
-                  <div class="review_heading_right">
-                    <ul id="review_heading_star">
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                    </ul>
-                  </div>
                 </div>
-                <div class="single_review_comment">
-                  <div class="single_review_img">
-                    <img src="assets/images/single_rv1.png" alt="" />
-                  </div>
-                  <div class="single_review_text">
-                    <h4>A Stunning Beauty!</h4>
-                    <ul id="single_review_star">
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                    </ul>
-                    <p>Semper orci etiam ac ultricies ante. Donec lobortis variusjusto et. Curabitur egestas aliquet massa non elementum. Quisque at risus nisl. Aliquam erat volutpat. Suspendisse potenti. Nullam porta faucibus elit.</p>
-                    <div class="review_italic">
-                      <p><span>Nicole Bailey,</span> 12.05.2013</p>
+                <div role="tabpanel" class="tab-pane" id="profile2"><h2>Additional Information</h2>
+              <div class="multi_line"></div>
+              <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enimsal ipsam salamthi voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptateras sequi nesciunt resmla Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquae eius modi tempora inciduntia ut labore et dolore magnam aliquam quaerat voluptatem.
+              </p>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages2">
+                  <div class="review_comments">
+                    <div class="review_heading">
+                      <div class="review_heading_left">
+                        <h2><span>2 Review for </span> "Gray Structured T-Shirt"</h2>
+                        <div class="multi_line"></div>
+                      </div>
+                      <div class="review_heading_right">
+                        <ul id="review_heading_star">
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="single_review_comment">
+                      <div class="single_review_img">
+                        <img src="assets/images/single_rv1.png" alt="" />
+                      </div>
+                      <div class="single_review_text">
+                        <h4>A Stunning Beauty!</h4>
+                        <ul id="single_review_star">
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                        </ul>
+                        <p>Semper orci etiam ac ultricies ante. Donec lobortis variusjusto et. Curabitur egestas aliquet massa non elementum. Quisque at risus nisl. Aliquam erat volutpat. Suspendisse potenti. Nullam porta faucibus elit.</p>
+                        <div class="review_italic">
+                          <p><span>Nicole Bailey,</span> 12.05.2013</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="single_review_comment last">
+                      <div class="single_review_img">
+                        <img src="assets/images/single_rv2.png" alt="" />
+                      </div>
+                      <div class="single_review_text last">
+                        <h4>A Stunning Beauty!</h4>
+                        <ul id="single_review_star">
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                          <li><a href="" class="fa fa-star"></a></li>
+                        </ul>
+                        <p>Semper orci etiam ac ultricies ante. Donec lobortis variusjusto et. Curabitur egestas aliquet massa non elementum. Quisque at risus nisl. Aliquam erat volutpat. Suspendisse potenti. Nullam porta faucibus elit.</p>
+                        <div class="review_italic">
+                          <p><span>Nicole Bailey,</span> 12.05.2013</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="single_review_comment last">
-                  <div class="single_review_img">
-                    <img src="assets/images/single_rv2.png" alt="" />
-                  </div>
-                  <div class="single_review_text last">
-                    <h4>A Stunning Beauty!</h4>
-                    <ul id="single_review_star">
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                      <li><a href="" class="fa fa-star"></a></li>
-                    </ul>
-                    <p>Semper orci etiam ac ultricies ante. Donec lobortis variusjusto et. Curabitur egestas aliquet massa non elementum. Quisque at risus nisl. Aliquam erat volutpat. Suspendisse potenti. Nullam porta faucibus elit.</p>
-                    <div class="review_italic">
-                      <p><span>Nicole Bailey,</span> 12.05.2013</p>
+                  <div class="Review_input">
+                    <div class="review_input_heading">
+                      <h3>Write your review</h3>
+                      <div class="multi_line"></div>
+                    </div>
+                    <div class="review_comment_input">
+                      <input type="text" placeholder="Enter Your Nickname"/><br>
+                      <input type="text" placeholder="Summary of your Review"/><br>
+                      <textarea name="" id="" cols="30" rows="10" placeholder="Write your review"></textarea><br>
+                      <input type="submit" value="Submit Review"/>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="Review_input">
-                <div class="review_input_heading">
-                  <h3>Write your review</h3>
-                  <div class="multi_line"></div>
-                </div>
-                <div class="review_comment_input">
-                  <input type="text" placeholder="Enter Your Nickname"/><br>
-                  <input type="text" placeholder="Summary of your Review"/><br>
-                  <textarea name="" id="" cols="30" rows="10" placeholder="Write your review"></textarea><br>
-                  <input type="submit" value="Submit Review"/>
-                </div>
-              </div>
-            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </section> -->
 
   <section class="main_category_area product_page_caro">
@@ -388,3 +391,39 @@
     </div>
   </div>
   </section>
+
+<section class="comment">
+  <div style="display: inline-block; width: 100%;">
+    <div class="review_comments">
+      <!-- Title -->
+      <div>
+        <div class="review_heading_left">
+          <h2>留言區 <span>共 {{ commentService.comment.length }} 則留言</span></h2>
+          <div class="multi_line"></div>
+        </div>
+      </div>
+      <!-- 留言 -->
+      <div class="commentZone">
+        <ng-container *ngFor="let usercomment of commentService.comment">
+          <div class="single_review_text">
+            <p>{{ usercomment.Comment }}</p>
+            <div class="review_italic">
+              <p><span>{{ usercomment.Username }}</span> {{ usercomment.createdAt }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <!-- 寫留言 -->
+      <div *ngIf="authService.LoggedIn()" class="review_input_heading_zone">
+        <div class="review_input_heading">
+          <h3>留個言</h3>
+          <div class="multi_line"></div>
+        </div>
+        <div class="review_comment_input">
+          <textarea name="" id="" cols="30" rows="10" placeholder="寫下評論" [(ngModel)]="userCommentValue"></textarea><br>
+          <input type="submit" (click)="writeComment()" value="送出"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

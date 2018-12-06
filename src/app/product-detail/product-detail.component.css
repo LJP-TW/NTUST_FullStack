@@ -30,7 +30,7 @@
     border-color: black;
     display: table-row-group;
     /* width: 500px; */
-    margin: 10px; 
+    margin: 10px;
 }
 
 .monster_table td{
@@ -59,7 +59,7 @@
     padding: 4px 10px;
 }
 
-.monster_detail_bar  div{ 
+.monster_detail_bar  div{
     display: block;
     height: .75rem;
     border-radius: 4px;
@@ -76,7 +76,7 @@
 }
 
 .attr_icon{
-    
+
     color: black;
     display: inline-block;
     width: 50px;
@@ -89,4 +89,18 @@
     border-style: solid;
     border-radius: 8px;
     margin: 0px 1px;
+}
+.comment {
+  display: inline-block;
+  width: 100%;
+  background: none repeat scroll 0 0 #f7f8f9;
+}
+.commentZone {
+  display: inline-block;
+  padding: 10px 0;
+  width: 100%;
+}
+.review_input_heading_zone {
+  display: inline-block;
+  width: 100%;
 }
