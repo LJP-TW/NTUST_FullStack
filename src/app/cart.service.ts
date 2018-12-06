@@ -5,6 +5,7 @@ import { CartItem } from './cart-item';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { AnimationService } from './animation.service';
 
 interface Message {
   [key: string]: any;
@@ -40,7 +41,8 @@ export class CartService {
 
   constructor(private httpClient: HttpClient,
               private authSvc: AuthService,
-              private monsterService: MonsterService) {
+              private monsterService: MonsterService,
+              private animationService: AnimationService) {
     if (this.authSvc.LoggedIn()) {
       this.GetFromDB();
     }
@@ -152,7 +154,7 @@ export class CartService {
         this.cart[index] = {
           ProductId: id,
           Count: 1,
-          Price: resp[0].price * resp[0].discount / 100,
+          Price: resp[0].finalPrice,
           NAME: resp[0].NAME,
           NAME_EN: resp[0].NAME_EN,
           NAME_JP: resp[0].NAME_JP,
@@ -161,8 +163,8 @@ export class CartService {
             src: resp[0].Icon.src
           },
         };
-        this.totalPrice += resp[0].price * resp[0].discount / 100;
-
+        this.totalPrice += resp[0].finalPrice;
+        this.animationService.ScreenCenter("assets/img/pika_naughty.gif",900,350,350);
         // 與資料庫同步相關的部分
         this.ModifyCart();
       });
@@ -192,7 +194,7 @@ export class CartService {
     if (found) {
       this.totalPrice = (this.totalPrice * 1000 + this.cart[i].Price * 1000) / 1000;
       this.cart[i].Count++;
-
+      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",900,350,350);
       // 與資料庫同步相關的部分
       this.ModifyCart();
     }
@@ -214,7 +216,7 @@ export class CartService {
     if (found) {
       this.totalPrice = (this.totalPrice * 1000 + (this.cart[i].Price * 1000) * count) / 1000;
       this.cart[i].Count += count;
-
+      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",900,350,350);
       // 與資料庫同步相關的部分
       this.ModifyCart();
     }
