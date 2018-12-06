@@ -10,9 +10,6 @@ import { AuthService } from '../auth.service';
 })
 export class MyOrderComponent implements OnInit {
 
-  orderID: number;
-  hasOrderID = false;
-
   constructor(private authService: AuthService, public orderService: OrderService) { }
 
   ngOnInit() {
