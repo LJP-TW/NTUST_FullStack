@@ -8,13 +8,18 @@
             <h5>神奇寶貝</h5>
             <div class="cat_menu_line"></div>
             <ul class="cat_nav">
-              <li><a (click)="categoryService.Display(['水'])">水系神奇寶貝</a></li>
+              <ng-container *ngFor="let attribute of attributes; let index = index">
+                <ng-container *ngIf="index < maxCategoryNum">
+                  <li><a (click)="categoryService.Display([attribute.NAME])">{{ attribute.NAME }}系神奇寶貝</a></li>
+                </ng-container>
+              </ng-container>
+              <!-- <li><a (click)="categoryService.Display(['水'])">水系神奇寶貝</a></li>
               <li><a (click)="categoryService.Display(['火'])">火系神奇寶貝</a></li>
               <li><a (click)="categoryService.Display(['電'])">電系神奇寶貝</a></li>
               <li><a (click)="categoryService.Display(['草'])">草系神奇寶貝</a></li>
               <li><a (click)="categoryService.Display(['冰'])">冰系神奇寶貝</a></li>
               <li><a (click)="categoryService.Display(['一般'])">一般系神奇寶貝</a></li>
-              <li><a (click)="categoryService.Display(['資工'])">資工系神奇寶貝</a></li>
+              <li><a (click)="categoryService.Display(['資工'])">資工系神奇寶貝</a></li> -->
             </ul>
           </div>
           <!-- <div class="cat_middle"> -->

@@ -64,15 +64,15 @@
           <div class="product_form_total">
 
             <div class="panel-group" id="home-accordion" role="tablist" aria-multiselectable="true">
-
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingTwo">
                   <h4 class="panel-title">
                     <p class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo"
-                      aria-expanded="false" aria-controls="collapseTwo">
+                      aria-expanded="true" aria-controls="collapseTwo">
                       我的購物車
-                      <span class="floatright"><button [ngClass]="{button: true,buttonMinus: CartTotalCtrl === true ,buttonPlus: CartTotalCtrl === false }"
-                          ></button></span>
+                      <span class="floatright">
+                        <button [ngClass]="{button: true,buttonMinus: CartTotalCtrl === true ,buttonPlus: CartTotalCtrl === false }"></button>
+                      </span>
                     </p>
                   </h4>
                 </div>
@@ -87,9 +87,13 @@
                       <p>商品數量</p>
                       <span>共{{updateCartAmount()}}件</span>
                     </div>
-                    <div class="c_single_item">
+                    <!-- <div class="c_single_item">
                       <p>小記</p>
                       <span>${{subTotal}}</span>
+                    </div> -->
+                    <div *ngIf="couponService.coupon_discount !== 0" class="c_single_item">
+                      <p>優惠折扣</p>
+                      <span>- {{couponService.coupon_discount}}$</span>
                     </div>
                     <div class="c_single_item cart_last_total">
                       <p>運費</p>
@@ -97,12 +101,75 @@
                     </div>
                     <div class="c_total_item sp_single_item">
                       <p>總共</p>
-                      <span>${{cartService.totalPrice}}</span>
+                      <span>${{cartService.totalPrice - couponService.coupon_discount}}</span>
                     </div>
+                  </div>
+                </div>
+
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title">
+                    <p class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree"
+                      aria-expanded="false" aria-controls="collapseThree">
+                      優惠券
+                      <span class="floatright">
+                        <button [ngClass]="{button: true,buttonMinus: CartTotalCtrl === true ,buttonPlus: CartTotalCtrl === false }"></button>
+                      </span>
+                    </p>
+                  </h4>
+                </div>
+                <div *ngIf="CartTotalCtrl === true" id="collapseThree" class="panel-collapse collapse in" role="tabpanel"
+                  aria-labelledby="headingThree">
+                  <div class="panel-body cart_p_body">
+                    <div class="c_single_item">
+                      <p>新增優惠券</p>
+                    </div>
+                    <div class="c_single_item sp_single_item">
+                      <input type="text" placeholder="輸入優惠碼" [(ngModel)]="coupon_code">
+                    </div>
+                    <div class="c_single_item sp_single_item">
+                      <button (click)="addCoupon()">送出</button>
+                    </div>
+                    <div *ngIf="couponService.isAddCoupon && !couponService.isAddCouponError" class="c_single_item sp_single_item">
+                      <p>優惠券 新增成功でした</p>
+                    </div>
+                    <div *ngIf="couponService.isAddCoupon && couponService.isAddCouponError" class="c_single_item sp_single_item">
+                      <p>優惠券 新增失敗ありませんでした</p>
+                    </div>
+
+                    <ng-container *ngFor="let coupon of couponService.coupons; let index = index">
+                      <div class="c_single_item">
+                        <p>{{ coupon.Name }}:</p>
+                        <span>
+                          <label>使用</label>
+                          <input type="checkbox" (click)="couponService.switchCoupon(index)">
+                        </span>
+                      </div>
+                      <div class="c_single_item">
+                        <p>折扣</p>
+                        <span>-{{ coupon.Discount }}$</span>
+                      </div>
+                      <div class="c_single_item sp_single_item">
+                          <p>使用期限</p>
+                          <span>{{ coupon.ExpiredAt }}</span>
+                        </div>
+                    </ng-container>
+                    <!-- <div class="c_single_item">
+                      <p>小記</p>
+                      <span>${{subTotal}}</span>
+                    </div> -->
+                    <!-- <div class="c_single_item cart_last_total">
+                      <p>運費</p>
+                      <span>{{shippingCharge}}</span>
+                    </div>
+                    <div class="c_total_item sp_single_item">
+                      <p>總共</p>
+                      <span>${{cartService.totalPrice}}</span>
+                    </div> -->
                   </div>
                 </div>
               </div>
             </div>
+
             <input type="submit" value="儲存購物車" (click)="cartService.ForceUpdate()">
             <input type="submit" (click)="checkout()" value="Yeah Yeah 結帳囉">
           </div>

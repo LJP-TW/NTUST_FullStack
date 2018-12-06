@@ -1,15 +1,27 @@
 <label class="icon" for="customer-help-check"><img src="../../assets/icon/contact-us.png" (click)=" page = 1; "></label>
 
 <div [ngClass]="{'customer-help': true,
-                 'active': page != 0}" >
+                 'active': page != 0
+                  }" >
   <label class="exit" (click)=" page = 0; ">X</label>
   <ng-container *ngIf="page==1">
     <p class="logo">客服中心</p>
-    <p class="slogan">我們將盡快給你回覆</p>
-    <textarea class="report-text" name="report-text" placeholder="請輸入遇到的問題..." [(ngModel)]="report_text" ></textarea>
+    <textarea class="report-text" name="report-text" placeholder="請輸入遇到的問題,我們將盡快給你回覆..." [(ngModel)]="reply.text" ></textarea>
+    <input type="file"  id="avatar" name="avatar"   accept="image/png, image/jpeg" (change)="FileSelected($event)"  style="display:block;margin: 0px auto;" multiple>
     <div class="centerButton"  (click)="Send()" >送出</div>
   </ng-container>
+
   <ng-container *ngIf="page==2">
-      DONE
+    <div style="
+    height: 100%;
+    width: 100%;
+    background-color: rgb(153, 204, 255);
+    border-radius: 5px;
+    transition: all 1s ease 0s">
+          <div class="tyLogo tyText">
+            謝謝！<br>我們將盡快答覆你
+            <img src="assets/img/pika_omg.gif" rep />
+          </div>
+    </div>
   </ng-container>
 </div>

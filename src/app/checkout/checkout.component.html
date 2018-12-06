@@ -97,6 +97,11 @@
                   </div>
                 </ng-container>
 
+                <div *ngIf="couponService.coupon_discount !== 0" class="c_single_item">
+                  <p>優惠折扣</p>
+                  <span>- {{couponService.coupon_discount}}$</span>
+                </div>
+
                 <!-- Todo 運費 -->
                 <div class="c_single_item sp_single_item">
                   <p>運費 Shipping Charge</p>
@@ -106,7 +111,7 @@
                 <!-- Total -->
                 <div class="c_total_item sp_single_item">
                   <p>總價錢 Total</p>
-                    <span>${{ Data.total }}</span>
+                    <span>${{ Data.total - couponService.coupon_discount }}</span>
                 </div>
 
                 <div class="checkbox">

@@ -152,7 +152,7 @@ export class CartService {
         this.cart[index] = {
           ProductId: id,
           Count: 1,
-          Price: resp[0].price * resp[0].discount / 100,
+          Price: resp[0].finalPrice,
           NAME: resp[0].NAME,
           NAME_EN: resp[0].NAME_EN,
           NAME_JP: resp[0].NAME_JP,
@@ -161,7 +161,7 @@ export class CartService {
             src: resp[0].Icon.src
           },
         };
-        this.totalPrice += resp[0].price * resp[0].discount / 100;
+        this.totalPrice += resp[0].finalPrice;
 
         // 與資料庫同步相關的部分
         this.ModifyCart();
@@ -190,7 +190,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 + this.cart[i].Price * 1000) / 1000;
+      this.totalPrice += this.cart[i].Price;
       this.cart[i].Count++;
 
       // 與資料庫同步相關的部分
@@ -212,7 +212,7 @@ export class CartService {
         }
     }
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 + (this.cart[i].Price * 1000) * count) / 1000;
+      this.totalPrice += this.cart[i].Price * count;
       this.cart[i].Count += count;
 
       // 與資料庫同步相關的部分
@@ -241,7 +241,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].Price * 1000) / 1000;
+      this.totalPrice -= this.cart[i].Price;
       this.cart[i].Count--;
 
       // 與資料庫同步相關的部分
@@ -270,7 +270,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 -  this.cart[i].Count * (this.cart[i].Price * 1000)) / 1000;
+      this.totalPrice -= this.cart[i].Price * this.cart[i].Count;
       this.cart.splice(i, 1);
 
       // 與資料庫同步相關的部分
@@ -320,14 +320,14 @@ export class CartService {
           this.cart.push({
             ProductId: product.ProductId,
             Count: product.Count,
-            Price: (product.Price * 1000) / 1000,
+            Price: product.Price,
             NAME: product.NAME,
             NAME_EN: product.NAME_EN,
             NAME_JP: product.NAME_JP,
             attributes: product.attributes,
             Icon: product.Icon,
           });
-          this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
+          this.totalPrice += (product.Count * product.Price);
         }
         this.Gotten = true;
       }

@@ -1,3 +1,4 @@
+import { CouponService } from './../coupon.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductDataBaseService } from '../product-data-base.service';
 import { Router } from '@angular/router';
@@ -414,6 +415,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(public cartService: CartService,
               public authService: AuthService,
+              public couponService: CouponService,
               private router: Router) { }
 
   ngOnInit() {
@@ -454,11 +456,13 @@ export class CheckoutComponent implements OnInit {
       const order = {
         Address: this.Data.City + this.Data.Zone + this.Data.Address,
         Phone: this.Data.phone,
+        Coupons: this.couponService.used_coupons_id
       };
       this.cartService.MakeOrder(order).subscribe((data: OrderResponse) => {
         if (data.status) {
           alert('下單成功!');
           this.cartService.GetFromDB();
+          this.couponService.getFromDB();
           this.router.navigate(['/']);
         } else {
           alert('fail, check again!');
