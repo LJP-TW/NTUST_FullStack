@@ -1,6 +1,6 @@
 <form class="LRblock">
 	<label for="email">信箱</label>
-  <input name="email" type="email" id="email" placeholder="請輸入您的信箱" [(ngModel)]="user.email" #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="255">
+  <input name="email" type="email" id="email" placeholder="請輸入您的信箱" [(ngModel)]="user.email" #email="ngModel" required pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="255">
   <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
     <span *ngIf="email.hasError('required')">● 信箱為必填選項</span>
     <span *ngIf="email.hasError('pattern')">● 信箱格式錯ㄌ</span>
