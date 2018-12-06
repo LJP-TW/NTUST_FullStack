@@ -372,7 +372,7 @@
                         <div class="item-sub">
                             <a (click)="NavToProducDetail(prod.id)"><h5>{{prod.NAME}} </h5></a>
                           <!-- <a [routerLink]="[ '/product-detail',prod.id]" routerLinkActive="active"><h5>{{prod.NAME}} </h5></a> -->
-                          <p>$ {{ this.categoryService.MathRound(prod.price/100*prod.discount) }}
+                          <p>$ {{ prod.finalPrice }}
                               <ng-container *ngIf="prod.discount > 0">
                                   <span><del>$ {{ prod.price }}</del></span>
                               </ng-container>
