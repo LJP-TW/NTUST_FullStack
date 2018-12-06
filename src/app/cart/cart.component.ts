@@ -128,15 +128,6 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // 隱藏、顯示左側資訊欄位
-  cartTotalClick() {
-    if (this.CartTotalCtrl === false) {
-      this.CartTotalCtrl = true;
-    } else {
-      this.CartTotalCtrl = false;
-    }
-  }
-
   couponClick() {
     if (this.CouponCtrl === false) {
       this.CouponCtrl = true;
