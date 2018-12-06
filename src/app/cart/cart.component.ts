@@ -1,3 +1,4 @@
+import { CouponService } from './../coupon.service';
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { CartService } from '../cart.service';
 import { CartItem } from '../cart-item';
@@ -39,6 +40,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     public monster: MonsterService,
     private elementRef: ElementRef,
     public authService: AuthService,
+    public couponService: CouponService,
     private router: Router
   ) {}
 
@@ -54,6 +56,9 @@ export class CartComponent implements OnInit, AfterViewInit {
   shippingCharge = 0;
   amountTotal = 0;
   CartAmount = 0;
+
+  // 優惠碼
+  coupon_code = '';
 
   ngOnInit() {
     if (this.authService.LoggedInRedirect()) {
@@ -82,6 +87,9 @@ export class CartComponent implements OnInit, AfterViewInit {
         this.cartChanged();
         this.Page(1);
         this.updateCartAmount();
+
+        this.couponService.coupon_discount = 0;
+        this.couponService.used_coupons_id = [];
         clearInterval(init);
         return;
       } else {
@@ -103,6 +111,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     this.cartService.Plus(this.cartService.cart[index].ProductId);
     this.updateCartAmount();
   }
+
   // 減號紐被按下，減少商品數量
   minusClick(index: number) {
     if (this.page !== 1) {
@@ -114,6 +123,7 @@ export class CartComponent implements OnInit, AfterViewInit {
       this.updateCartAmount();
     }
   }
+
   // 將商品移出購物車
   CartRemove(index: number) {
     if (this.page !== 1) {
@@ -128,9 +138,14 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
   }
 
-  couponClick() {
-    if (this.CouponCtrl === false) {
-      this.CouponCtrl = true;
+  addCoupon() {
+    this.couponService.addCoupon(this.coupon_code);
+  }
+
+  // 隱藏、顯示左側資訊欄位
+  cartTotalClick() {
+    if (this.CartTotalCtrl === false) {
+      this.CartTotalCtrl = true;
     } else {
       this.CouponCtrl = false;
     }

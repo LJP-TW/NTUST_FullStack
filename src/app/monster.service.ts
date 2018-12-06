@@ -128,15 +128,15 @@ export class MonsterService {
   getMonsterImgsExp(Width: number, Height: number, MonsterID: number, ImageID: number) {
     // console.log('calledAPI Exp');
     return `${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`;
-  }  
+  }
 
-  getMonsterBase64(MonsterID: number,ImageID: number = 0) {
+  getMonsterBase64(MonsterID: number, ImageID: number = 0) {
     console.log('calledAPI 64');
     return `${environment.api}/Image/Base64/${MonsterID}/${ImageID}`;
   }
 
   getAttributes() {
-    return `${environment.api}/GetAttributes`;
+    return this.httpClient.get(`${environment.api}/GetAttributes`);
   }
 
   searchMonsters(name: string) {

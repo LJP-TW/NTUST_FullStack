@@ -69,7 +69,7 @@
                           <ng-container *ngFor="let item of this.categoryService.MonsterAttrs;let index = index">
                               <div [ngClass]="{'MonCatSel': true,
                                                'MonCatSel_A':this.categoryService.MonsterAttrs[index].active}" 
-                                   (click)="this.categoryService.ToggleMT(index)">{{item.name}} </div>
+                                   (click)="this.categoryService.ToggleMT(index)">{{item.NAME}} </div>
                           </ng-container>
                         </ul>
                         <div class="cat_filter_box" style="margin-top: 15px">
@@ -274,7 +274,7 @@
                             </div>
                             <div class="item-sub">
                               <a [routerLink]="[ '/product-detail',item.id]" routerLinkActive="active"><h5>{{item.NAME}}</h5></a>
-                              <p>$ {{ MathRound(item.price/100*item.discount) }}
+                              <p>$ {{ item.finalPrice }}
                                 <ng-container *ngIf="item.discount > 0">
                                     <span><del>$ {{ item.price }}</del></span>
                                 </ng-container>

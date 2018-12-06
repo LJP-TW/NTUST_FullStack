@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api: 'http://localhost:8000/api',
-  api_img:'http://localhost:8000/Image',
+  api_img: 'http://localhost:8000/Image',
   t_UpdateCart: 50000,
 };
 

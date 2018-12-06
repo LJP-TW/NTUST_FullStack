@@ -41,34 +41,18 @@
               <div class="dotted_line"></div>
 
               <div class="checkout_form">
-                <!-- <div class="country_select">
-                  <p>國家 Country <span>*</span></p>
-                  <select class="selectpicker sel_state" [(ngModel)]="Data.country" name="country">
-                    <option>Taiwan</option>
-                    <option>China</option>
-                    <option>USA</option>
-                    <option>Japan</option>
-                  </select>
-                </div> -->
 
                 <div class="c_name_box">
                   <div class="c_name_box_left">
                     <p>姓名 Name</p>
-                    <p>{{ authService.userInfo.name }}</p>
-                    <!-- <div *ngIf="myForm.controls['name'].hasError('required') && myForm.controls['name'].touched">
-                      <span style="color:red">Name is required.</span>
-                    </div> -->
+                    <p [ngClass]="{'block': true}">{{ authService.userInfo.name }}</p>
                   </div>
                 </div>
 
                 <div class="c_mail_box">
                   <div class="c_name_box_left">
                     <p>電子郵件 Email</p>
-                    <p>{{ authService.userInfo.email }}</p>
-                    <!-- <input type="text" placeholder="Email" [(ngModel)]="Data.email" name="email" required>
-                    <div *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched">
-                      <span style="color:red">Email is required.</span>
-                    </div> -->
+                    <p [ngClass]="{'block': true}">{{ authService.userInfo.email }}</p>
                    </div>
                 </div>
 
@@ -113,6 +97,11 @@
                   </div>
                 </ng-container>
 
+                <div *ngIf="couponService.coupon_discount !== 0" class="c_single_item">
+                  <p>優惠折扣</p>
+                  <span>- {{couponService.coupon_discount}}$</span>
+                </div>
+
                 <!-- Todo 運費 -->
                 <div class="c_single_item sp_single_item">
                   <p>運費 Shipping Charge</p>
@@ -122,16 +111,9 @@
                 <!-- Total -->
                 <div class="c_total_item sp_single_item">
                   <p>總價錢 Total</p>
-                    <span>${{ Data.total }}</span>
+                    <span>${{ Data.total - couponService.coupon_discount }}</span>
                 </div>
-              <!--  <div class="c_payment">
-                  <p>Select Payment Method</p>
-                  <select class="selectpicker sel_state" [(ngModel)]="payment" name="payment" required>
-                    <option>Direct Bank Transfer</option>
-                    <option>Wire Transfer</option>
-                    <option>VISA</option>
-                  </select>
-                </div>-->
+
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" name="ck" [(ngModel)]="ck" required> 已閱讀 <span>神奇寶貝購買手冊</span>

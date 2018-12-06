@@ -10,9 +10,6 @@ import { AuthService } from '../auth.service';
 })
 export class MyOrderComponent implements OnInit {
 
-  orderID: number;
-  hasOrderID = false;
-
   constructor(private authService: AuthService, public orderService: OrderService) { }
 
   ngOnInit() {
@@ -21,5 +18,12 @@ export class MyOrderComponent implements OnInit {
     }
 
     this.orderService.getFromDB();
+  }
+
+  HasCoupons(orderIndex) {
+    if ('coupons' in this.orderService.order[orderIndex]) {
+      return true;
+    }
+    return false;
   }
 }

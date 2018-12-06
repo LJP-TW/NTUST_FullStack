@@ -17,17 +17,11 @@ export class TrendingAreaComponent implements OnInit {
       NAME: '',
       createdAt: '',
       discount: 0,
-      id: 0,  
-      price: 0,
-      sold: 0,
-    }, 
-    {
-      NAME: '',
-      createdAt: '',
-      discount: 0,
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -36,6 +30,8 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -44,6 +40,8 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -52,6 +50,8 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -60,6 +60,8 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -68,6 +70,8 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -76,6 +80,8 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     },
     {
       NAME: '',
@@ -84,6 +90,18 @@ export class TrendingAreaComponent implements OnInit {
       id: 0,
       price: 0,
       sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
+    },
+    {
+      NAME: '',
+      createdAt: '',
+      discount: 0,
+      id: 0,
+      price: 0,
+      sold: 0,
+      finalPrice: 0,
+      Icon: {src: ''},
     }
   ];
   productNew: Monster[];
@@ -137,18 +155,7 @@ export class TrendingAreaComponent implements OnInit {
   sortBySold() {
     this.product = this.productSold;
   }
-  getPrice(price, discount) {
-    if (discount === 0) {
-      return price;
-    } else {
-      return Math.round(price * discount / 100);
-    }
-  }
-  
-  AddToCart(id, originPrice, discount) {
+  AddToCart(id) {
     this.cartService.Add(id);
-  }
-  trackByItem(index, item) {
-    return item.id;
   }
 }
