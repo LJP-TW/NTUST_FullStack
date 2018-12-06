@@ -16,6 +16,7 @@ export interface Monster {
   id: number;
   imgNum?: number;
   price: number;
+  finalPrice?: number;
   sold: number;
   attributes?: Attribute[];
   Icon?: Icon;

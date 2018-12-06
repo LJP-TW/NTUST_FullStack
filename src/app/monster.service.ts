@@ -136,7 +136,7 @@ export class MonsterService {
   }
 
   getAttributes() {
-    return `${environment.api}/GetAttributes`;
+    return this.httpClient.get(`${environment.api}/GetAttributes`);
   }
 
   searchMonsters(name: string) {
