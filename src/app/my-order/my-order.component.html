@@ -24,14 +24,26 @@
       </div>
 
       <div>
+        <p class="w30">手機號碼</p>
+        <p class="w70">{{ order.Phone }}</p>
+      </div>
+
+      <div>
         <p class="w30">成立時間</p>
         <p class="w70">{{ order.createdAt }}</p>
       </div>
 
-      <div>
-        <p class="w30">手機號碼</p>
-        <p class="w70">{{ order.Phone }}</p>
-      </div>
+      <ng-container *ngIf="HasCoupons(orderIndex)">
+        <div>
+          <p>使用的優惠券</p>
+        </div>
+        <ng-container *ngFor="let coupon of order.coupons">
+          <div>
+            <p class="w30">{{ coupon.Name }}</p>
+            <p class="w70">- {{ coupon.Discount }}$</p>
+          </div>
+        </ng-container>
+      </ng-container>
 
       <div>
         <div class="w70">
@@ -65,5 +77,6 @@
         </div>
       </ng-container>
     </div>
+
   </ng-container>
 </div>

@@ -22,4 +22,11 @@ export class MyOrderComponent implements OnInit {
 
     this.orderService.getFromDB();
   }
+
+  HasCoupons(orderIndex) {
+    if ('coupons' in this.orderService.order[orderIndex]) {
+      return true;
+    }
+    return false;
+  }
 }
