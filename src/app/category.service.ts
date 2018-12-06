@@ -1,4 +1,5 @@
 import { MonsterService } from './monster.service';
+import { Attribute }from './attribute';
 import { NavService } from './nav.service';
 import { Component, OnInit, ElementRef, PACKAGE_ROOT_URL,Injectable } from '@angular/core';
 import { ProductDataBaseService } from './product-data-base.service';
@@ -20,25 +21,25 @@ export class CategoryService {
  enablePriceFilter = false;
 
  //MonsterAttr Selector
- public MonsterAttrs = [
-  { name: '一般', color : '#aa9',active: false },
-  { name: '火', color : '#f42',active: false },
-  { name: '水', color : '#39f',active: false },
-  { name: '電', color : '#fc3',active: false },
-  { name: '草', color : '#7c5',active: false },
-  { name: '冰', color : '#6cf',active: false },
-  { name: '毒', color : '#a59',active: false },
-  { name: '鋼', color : '#aab',active: false },
-  { name: '超能力', color :'#f59',active: false },
-  { name: '岩石', color : '#ba6',active: false },
-  { name: '幽靈', color :'#66b',active: false },
-  { name: '惡', color :'#754',active: false },
-  { name: '妖精', color : '#e9e',active: false},
-  { name: '蟲', color : '#ab2',active: false },
-  { name: '飛行', color :'#89f',active: false },
-  { name: '地面', color : '#db5',active: false },
-  { name: '格鬥', color : '#b54',active: false },
-  { name: '龍', color : '#76e',active: false },
+ public MonsterAttrs:Attribute[] = [
+  // { name: '一般', color : '#aa9',active: false },
+  // { name: '火', color : '#f42',active: false },
+  // { name: '水', color : '#39f',active: false },
+  // { name: '電', color : '#fc3',active: false },
+  // { name: '草', color : '#7c5',active: false },
+  // { name: '冰', color : '#6cf',active: false },
+  // { name: '毒', color : '#a59',active: false },
+  // { name: '鋼', color : '#aab',active: false },
+  // { name: '超能力', color :'#f59',active: false },
+  // { name: '岩石', color : '#ba6',active: false },
+  // { name: '幽靈', color :'#66b',active: false },
+  // { name: '惡', color :'#754',active: false },
+  // { name: '妖精', color : '#e9e',active: false},
+  // { name: '蟲', color : '#ab2',active: false },
+  // { name: '飛行', color :'#89f',active: false },
+  // { name: '地面', color : '#db5',active: false },
+  // { name: '格鬥', color : '#b54',active: false },
+  // { name: '龍', color : '#76e',active: false },
  ]
  
 
@@ -82,6 +83,12 @@ public perCache = 36;
   //  Initialization
    this.SortNone();
    this.FilterOff();
+   this.monsterService.getAttributes().subscribe((data:Attribute[])=>{
+      this.MonsterAttrs = data;
+      this.MonsterAttrs.forEach((entry)=>{
+        entry.active = false;
+      })
+   });
  }
 
 
@@ -163,7 +170,7 @@ getIcon(index){
    if(category!=undefined){
      this.enableMCFilter = true;
     let fbuf: any[] =  this.MonsterAttrs.filter((data)=>{
-      return category.findIndex((ele,ind)=>{return data.name==ele}) != -1;
+      return category.findIndex((ele,ind)=>{return data.NAME==ele}) != -1;
     });
     this.MonsterAttrs.forEach((data)=>{data.active=false;});
     fbuf.forEach((data)=>{data.active=true;});
