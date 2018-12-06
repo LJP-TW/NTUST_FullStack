@@ -8,13 +8,11 @@
           <div class="multi_line"></div>
 
           <div role="tabpanel">
-
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active" (click)="sortByDate()"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">新寵上市<span> x </span></a></li>
-              <li role="presentation" (click)="sortByPrice()"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">低價銷售<span> x </span></a></li>
-              <li role="presentation" (click)="sortBySold()"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">最夯熱賣</a></li>
-            <!--  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">訓練師評價</a></li>-->
+              <li role="presentation" style="left: 60px;" class="active" (click)="sortByDate()"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">新寵上市<span> x </span></a></li>
+              <li role="presentation" style="left: 60px;" (click)="sortByPrice()"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">低價銷售<span> x </span></a></li>
+              <li role="presentation" style="left: 60px;" (click)="sortBySold()"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">最夯熱賣</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -31,12 +29,10 @@
 
                   <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[0].id, 1)" alt="" />
+                        <img [src]="product[0].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[0].id, product[0].price, product[0].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[0].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail', product[0].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -47,18 +43,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"><h5>{{product[0].NAME}}</h5></a>
-                        <p>${{getPrice(product[0].price,product[0].discount)}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].price}}</del></span></p>
+                        <p>${{product[0].finalPrice}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[1].id, 1)" alt="" />
+                        <img [src]="product[1].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[1].id, product[1].price, product[1].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[1].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -69,18 +63,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"><h5>{{product[1].NAME}}</h5></a>
-                        <p>${{getPrice(product[1].price,product[1].discount)}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].price}}</del></span></p>
+                        <p>${{product[1].finalPrice}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[2].id, 1)" alt="" />
+                        <img [src]="product[2].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[2].id, product[2].price, product[2].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[2].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -91,18 +83,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"><h5>{{product[2].NAME}}</h5></a>
-                        <p>${{getPrice(product[2].price,product[2].discount)}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].price}}</del></span></p>
+                        <p>${{product[2].finalPrice}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[3].id, 1)" alt="" />
+                        <img [src]="product[3].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[3].id, product[3].price, product[3].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[3].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -113,18 +103,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"><h5>{{product[3].NAME}}</h5></a>
-                        <p>${{getPrice(product[3].price,product[3].discount)}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].price}}</del></span></p>
+                        <p>${{product[3].finalPrice}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[4].id, 1)" alt="" />
+                        <img [src]="product[4].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[4].id, product[4].price, product[4].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[4].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -135,18 +123,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"><h5>{{product[4].NAME}}</h5></a>
-                        <p>${{getPrice(product[4].price,product[4].discount)}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].price}}</del></span></p>
+                        <p>${{product[4].finalPrice}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[5].id, 1)" alt="" />
+                        <img [src]="product[5].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[5].id, product[5].price, product[5].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[5].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -157,18 +143,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"><h5>{{product[5].NAME}}</h5></a>
-                        <p>${{getPrice(product[5].price,product[5].discount)}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].price}}</del></span></p>
+                        <p>${{product[5].finalPrice}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[6].id, 1)" alt="" />
+                        <img [src]="product[6].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[6].id, product[6].price, product[6].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[6].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -179,18 +163,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"><h5>{{product[6].NAME}}</h5></a>
-                        <p>${{getPrice(product[6].price,product[6].discount)}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].price}}</del></span></p>
+                        <p>${{product[6].finalPrice}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[7].id, 1)" alt="" />
+                        <img [src]="product[7].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[7].id, product[7].price, product[7].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[7].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -201,18 +183,16 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"><h5>{{product[7].NAME}}</h5></a>
-                        <p>${{getPrice(product[7].price,product[7].discount)}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].price}}</del></span></p>
+                        <p>${{product[7].finalPrice}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].price}}</del></span></p>
                       </div>
                       </div>
 
                       <div class="item">
                       <div class="item-img">
-                        <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[8].id, 1)" alt="" />
+                        <img [src]="product[8].Icon.src" alt="" />
                         <div class="tr-add-cart">
                           <ul>
-                            <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                            <li><a class="tr_text" (click)="AddToCart(product[8].id, product[8].price, product[8].discount)" href="##">ADD TO CART</a></li>
-                            <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                            <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[8].id)" href="##"> 加進購物車</a></li>
                             <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"></a></li>
                           </ul>
                         </div>
@@ -223,7 +203,7 @@
                       </div>
                       <div class="item-sub">
                         <a [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"><h5>{{product[8].NAME}}</h5></a>
-                        <p>${{getPrice(product[8].price,product[8].discount)}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].price}}</del></span></p>
+                        <p>${{product[8].finalPrice}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].price}}</del></span></p>
                       </div>
                       </div>
 
@@ -235,12 +215,10 @@
 
                 <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[0].id, 1)" alt="" />
+                    <img [src]="product[0].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[0].id, product[0].price, product[0].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[0].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -251,18 +229,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"><h5>{{product[0].NAME}}</h5></a>
-                    <p>${{getPrice(product[0].price,product[0].discount)}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].price}}</del></span></p>
+                    <p>${{product[0].finalPrice}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[1].id, 1)" alt="" />
+                    <img [src]="product[1].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[1].id, product[1].price, product[1].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[1].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -273,18 +249,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"><h5>{{product[1].NAME}}</h5></a>
-                    <p>${{getPrice(product[1].price,product[1].discount)}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].price}}</del></span></p>
+                    <p>${{product[1].finalPrice}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[2].id, 1)" alt="" />
+                    <img [src]="product[2].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[2].id, product[2].price, product[2].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[2].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -295,18 +269,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"><h5>{{product[2].NAME}}</h5></a>
-                    <p>${{getPrice(product[2].price,product[2].discount)}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].price}}</del></span></p>
+                    <p>${{product[2].finalPrice}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[3].id, 1)" alt="" />
+                    <img [src]="product[3].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[3].id, product[3].price, product[3].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[3].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -317,18 +289,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"><h5>{{product[3].NAME}}</h5></a>
-                    <p>${{getPrice(product[3].price,product[3].discount)}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].price}}</del></span></p>
+                    <p>${{product[3].finalPrice}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[4].id, 1)" alt="" />
+                    <img [src]="product[4].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[4].id, product[4].price, product[4].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[4].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -339,18 +309,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"><h5>{{product[4].NAME}}</h5></a>
-                    <p>${{getPrice(product[4].price,product[4].discount)}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].price}}</del></span></p>
+                    <p>${{product[4].finalPrice}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[5].id, 1)" alt="" />
+                    <img [src]="product[5].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[5].id, product[5].price, product[5].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[5].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -361,18 +329,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"><h5>{{product[5].NAME}}</h5></a>
-                    <p>${{getPrice(product[5].price,product[5].discount)}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].price}}</del></span></p>
+                    <p>${{product[5].finalPrice}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[6].id, 1)" alt="" />
+                    <img [src]="product[6].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[6].id, product[6].price, product[6].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[6].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -383,18 +349,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"><h5>{{product[6].NAME}}</h5></a>
-                    <p>${{getPrice(product[6].price,product[6].discount)}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].price}}</del></span></p>
+                    <p>${{product[6].finalPrice}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[7].id, 1)" alt="" />
+                    <img [src]="product[7].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[7].id, product[7].price, product[7].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[7].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -405,18 +369,16 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"><h5>{{product[7].NAME}}</h5></a>
-                    <p>${{getPrice(product[7].price,product[7].discount)}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].price}}</del></span></p>
+                    <p>${{product[7].finalPrice}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].price}}</del></span></p>
                   </div>
                   </div>
 
                   <div class="item">
                   <div class="item-img">
-                    <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[8].id, 1)" alt="" />
+                    <img [src]="product[8].Icon.src" alt="" />
                     <div class="tr-add-cart">
                       <ul>
-                        <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                        <li><a class="tr_text" (click)="AddToCart(product[8].id, product[8].price, product[8].discount)" href="##">ADD TO CART</a></li>
-                        <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                        <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[8].id)" href="##"> 加進購物車</a></li>
                         <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"></a></li>
                       </ul>
                     </div>
@@ -427,7 +389,7 @@
                   </div>
                   <div class="item-sub">
                     <a [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"><h5>{{product[8].NAME}}</h5></a>
-                    <p>${{getPrice(product[8].price,product[8].discount)}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].price}}</del></span></p>
+                    <p>${{product[8].finalPrice}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].price}}</del></span></p>
                   </div>
                   </div>
               </div>
@@ -438,12 +400,10 @@
 
                       <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[0].id, 1)" alt="" />
+                            <img [src]="product[0].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[0].id, product[0].price, product[0].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[0].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -454,18 +414,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[0].id]" routerLinkActive="router-link-active"><h5>{{product[0].NAME}}</h5></a>
-                            <p>${{getPrice(product[0].price,product[0].discount)}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].price}}</del></span></p>
+                            <p>${{product[0].finalPrice}} <span *ngIf="product[0].discount !== 0"><del>${{product[0].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[1].id, 1)" alt="" />
+                            <img [src]="product[1].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[1].id, product[1].price, product[1].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[1].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -476,18 +434,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[1].id]" routerLinkActive="router-link-active"><h5>{{product[1].NAME}}</h5></a>
-                            <p>${{getPrice(product[1].price,product[1].discount)}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].price}}</del></span></p>
+                            <p>${{product[1].finalPrice}} <span *ngIf="product[1].discount !== 0"><del>${{product[1].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[2].id, 1)" alt="" />
+                            <img [src]="product[2].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[2].id, product[2].price, product[2].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[2].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -498,18 +454,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[2].id]" routerLinkActive="router-link-active"><h5>{{product[2].NAME}}</h5></a>
-                            <p>${{getPrice(product[2].price,product[2].discount)}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].price}}</del></span></p>
+                            <p>${{product[2].finalPrice}} <span *ngIf="product[2].discount !== 0"><del>${{product[2].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[3].id, 1)" alt="" />
+                            <img [src]="product[3].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[3].id, product[3].price, product[3].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[3].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -520,18 +474,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[3].id]" routerLinkActive="router-link-active"><h5>{{product[3].NAME}}</h5></a>
-                            <p>${{getPrice(product[3].price,product[3].discount)}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].price}}</del></span></p>
+                            <p>${{product[3].finalPrice}} <span *ngIf="product[3].discount !== 0"><del>${{product[3].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[4].id, 1)" alt="" />
+                            <img [src]="product[4].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[4].id, product[4].price, product[4].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[4].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -542,18 +494,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[4].id]" routerLinkActive="router-link-active"><h5>{{product[4].NAME}}</h5></a>
-                            <p>${{getPrice(product[4].price,product[4].discount)}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].price}}</del></span></p>
+                            <p>${{product[4].finalPrice}} <span *ngIf="product[4].discount !== 0"><del>${{product[4].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[5].id, 1)" alt="" />
+                            <img [src]="product[5].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[5].id, product[5].price, product[5].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[5].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -564,18 +514,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[5].id]" routerLinkActive="router-link-active"><h5>{{product[5].NAME}}</h5></a>
-                            <p>${{getPrice(product[5].price,product[5].discount)}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].price}}</del></span></p>
+                            <p>${{product[5].finalPrice}}<span *ngIf="product[5].discount !== 0"><del>${{product[5].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[6].id, 1)" alt="" />
+                            <img [src]="product[6].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[6].id, product[6].price, product[6].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[6].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -586,18 +534,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[6].id]" routerLinkActive="router-link-active"><h5>{{product[6].NAME}}</h5></a>
-                            <p>${{getPrice(product[6].price,product[6].discount)}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].price}}</del></span></p>
+                            <p>${{product[6].finalPrice}} <span *ngIf="product[6].discount !== 0"><del>${{product[6].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[7].id, 1)" alt="" />
+                            <img [src]="product[7].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[7].id, product[7].price, product[7].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[7].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -608,18 +554,16 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[7].id]" routerLinkActive="router-link-active"><h5>{{product[7].NAME}}</h5></a>
-                            <p>${{getPrice(product[7].price,product[7].discount)}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].price}}</del></span></p>
+                            <p>${{product[7].finalPrice}} <span *ngIf="product[7].discount !== 0"><del>${{product[7].price}}</del></span></p>
                           </div>
                           </div>
 
                           <div class="item">
                           <div class="item-img">
-                            <img [src]="this.monsterSvc.getMonsterImgsExp(500, 650, product[8].id, 1)" alt="" />
+                            <img [src]="product[8].Icon.src" alt="" />
                             <div class="tr-add-cart">
                               <ul>
-                                <li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-                                <li><a class="tr_text" (click)="AddToCart(product[8].id, product[8].price, product[8].discount)" href="##">ADD TO CART</a></li>
-                                <li><a class="fa fa-heart tr_heart" href="#"></a></li>
+                                <li><a class="fa fa-shopping-cart tr_cart tr_text" (click)="AddToCart(product[8].id)" href="##"> 加進購物車</a></li>
                                 <li><a class="fa fa-search tr_search" [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"></a></li>
                               </ul>
                             </div>
@@ -630,17 +574,11 @@
                           </div>
                           <div class="item-sub">
                             <a [routerLink]="['/product-detail',product[8].id]" routerLinkActive="router-link-active"><h5>{{product[8].NAME}}</h5></a>
-                            <p>${{getPrice(product[8].price,product[8].discount)}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].price}}</del></span></p>
+                            <p>${{product[8].finalPrice}} <span *ngIf="product[8].discount !== 0"><del>${{product[8].price}}</del></span></p>
                           </div>
                           </div>
               </div>
             </div>
-<!--訓練師評價-->
-          <!--  <div role="tabpanel" class="tab-pane" id="settings">
-              <div id="owl-example-four" class="owl-carousel">
-
-              </div>
-            </div>-->
 
             </div>
           </div>

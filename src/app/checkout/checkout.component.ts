@@ -23,13 +23,10 @@ interface OrderResponse {
 export class CheckoutComponent implements OnInit {
 
   Data = {
-    // country: '',
-    // name: '',
     ZoneNumber: null,
     City: null,
     Zone: null,
     Address: null,
-    // email: '',
     phone: null,
     total: 0,
   };
