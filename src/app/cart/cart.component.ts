@@ -49,6 +49,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   CartData: Order[] = [];
 
   CartTotalCtrl = true;
+  CouponCtrl = true;
   subTotal = 0;
   shippingCharge = 0;
   amountTotal = 0;
@@ -136,6 +137,13 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
   }
 
+  couponClick() {
+    if (this.CouponCtrl === false) {
+      this.CouponCtrl = true;
+    } else {
+      this.CouponCtrl = false;
+    }
+  }
   // 更新購物車
   updateCartData(index) {
     if (this.page !== 1) {

@@ -25,7 +25,7 @@
             </div>
             <div class="cart_item">
               <div class="cart_item_img">
-                <a href="product-detail" style="float: left;"><img [src]="order.Icon.src" alt="" style="height: auto; width: 100px"/></a>
+                <a  style="float: left;" [routerLink]="[ '/product-detail', order.ProductId]" routerLinkActive="active"><img [src]="order.Icon.src" alt="" style="height: auto; width: 100px"/></a>
                 <p>{{ order.NAME }}<br>
                   特性:
                   <ng-container *ngFor="let attributes of order.attributes">
@@ -52,8 +52,8 @@
 
           <!-- Todo: 優惠碼 -->
           <!-- <div class="coupon_box">
-            <input type="text" placeholder="coupon code" />
-            <input type="submit" value="apply coupon">
+            <input type="text" placeholder="優惠券代碼" />
+            <input type="submit" value="新增優惠券">
           </div> -->
         </div>
       </div>
