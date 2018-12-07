@@ -102,26 +102,28 @@
       <ng-container *ngIf="authService.LoggedIn()">
         <a [routerLink]="['/cart']" routerLinkActive="router-link-active" ><img src="assets/images/bag.png" alt="Bag" (click)="test()" />購物車: {{cartService.cart.length}} 項</a>
         <div class="cart_menu">
-          <ng-container *ngFor="let item of cartService.cart; let index = index">
-          <ng-container *ngIf="index < maxShowNum">
-            <div class="cart_items">
-              <div class="c_item_img floatleft">
-                <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon.src" alt="" /></a>
-              </div>
-              <div class="c_item_totals floatleft">
-                <div class="c_item_totals_detail floatleft">
-                  <a [routerLink]="['/product-detail/', item.ProductId]" routerLinkActive="router-link-active" ><h5>{{ item.NAME }}</h5></a>
-                  <span>數量: {{ item.Count }}</span>
-                  <span>單價: {{ item.Price }}$</span>
-                  <span>總額: {{ item.Count * item.Price }}$</span>
-                </div>
-                <div class="close_icon_cart floatleft" (click)="Remove(item.ProductId, index)">
-                  <img src="assets/images/close.png" alt="" />
-                </div>
-              </div>
-            </div>
-          </ng-container>
-          </ng-container>
+          <div style="max-height: 350px;overflow-y :scroll">
+              <ng-container *ngFor="let item of cartService.cart; let index = index">
+                  <!-- <ng-container *ngIf="index < maxShowNum"> -->
+                    <div class="cart_items">
+                      <div class="c_item_img floatleft">
+                        <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon.src" alt="" /></a>
+                      </div>
+                      <div class="c_item_totals floatleft">
+                        <div class="c_item_totals_detail floatleft">
+                          <a [routerLink]="['/product-detail/', item.ProductId]" routerLinkActive="router-link-active" ><h5>{{ item.NAME }}</h5></a>
+                          <span>數量: {{ item.Count }}</span>
+                          <span>單價: {{ item.Price }}$</span>
+                          <span>總額: {{ item.Count * item.Price }}$</span>
+                        </div>
+                        <div class="close_icon_cart floatleft" (click)="Remove(item.ProductId, index)">
+                          <img src="assets/images/close.png" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  <!-- </ng-container> -->
+                  </ng-container>
+          </div>
           <div class="cart_totals">
           <!-- Todo: 運費機制 -->
           <div class="c_totals_left floatleft">

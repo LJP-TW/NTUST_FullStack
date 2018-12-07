@@ -14,7 +14,9 @@ export class CostumerHelpComponent implements OnInit {
     imageFiles : [],
   };
   public page = 0;
-  constructor(private customerService:CustomerHelpService,private authService:AuthService) { }
+  constructor(private customerService:CustomerHelpService,private authService:AuthService) {
+    
+   }
 
   ngOnInit() {
   }
@@ -38,8 +40,8 @@ export class CostumerHelpComponent implements OnInit {
     this.customerService.report(fd).subscribe((data:any)=>{
       if(data.success == true)
         this.reply.imageFiles=[];
+        this.reply.text ="";
         this.page = 2;
-        
     },
     (error)=>{
       console.log(error);

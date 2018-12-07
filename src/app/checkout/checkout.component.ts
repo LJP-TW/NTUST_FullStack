@@ -7,6 +7,8 @@ import { CartService } from '../cart.service';
 import { AuthService } from '../auth.service';
 import { CartItem } from '../cart-item';
 import { forEach } from '@angular/router/src/utils/collection';
+import { AnimationService } from '../animation.service';
+import { delay } from 'q';
 
 interface Message {
   order: string;
@@ -416,6 +418,7 @@ export class CheckoutComponent implements OnInit {
   constructor(public cartService: CartService,
               public authService: AuthService,
               public couponService: CouponService,
+              public animationService: AnimationService,
               private router: Router) { }
 
   ngOnInit() {
@@ -460,7 +463,9 @@ export class CheckoutComponent implements OnInit {
       };
       this.cartService.MakeOrder(order).subscribe((data: OrderResponse) => {
         if (data.status) {
-          alert('下單成功!');
+          this.animationService.ScreenCenter("assets/img/pika_love.gif",2200,300,350);
+          
+          // alert('下單成功!');
           this.cartService.GetFromDB();
           this.couponService.getFromDB();
           this.router.navigate(['/']);
