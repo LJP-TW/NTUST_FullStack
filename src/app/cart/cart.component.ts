@@ -1,3 +1,4 @@
+import { CategoryService } from './../category.service';
 import { CouponService } from './../coupon.service';
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { CartService } from '../cart.service';
@@ -41,6 +42,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     private elementRef: ElementRef,
     public authService: AuthService,
     public couponService: CouponService,
+    private categoryService: CategoryService,
     private router: Router
   ) {}
 
@@ -118,7 +120,7 @@ export class CartComponent implements OnInit, AfterViewInit {
       index += (this.page - 1) * this.productsPerPage;
     }
 
-    if (this.cartService.cart[index].Count !== 1) {
+    if (this.cartService.cart[index].Count > 1) {
       this.cartService.Minus(this.cartService.cart[index].ProductId);
       this.updateCartAmount();
     }
@@ -156,9 +158,10 @@ export class CartComponent implements OnInit, AfterViewInit {
       index += (this.page - 1) * this.productsPerPage;
     }
 
-    if (isNaN(Number(this.cartService.cart[index].Count))) {
+    if (isNaN(Number(this.cartService.cart[index].Count)) ||
+    Number(this.cartService.cart[index].Count) === 0) {
       this.cartService.cart[index].Count = 1;
-    } else if (Number(this.cartService.cart[index].Count) <= 0) {
+    } else if (Number(this.cartService.cart[index].Count) < 0) {
       this.cartService.cart[index].Count = -this.cartService.cart[index].Count;
     } else {
       this.cartService.cart[index].Count = Number(this.cartService.cart[index].Count);
@@ -211,6 +214,14 @@ export class CartComponent implements OnInit, AfterViewInit {
     return Array.from(Array(this.pageMax).keys()).map(n => {
       return (n = n + 1);
     });
+  }
+
+  CategoryIconStyle(cate: string) {
+    let bg_color: any = this.categoryService.MonsterAttrs.filter((data) => {
+      return data.NAME === cate;
+    })[0];
+    bg_color = bg_color === undefined ? '#fff' : bg_color.Color;
+    return { 'background-color' : bg_color};
   }
 
   checkout() {
