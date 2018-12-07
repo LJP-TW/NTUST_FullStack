@@ -117,3 +117,15 @@
     </div>
   </div>
 </footer>
+<span (click)="active=!active" >Click</span>
+<ng-container *ngIf="active">
+    <!-- <div class="animation screen"></div>
+    <div id="mid_ani_cont" class="animation" style="
+      width: ${width}px;
+      height: ${height}px;
+      top: 50%;
+      left: 50%;
+      margin-left: -${width/2}px;
+      margin-top: -${height/2}px;">
+    </div> -->
+</ng-container>

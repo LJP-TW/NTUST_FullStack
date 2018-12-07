@@ -4,6 +4,7 @@
   font: 400 16px monospace;
   max-width: 800px;
   margin: 10px auto;
+
   border-top-color: #aaa;
   border-top-style: solid;
   border-top-width: 2px;
@@ -16,10 +17,13 @@
   width: 100%;
   padding: 0.25em;
   margin: 0.125em;
+  margin-top: -4px;
   min-height: 45px;
-  border-bottom-color: #f5f6f7;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+  border-radius: 10px;
+  border-style: dotted;
+
+  border-bottom-style: dotted;
+  background-color: white;
   -webkit-user-select: none;
 }
 .info:hover {
@@ -48,16 +52,40 @@
 .detail {
   display: block;
   max-height: 0px;
+  border-radius: 10px;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: #f5f6f7;
   transition: max-height 1.5s ease;
 }
 .detail:hover {
   background-color: #f5f6f7;
 }
+
+.detailblock {
+  border-bottom: 1px;
+  border-bottom-color: #dad8d8;
+  border-bottom-style: solid;
+}
+
 .detailActived {
   max-height: 820px;
 }
 .detail > div:hover {
-  background-color: #f2f3f4;
+  background-color: #d6d6d6;
+}
+
+.productPage > input[type=submit]{
+  background: none repeat scroll 0 0 #f7f8f9;
+  border: 2px solid #ffb923;
+   color: #232323;
+  font-size: 13px;
+  font-weight: 700;
+  width: 100px;
+  height: 40px;
+}
+.productPage > input[type=submit]:hover {
+  background: none repeat scroll 0 0 #ffb923;
+  border: 2px solid #ffb923;
+  color: #fff;
 }

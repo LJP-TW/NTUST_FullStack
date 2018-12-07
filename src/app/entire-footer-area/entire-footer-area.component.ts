@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entire-footer-area.component.css']
 })
 export class EntireFooterAreaComponent implements OnInit {
-
+  active = false;
   constructor() { }
 
   ngOnInit() {

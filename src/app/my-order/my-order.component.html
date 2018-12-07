@@ -1,6 +1,6 @@
 <div class="OrderBlock">
   <ng-container *ngFor="let order of orderService.order; let orderIndex = index">
-    <div class="info">
+    <div class="info"  (click)="orderDetail = orderIndex">
       <div>
         <div class="w70">
           <p class="w30">訂單編號</p>
@@ -10,10 +10,10 @@
         <div class="w30">
           <p class="w30">狀態</p>
           <ng-container *ngIf="!order.Shipment">
-            <p class="w70">未配送</p>
+            <p class="w70" style="color: red;">未配送</p>
           </ng-container>
           <ng-container *ngIf="order.Shipment">
-            <p class="w70">已配送</p>
+            <p class="w70" style="color: green;">已配送</p>
           </ng-container>
         </div>
       </div>
@@ -24,14 +24,26 @@
       </div>
 
       <div>
+        <p class="w30">手機號碼</p>
+        <p class="w70">{{ order.Phone }}</p>
+      </div>
+
+      <div>
         <p class="w30">成立時間</p>
         <p class="w70">{{ order.createdAt }}</p>
       </div>
 
-      <div>
-        <p class="w30">手機號碼</p>
-        <p class="w70">{{ order.Phone }}</p>
-      </div>
+      <ng-container *ngIf="HasCoupons(orderIndex)">
+        <div>
+          <p>使用的優惠券</p>
+        </div>
+        <ng-container *ngFor="let coupon of order.coupons">
+          <div>
+            <p class="w30">{{ coupon.Name }}</p>
+            <p class="w70">- {{ coupon.Discount }}$</p>
+          </div>
+        </ng-container>
+      </ng-container>
 
       <div>
         <div class="w70">
@@ -47,7 +59,7 @@
 
     <div class="detail" [ngClass]="{'detailActived': orderDetail === orderIndex}">
       <ng-container *ngFor="let item of order.items; let itemIndex = index">
-        <div>
+        <div class="detailblock">
           <div class="w30">
               <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active" ><img [src]="item.Icon.src" alt="" /></a>
           </div>
@@ -59,11 +71,12 @@
             </div>
             <div class="w50">
               <p>小計: {{ item.Price * item.Count }}$</p>
-              <a [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active">商品頁面</a>
+              <a  class="productPage" [routerLink]="['/product-detail', item.ProductId]" routerLinkActive="router-link-active"><input type="submit" value="商品頁面"></a>
             </div>
           </div>
         </div>
       </ng-container>
     </div>
+
   </ng-container>
 </div>

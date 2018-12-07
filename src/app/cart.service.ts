@@ -164,7 +164,9 @@ export class CartService {
           },
         };
         this.totalPrice += resp[0].finalPrice;
-        this.animationService.ScreenCenter("assets/img/pika_naughty.gif",900,350,350);
+
+        this.animationService.ScreenCenter("assets/img/pika_naughty.gif",2000,350,350);
+
         // 與資料庫同步相關的部分
         this.ModifyCart();
       });
@@ -192,9 +194,9 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 + this.cart[i].Price * 1000) / 1000;
+      this.totalPrice += this.cart[i].Price;
       this.cart[i].Count++;
-      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",900,350,350);
+      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",1200,350,350);
       // 與資料庫同步相關的部分
       this.ModifyCart();
     }
@@ -214,9 +216,9 @@ export class CartService {
         }
     }
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 + (this.cart[i].Price * 1000) * count) / 1000;
+      this.totalPrice += this.cart[i].Price * count;
       this.cart[i].Count += count;
-      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",900,350,350);
+      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",1200,350,350);
       // 與資料庫同步相關的部分
       this.ModifyCart();
     }
@@ -243,7 +245,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 - this.cart[i].Price * 1000) / 1000;
+      this.totalPrice -= this.cart[i].Price;
       this.cart[i].Count--;
 
       // 與資料庫同步相關的部分
@@ -272,7 +274,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice = (this.totalPrice * 1000 -  this.cart[i].Count * (this.cart[i].Price * 1000)) / 1000;
+      this.totalPrice -= this.cart[i].Price * this.cart[i].Count;
       this.cart.splice(i, 1);
 
       // 與資料庫同步相關的部分
@@ -322,14 +324,14 @@ export class CartService {
           this.cart.push({
             ProductId: product.ProductId,
             Count: product.Count,
-            Price: (product.Price * 1000) / 1000,
+            Price: product.Price,
             NAME: product.NAME,
             NAME_EN: product.NAME_EN,
             NAME_JP: product.NAME_JP,
             attributes: product.attributes,
             Icon: product.Icon,
           });
-          this.totalPrice = (this.totalPrice * 1000 + product.Count * (product.Price * 1000)) / 1000;
+          this.totalPrice += (product.Count * product.Price);
         }
         this.Gotten = true;
       }

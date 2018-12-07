@@ -1,5 +1,6 @@
 import { Monster } from './monster';
 import { Icon } from './icon';
+import { Coupon } from './coupon';
 interface OrderItem {
   ProductId: number;
   Count: number;
@@ -15,4 +16,5 @@ export interface Order {
   Phone: string;
   createdAt: string;
   items: OrderItem[];
+  coupons: Coupon[];
 }
