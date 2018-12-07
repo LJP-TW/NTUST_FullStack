@@ -84,6 +84,7 @@ export class CartComponent implements OnInit, AfterViewInit {
       if (this.cartService.Gotten) {
         if (this.cartService.cart.length === 0) {
           this.router.navigate(['/category']);
+          clearInterval(init);
           return;
         }
         this.cartChanged();
