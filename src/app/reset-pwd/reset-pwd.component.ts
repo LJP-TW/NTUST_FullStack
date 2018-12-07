@@ -62,7 +62,10 @@ export class ResetPwdComponent implements OnInit, OnDestroy {
 
     this.authService.ResetPwd(this.user).subscribe((data: ResetPwdResponse) => {
       if (data.status) {
-        this.authService.Logout();
+        alert('更改密碼成功');
+        if (this.authService.LoggedIn()) {
+          this.authService.Logout();
+        }
       } else {
         alert('fail');
       }

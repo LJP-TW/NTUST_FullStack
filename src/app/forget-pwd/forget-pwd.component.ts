@@ -40,7 +40,7 @@ export class ForgetPwdComponent implements OnInit {
     this.invalid = false;
     this.authService.ForgetPwd(this.user).subscribe((data: ForgetPwdResponse) => {
       if (data.status) {
-        alert(data.message.URL);
+        alert('請去收信喔 :)');
       } else {
         alert('Fail');
       }
