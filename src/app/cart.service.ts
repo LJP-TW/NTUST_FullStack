@@ -90,7 +90,6 @@ export class CartService {
     } else {
       console.log('UpdateToDB');
       this.UpdateToDB().subscribe((resp) => {
-        console.log(resp);
         this.cartUpdated = true;
       }, (error: HttpErrorResponse) => {
         if (error.status === 401) {
@@ -194,7 +193,7 @@ export class CartService {
     }
 
     if (found) {
-      this.totalPrice += this.cart[i].Price;
+      this.totalPrice +=  this.cart[i].Price;
       this.cart[i].Count++;
       this.animationService.ScreenCenter("assets/img/pika_naughty.gif",animationLength,350,350);
       // 與資料庫同步相關的部分
@@ -310,21 +309,20 @@ export class CartService {
       cart: JSON.parse(JSON.stringify(this.cart, ['ProductId', 'Count'])),
       token: localStorage.getItem('token'),
     };
-    console.log(postData);
     return this.httpClient.post(`${environment.api}/UpdateCart`, postData);
   }
 
   GetFromDB() {
-    console.log('Oh');
     this.httpClient.get(`${environment.api}/GetCart?token=${localStorage.getItem('token')}`).subscribe((data: GetFromDBResPonse) => {
+      console.log(data);
       if (data.status) {
         this.cart = [];
         this.totalPrice = 0;
         for (const product of data.cart) {
           this.cart.push({
-            ProductId: product.ProductId,
-            Count: product.Count,
-            Price: product.Price,
+            ProductId: Number(product.ProductId),
+            Count: Number(product.Count),
+            Price: Number(product.Price),
             NAME: product.NAME,
             NAME_EN: product.NAME_EN,
             NAME_JP: product.NAME_JP,

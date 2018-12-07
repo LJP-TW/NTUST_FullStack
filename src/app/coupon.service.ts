@@ -1,3 +1,4 @@
+import { CartService } from './cart.service';
 import { AuthService } from './auth.service';
 import { Coupon } from './coupon';
 import { environment } from 'src/environments/environment';
@@ -40,7 +41,8 @@ export class CouponService {
   coupon_discount = 0;
 
   constructor(private httpClient: HttpClient,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private cartService: CartService) {
     if (this.authService.LoggedIn()) {
       this.getFromDB();
     }
@@ -85,8 +87,12 @@ export class CouponService {
     const pos = this.used_coupons_id.indexOf(this.coupons[index].id);
 
     if (pos === -1) {
-      this.used_coupons_id.push(this.coupons[index].id);
-      this.coupon_discount += this.coupons[index].Discount;
+      if (this.cartService.totalPrice - this.coupon_discount - this.coupons[index].Discount >= 0) {
+        this.used_coupons_id.push(this.coupons[index].id);
+        this.coupon_discount += this.coupons[index].Discount;
+      } else {
+        alert('優惠券不能打到價格變負的啦 ><');
+      }
     } else {
       this.used_coupons_id.splice(pos, 1);
       this.coupon_discount -= this.coupons[index].Discount;

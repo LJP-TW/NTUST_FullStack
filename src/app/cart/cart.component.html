@@ -27,9 +27,10 @@
               <div class="cart_item_img">
                 <a  style="float: left;" [routerLink]="[ '/product-detail', order.ProductId]" routerLinkActive="active"><img [src]="order.Icon.src" alt="" style="height: auto; width: 100px"/></a>
                 <p>{{ order.NAME }}<br>
-                  特性:
                   <ng-container *ngFor="let attributes of order.attributes">
-                    [{{ attributes.NAME }}]
+                    <p class="attr_icon" [ngStyle]="CategoryIconStyle(attributes.NAME)">
+                      {{attributes.NAME}}
+                    </p>
                   </ng-container>
                 </p>
               </div>
