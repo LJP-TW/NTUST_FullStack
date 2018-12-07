@@ -86,7 +86,6 @@ public perCache = 36;
         entry.active = false;
       });
    });
-   
  }
 
 
@@ -146,11 +145,11 @@ getIcon(index) {
  FilterAttr() {
    if (!this.enableMCFilter) {return; }
    let queryString = '';
-   this.MonsterAttrs.forEach((attr:Attribute)=>{
-      if(attr.active){
+   this.MonsterAttrs.forEach((attr: Attribute) => {
+      if (attr.active) {
         queryString += attr.value.toString() + ',';
       }
-   })
+   });
    this.QS_MonsterCat = queryString.slice(0, -1);
    this.QueryMonster();
  }
