@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { AnimationService } from './animation.service';
-
+let animationLength = 1000;
 interface Message {
   [key: string]: any;
 }
@@ -165,7 +165,7 @@ export class CartService {
         };
         this.totalPrice += resp[0].finalPrice;
 
-        this.animationService.ScreenCenter("assets/img/pika_naughty.gif",2000,350,350);
+        this.animationService.ScreenCenter("assets/img/pika_naughty.gif",animationLength,350,350);
 
         // 與資料庫同步相關的部分
         this.ModifyCart();
@@ -196,7 +196,7 @@ export class CartService {
     if (found) {
       this.totalPrice += this.cart[i].Price;
       this.cart[i].Count++;
-      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",1200,350,350);
+      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",animationLength,350,350);
       // 與資料庫同步相關的部分
       this.ModifyCart();
     }
@@ -218,7 +218,7 @@ export class CartService {
     if (found) {
       this.totalPrice += this.cart[i].Price * count;
       this.cart[i].Count += count;
-      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",1200,350,350);
+      this.animationService.ScreenCenter("assets/img/pika_naughty.gif",animationLength,350,350);
       // 與資料庫同步相關的部分
       this.ModifyCart();
     }

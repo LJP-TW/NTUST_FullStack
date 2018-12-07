@@ -33,11 +33,11 @@ export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterContentInit(): void {
-    console.log('ci');
+
   }
 
   ngAfterViewInit(): void {
-    console.log('vi');
+
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
   }
@@ -49,7 +49,7 @@ export class CategoryComponent implements AfterViewInit,AfterContentInit,OnInit,
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class
-    console.log('test');
+
   }
   
   // Helper Function

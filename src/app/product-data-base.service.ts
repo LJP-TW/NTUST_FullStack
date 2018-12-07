@@ -222,7 +222,7 @@ export class ProductDataBaseService {
     }];
 
   constructor() {
-    console.log('DATABASE INIT');
+
     this.Products.forEach((n) => {
       n.price = Math.ceil(n.originPrice * (100 - n.discount) / 100);
     });
@@ -237,7 +237,7 @@ export class ProductDataBaseService {
   }
 
   CartRemove(index: number) {
-    console.log(index);
+
     return this.odCart.splice(index, 1);
   }
 

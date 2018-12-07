@@ -101,37 +101,30 @@ export class MonsterService {
    * @returns Monster[]
    */
   getMonsters(StartIndex: number, EndIndex: number, Filter: string = '*') {
-    console.log('calledAPI Monsters');
     return this.httpClient.get(`${environment.api}/GetMonsters/${Filter}/${StartIndex}/${EndIndex}`);
   }
 
   getMonstersByID(MonsterID: number) {
-    console.log('calledAPI ID');
     return this.httpClient.get(`${environment.api}/GetMonsters/${MonsterID}`);
   }
 
   getMonstersAmount(Filter: string = '*') {
-    console.log('calledAPI Amount');
     return this.httpClient.get(`${environment.api}/GetMonstersAmount/${Filter}`);
   }
 
   getMonsterImg(Size: number, MonsterID: number) {
-    console.log('calledAPI Img');
     return `${environment.api}/Image/${Size}/${MonsterID}`;
   }
 
   getMonsterImgs(Size: number, MonsterID: number, ImageID: number) {
-    console.log('calledAPI Imgs');
     return `${environment.api}/Image/${Size}/${MonsterID}/${ImageID}`;
   }
 
   getMonsterImgsExp(Width: number, Height: number, MonsterID: number, ImageID: number) {
-    // console.log('calledAPI Exp');
     return `${environment.api}/Image/${Width}/${Height}/${MonsterID}/${ImageID}`;
   }
 
   getMonsterBase64(MonsterID: number, ImageID: number = 0) {
-    console.log('calledAPI 64');
     return `${environment.api}/Image/Base64/${MonsterID}/${ImageID}`;
   }
 

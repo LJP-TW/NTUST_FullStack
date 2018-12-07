@@ -26,7 +26,7 @@ export class AnimationService {
       margin-left: -${width/2}px;
       margin-top: -${height/2}px;">
     </div>`);
-    $('#mid_ani_cont').append(`<img id="mid_ani" src="${image.src}"  style="width:100%;height:100%;"  />`);
+    $('#mid_ani_cont').append(`<img id="mid_ani" src="${image.src}?${Math.round(Math.random()*100000)}" style="width:100%;height:100%;"  />`);
 
     setTimeout(()=>{
       $('.animation').remove();

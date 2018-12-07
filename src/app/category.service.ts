@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Monster } from './monster';
 import { CartService } from './cart.service';
 import { Router } from '@angular/router';
+import { query } from '@angular/core/src/render3/query';
 declare var $: any;
 
 @Injectable({
@@ -85,6 +86,7 @@ public perCache = 36;
         entry.active = false;
       });
    });
+   
  }
 
 
@@ -144,11 +146,11 @@ getIcon(index) {
  FilterAttr() {
    if (!this.enableMCFilter) {return; }
    let queryString = '';
-   for (let i = 0 ; i < this.MonsterAttrs.length; i++) {
-     if (this.MonsterAttrs[i].active) {
-       queryString += (i + 1).toString() + ',';
-     }
-   }
+   this.MonsterAttrs.forEach((attr:Attribute)=>{
+      if(attr.active){
+        queryString += attr.value.toString() + ',';
+      }
+   })
    this.QS_MonsterCat = queryString.slice(0, -1);
    this.QueryMonster();
  }
@@ -172,9 +174,9 @@ getIcon(index) {
     fbuf.forEach((data) => {data.active = true; });
     let queryString = '';
     for (let i = 0 ; i < this.MonsterAttrs.length; i++) {
-    if (this.MonsterAttrs[i].active) {
-      queryString += (i + 1).toString() + ',';
-    }
+      if (this.MonsterAttrs[i].active) {
+        queryString += this.MonsterAttrs[i].value.toString() + ',';
+      }
     }
     this.QS_MonsterCat = queryString.slice(0, -1);
   }
@@ -240,8 +242,6 @@ getIcon(index) {
    if (this.indexS < lowThresh || this.indexE > hiThresh) {
        this.CacheIndex = Math.floor((this.productsPerPage * this.page - 1) / this.perCache);
        this.QueryMonster(this.page);
-       console.log('CacheIndex Changed', this.CacheIndex, 'Range:',
-        this.perCache * this.CacheIndex + 1, this.perCache * (this.CacheIndex + 1));
    }
    window.scrollTo(0, 0);
  }
@@ -345,7 +345,7 @@ getIcon(index) {
      queryString = queryString.slice(0, -1);
    }
 
-   console.log('QS', queryString);
+
 
    // Api
    const start = this.CacheIndex * this.perCache;

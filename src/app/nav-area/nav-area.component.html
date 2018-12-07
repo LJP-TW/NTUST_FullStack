@@ -9,7 +9,7 @@
             <div class="cat_menu_line"></div>
             <ul class="cat_nav">
               <ng-container *ngFor="let attribute of attributes; let index = index">
-                <ng-container *ngIf="index < maxCategoryNum">
+                <ng-container *ngIf="index <= maxCategoryNum">
                   <li><a (click)="categoryService.Display([attribute.NAME])">{{ attribute.NAME }}系神奇寶貝</a></li>
                 </ng-container>
               </ng-container>

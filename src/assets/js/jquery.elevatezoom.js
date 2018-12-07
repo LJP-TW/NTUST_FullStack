@@ -1716,7 +1716,6 @@ if ( typeof Object.create !== 'function' ) {
 			elevate.init( options, this );
 
 			$.data( this, 'elevateZoom', elevate );
-			console.log('Created Elevate Zoom');
 		});
 	};
 

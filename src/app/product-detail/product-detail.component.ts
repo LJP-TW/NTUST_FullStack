@@ -63,7 +63,6 @@ export class ProductDetailComponent implements OnInit, OnChanges, AfterContentIn
       this.monsterService.getMonstersByID(data.id).subscribe((httpData: Monster[]) => {
         // 拿到產品
         this.Product = httpData[0];
-        console.log(this.Product);
         // 抓圖片
         for (let i = 0 ; i < this.Product.imgNum ; i++) {
             this.http.get(this.monsterService.getMonsterBase64(this.Product.id, i)).subscribe((base64_json: any) => {
@@ -75,7 +74,7 @@ export class ProductDetailComponent implements OnInit, OnChanges, AfterContentIn
         for (let i = 0 ; i < this.Product.attributes.length ; i++) {
           for (let j = 0 ; j < this.categoryService.MonsterAttrs.length ; j++) {
             if (this.Product.attributes[i].NAME === this.categoryService.MonsterAttrs[j].NAME) {
-              QS_Relative += (j + 1).toString() + ',';
+              QS_Relative += this.categoryService.MonsterAttrs[j].value.toString() + ',';
               break;
             }
           }

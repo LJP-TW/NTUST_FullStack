@@ -32,6 +32,7 @@ export class NavAreaComponent implements OnInit {
 
   ngOnInit() {
     this.monsterService.getAttributes().subscribe((data: Attribute[]) => {
+      console.log(this.attributes);
       this.attributes = data;
     }, (error) => {
       console.log(error);
