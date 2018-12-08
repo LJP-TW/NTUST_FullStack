@@ -103,3 +103,28 @@
   display: inline-block;
   width: 100%;
 }
+
+.cont_img_nav{
+    /* overflow: hidden; */
+    height:500px;
+}
+.img_nav{
+    margin: 10px 2px;
+    height: 100%;
+}
+.navImgbar{
+    bottom: 40px;
+    margin: 10px;
+    height: 120px;
+    overflow: auto;
+    white-space: nowrap;
+}
+.single_image{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 1.0em;
+    margin: 10px auto;
+    /* bottom: 10px; */
+    width: 80%;
+    position: relative;
+}

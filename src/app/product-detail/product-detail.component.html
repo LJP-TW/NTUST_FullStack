@@ -23,33 +23,14 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="gray_tshirt">
         <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="single_product_image_tab">
-            <div role="tabpanel">
-
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs product_detail_zoom_tab" role="tablist" style="overflow-y: auto;">
-              <ng-container *ngFor="let  item of ImageIndex() ">
-                  <li role="presentation" class="active">
-                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                      <div class="small_img">
-                        <img (click)="ImageSwap(item)" [src]="imageSrc[item]" alt="" />
-                      </div>
-                    </a>
-                  </li>
-              </ng-container>
-              </ul>
-
-              <!-- Tab panes -->
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="home">
-                  <div class="single_p_image">
-                    <img id="zoom_01" [src]="imageSrc[ImageID]" [attr.data-zoom-image]="imageSrc[ImageID]" alt=""/>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+        <div class="col-md-6 col-sm-6 col-xs-12" style="background-color: #cccbcb7d">
+            <div class="navImgbar">
+                <ng-container *ngFor="let  item of ImageIndex() ">
+                        <img (click)="ImageSwap(item)" class="img_nav" [src]="imageSrc[item]" alt="" />
+                </ng-container>
+          </div>
+          <div class="single_image">
+              <img id="zoom_01" [src]="imageSrc[ImageID]" [attr.data-zoom-image]="imageSrc[ImageID]" alt=""/>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
